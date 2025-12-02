@@ -1,0 +1,111 @@
+name: Daily Playwright-BDD Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      test_script:
+        description: "Select npm test script to run"
+        default: "test"
+        type: choice
+        options:
+          - test
+          - test:ui
+          - test:validation
+          - test:homePage
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    env:
+      CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+      CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+      SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+      ENV: prod
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Capture Trigger Information
+        run: |
+          echo "TRIGGERED_BY=${{ github.actor }}" >> $GITHUB_ENV
+          echo "TRIGGER_TIME=$(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> $GITHUB_ENV
+
+      - name: Run Playwright-BDD Tests
+        run: npm run ${{ github.event.inputs.test_script || 'test' }}
+        env:
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+          ENV: ${{ env.ENV }}
+
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-html-report
+          path: playwright-report
+          retention-days: 7
+
+      - name: Upload JSON report for Slack
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-json-report
+          path: reports/cucumber.json
+          if-no-files-found: ignore
+
+      - name: Send Slack Notification
+        if: always()
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        run: |
+          JSON_REPORT="reports/cucumber.json"
+
+          if [ ! -f "$JSON_REPORT" ]; then
+            echo "JSON report not found. Exiting Slack notification step."
+            exit 0
+          fi
+
+          # Подсчёт всех тестов и упавших
+          TOTAL_TESTS=$(jq '[.. | objects | select(has("results")) | .results[]] | length' $JSON_REPORT)
+          FAILED_TESTS=$(jq '[.. | objects | select(has("results")) | .results[] | select(.status=="failed")] | length' $JSON_REPORT)
+          PASSED_TESTS=$((TOTAL_TESTS - FAILED_TESTS))
+
+          MESSAGE="*Daily Playwright-BDD Test Results*\n"
+          MESSAGE+="*ENV run:* $ENV\n"
+          MESSAGE+="*Total:* $TOTAL_TESTS ✅ *Passed:* $PASSED_TESTS ❌ *Failed:* $FAILED_TESTS\n"
+          MESSAGE+="*Triggered by:* ${{ github.actor }}\n"
+          MESSAGE+="*Triggered at:* ${{ env.TRIGGER_TIME }}\n"
+
+          # Список упавших тестов
+          if [ "$FAILED_TESTS" -gt 0 ]; then
+            FAILED_NAMES=$(jq -r '
+              .. | objects | select(has("results")) | .results[] | select(.status=="failed") | .steps[]?.title
+            ' $JSON_REPORT | paste -sd "," -)
+
+            MESSAGE+="\n*Failed Test Cases:*\n"
+            IFS=',' read -r -a TEST_ARRAY <<< "$FAILED_NAMES"
+            for TEST in "${TEST_ARRAY[@]}"; do
+              MESSAGE+="• $TEST\n"
+            done
+          fi
+
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          MESSAGE+="\n<${RUN_URL}|View Full Logs>"
+
+          curl -X POST -H "Authorization: Bearer $SLACK_BOT_TOKEN" \
+              -H "Content-Type: application/json; charset=utf-8" \
+              --data "{\"channel\": \"C0A1W3PEFG9\", \"text\": \"$MESSAGE\"}" \
+              https://slack.com/api/chat.postMessage

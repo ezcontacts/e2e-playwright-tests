@@ -4,7 +4,6 @@ export interface EnvironmentConfig {
 
 export enum Environment {
   dev = "dev",
-  qa = "qa",
   stage = "stage",
   prod = "prod",
   // other environment ...
@@ -14,13 +13,10 @@ export const environmentConfig: {
   [key in Environment | string]: EnvironmentConfig;
 } = {
   dev: {
-    baseUrl: "",
-  },
-  qa: {
-    baseUrl: "",
+    baseUrl: "https://dev.ezcontacts.com",
   },
   stage: {
-    baseUrl: "",
+    baseUrl: "https://staging.ezcontacts.com",
   },
   prod: {
     baseUrl: "https://www.ezcontacts.com",

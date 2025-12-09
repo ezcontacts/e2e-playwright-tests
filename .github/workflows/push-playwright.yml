@@ -1,0 +1,67 @@
+name: Push Playwright-BDD Tests
+
+on:
+  push:
+    branches:
+      - "**"
+  workflow_dispatch:
+    inputs:
+      test_script:
+        description: "Select npm test script to run"
+        default: "test"
+        type: choice
+        options:
+          - test
+          - test:ui
+          - test:validation
+          - test:homePage
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    env:
+      CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+      CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+      ENV: prod
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Capture Trigger Information
+        run: |
+          echo "TRIGGERED_BY=${{ github.actor }}" >> $GITHUB_ENV
+          echo "TRIGGER_TIME=$(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> $GITHUB_ENV
+
+      - name: Run Playwright-BDD Tests
+        run: npm run ${{ github.event.inputs.test_script || 'test' }}
+        env:
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+          ENV: ${{ env.ENV }}
+
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-html-report
+          path: playwright-report
+          retention-days: 7
+
+      - name: Upload JSON report for Slack
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-json-report
+          path: reports/cucumber.json
+          if-no-files-found: ignore

@@ -3,9 +3,12 @@ import { BasePage } from "../base/BasePage";
 import { ENDPOINT } from "../../constant/endpoint";
 import { FaqSectionComponent } from "../components/FaqSectionComponent";
 import { HeaderComponent } from "../components/HeaderComponent";
+import { FooterComponent } from "../components/FooterComponent";
 
 export class HomePage extends BasePage {
   readonly faqSection: FaqSectionComponent;
+  readonly footer: FooterComponent;
+
   readonly header: HeaderComponent;
   readonly recommendedProds: Locator;
   readonly noThanksBtnPopup: Locator;
@@ -15,6 +18,7 @@ export class HomePage extends BasePage {
 
     this.faqSection = new FaqSectionComponent(page);
     this.header = new HeaderComponent(page);
+    this.footer = new FooterComponent(page);
 
     this.recommendedProds = page.locator('[id^="product-slider"]');
     this.noThanksBtnPopup = page.locator("div.ltkpopup-no-thanks button");
@@ -27,20 +31,4 @@ export class HomePage extends BasePage {
   async verifyListOfRecommendedProdsVisible(): Promise<void> {
     await expect(this.recommendedProds).toBeVisible();
   }
-
-  // async verifyMainImageIsVisible(): Promise<void> {
-  //   await expect(this.mainLogo).toBeVisible();
-  // }
-
-  // async verifySearchBarVisible() {
-  //   await expect(this.searchField).toBeVisible();
-  // }
-
-  // async verifyNavBarVisible() {
-  //   await expect(this.navBar).toBeVisible();
-  // }
-
-  // async verifyCartVisible() {
-  //   await expect(this.cartLink).toBeVisible();
-  // }
 }

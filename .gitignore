@@ -13,3 +13,4 @@ test-results/
 .features-gen/
 .playwright-report/
 .reports/
+cucumber.json

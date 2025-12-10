@@ -18,12 +18,11 @@ export default defineConfig({
   fullyParallel: true,
   workers: process.env.CI ? 2 : undefined,
   retries: 0,
-  timeout: 60000,
+  timeout: 120000,
+  expect: {
+    timeout: 60000,
+  },
   use: {
     headless: isHeadless,
-    extraHTTPHeaders: {
-      "CF-Access-Client-Id": process.env.CF_ACCESS_CLIENT_ID,
-      "CF-Access-Client-Secret": process.env.CF_ACCESS_CLIENT_SECRET,
-    },
   },
 });

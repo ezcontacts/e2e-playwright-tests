@@ -35,12 +35,3 @@ Feature: Smoke tests for production environment
       | About EZ Contacts |
       | Selecting Frames  |
       | Blog              |
-
-  @skip
-  Scenario: Verify that the filter works correctly
-    Then I am on the "Eyeglasses" Page
-    Then the "In Stock" filter toggle should exist
-    And I should see gender filter options for "Unisex", "Women's", "Men's"
-    And I should see frame type filters including "Full Rim", "Rimless", and "Semi Rim"
-    And I should see the brand search input
-    And I should see a list of brand checkboxes under the brand filter

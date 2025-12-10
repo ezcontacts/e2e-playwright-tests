@@ -1,4 +1,4 @@
-import { Locator, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 import { testConfig } from "../../configs/config";
 import { BaseEntity } from "./BaseEntity";
 

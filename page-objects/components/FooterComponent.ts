@@ -29,9 +29,6 @@ export class FooterComponent extends BaseComponent {
     const link = this.root.getByRole("link", {
       name: new RegExp(`^${linkText}$`, "i"),
     });
-    await expect(
-      link,
-      `Footer link "${linkText}" should be visible`
-    ).toBeVisible();
+    await expect(link).toBeVisible();
   }
 }

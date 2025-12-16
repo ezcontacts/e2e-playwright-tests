@@ -1,7 +1,8 @@
 import { Given, Then } from "../../fixtures/fixture";
 import { ACCOUNT } from "../../data-test/accountData";
+import { DataTable } from "playwright-bdd";
 
-Then("I navigate to the login page", async ({ loginPage }) => {
+Given("I navigate to the login page", async ({ loginPage }) => {
   await loginPage.open();
 });
 
@@ -24,5 +25,20 @@ Given(
     await yopmailPage.fillLogin(ACCOUNT.email);
     await yopmailPage.clickOnRefreshButtonButton();
     await yopmailPage.verifyEmailIsExist();
+  }
+);
+
+Given("I visit the login page", async ({ loginPage }) => {
+  await loginPage.open();
+});
+
+Then(
+  "I should see the following login options:",
+  async ({ loginPage }, dataTable: DataTable) => {
+    const entries = dataTable.hashes();
+
+    for (const { provider } of entries) {
+      await loginPage.verifySingInMethodIsVisible(provider);
+    }
   }
 );

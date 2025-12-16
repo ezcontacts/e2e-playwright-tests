@@ -1,4 +1,5 @@
 import { Locator, Page } from "@playwright/test";
+import { expect } from "../../test/fixtures/fixture";
 
 export class BaseEntity {
   readonly page: Page;
@@ -21,6 +22,18 @@ export class BaseEntity {
     this.attentiveIframe = page.locator("iframe#attentive_creative");
     this.popup = page.locator("#overlayContainer");
     this.closeBtn = page.locator("#closeIconContainer");
+  }
+
+  async waitForDomContentLoad() {
+    await this.page.waitForLoadState("domcontentloaded");
+  }
+
+  async waitForLoadState() {
+    await this.page.waitForLoadState("load");
+  }
+
+  async reloadPage() {
+    await this.page.reload({ waitUntil: "domcontentloaded" });
   }
 
   async closeDynamicPopupIfPresent() {
@@ -59,5 +72,38 @@ export class BaseEntity {
     if (count > 0) {
       await locator.first().click();
     }
+  }
+
+  async verifyAnyCondition(
+    locator: Locator,
+    condition: (el: Locator) => Promise<boolean>,
+    errorMessage = `Condition: ${condition} not valid`
+  ) {
+    const count = await locator.count();
+
+    for (let i = 0; i < count; i++) {
+      const el = locator.nth(i);
+
+      if (await condition(el)) {
+        return true;
+      }
+    }
+
+    throw new Error(errorMessage);
+  }
+
+  isMobile() {
+    return this.page.viewportSize()?.width! < 768;
+  }
+
+  getLocator(desktop: Locator, mobile: Locator): Locator {
+    return this.isMobile() ? mobile : desktop;
+  }
+
+  async enterField(locator: Locator, value: string) {
+    await expect(locator).toBeVisible();
+    await expect(locator).toBeEnabled();
+
+    await locator.fill(value);
   }
 }

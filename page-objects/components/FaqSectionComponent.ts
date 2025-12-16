@@ -1,5 +1,6 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { BaseComponent } from "../base/BaseComponent";
+import { ENDPOINT } from "../../constant/endpoint";
 
 export class FaqSectionComponent extends BaseComponent {
   readonly header: Locator;
@@ -38,7 +39,11 @@ export class FaqSectionComponent extends BaseComponent {
     return await this.faqAnswer.nth(index).textContent();
   }
 
-  async clickViewAll() {
-    await this.viewAllButton.click();
+  async verifyViewAllIsVisible() {
+    await expect(this.viewAllButton).toBeVisible();
+  }
+
+  async verifyViewAllHaveCorrectUrl() {
+    await expect(this.viewAllButton).toHaveAttribute("href", ENDPOINT.faq);
   }
 }

@@ -9,4 +9,7 @@ Feature: FAQ Section and UI verification
   Then I should see the FAQ section with the header "Frequently"
   And I should see the description containing "Have any questions or doubts about choosing the right pair of glasses or contact lenses?"
 
+  Scenario: Verify the "All FAQ’s" button redirects correctly
+    When I should see the All FAQ’s button
+    Then I should be redirected to the "/help/faq" page
 

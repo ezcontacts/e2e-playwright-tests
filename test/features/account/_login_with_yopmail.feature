@@ -1,7 +1,6 @@
 @first
 Feature: Login with Magic link
 
-@skip
 Scenario: Verify login email
   Given I visit the homepage
   And I navigate to the login page

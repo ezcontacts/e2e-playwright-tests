@@ -1,22 +1,25 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { BasePage } from "../base/BasePage";
 import { ENDPOINT } from "../../constant/endpoint";
-import { HeaderComponent } from "../components/HeaderComponent";
 
 export class LoginPage extends BasePage {
-  readonly header: HeaderComponent;
-
   readonly magicLinkButton: Locator;
   readonly emailField: Locator;
   readonly sendLinkButton: Locator;
 
+  readonly providerButton: (provider: string) => Locator;
+
   constructor(page: Page) {
     super(page, ENDPOINT.login);
 
-    this.header = new HeaderComponent(page);
     this.magicLinkButton = page.locator("a[id='login-with-link-email']");
     this.emailField = page.locator('input[placeholder*="email"]');
     this.sendLinkButton = page.locator("input[id='send-reset-link-button']");
+
+    this.providerButton = (provider: string) =>
+      this.page.locator("a.btn.social-login-btn", {
+        hasText: new RegExp(provider, "i"),
+      });
   }
 
   async clickOnMagicLinkButton(): Promise<void> {
@@ -31,5 +34,10 @@ export class LoginPage extends BasePage {
     await this.emailField.waitFor();
     await this.emailField.click();
     await this.emailField.fill(value);
+  }
+
+  async verifySingInMethodIsVisible(provider: string) {
+    const btn = await this.providerButton(provider);
+    await expect(btn).toBeVisible();
   }
 }

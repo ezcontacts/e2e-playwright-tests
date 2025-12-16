@@ -52,6 +52,29 @@ Feature: Smoke tests for production environment
     And I should see the brand search input
     And I should see a list of brand checkboxes under the brand filter
 
+  @skip
+  Scenario: Verify that the checkout flow works correctly
+    Given I visit the sunglasses page
+    When I click on the first product card in the list
+    Then I should see the product title 
+    And I should see the price
+    And I should see at least one product image
+    # And I should see the frame color dropdown
+    # And I should see the size information
+    # And I should see the "Add to Cart" button
+    # And I should see the "Add to Wishlist" button
+    # And I should see shipping availability text
+    # And I should see the Affirm badge if product price is over $50
+
+    # When I add the product to the cart
+    # Then I should see the success message for adding the product to the cart
+    # And I should observe the Cart icon
+    # And the Cart count should show a jumping animation
+
+    # When I click the checkout button for guest users
+    # Then I should proceed to the checkout page
+    # And I remove all items from the cart
+
   Scenario: Verify that the login loads correctly
     Given I visit the login page
     Then I should see the following login options:
@@ -59,7 +82,7 @@ Feature: Smoke tests for production environment
       | Sign in with Google     |
       | Sign in with Facebook   |
       | Send magic link         |
-
+      
   Scenario: Verify that the contact us works correctly
     Given I visit the Contact Us page
     When I click on the "My Account" link in the Contact Us page

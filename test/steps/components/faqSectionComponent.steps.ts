@@ -17,3 +17,11 @@ Then(
     await homePage.faqSection.verifyDescriptionContains(header);
   }
 );
+
+Then("I should see the All FAQ’s button", async ({ homePage }) => {
+  await homePage.faqSection.verifyViewAllIsVisible();
+});
+
+Then("I should be redirected to the {string} page", async ({ homePage }) => {
+  await homePage.faqSection.verifyViewAllHaveCorrectUrl();
+});

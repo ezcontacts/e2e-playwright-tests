@@ -1,5 +1,6 @@
 import { defineConfig } from "@playwright/test";
 import { defineBddConfig } from "playwright-bdd";
+import { devices } from "@playwright/test";
 
 const isHeadless = process.env.HEADLESS !== "false";
 
@@ -24,5 +25,16 @@ export default defineConfig({
   },
   use: {
     headless: isHeadless,
+    viewport: { width: 1440, height: 900 },
   },
+
+  projects: [
+    {
+      name: "Desktop",
+      use: {
+        viewport: { width: 1440, height: 900 },
+        isMobile: false,
+      },
+    },
+  ],
 });

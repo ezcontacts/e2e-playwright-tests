@@ -1,11 +1,8 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { BasePage } from "../base/BasePage";
 import { ENDPOINT } from "../../constant/endpoint";
-import { HeaderComponent } from "../components/HeaderComponent";
 
 export class LoginPage extends BasePage {
-  readonly header: HeaderComponent;
-
   readonly magicLinkButton: Locator;
   readonly emailField: Locator;
   readonly sendLinkButton: Locator;
@@ -15,7 +12,6 @@ export class LoginPage extends BasePage {
   constructor(page: Page) {
     super(page, ENDPOINT.login);
 
-    this.header = new HeaderComponent(page);
     this.magicLinkButton = page.locator("a[id='login-with-link-email']");
     this.emailField = page.locator('input[placeholder*="email"]');
     this.sendLinkButton = page.locator("input[id='send-reset-link-button']");

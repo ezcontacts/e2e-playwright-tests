@@ -5,6 +5,7 @@ export class FillterComponent extends BaseComponent {
   readonly inStock: Locator;
   readonly searchField: Locator;
   readonly brands: Locator;
+  readonly menuMobile: Locator;
 
   readonly genderLabel: (label: string) => Locator;
   readonly typeLabel: (label: string) => Locator;
@@ -15,6 +16,7 @@ export class FillterComponent extends BaseComponent {
     this.inStock = this.within("#v_quickship_uFilter_true");
     this.searchField = this.within("input.brand-input");
     this.brands = this.within(".brand-list li");
+    this.menuMobile = this.within(".fa-bars");
 
     this.genderLabel = (label: string) =>
       this.page.locator(".gender_uFilter label.label-element", {
@@ -38,6 +40,10 @@ export class FillterComponent extends BaseComponent {
   }
 
   async verifyInStockIsVisible(): Promise<void> {
+    if (this.isMobile()) {
+      await this.menuMobile.click();
+    }
+
     await expect(this.inStock).toHaveCount(1);
   }
 

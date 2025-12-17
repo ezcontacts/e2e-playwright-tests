@@ -5,4 +5,9 @@ export const ENDPOINT = {
   sunglasses: "/sunglasses",
   contactUs: "/help/contact-us",
   faq: "/help/faq",
+  eyeCare: "/eye-care",
+  contactLenses: "/contact-lenses",
+  measurePdActions: "/resources/measure-pupil-distance",
+  onlineVision: "/account/online-vision-test-purchases",
+  onlineVisionTestIntroduction: "/online-vision-test",
 };

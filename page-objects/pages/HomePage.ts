@@ -14,11 +14,11 @@ export class HomePage extends BasePage {
 
     this.faqSection = new FaqSectionComponent(page);
 
-    this.recommendedProds = page.locator('[id^="product-slider"]');
-    this.noThanksBtnPopup = page.locator("div.ltkpopup-no-thanks button");
+    this.recommendedProds = this.locator('[id^="product-slider"]');
+    this.noThanksBtnPopup = this.locator("div.ltkpopup-no-thanks button");
   }
 
-  async clickOnNoThanksButton() {
+  async clickOnNoThanksButton(): Promise<void> {
     await this.clickIfVisible(this.noThanksBtnPopup);
   }
 

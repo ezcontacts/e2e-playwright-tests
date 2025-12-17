@@ -14,7 +14,10 @@ export class HeaderComponent extends BaseComponent {
     super(page, root);
 
     this.mainLogo = this.within(".cls-header-logo-img-fix");
-    this.searchField = this.within(".search-keyword");
+    this.searchField = this.within(
+      ".search-keyword",
+      ".navbar-toggle > span.glyphicon-search"
+    );
     this.navBar = this.within("ul.navbar-nav");
     this.cartLink = this.within(".cart > a");
 
@@ -33,27 +36,27 @@ export class HeaderComponent extends BaseComponent {
     await expect(this.mainLogo).toBeVisible();
   }
 
-  async verifySearchBarVisible() {
+  async verifySearchBarVisible(): Promise<void> {
     await expect(this.searchField).toBeVisible();
   }
 
-  async verifyNavBarVisible() {
+  async verifyNavBarVisible(): Promise<void> {
     await expect(this.navBar).toBeVisible();
   }
 
-  async verifyCartVisible() {
+  async verifyCartVisible(): Promise<void> {
     await expect(this.cartLink).toBeVisible();
   }
 
-  async verifyLowestPriceLinkVisible() {
+  async verifyLowestPriceLinkVisible(): Promise<void> {
     await expect(this.lowestPriceLink).toBeVisible();
   }
 
-  async verifyFreeShopingLinkVisible() {
+  async verifyFreeShopingLinkVisible(): Promise<void> {
     await expect(this.freeShopingLink).toBeVisible();
   }
 
-  async verifySpecialTopMessageVisible() {
+  async verifySpecialTopMessageVisible(): Promise<void> {
     await expect(this.specialTopMessage).toBeVisible();
   }
 }

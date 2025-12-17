@@ -11,8 +11,8 @@ on:
         default: "test"
         type: choice
         options:
+          - desktop
           - test
-          - test:ui
           - test:validation
           - test:homePage
 
@@ -46,7 +46,7 @@ jobs:
           echo "TRIGGER_TIME=$(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> $GITHUB_ENV
 
       - name: Run Playwright-BDD Tests
-        run: npm run ${{ github.event.inputs.test_script || 'test' }}
+        run: npm run ${{ github.event.inputs.test_script || 'push' }}
         env:
           CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
           CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}

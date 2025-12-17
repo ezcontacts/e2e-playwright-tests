@@ -1,6 +1,7 @@
 @first
 Feature: Login with Magic link
 
+@desktopOnly
 Scenario: Verify login email
   Given I visit the homepage
   And I navigate to the login page
@@ -8,3 +9,4 @@ Scenario: Verify login email
   And User clicks on the send login link button
   And opens the Yopmail inbox
   And clicks the login link in the email and check email
+

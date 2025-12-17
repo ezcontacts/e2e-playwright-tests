@@ -1,18 +1,9 @@
-import { Given, Then } from "../../fixtures/fixture";
-import { ACCOUNT } from "../../data-test/accountData";
+import { Given, Then, When } from "../../fixtures/fixture";
+import { ACCOUNT, MESSAGE } from "../../data-test/accountData";
 import { DataTable } from "playwright-bdd";
 
 Given("I navigate to the login page", async ({ loginPage }) => {
   await loginPage.open();
-});
-
-Then("User enters a Yopmail email", async ({ loginPage }) => {
-  await loginPage.clickOnMagicLinkButton();
-  await loginPage.fillEmail(ACCOUNT.email);
-});
-
-Then("User clicks on the send login link button", async ({ loginPage }) => {
-  await loginPage.clickOnSendLinkButton();
 });
 
 Given("opens the Yopmail inbox", async ({ yopmailPage }) => {
@@ -32,6 +23,19 @@ Given("I visit the login page", async ({ loginPage }) => {
   await loginPage.open();
 });
 
+When("User enters a Yopmail email", async ({ loginPage }) => {
+  await loginPage.clickOnMagicLinkBtn();
+  await loginPage.fillEmail(ACCOUNT.email);
+});
+
+When("User clicks on the send login link button", async ({ loginPage }) => {
+  await loginPage.clickOnSendLinkBtn();
+});
+
+When('I click the Google login button', async ({ loginPage }) => {
+  await loginPage.clickOnGoogleLoginBtn();
+});
+
 Then(
   "I should see the following login options:",
   async ({ loginPage }, dataTable: DataTable) => {
@@ -42,3 +46,8 @@ Then(
     }
   }
 );
+
+Then('I should see the login success message', async ({ loginPage }) => {
+  await loginPage.message.verifyConfirmationMessage(MESSAGE.successLogin);
+});
+

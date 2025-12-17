@@ -39,11 +39,11 @@ export class FaqSectionComponent extends BaseComponent {
     return await this.faqAnswer.nth(index).textContent();
   }
 
-  async verifyViewAllIsVisible() {
+  async verifyViewAllIsVisible(): Promise<void> {
     await expect(this.viewAllButton).toBeVisible();
   }
 
-  async verifyViewAllHaveCorrectUrl() {
+  async verifyViewAllHaveCorrectUrl(): Promise<void> {
     await expect(this.viewAllButton).toHaveAttribute("href", ENDPOINT.faq);
   }
 }

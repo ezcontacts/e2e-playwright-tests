@@ -13,11 +13,17 @@
   },
   "scripts": {
     "auth": "node saveGoogleSession.js",
-    "pretest": "npx playwright-bdd",
+    "pretest": "npm run bdd:gen",
+    "bdd:gen": "npx playwright-bdd",
     "test": "playwright test",
-    "test:ui": "playwright test --ui",
-    "debug": "npx playwright-bdd test --tags @debug",
-    "test:validation": "cross-env ENV=prod playwright test --grep @validation",
-    "test:homePage": "cross-env ENV=prods npx playwright test --grep @homePage_UI"
+    "test:ui": "npm run bdd:gen && playwright test --ui",
+    "desktop": "npm run bdd:gen && npx playwright test --project=desktop --grep-invert @mobileOnly",
+    "desktop:ui": "npm run bdd:gen && npx playwright test --project=desktop --ui --grep-invert @mobileOnly",
+    "mobile": "npm run bdd:gen && npx playwright test --project=mobile --grep-invert @desktopOnly",
+    "mobile:ui": "npm run bdd:gen && npx playwright test --project=mobile --ui --grep-invert @desktopOnly",
+
+    "push": "npm run bdd:gen && npx playwright test --project=desktop --grep-invert @mobileOnly && npx playwright test --project=mobile --grep-invert @desktopOnly",
+    "test:validation": "npm run bdd:gen && cross-env ENV=prod playwright test --grep @validation",
+    "test:homePage": "npm run bdd:gen && cross-env ENV=prods npx playwright test --grep @homePage_UI"
   }
 }

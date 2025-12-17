@@ -2,6 +2,7 @@ import { DataTable } from "playwright-bdd";
 import { Then } from "../../fixtures/fixture";
 
 Then("I should see the footer with policy links", async ({ homePage }) => {
+  await homePage.footer.scrollToComponent();
   await homePage.footer.verifyPrivatePolicyIsVisible();
 });
 
@@ -17,9 +18,11 @@ Then(
 );
 
 Then(
-  "the footer should include links:",
-  async ({ homePage }, dataTable: DataTable) => {
+  "the footer should include links in {string}:",
+  async ({ homePage }, header: string, dataTable: DataTable) => {
     const links = dataTable.hashes();
+
+    await homePage.footer.clickOnSection(header);
 
     for (const { linkText } of links) {
       await homePage.footer.verifyLinkIsVisible(linkText);

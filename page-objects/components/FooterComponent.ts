@@ -33,11 +33,25 @@ export class FooterComponent extends BaseComponent {
 
   async verifySectionIsVisible(section: string): Promise<void> {
     const header = this.sectionHeader(section);
+    await header.scrollIntoViewIfNeeded();
     await expect(header).toBeVisible();
+
+    if(this.isMobile()){
+      await header.click();
+    }
   }
 
   async verifyLinkIsVisible(linkText: string): Promise<void> {
     const link = this.link(linkText);
     await expect(link).toBeVisible();
+  }
+
+  async clickOnSection(section: string): Promise<void> {
+    const header = this.sectionHeader(section);
+    await header.scrollIntoViewIfNeeded();
+
+    if(this.isMobile()){
+      await header.click();
+    }
   }
 }

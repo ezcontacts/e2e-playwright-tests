@@ -1,8 +1,8 @@
-import { Then } from "../../fixtures/fixture";
+import { When } from "../../fixtures/fixture";
 
-Then(
+When(
   "I click on the first product card in the list",
   async ({ sunglassesPage }) => {
-    await sunglassesPage.clickOnProductByIndex(1);
+    await sunglassesPage.clickOnProductByIndex(0);
   }
 );

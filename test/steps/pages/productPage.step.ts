@@ -1,4 +1,4 @@
-import { MESSAGE, PRODUCT } from "../../data-test/accountData";
+import { MESSAGE, PRODUCT } from "../../data-test/testData";
 import {
   LensCoatingType,
   LensColorType,

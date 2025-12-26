@@ -1,5 +1,6 @@
 import { Locator, Page } from "@playwright/test";
 import { expect } from "../../test/fixtures/fixture";
+import { randomUUID } from "crypto";
 
 export class BaseEntity {
   protected page: Page;
@@ -113,5 +114,9 @@ export class BaseEntity {
     await expect(locator).toBeEnabled();
 
     await locator.fill(value);
+  }
+
+  public generateRandomEmail(): string {
+    return `user_${randomUUID()}@example.com`;
   }
 }

@@ -1,4 +1,4 @@
-import { ACCOUNT } from "../../data-test/accountData";
+import { ACCOUNT } from "../../data-test/testData";
 import { Given, When, Then } from "../../fixtures/fixture";
 
 Given("I visit the Contact Us page", async ({ contactUsPage }) => {

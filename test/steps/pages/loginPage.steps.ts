@@ -1,5 +1,5 @@
 import { Given, Then, When } from "../../fixtures/fixture";
-import { ACCOUNT, MESSAGE } from "../../data-test/accountData";
+import { ACCOUNT, MESSAGE } from "../../data-test/testData";
 import { DataTable } from "playwright-bdd";
 
 Given("I navigate to the login page", async ({ loginPage }) => {

@@ -25,3 +25,18 @@ export enum LensColorType {
   TransitionsXTRActivePolarized = "Transitions® XTRActive - Polarized",
   Photochromic = "Photochromic Light-Adaptive",
 }
+
+export enum ProductType {
+  Eyeglasses = 'eyeglasses',
+  ContactLenses = 'contact-lenses',
+  Sunglasses = 'sunglasses',
+  EyeDrops = 'eye-drops',
+  HairAndScalpTreatments = 'hair-and-scalp-treatments',
+  BracesCare = 'braces-care',
+  TaxableProduct = 'taxable-product',
+  RabiaTester = 'rabia-tester',
+  EyeTest = 'Eye Test',
+  EyecareTest = 'eyecare-test',
+  EyeVitamins = 'eye-vitamins',
+  EyeCream = 'eye-cream',
+}

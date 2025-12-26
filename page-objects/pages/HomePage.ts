@@ -4,21 +4,21 @@ import { ENDPOINT } from "../../constant/endpoint";
 import { FaqSectionComponent } from "../components/FaqSectionComponent";
 
 export class HomePage extends BasePage {
-  readonly faqSection: FaqSectionComponent;
-
   readonly recommendedProds: Locator;
   readonly noThanksBtnPopup: Locator;
+
+  readonly faqSection: FaqSectionComponent;
 
   constructor(page: Page) {
     super(page, ENDPOINT.home);
 
     this.faqSection = new FaqSectionComponent(page);
 
-    this.recommendedProds = page.locator('[id^="product-slider"]');
-    this.noThanksBtnPopup = page.locator("div.ltkpopup-no-thanks button");
+    this.recommendedProds = this.locator('[id^="product-slider"]');
+    this.noThanksBtnPopup = this.locator("div.ltkpopup-no-thanks button");
   }
 
-  async clickOnNoThanksButton() {
+  async clickOnNoThanksButton(): Promise<void> {
     await this.clickIfVisible(this.noThanksBtnPopup);
   }
 

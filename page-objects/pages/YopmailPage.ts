@@ -11,12 +11,12 @@ export class YopmailPage extends BasePage {
   constructor(page: Page) {
     super(page, "");
 
-    this.linkButton = page.locator("#ifmail");
-    this.loginField = page.locator("#login");
-    this.refreshButton = page.locator("div[id='refreshbut']");
+    this.linkButton = this.page.locator("#ifmail");
+    this.loginField = this.page.locator("#login");
+    this.refreshButton = this.page.locator("div[id='refreshbut']");
   }
 
-  async open() {
+  async open(): Promise<void> {
     await this.page.goto(this.url, {
       timeout: 30000,
     });

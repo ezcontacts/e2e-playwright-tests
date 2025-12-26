@@ -5,7 +5,7 @@ on:
     inputs:
       test_script:
         description: "Select npm test script to run"
-        default: "test"
+        default: "mobile"
         type: choice
         options:
           - test
@@ -46,7 +46,7 @@ jobs:
           echo "TRIGGER_TIME=$(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> $GITHUB_ENV
 
       - name: Run Playwright-BDD Tests
-        run: npm run ${{ github.event.inputs.test_script || 'test' }}
+        run: npm run ${{ github.event.inputs.test_script || 'mobile' }}
         env:
           CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
           CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
@@ -83,7 +83,7 @@ jobs:
           FAILED_TESTS=$(jq '[.. | objects | select(has("results")) | .results[] | select(.status=="failed")] | length' $JSON_REPORT)
           PASSED_TESTS=$((TOTAL_TESTS - FAILED_TESTS))
 
-          MESSAGE="*Daily Playwright-BDD Test Results*\n"
+          MESSAGE="*Daily Playwright-BDD Test Results on Mobile*\n"
           MESSAGE+="*ENV run:* $ENV\n"
           MESSAGE+="*Total:* $TOTAL_TESTS ✅ *Passed:* $PASSED_TESTS ❌ *Failed:* $FAILED_TESTS\n"
           MESSAGE+="*Triggered by:* ${{ github.actor }}\n"

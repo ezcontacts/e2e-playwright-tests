@@ -30,10 +30,16 @@ export default defineConfig({
 
   projects: [
     {
-      name: "Desktop",
+      name: "desktop",
       use: {
         viewport: { width: 1440, height: 900 },
         isMobile: false,
+      },
+    },
+    {
+      name: "mobile",
+      use: {
+        ...devices["iPhone 14"],
       },
     },
   ],

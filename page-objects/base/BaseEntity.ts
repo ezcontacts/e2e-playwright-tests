@@ -1,8 +1,9 @@
 import { Locator, Page } from "@playwright/test";
 import { expect } from "../../test/fixtures/fixture";
+import { randomUUID } from "crypto";
 
 export class BaseEntity {
-  readonly page: Page;
+  protected page: Page;
 
   readonly selectors: Locator[];
   readonly attentiveIframe: Locator;
@@ -13,15 +14,15 @@ export class BaseEntity {
     this.page = page;
 
     this.selectors = [
-      page.locator("#closeIconContainer"),
-      page.locator("#dismissbutton2header1"),
-      page.locator(".close-icon"),
-      page.locator('button[class*="close"]'),
+      this.locator("#closeIconContainer"),
+      this.locator("#dismissbutton2header1"),
+      this.locator(".close-icon"),
+      this.locator('button[class*="close"]'),
     ];
 
-    this.attentiveIframe = page.locator("iframe#attentive_creative");
-    this.popup = page.locator("#overlayContainer");
-    this.closeBtn = page.locator("#closeIconContainer");
+    this.attentiveIframe = this.locator("iframe#attentive_creative");
+    this.popup = this.locator("#overlayContainer");
+    this.closeBtn = this.locator("#closeIconContainer");
   }
 
   async waitForDomContentLoad() {
@@ -92,18 +93,30 @@ export class BaseEntity {
     throw new Error(errorMessage);
   }
 
-  isMobile() {
-    return this.page.viewportSize()?.width! < 768;
-  }
-
-  getLocator(desktop: Locator, mobile: Locator): Locator {
+  protected getPlatformSelector(desktop: string, mobile: string): string {
     return this.isMobile() ? mobile : desktop;
   }
 
-  async enterField(locator: Locator, value: string) {
+  protected isMobile(): boolean {
+    return this.page.viewportSize()?.width! < 768;
+  }
+
+  protected locator(desktop: string, mobile?: string): Locator {
+    return mobile === undefined
+      ? this.page.locator(desktop)
+      : this.page.locator(this.getPlatformSelector(desktop, mobile));
+  }
+
+  protected async enterField(locator: Locator, value: string) {
+    await locator.scrollIntoViewIfNeeded();
+    
     await expect(locator).toBeVisible();
     await expect(locator).toBeEnabled();
 
     await locator.fill(value);
+  }
+
+  public generateRandomEmail(): string {
+    return `user_${randomUUID()}@example.com`;
   }
 }

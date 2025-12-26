@@ -7,18 +7,16 @@ export class BaseComponent extends BaseEntity {
   constructor(page: Page, root: string | Locator) {
     super(page);
 
-    if (typeof root === "string") {
-      this.root = page.locator(root);
-    } else {
-      this.root = root;
-    }
+    this.root = typeof root === "string" ? page.locator(root) : root;
   }
 
-  within(selector: string): Locator {
-    return this.root.locator(selector);
+  protected within(desktop: string, mobile?: string): Locator {
+    return mobile === undefined
+      ? this.root.locator(desktop)
+      : this.root.locator(this.getPlatformSelector(desktop, mobile));
   }
 
-  async isVisible(selector?: string): Promise<boolean> {
+  protected async isVisible(selector?: string): Promise<boolean> {
     if (selector) {
       return await this.within(selector).isVisible();
     }
@@ -31,5 +29,9 @@ export class BaseComponent extends BaseEntity {
     } else {
       await this.root.waitFor({ state: "visible" });
     }
+  }
+
+  async scrollToComponent() {
+    await this.root.scrollIntoViewIfNeeded();
   }
 }

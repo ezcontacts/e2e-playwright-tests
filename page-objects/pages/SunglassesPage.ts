@@ -14,10 +14,15 @@ export class SunglassesPage extends BasePage {
     this.fillter = new FillterComponent(page);
 
     this.productCard = (index: number) =>
-      new ProductCardComponent(this.page, index);
+      new ProductCardComponent(
+        this.page,
+        index,
+        this.getPlatformSelector(".glass-mask", "li.ng-scope")
+      );
   }
 
-  async clickOnProductByIndex(index: number) {
-    await this.productCard(index).clickOnViewButton();
+  async clickOnProductByIndex(index: number): Promise<void> {
+    await this.productCard(index).clickOnViewBtn();
+    await this.waitForDomContentLoad();
   }
 }

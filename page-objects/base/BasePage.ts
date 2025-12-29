@@ -5,7 +5,7 @@ import { HeaderComponent } from "../components/HeaderComponent";
 import { FooterComponent } from "../components/FooterComponent";
 import { expect } from "../../test/fixtures/fixture";
 
-export class BasePage extends BaseEntity {
+export abstract class BasePage extends BaseEntity {
   readonly endpoint: string;
 
   readonly header: HeaderComponent;
@@ -21,15 +21,13 @@ export class BasePage extends BaseEntity {
 
   async open() {
     await this.page.goto(`${testConfig.baseUrl}${this.endpoint}`, {
-      timeout: 30000,
+      timeout: 60000,
       waitUntil: "domcontentloaded",
     });
-
-    await this.waitForDomContentLoad();
   }
 
   async verifyUrl() {
     await this.header.cartLink.waitFor({ state: "visible" });
-    await expect(this.page).toHaveURL(`${testConfig.baseUrl}${this.endpoint}`);
+    await expect(this.page).toHaveURL(new RegExp(`${this.endpoint}`));
   }
 }

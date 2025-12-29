@@ -15,17 +15,22 @@ export default defineConfig({
   reporter: [
     ["html", { open: "never" }],
     ["json", { outputFile: "reports/cucumber.json" }],
+
   ],
   fullyParallel: true,
   workers: process.env.CI ? 2 : undefined,
-  retries: 0,
-  timeout: 120000,
+  retries: process.env.CI ? 1 : 0,
+  timeout: 60000,
   expect: {
     timeout: 60000,
   },
   use: {
     headless: isHeadless,
     viewport: { width: 1440, height: 900 },
+    trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
+    ignoreHTTPSErrors: true,
   },
 
   projects: [

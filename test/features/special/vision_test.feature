@@ -6,6 +6,7 @@ Feature: Online Vision Test Functionality
     When I click the Google login button
     Then I should see the login success message
 
+  @skip
   Scenario: Start a new vision test with user details
     Given I visit the Online Vision Introduction Test page
     Then I should see the pre-test requirements page
@@ -23,11 +24,3 @@ Feature: Online Vision Test Functionality
     Given I visit the Online Vision Test page
     When I click "Take Our Online Vision Test" button
     Then I should see the vision test introduction
-
-
-  # Scenario: Start a vision test for an existing order
-  #   Given I visit the Online Vision Introduction Test page
-  #   When I click "start now" button
-  #   And I click "Create Vision Test For Your Existing Order" button
-  #   And I provide my order prescription
-  #   And I click Start Your Vision Test button

@@ -5,52 +5,52 @@ import { Given, When, Then } from "../../../fixtures/fixture";
 When(
   "I enter the customer email",
   async ({ adminPanelPage }) => {
-    await adminPanelPage.createNewCustomer.enterEmail(CUSTOMER.email);
-    await adminPanelPage.createNewCustomer.clickOnNextBtn();
+    await adminPanelPage.createNewOrder.enterEmail(CUSTOMER.email);
+    await adminPanelPage.createNewOrder.clickOnNextBtn();
   }
 );
 
 When(
   "I confirm the shipping address",
   async ({ adminPanelPage }) => {
-    await adminPanelPage.createNewCustomer.verifyTitleIsVisible(ADMIN.createOrder.shippingAddressTitle);
-    await adminPanelPage.createNewCustomer.clickOnNextBtn();
+    await adminPanelPage.createNewOrder.verifyTitleIsVisible(ADMIN.createOrder.shippingAddressTitle);
+    await adminPanelPage.createNewOrder.clickOnNextBtn();
   }
 );
 
 When(
   "I confirm the billing address",
   async ({ adminPanelPage }) => {
-    await adminPanelPage.createNewCustomer.verifyTitleIsVisible(ADMIN.createOrder.billingAddressTitle);
-    await adminPanelPage.createNewCustomer.clickOnNextBtn();
+    await adminPanelPage.createNewOrder.verifyTitleIsVisible(ADMIN.createOrder.billingAddressTitle);
+    await adminPanelPage.createNewOrder.clickOnNextBtn();
   }
 );
 
 When(
   "I select the payment",
   async ({ adminPanelPage }) => {
-    await adminPanelPage.createNewCustomer.clickOnNextBtn();
+    await adminPanelPage.createNewOrder.clickOnNextBtn();
   }
 );
 
 When(
   "I do not select the payment method",
   async ({ adminPanelPage }) => {
-    await adminPanelPage.createNewCustomer.clickOnNextBtn();
+    await adminPanelPage.createNewOrder.clickOnNextBtn();
   }
 );
 
 When(
   "I select the shipping method",
   async ({ adminPanelPage }) => {
-    await adminPanelPage.createNewCustomer.clickOnNextBtn();
+    await adminPanelPage.createNewOrder.clickOnNextBtn();
   }
 );
 
 When(
   "I add a new item to the existing order",
   async ({ adminPanelPage }) => {
-    await adminPanelPage.createNewCustomer.clickOnAddProductBtn();
+    await adminPanelPage.createNewOrder.clickOnAddProductBtn();
     await adminPanelPage.addProductModelComponent.selectProductByType(ProductType.Sunglasses);
     await adminPanelPage.addProductModelComponent.clickOnContinueBtn();
 
@@ -59,14 +59,23 @@ When(
     await adminPanelPage.addProductModelComponent.clickOnInStockOnlyCheckbox();
     await adminPanelPage.addProductModelComponent.clickOnAddProductBtn(0);
     await adminPanelPage.addProductModelComponent.clickOnSummaryProductBtn();
+    await adminPanelPage.addProductModelComponent.clickOnAddToOrderBtn();
+  }
+);
+
+When(
+  "I click on the Start order processing button",
+  async ({ adminPanelPage }) => {
+    await adminPanelPage.createNewOrder.clickOnStartOrderProcessingBtn();
+    await adminPanelPage.createNewOrder.verifyAndHandleDialog("Send payment request now?");
   }
 );
 
 Then(
   "Account info should contain the customer email",
   async ({ adminPanelPage }) => {
-    await adminPanelPage.createNewCustomer.verifyLabel(CUSTOMER.email);
-    await adminPanelPage.createNewCustomer.clickOnNextBtn();
+    await adminPanelPage.createNewOrder.verifyLabel(CUSTOMER.email);
+    await adminPanelPage.createNewOrder.clickOnNextBtn();
   }
 );
 

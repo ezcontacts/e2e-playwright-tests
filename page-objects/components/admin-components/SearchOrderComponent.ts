@@ -18,6 +18,11 @@ export class SearchOrderComponent extends AdminContentPanelComponent{
     await this.searchField.press('Enter');
   }
 
+  async clickRowInDataTable(text: string): Promise<void> {
+    const row = this.dataTableRowOrderId(text);
+    await row.click();
+  }
+
   async verifyExistRowInDataTable(text: string): Promise<void> {
     const row = this.dataTableRowOrderId(text);
     await expect(row).toBeVisible();

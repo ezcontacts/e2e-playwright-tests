@@ -13,6 +13,7 @@ export class ProductCardComponent extends BaseComponent {
   }
 
   async clickOnViewBtn(): Promise<void> {
+    await this.closeDynamicPopupIfPresent();
     await this.viewBtn.hover()
     await this.viewBtn.click();
     await this.waitForDomContentLoad();

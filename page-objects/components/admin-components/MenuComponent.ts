@@ -14,7 +14,10 @@ export class MenuComponent extends BaseComponent {
 
   async clickOnTab(name: string): Promise<void> {
     const tab = this.navTab(name);
-    await this.mobileMenuBtn.click();
+    if (this.isMobile()) {
+        await this.mobileMenuBtn.click();
+    }
+
     await tab.click();
   }
 }

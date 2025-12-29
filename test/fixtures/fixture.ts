@@ -4,19 +4,20 @@ import { Page } from "@playwright/test";
 import { HomePage } from "../../page-objects/pages/HomePage";
 import { LoginPage } from "../../page-objects/pages/LoginPage";
 import { YopmailPage } from "../../page-objects/pages/YopmailPage";
-import { EyeglassesPage } from "../../page-objects/pages/EyeglassesPage";
+import { EyeglassesPage } from "../../page-objects/pages/product-cataloge/EyeglassesPage";
 import { ContactUsPage } from "../../page-objects/pages/ContactUsPage";
-import { SunglassesPage } from "../../page-objects/pages/SunglassesPage";
+import { SunglassesPage } from "../../page-objects/pages/product-cataloge/SunglassesPage";
 import { ProductPage } from "../../page-objects/pages/ProductPage";
 import { FaqPage } from "../../page-objects/pages/FaqPage";
 import { CartPage } from "../../page-objects/pages/CartPage";
-import { EyeCarePage } from "../../page-objects/pages/EyeCarePage";
-import { ContactLensesPage } from "../../page-objects/pages/ContactLensesPage";
+import { EyeCarePage } from "../../page-objects/pages/product-cataloge/EyeCarePage";
+import { ContactLensesPage } from "../../page-objects/pages/product-cataloge/ContactLensesPage";
 import { ContactLensesProductPage } from "../../page-objects/pages/ContactLensesProductPage";
 import { MeasurePupilDistancePage } from "../../page-objects/pages/MeasurePdActionsPage";
 import { OnlineVisionTestPage } from "../../page-objects/pages/OnlineVisionTestPage";
 import { VisionTestIntroductionPage } from "../../page-objects/pages/VisionTestIntroductionPage";
 import { AdminPanelPage } from "../../page-objects/pages/AdminPanelPage";
+import { CheckoutPage } from "../../page-objects/pages/CheckoutPage";
 
 export const test = bddTest.extend<{
   page: Page;
@@ -36,6 +37,7 @@ export const test = bddTest.extend<{
   onlineVisionPage: OnlineVisionTestPage;
   visionTestIntroductionPage: VisionTestIntroductionPage;
   adminPanelPage: AdminPanelPage;
+  checkoutPage: CheckoutPage;
 }>({
   context: async ({ browser }, use) => {
     const context = await browser.newContext({
@@ -76,6 +78,8 @@ export const test = bddTest.extend<{
     await use(new VisionTestIntroductionPage(page)),
   adminPanelPage: async ({ page }, use) =>
     await use(new AdminPanelPage(page)),
+  checkoutPage: async ({ page }, use) =>
+    await use(new CheckoutPage(page)),
 });
 
 export const expect = test.expect;

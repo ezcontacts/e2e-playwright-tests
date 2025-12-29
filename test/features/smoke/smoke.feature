@@ -66,6 +66,7 @@ Feature: Smoke tests for production environment
     And I should see the "Add to Wishlist" button
     And I should see shipping availability text
 
+  @onlyThis
   Scenario: Verify that the login loads correctly
     Given I visit the login page
     Then I should see the following login options:

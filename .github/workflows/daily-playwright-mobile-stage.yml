@@ -12,8 +12,6 @@ on:
           - test:ui
           - test:validation
           - test:homePage
-  schedule:
-    - cron: "0 0 * * *"
 
 jobs:
   run-tests:
@@ -22,6 +20,8 @@ jobs:
     env:
       CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
       CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+      ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+      ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
       SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
       ENV: stage
 

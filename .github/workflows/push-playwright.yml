@@ -23,6 +23,8 @@ jobs:
     env:
       CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
       CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+      ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+      ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
       ENV: stage
 
     steps:
@@ -46,22 +48,37 @@ jobs:
           echo "TRIGGER_TIME=$(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> $GITHUB_ENV
 
       - name: Run Playwright-BDD Tests
-        run: npm run ${{ github.event.inputs.test_script || 'push' }}
+        run: npm run ${{ github.event.inputs.test_script || 'desktop' }}
         env:
           CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
           CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+          ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
           ENV: ${{ env.ENV }}
 
-      - name: Upload HTML report
+      # HTML report
+      - name: Upload Playwright HTML Report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-html-report
+          name: playwright-html-report-${{ github.run_number }}
           path: playwright-report
           retention-days: 7
 
-      - name: Upload JSON report for Slack
+      # Traces, screenshots, videos
+      - name: Upload Playwright Test Results
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-json-report
+          name: playwright-test-results-${{ github.run_number }}
+          path: test-results
+          retention-days: 7
+
+      # Cucumber JSON
+      - name: Upload Cucumber JSON
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-cucumber-json-${{ github.run_number }}
           path: reports/cucumber.json
           if-no-files-found: ignore

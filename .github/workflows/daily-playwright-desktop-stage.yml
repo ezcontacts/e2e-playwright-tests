@@ -22,6 +22,8 @@ jobs:
     env:
       CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
       CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+      ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+      ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
       SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
       ENV: stage
 
@@ -78,7 +80,6 @@ jobs:
             exit 0
           fi
 
-          # Подсчёт всех тестов и упавших
           TOTAL_TESTS=$(jq '[.. | objects | select(has("results")) | .results[]] | length' $JSON_REPORT)
           FAILED_TESTS=$(jq '[.. | objects | select(has("results")) | .results[] | select(.status=="failed")] | length' $JSON_REPORT)
           PASSED_TESTS=$((TOTAL_TESTS - FAILED_TESTS))
@@ -89,7 +90,6 @@ jobs:
           MESSAGE+="*Triggered by:* ${{ github.actor }}\n"
           MESSAGE+="*Triggered at:* ${{ env.TRIGGER_TIME }}\n"
 
-          # Список упавших тестов
           if [ "$FAILED_TESTS" -gt 0 ]; then
             FAILED_NAMES=$(jq -r '
               .. | objects | select(has("results")) | .results[] | select(.status=="failed") | .steps[]?.title

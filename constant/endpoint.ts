@@ -10,5 +10,6 @@ export const ENDPOINT = {
   measurePdActions: "/resources/measure-pupil-distance",
   onlineVision: "/account/online-vision-test-purchases",
   onlineVisionTestIntroduction: "/online-vision-test",
-  adminPanel: "/admin-manage"
+  adminPanel: "/admin-manage",
+  checkout: "/checkout"
 };

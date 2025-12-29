@@ -3,7 +3,7 @@ import { expect } from "../../test/fixtures/fixture";
 import { randomUUID } from "crypto";
 
 export class BaseEntity {
-  protected page: Page;
+  page: Page;
 
   readonly selectors: Locator[];
   readonly attentiveIframe: Locator;

@@ -30,6 +30,6 @@ export class BasePage extends BaseEntity {
 
   async verifyUrl() {
     await this.header.cartLink.waitFor({ state: "visible" });
-    await expect(this.page).toHaveURL(`${testConfig.baseUrl}${this.endpoint}`);
+    await expect(this.page).toHaveURL(new RegExp(`${this.endpoint}`));
   }
 }

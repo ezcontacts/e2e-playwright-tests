@@ -27,6 +27,7 @@ export class CreateNewOrderComponent extends AdminContentPanelComponent {
   }
 
   readonly addProductBtn: Locator;
+  readonly startOrderProcessingBtn: Locator;
   readonly title: (text: string) => Locator;
 
   readonly emailField: Locator;
@@ -51,6 +52,8 @@ export class CreateNewOrderComponent extends AdminContentPanelComponent {
     this.title = (text: string) => this.locator(`h3.hidden-xs`).filter({ hasText: text });
 
     this.emailField = this.within("#UserEmail");
+
+    this.startOrderProcessingBtn = this.locator("a.btn-success.btn-lg1.pull-right.margin-btm-10");
 
     this.accountLable = (label: string) => this.within(".form-group label").filter({hasText: label});
   }
@@ -94,6 +97,24 @@ export class CreateNewOrderComponent extends AdminContentPanelComponent {
   }
 
   async clickOnAddProductBtn(): Promise<void> {
+    await expect(this.addProductBtn).toBeVisible();
     await this.addProductBtn.click();
   }
+
+  async clickOnStartOrderProcessingBtn(): Promise<void> {
+    await expect(this.startOrderProcessingBtn).toBeVisible();
+    await this.startOrderProcessingBtn.click();
+  }
+
+  async verifyAndHandleDialog(text: string, isAccept: boolean = true): Promise<void> {
+    this.page.on('dialog', async dialog => {
+      expect(dialog.message()).toBe(text);
+      if(isAccept) {
+        await dialog.accept();
+      } else {
+        await dialog.dismiss();
+      }
+    });
+  }
+
 }

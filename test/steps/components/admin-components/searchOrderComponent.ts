@@ -8,6 +8,13 @@ When(
   }
 );
 
+When(
+  "I select the order",
+  async ({ adminPanelPage }) => {
+    await adminPanelPage.searchOrder.clickRowInDataTable(ORDER.orderNumber);
+  }
+);
+
 Then(
   "I should see the order search results",
   async ({ adminPanelPage }) => {

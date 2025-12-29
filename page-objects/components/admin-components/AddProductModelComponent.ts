@@ -26,8 +26,10 @@ export class AddProductModelComponent extends BaseComponent {
     this.searchField = this.within('#searchProduct');
     this.searchBtn = this.within('.input-group-addon');
     this.inStockOnlyCheckbox = this.within('#inStockOnly');
-    this.summaryProductBtn = this.locator('.btn-product-summary');
-    this.addToOdrerBtn = this.locator('.btn-summary-back');
+
+    const iframe = this.page.frameLocator('.eyeglass-products-iframes');
+    this.summaryProductBtn = iframe.locator('.btn-product-summary');
+    this.addToOdrerBtn = this.locator('.btn-eyeglasses-to-order');
   }
 
   async selectProductByType(ProductType: ProductType): Promise<void> {
@@ -62,14 +64,16 @@ export class AddProductModelComponent extends BaseComponent {
   }
 
   async clickOnSummaryProductBtn(): Promise<void> {
-    await this.page.waitForTimeout(2000);
-    //await expect(this.summaryProductBtn).toBeVisible();
-    await this.summaryProductBtn.click();
+    await this.page.waitForTimeout(5000);
+    await this.summaryProductBtn.scrollIntoViewIfNeeded();
+    await this.summaryProductBtn.hover(); 
+    await this.summaryProductBtn.click(); 
   }
 
   async clickOnAddToOrderBtn(): Promise<void> {
-    await this.page.waitForTimeout(2000);
-    //await expect(this.addToOdrerBtn).to
+    await this.page.waitForTimeout(5000);
+    await this.addToOdrerBtn.scrollIntoViewIfNeeded();
+    await this.addToOdrerBtn.hover();
     await this.addToOdrerBtn.click();
   }
 }

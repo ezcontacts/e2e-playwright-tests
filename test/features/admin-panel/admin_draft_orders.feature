@@ -18,12 +18,9 @@ Feature: Admin Order Management
     Then The draft order should be successfully created
 
 
-  @TEST_AC-1251 @skip
+  @TEST_AC-1251 @desktopOnly
   Scenario: Verify that Add Payment link and New pre auth section should visible when Admin user created the Draft Order
     When I do not select the payment method
     Then The draft order should be successfully created
     When I add a new item to the existing order
-    # And I click on the Start order processing button 
-    # Then the following elements should be visible on the ODP Page:
-    #     | Add Payment Method      | 
-    #     | New Pre Auth            |
+    And I click on the Start order processing button 

@@ -12,7 +12,7 @@ export class AdminPanelPage extends BasePage {
 
   readonly adminLogin: AdminLoginComponent;
   readonly menu: MenuComponent;
-  readonly createNewCustomer: CreateNewOrderComponent;
+  readonly createNewOrder: CreateNewOrderComponent;
   readonly searchOrder: SearchOrderComponent;
   readonly addProductModelComponent: AddProductModelComponent;
 
@@ -23,7 +23,7 @@ export class AdminPanelPage extends BasePage {
 
     this.adminLogin = new AdminLoginComponent(this.page);
     this.menu = new MenuComponent(this.page);
-    this.createNewCustomer = new CreateNewOrderComponent(this.page);
+    this.createNewOrder = new CreateNewOrderComponent(this.page);
     this.searchOrder = new SearchOrderComponent(this.page);
     this.addProductModelComponent = new AddProductModelComponent(this.page);
   }

@@ -45,6 +45,7 @@ export class ContactUsPage extends BasePage {
   }
 
   async clickOnTopic(topic: string): Promise<void> {
+    await this.waitForDomContentLoad();
     const link = await this.topic.link(topic);
     await link.scrollIntoViewIfNeeded();
     await link.click();

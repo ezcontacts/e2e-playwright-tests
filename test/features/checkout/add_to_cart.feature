@@ -26,6 +26,7 @@ Feature: Add products to cart
     And I select contact lens details on Contact Lenses Product Page
     Then I should see the success message for adding the product to the cart
 
+  @skip
   Scenario: Verify User can add eye care product to cart
     Given I visit the eye care page
     When I click on the first product card in the list

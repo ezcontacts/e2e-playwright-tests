@@ -20,7 +20,7 @@ export class CartPage extends BasePage {
     super(page, ENDPOINT.contactUs);
 
     this.message = new MessageComponent(this.page);
-    this.title = this.locator(".section-title");
+    this.title = this.locator("h2.section-title");
     this.cartNumber = this.locator("h5 > strong");
     this.continueShoppingBtn = this.locator(".active-link");
     this.itemSection = this.locator(".items");

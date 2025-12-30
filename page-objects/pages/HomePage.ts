@@ -23,6 +23,7 @@ export class HomePage extends BasePage {
   }
 
   async verifyListOfRecommendedProdsVisible(): Promise<void> {
-    await expect(this.recommendedProds).toBeVisible();
+    await this.waitForDomContentLoad();
+    await expect(this.recommendedProds).toHaveCount(1);
   }
 }

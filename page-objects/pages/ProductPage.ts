@@ -73,7 +73,7 @@ export class ProductPage extends BasePage {
   }
 
   async clickOnAddToCart(): Promise<void> {
-    await this.addCart.click();
+    await this.safeClickAndWaitForNetworkIdle(this.addCart);
   }
 
   async clickOnPrescriptionType(index: number): Promise<void> {

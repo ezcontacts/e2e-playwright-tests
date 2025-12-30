@@ -46,7 +46,7 @@ export class VisionTestIntroductionPage extends BasePage {
     this.title = this.locator(".row > h2");
     this.preTestHeader = this.locator('.row > h2');
 
-    this.patientNameField = this.locator("#AccountPrescriptionPatientName");
+    this.patientNameField = this.locator("#AccountPrescriptionPatientName").first();
     this.birthMonthSelect = this.locator("#AccountPrescriptionRxDateofbirthAtMonth");
     this.birthDaySelect = this.locator("#AccountPrescriptionRxDateofbirthAtDay");
     this.birthYearSelect = this.locator("#AccountPrescriptionRxDateofbirthAtYear");
@@ -93,8 +93,8 @@ export class VisionTestIntroductionPage extends BasePage {
       leftAxis: userData.leftAxis ?? '50',
       pdValue: userData.pdValue ?? '59.0',
     };
-
-    await this.patientNameField.fill(data.name);
+    
+    await this.safeFill(this.patientNameField, data.name);
 
     const selectMap: Record<string, { locator: any; value: string }> = {
       birthMonth: { locator: this.birthMonthSelect, value: String(data.birthMonth) },

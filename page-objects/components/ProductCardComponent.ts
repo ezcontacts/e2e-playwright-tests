@@ -1,5 +1,6 @@
 import { Page, Locator } from "@playwright/test";
 import { BaseComponent } from "../base/BaseComponent";
+import { expect } from "../../test/fixtures/fixture";
 
 export class ProductCardComponent extends BaseComponent {
   readonly viewBtn: Locator;
@@ -13,8 +14,7 @@ export class ProductCardComponent extends BaseComponent {
   }
 
   async clickOnViewBtn(): Promise<void> {
-    await this.viewBtn.hover()
-    await this.viewBtn.click();
+    await this.safeClickAndWaitForNetworkIdle(this.viewBtn);
     await this.waitForDomContentLoad();
   }
 }

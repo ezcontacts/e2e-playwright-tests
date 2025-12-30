@@ -50,6 +50,26 @@ export const test = bddTest.extend<{
 
   page: async ({ context }, use) => {
     const page = await context.newPage();
+
+    await page.addInitScript(() => {
+      const removeAttentive = () => {
+        const overlay = document.getElementById('attentive_overlay');
+        if (overlay) overlay.remove();
+      };
+      removeAttentive();
+      const observer = new MutationObserver(removeAttentive);
+      observer.observe(document.documentElement, { childList: true, subtree: true });
+    });
+
+    await page.addStyleTag({
+      content: `
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
+      `,
+    });
+
     await use(page);
   },
 

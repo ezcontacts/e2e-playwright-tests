@@ -5,7 +5,7 @@ import { HeaderComponent } from "../components/HeaderComponent";
 import { FooterComponent } from "../components/FooterComponent";
 import { expect } from "../../test/fixtures/fixture";
 
-export class BasePage extends BaseEntity {
+export abstract class BasePage extends BaseEntity {
   readonly endpoint: string;
 
   readonly header: HeaderComponent;

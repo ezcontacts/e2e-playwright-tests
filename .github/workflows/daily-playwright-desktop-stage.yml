@@ -80,34 +80,36 @@ jobs:
             exit 0
           fi
 
-          # Подсчёт всех тестов и упавших
-          TOTAL_TESTS=$(jq '[.. | objects | select(has("results")) | .results[]] | length' $JSON_REPORT)
-          FAILED_TESTS=$(jq '[.. | objects | select(has("results")) | .results[] | select(.status=="failed")] | length' $JSON_REPORT)
-          PASSED_TESTS=$((TOTAL_TESTS - FAILED_TESTS))
+          TOTAL_TESTS=$(jq '[.[] | .elements[]] | length' "$JSON_REPORT")
+          PASSED_TESTS=$(jq '[.[] | .elements[] | select(.status=="passed")] | length' "$JSON_REPORT")
+          FAILED_TESTS=$(jq '[.[] | .elements[] | select(.status=="failed")] | length' "$JSON_REPORT")
+          SKIPPED_TESTS=$(jq '[.[] | .elements[] | select(.status=="skipped")] | length' "$JSON_REPORT")
 
-          MESSAGE="*Daily Playwright-BDD Test Results on Desktop*\n"
-          MESSAGE+="*ENV run:* $ENV\n"
-          MESSAGE+="*Total:* $TOTAL_TESTS ✅ *Passed:* $PASSED_TESTS ❌ *Failed:* $FAILED_TESTS\n"
+          JOB_STATUS="${{ job.status }}"
+
+          MESSAGE="*Daily Playwright-BDD Test Results*\n"
+          MESSAGE+="*ENV:* $ENV\n"
+          MESSAGE+="*Job status:* $JOB_STATUS\n"
+          MESSAGE+="*Total:* $TOTAL_TESTS\n"
+          MESSAGE+="✅ Passed: $PASSED_TESTS\n"
+          MESSAGE+="❌ Failed: $FAILED_TESTS\n"
+          MESSAGE+="⏭ Skipped: $SKIPPED_TESTS\n"
           MESSAGE+="*Triggered by:* ${{ github.actor }}\n"
           MESSAGE+="*Triggered at:* ${{ env.TRIGGER_TIME }}\n"
 
-          # Список упавших тестов
           if [ "$FAILED_TESTS" -gt 0 ]; then
-            FAILED_NAMES=$(jq -r '
-              .. | objects | select(has("results")) | .results[] | select(.status=="failed") | .steps[]?.title
-            ' $JSON_REPORT | paste -sd "," -)
-
-            MESSAGE+="\n*Failed Test Cases:*\n"
-            IFS=',' read -r -a TEST_ARRAY <<< "$FAILED_NAMES"
-            for TEST in "${TEST_ARRAY[@]}"; do
-              MESSAGE+="• $TEST\n"
-            done
+            MESSAGE+="\n*Failed Scenarios:*\n"
+            jq -r '.[] | .elements[] | select(.status=="failed") | "• \(.name)"' "$JSON_REPORT" >> failed.txt
+            while read -r line; do
+              MESSAGE+="$line\n"
+            done < failed.txt
           fi
 
           RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-          MESSAGE+="\n<${RUN_URL}|View Full Logs>"
+          MESSAGE+="\n<$RUN_URL|View Full Logs>"
 
-          curl -X POST -H "Authorization: Bearer $SLACK_BOT_TOKEN" \
-              -H "Content-Type: application/json; charset=utf-8" \
-              --data "{\"channel\": \"C0A1W3PEFG9\", \"text\": \"$MESSAGE\"}" \
-              https://slack.com/api/chat.postMessage
+          curl -X POST \
+            -H "Authorization: Bearer $SLACK_BOT_TOKEN" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            --data "{\"channel\":\"C0A1W3PEFG9\",\"text\":\"$MESSAGE\"}" \
+            https://slack.com/api/chat.postMessage

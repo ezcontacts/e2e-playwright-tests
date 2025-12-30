@@ -9,6 +9,7 @@ export class BaseEntity {
   readonly attentiveIframe: Locator;
   readonly popup: Locator;
   readonly closeBtn: Locator;
+  readonly attentiveOverlay: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -23,6 +24,51 @@ export class BaseEntity {
     this.attentiveIframe = this.locator("iframe#attentive_creative");
     this.popup = this.locator("#overlayContainer");
     this.closeBtn = this.locator("#closeIconContainer");
+    this.attentiveOverlay = this.page.locator('#attentive_overlay');
+  }
+
+  async closeAttentiveOverlay(): Promise<void> {
+    if (await this.attentiveOverlay.isVisible({ timeout: 5000 }).catch(() => false)) {
+      await this.page.evaluate(() => {
+        const overlay = document.getElementById('attentive_overlay');
+        if (overlay) {
+          overlay.remove();
+        }
+      });
+    }
+  }
+
+  async safeClick(locator: Locator, timeout = 60000) {
+    await locator.scrollIntoViewIfNeeded();
+    await expect(locator).toBeVisible({ timeout });
+    await expect(locator).toBeEnabled({ timeout });
+    await locator.click({ timeout });
+  }
+
+  protected async safeClickAndWaitForNetworkIdle(
+    locator: Locator,
+    options?: { timeout?: number }
+  ): Promise<void> {
+    const timeout = options?.timeout ?? 60000;
+
+    if (await this.attentiveOverlay.isVisible().catch(() => false)) {
+      await this.attentiveOverlay.evaluate(el => el.remove());
+    }
+
+    await locator.scrollIntoViewIfNeeded();
+    await expect(locator).toBeVisible({ timeout });
+
+    await Promise.all([
+      this.page.waitForLoadState('networkidle', { timeout }),
+      locator.click({force: true}),
+    ]);
+  }
+
+  async safeFill(locator: Locator, value: string, timeout = 60000) {
+    await locator.scrollIntoViewIfNeeded();
+    await expect(locator).toBeVisible({ timeout });
+    await expect(locator).toBeEnabled({ timeout });
+    await locator.fill(value, { timeout });
   }
 
   async waitForDomContentLoad() {

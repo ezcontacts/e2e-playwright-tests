@@ -71,9 +71,6 @@ export class AddProductModelComponent extends BaseComponent {
   }
 
   async clickOnAddToOrderBtn(): Promise<void> {
-    await this.page.waitForTimeout(5000);
-    await this.addToOdrerBtn.scrollIntoViewIfNeeded();
-    await this.addToOdrerBtn.hover();
-    await this.addToOdrerBtn.click();
+    await this.safeClick(this.addToOdrerBtn);
   }
 }

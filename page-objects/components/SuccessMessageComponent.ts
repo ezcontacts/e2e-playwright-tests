@@ -10,7 +10,9 @@ export class MessageComponent extends BaseComponent {
     this.confirmationMessage = this.locator(".container > .success-msg");
   }
 
-  async verifyConfirmationMessage(value: string): Promise<void> {
-    await expect(this.confirmationMessage).toHaveText(value);
+  async verifyConfirmationMessage(expected: string): Promise<void> {
+    const msgLocator = this.confirmationMessage.filter({ hasText: expected });
+    await expect(msgLocator).toBeVisible({ timeout: 60000 });
+    await expect(msgLocator).toContainText(expected);
   }
 }

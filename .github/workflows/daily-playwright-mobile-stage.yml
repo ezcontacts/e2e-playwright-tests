@@ -12,8 +12,6 @@ on:
           - test:ui
           - test:validation
           - test:homePage
-  schedule:
-    - cron: "0 0 * * *"
 
 jobs:
   run-tests:

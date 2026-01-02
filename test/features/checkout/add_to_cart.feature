@@ -1,13 +1,19 @@
 @add_to_cart @validation
 Feature: Add products to cart
 
-@smoke  @func
+  Background:
+    Given I visit the homepage
+    And I have dismissed the "No Thanks" popup if present
+    And the dynamic popup is closed if present
+
+  @smoke  @func
   Scenario: Verify User can add sunglasses to cart
     Given I visit the sunglasses page
     When I click on the first product card in the list
     And I add the product to the cart
     Then I should see the success message for adding the product to the cart
 
+  @onlyThis
   Scenario: Verify User can add eyeglasses to cart
     Given I visit the eyeglasses page
     When I click on the first product card in the list
@@ -32,4 +38,3 @@ Feature: Add products to cart
     When I click on the first product card in the list
     When I add the product to the cart
     Then I should see the success message for adding the product to the cart
-

@@ -4,16 +4,16 @@ import { BasePage } from "../base/BasePage";
 export class YopmailPage extends BasePage {
   readonly url = "https://yopmail.com/en/";
 
-  readonly linkButton: Locator;
+  readonly linkBtn: Locator;
   readonly loginField: Locator;
-  readonly refreshButton: Locator;
+  readonly refreshBtn: Locator;
 
   constructor(page: Page) {
     super(page, "");
 
-    this.linkButton = this.page.locator("#ifmail");
+    this.linkBtn = this.page.locator("#ifmail");
     this.loginField = this.page.locator("#login");
-    this.refreshButton = this.page.locator("div[id='refreshbut']");
+    this.refreshBtn = this.page.locator("div[id='refreshbut']");
   }
 
   async open(): Promise<void> {
@@ -25,15 +25,15 @@ export class YopmailPage extends BasePage {
   }
 
   async verifyEmailIsExist(): Promise<void> {
-    await expect(this.linkButton).toBeVisible();
+    await expect(this.linkBtn).toBeVisible();
   }
 
-  async clickOnLinkButton(): Promise<void> {
-    await this.linkButton.click();
+  async clickOnLinkBtn(): Promise<void> {
+    await this.linkBtn.click();
   }
 
-  async clickOnRefreshButtonButton(): Promise<void> {
-    await this.refreshButton.click();
+  async clickOnRefreshBtn(): Promise<void> {
+    await this.refreshBtn.click();
   }
 
   async fillLogin(value: string): Promise<void> {

@@ -2,7 +2,7 @@ import { Locator, Page } from "@playwright/test";
 import { expect } from "../../test/fixtures/fixture";
 import { randomUUID } from "crypto";
 
-export class BaseEntity {
+export abstract class BaseEntity {
   page: Page;
 
   readonly selectors: Locator[];
@@ -10,6 +10,8 @@ export class BaseEntity {
   readonly popup: Locator;
   readonly closeBtn: Locator;
   readonly attentiveOverlay: Locator;
+  readonly modalPanel: Locator;
+  readonly closePanelBtn: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -19,12 +21,18 @@ export class BaseEntity {
       this.locator("#dismissbutton2header1"),
       this.locator(".close-icon"),
       this.locator('button[class*="close"]'),
+      this.page.getByTestId('closeIcon'),
     ];
+
+    this.modalPanel = this.locator(".css-183k8kr");
 
     this.attentiveIframe = this.locator("iframe#attentive_creative");
     this.popup = this.locator("#overlayContainer");
     this.closeBtn = this.locator("#closeIconContainer");
     this.attentiveOverlay = this.page.locator('#attentive_overlay');
+    this.closePanelBtn = this.page
+        .frameLocator('iframe#attentive_creative')
+        .getByTestId('closeIcon');
   }
 
   async closeAttentiveOverlay(): Promise<void> {
@@ -70,38 +78,29 @@ export class BaseEntity {
     await locator.fill(value, { timeout });
   }
 
-  async waitForDomContentLoad() {
+  async waitForDomContentLoad(): Promise<void> {
     await this.page.waitForLoadState("domcontentloaded");
   }
 
-  async waitForLoadState() {
+  async waitForLoadState(): Promise<void> {
     await this.page.waitForLoadState("load");
   }
 
-  async reloadPage() {
+  async reloadPage(): Promise<void> {
     await this.page.reload({ waitUntil: "domcontentloaded" });
   }
 
-  async closeDynamicPopupIfPresent() {
-    if ((await this.attentiveIframe.count()) > 0) {
-      await this.attentiveIframe.evaluate((iframe) => iframe.remove());
-      console.log("Removed iframe#attentive_creative");
-    }
+  async closeDynamicPopupIfPresent(): Promise<void> {
+    if(this.isMobile()) return;
 
-    for (const locator of this.selectors) {
-      if ((await locator.count()) > 0 && (await locator.first().isVisible())) {
-        await locator.first().click();
-        console.log(
-          `Clicked popup close button: ${await locator.first().toString()}`
-        );
-        return;
-      }
-    }
-
-    console.log("No popup close buttons found");
+    try{
+      await this.closePanelBtn.click();
+    }catch(e){}
   }
 
   async waitAndClosePopup(): Promise<void> {
+    if(this.isMobile()) return;
+
     await this.page.waitForTimeout(1000);
 
     if ((await this.popup.count()) > 0) {

@@ -13,7 +13,7 @@ export class ContactUsPage extends BasePage {
   readonly submitBtn: Locator;
   readonly errorModal: Locator;
   readonly errorModalText: Locator;
-  readonly errorModalCloseButton: Locator;
+  readonly errorModalCloseBtn: Locator;
 
   readonly contactEmailField: Locator;
   readonly contactNameField: Locator;
@@ -36,7 +36,7 @@ export class ContactUsPage extends BasePage {
 
     this.submitBtn = this.locator('#ContactFormSubmitButton');
     this.errorModalText = this.locator("#jsShowErrorModalText");
-    this.errorModalCloseButton = this.locator("#jsShowErrorModalCloseButton");
+    this.errorModalCloseBtn = this.locator("#jsShowErrorModalCloseButton");
     this.contactEmailField = this.locator("#ContactEmail");
     this.contactNameField = this.locator("#ContactName");
     this.contactMessageField = this.locator("#ContactMessage");
@@ -45,11 +45,9 @@ export class ContactUsPage extends BasePage {
   }
 
   async clickOnTopic(topic: string): Promise<void> {
-    await this.waitForDomContentLoad();
     const link = await this.topic.link(topic);
     await link.scrollIntoViewIfNeeded();
     await link.click();
-    await this.waitForDomContentLoad();
   }
 
   async clickOnSubmitBtn(): Promise<void> {
@@ -58,7 +56,7 @@ export class ContactUsPage extends BasePage {
   }
 
   async closeErrorModal(): Promise<void> {
-    await this.errorModalCloseButton.click();
+    await this.errorModalCloseBtn.click();
   }
 
   async verifyErrorMessage(expectedError: string): Promise<void> {

@@ -59,7 +59,6 @@ export class BaseEntity {
     await expect(locator).toBeVisible({ timeout });
 
     await Promise.all([
-      this.page.waitForLoadState('networkidle', { timeout }),
       locator.click({force: true}),
     ]);
   }

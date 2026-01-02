@@ -14,7 +14,7 @@ Given(
   "clicks the login link in the email and check email",
   async ({ yopmailPage }) => {
     await yopmailPage.fillLogin(ACCOUNT.email);
-    await yopmailPage.clickOnRefreshButtonButton();
+    await yopmailPage.clickOnRefreshBtn();
     await yopmailPage.verifyEmailIsExist();
   }
 );

@@ -68,6 +68,11 @@ export class VisionTestIntroductionPage extends BasePage {
     });
   }
 
+  async open(): Promise<void>{
+    await super.open();
+    await this.closeDynamicPopupIfPresent();
+  }
+
   async verifyTitleIsVisible(): Promise<void>{
     await expect(this.title).toBeVisible();
   }
@@ -93,6 +98,15 @@ export class VisionTestIntroductionPage extends BasePage {
       leftAxis: userData.leftAxis ?? '50',
       pdValue: userData.pdValue ?? '59.0',
     };
+
+    try{
+      const btn = this.testBtn("Cancel The Previous Test");
+
+      if(await btn.isVisible().catch(() => false)){
+        await btn.click();
+      }
+      
+    }catch(e){}
     
     await this.safeFill(this.patientNameField, data.name);
 
@@ -121,6 +135,7 @@ export class VisionTestIntroductionPage extends BasePage {
 
   async clickOnTestBtn(text: string): Promise<void> {
     const btn = this.testBtn(text);
+
     await btn.scrollIntoViewIfNeeded();
     await btn.click();
   }

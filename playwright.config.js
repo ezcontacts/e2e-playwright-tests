@@ -14,23 +14,22 @@ export default defineConfig({
   testDir,
   reporter: [
     ["html", { open: "never" }],
-    ["json", { outputFile: "reports/cucumber.json" }],
+    ["json", { outputFile: "reports/report.json" }],
   ],
   fullyParallel: true,
   workers: process.env.CI ? 2 : undefined,
-  retries: 0,
-  timeout: 120000,
+  retries: process.env.CI ? 1 : 0,
+  timeout: 100000,
   expect: {
     timeout: 60000,
   },
   use: {
     headless: isHeadless,
     viewport: { width: 1440, height: 900 },
-    // launchOptions: {
-    //   args: [
-    //     '--disable-features=InterestCohort',
-    //   ],
-    // },
+    trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
+    ignoreHTTPSErrors: true,
   },
 
   projects: [

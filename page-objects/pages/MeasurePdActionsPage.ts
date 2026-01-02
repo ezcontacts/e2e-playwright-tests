@@ -8,7 +8,7 @@ export class MeasurePupilDistancePage extends BasePage {
   readonly video: Locator;
 
   readonly sectionWithText: (text: string)=> Locator;
-  readonly buttonWithText: (text: string)=> Locator;
+  readonly btnWithText: (text: string)=> Locator;
 
   constructor(page: Page) {
     super(page, ENDPOINT.measurePdActions);
@@ -17,7 +17,7 @@ export class MeasurePupilDistancePage extends BasePage {
     this.toolInstructions = this.locator('[class^="measure-pd-section"]');
     this.video = this.locator("#pd-measurement-video");
 
-    this.buttonWithText = (text: string) => this.locator("button, a").filter({ hasText: text });
+    this.btnWithText = (text: string) => this.locator("button, a").filter({ hasText: text });
     this.sectionWithText  = (text: string) => this.locator("h2, h3").filter({ hasText: text });
   }
 
@@ -29,10 +29,10 @@ export class MeasurePupilDistancePage extends BasePage {
     await expect(this.toolInstructions).toBeVisible();
   }
 
-  async verifyButtonWithTextIsVisible(text: string): Promise<void>{
-    const button = this.buttonWithText(text);
+  async verifyBtnWithTextIsVisible(text: string): Promise<void>{
+    const btn = this.btnWithText(text);
 
-    await expect(button).toBeVisible();
+    await expect(btn).toBeVisible();
   }
 
   async verifySectionIsVisible(text: string): Promise<void>{

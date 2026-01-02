@@ -9,9 +9,8 @@ on:
         type: choice
         options:
           - test
-          - test:ui
-          - test:validation
-          - test:homePage
+          - desktop
+          - mobile
   schedule:
     - cron: "0 0 * * *"
 
@@ -49,10 +48,6 @@ jobs:
 
       - name: Run Playwright-BDD Tests
         run: npm run ${{ github.event.inputs.test_script || 'desktop' }}
-        env:
-          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
-          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
-          ENV: ${{ env.ENV }}
 
       - name: Upload HTML report
         uses: actions/upload-artifact@v4
@@ -65,7 +60,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: playwright-json-report
-          path: reports/cucumber.json
+          path: reports/report.json
           if-no-files-found: ignore
 
       - name: Send Slack Notification
@@ -73,24 +68,25 @@ jobs:
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         run: |
-          JSON_REPORT="reports/cucumber.json"
+          JSON_REPORT="reports/report.json"
 
           if [ ! -f "$JSON_REPORT" ]; then
-            echo "JSON report not found. Exiting Slack notification step."
+            echo "JSON report not found. Skipping Slack notification."
             exit 0
           fi
 
-          TOTAL_TESTS=$(jq '[.[] | .elements[]] | length' "$JSON_REPORT")
-          PASSED_TESTS=$(jq '[.[] | .elements[] | select(.status=="passed")] | length' "$JSON_REPORT")
-          FAILED_TESTS=$(jq '[.[] | .elements[] | select(.status=="failed")] | length' "$JSON_REPORT")
-          SKIPPED_TESTS=$(jq '[.[] | .elements[] | select(.status=="skipped")] | length' "$JSON_REPORT")
+          TOTAL_TESTS=$(jq '[.. | objects | select(has("results"))] | length' "$JSON_REPORT")
+          PASSED_TESTS=$(jq '[.. | objects | select(has("results")) | .results[] | select(.status=="passed")] | length' "$JSON_REPORT")
+          FAILED_TESTS=$(jq '[.. | objects | select(has("results")) | .results[] | select(.status=="failed")] | length' "$JSON_REPORT")
+          SKIPPED_TESTS=$(jq '[.. | objects | select(has("results")) | .results[] | select(.status=="skipped")] | length' "$JSON_REPORT")
 
           JOB_STATUS="${{ job.status }}"
 
           MESSAGE="*Daily Playwright-BDD Test Results*\n"
+          MESSAGE+="*Device:* Desktop\n"
           MESSAGE+="*ENV:* $ENV\n"
           MESSAGE+="*Job status:* $JOB_STATUS\n"
-          MESSAGE+="*Total:* $TOTAL_TESTS\n"
+          MESSAGE+="*Total tests:* $TOTAL_TESTS\n"
           MESSAGE+="✅ Passed: $PASSED_TESTS\n"
           MESSAGE+="❌ Failed: $FAILED_TESTS\n"
           MESSAGE+="⏭ Skipped: $SKIPPED_TESTS\n"
@@ -98,8 +94,14 @@ jobs:
           MESSAGE+="*Triggered at:* ${{ env.TRIGGER_TIME }}\n"
 
           if [ "$FAILED_TESTS" -gt 0 ]; then
-            MESSAGE+="\n*Failed Scenarios:*\n"
-            jq -r '.[] | .elements[] | select(.status=="failed") | "• \(.name)"' "$JSON_REPORT" >> failed.txt
+            MESSAGE+="\n*Failed Tests:*\n"
+            jq -r '
+              .. | objects
+              | select(has("title") and has("results"))
+              | select(any(.results[]; .status=="failed"))
+              | "• \(.title)"
+            ' "$JSON_REPORT" > failed.txt
+
             while read -r line; do
               MESSAGE+="$line\n"
             done < failed.txt

@@ -8,7 +8,7 @@ Given("the dynamic popup is closed if present", async ({ homePage }) => {
 When(
   'I have dismissed the "No Thanks" popup if present',
   async ({ homePage }) => {
-    await homePage.clickOnNoThanksButton();
+    await homePage.clickOnNoThanksBtn();
   }
 );
 

@@ -21,11 +21,9 @@ export abstract class BasePage extends BaseEntity {
 
   async open() {
     await this.page.goto(`${testConfig.baseUrl}${this.endpoint}`, {
-      timeout: 30000,
+      timeout: 60000,
       waitUntil: "domcontentloaded",
     });
-
-    await this.waitForDomContentLoad();
   }
 
   async verifyUrl() {

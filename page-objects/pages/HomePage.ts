@@ -18,7 +18,7 @@ export class HomePage extends BasePage {
     this.noThanksBtnPopup = this.locator("div.ltkpopup-no-thanks button");
   }
 
-  async clickOnNoThanksButton(): Promise<void> {
+  async clickOnNoThanksBtn(): Promise<void> {
     await this.clickIfVisible(this.noThanksBtnPopup);
   }
 

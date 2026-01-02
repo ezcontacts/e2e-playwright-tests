@@ -13,7 +13,7 @@ Then("I should see the instructions for online tool", async ({ measurePdActionsP
 });
 
 Then("I should see a button with text {string}", async ({ measurePdActionsPage }, text) => {
-  await measurePdActionsPage.verifyButtonWithTextIsVisible(text);
+  await measurePdActionsPage.verifyBtnWithTextIsVisible(text);
 });
 
 Then("I should see a section titled {string}", async ({ measurePdActionsPage }, text) => {

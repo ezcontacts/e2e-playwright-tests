@@ -1,7 +1,7 @@
 import { Locator, Page } from "@playwright/test";
 import { BaseEntity } from "./BaseEntity";
 
-export class BaseComponent extends BaseEntity {
+export abstract class BaseComponent extends BaseEntity {
   readonly root: Locator;
 
   constructor(page: Page, root: string | Locator) {

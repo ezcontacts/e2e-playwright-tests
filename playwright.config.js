@@ -2,8 +2,6 @@ import { defineConfig } from "@playwright/test";
 import { defineBddConfig } from "playwright-bdd";
 import { devices } from "@playwright/test";
 
-const isHeadless = process.env.HEADLESS !== "false";
-
 const testDir = defineBddConfig({
   testDir: "test/generated",
   features: "test/features/**/*.feature",
@@ -24,7 +22,7 @@ export default defineConfig({
     timeout: 60000,
   },
   use: {
-    headless: isHeadless,
+    headless: true,
     viewport: { width: 1440, height: 900 },
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',

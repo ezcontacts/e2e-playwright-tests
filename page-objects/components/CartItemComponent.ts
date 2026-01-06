@@ -12,7 +12,7 @@ export class CartItemComponent extends BaseComponent {
   constructor(page: Page, index: number, root: string = ".cart-product") {
     const rootLocator = page.locator(root).nth(index);
 
-    super(page, rootLocator);
+    super(page, {locator:rootLocator});
 
     this.name = this.within(".product-name");
     this.image = this.within(".product-img");

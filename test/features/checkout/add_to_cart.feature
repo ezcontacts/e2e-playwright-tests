@@ -3,8 +3,6 @@ Feature: Add products to cart
 
   Background:
     Given I visit the homepage
-    And I have dismissed the "No Thanks" popup if present
-    And the dynamic popup is closed if present
 
   @smoke  @func
   Scenario: Verify User can add sunglasses to cart

@@ -1,6 +1,5 @@
 import { Page, Locator } from "@playwright/test";
 import { BaseComponent } from "../base/BaseComponent";
-import { expect } from "../../test/fixtures/fixture";
 
 export class ProductCardComponent extends BaseComponent {
   readonly viewBtn: Locator;
@@ -8,7 +7,7 @@ export class ProductCardComponent extends BaseComponent {
   constructor(page: Page, index: number, root: string = ".glass-mask") {
     const rootLocator = page.locator(root).nth(index);
 
-    super(page, rootLocator);
+    super(page, {locator: rootLocator});
 
     this.viewBtn = this.within("span.view", ".contact-image");
   }

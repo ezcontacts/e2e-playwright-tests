@@ -2,20 +2,24 @@ import { expect, Locator, Page } from "@playwright/test";
 import { BasePage } from "../base/BasePage";
 import { ENDPOINT } from "../../constant/endpoint";
 import { FaqSectionComponent } from "../components/FaqSectionComponent";
+import { PromotionComponent } from "../components/PromotionComponent";
 
 export class HomePage extends BasePage {
   readonly recommendedProds: Locator;
   readonly noThanksBtnPopup: Locator;
 
   readonly faqSection: FaqSectionComponent;
+  readonly promotion: PromotionComponent;
 
   constructor(page: Page) {
     super(page, ENDPOINT.home);
 
-    this.faqSection = new FaqSectionComponent(page);
-
     this.recommendedProds = this.locator('[id^="product-slider"]');
     this.noThanksBtnPopup = this.locator("div.ltkpopup-no-thanks button");
+
+    this.faqSection = new FaqSectionComponent(page);
+    this.promotion = new PromotionComponent(page);
+
   }
 
   async clickOnNoThanksBtn(): Promise<void> {

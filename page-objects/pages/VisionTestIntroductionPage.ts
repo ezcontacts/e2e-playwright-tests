@@ -3,6 +3,7 @@ import { BasePage } from "../base/BasePage";
 import { ENDPOINT } from "../../constant/endpoint";
 import { expect } from "../../test/fixtures/fixture";
 import { EyeDetail } from "../base/types";
+import { PromotionComponent } from "../components/PromotionComponent";
 
 type PrescriptionUserData = {
   name?: string;
@@ -39,6 +40,8 @@ export class VisionTestIntroductionPage extends BasePage {
 
   readonly rightEye: EyeDetail;
   readonly leftEye: EyeDetail;
+
+  readonly promotion: PromotionComponent;
   
   constructor(page: Page) {
     super(page, ENDPOINT.onlineVisionTestIntroduction);
@@ -66,11 +69,13 @@ export class VisionTestIntroductionPage extends BasePage {
       cylinder: this.locator("#AccountPrescriptionEyeglassesLeftCyl"),
       axis: this.locator("#AccountPrescriptionEyeglassesLeftAxis"),
     });
+
+    this.promotion = new PromotionComponent(page);
   }
 
   async open(): Promise<void>{
     await super.open();
-    await this.closeDynamicPopupIfPresent();
+    await this.promotion.closeDynamicPopupIfPresent();
   }
 
   async verifyTitleIsVisible(): Promise<void>{

@@ -21,11 +21,11 @@ export class AdminPanelPage extends BasePage {
 
     this.successMessage = (text: string) => this.locator(".gritter-title").filter({ hasText: text });
 
-    this.adminLogin = new AdminLoginComponent(this.page);
-    this.menu = new MenuComponent(this.page);
-    this.createNewOrder = new CreateNewOrderComponent(this.page);
-    this.searchOrder = new SearchOrderComponent(this.page);
-    this.addProductModelComponent = new AddProductModelComponent(this.page);
+    this.adminLogin = new AdminLoginComponent(page);
+    this.menu = new MenuComponent(page);
+    this.createNewOrder = new CreateNewOrderComponent(page);
+    this.searchOrder = new SearchOrderComponent(page);
+    this.addProductModelComponent = new AddProductModelComponent(page);
   }
 
   async verifySuccessfulMessage(text: string): Promise<void> {

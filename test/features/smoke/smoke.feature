@@ -3,8 +3,6 @@ Feature: Smoke tests for production environment
 
   Background:
     Given I visit the homepage
-    And I have dismissed the "No Thanks" popup if present
-    And the dynamic popup is closed if present
 
   @desktopOnly
   Scenario: Verify that the homepage loads correctly

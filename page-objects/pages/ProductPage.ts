@@ -59,12 +59,12 @@ export class ProductPage extends BasePage {
     this.addToWishlist = this.locator(".add-to-wishlist-btn");
     this.shipAvailability = this.locator("#shipAvailability");
 
-    this.prescriptionDetails = new PrescriptionDetailsComponent(this.page);
-    this.lensMaterial = new LensMaterialComponent(this.page);
-    this.coating = new CoatingComponent(this.page);
+    this.prescriptionDetails = new PrescriptionDetailsComponent(page);
+    this.lensMaterial = new LensMaterialComponent(page);
+    this.coating = new CoatingComponent(page);
     this.lensColor = new LensColorComponent(
       this.page,
-      this.getPlatformSelector("li#step-7", "#step-7")
+      this.getPlatformSelector("li#step-7", "#step-7") as string
     );
   }
 

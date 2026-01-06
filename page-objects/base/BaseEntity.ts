@@ -2,48 +2,40 @@ import { Locator, Page } from "@playwright/test";
 import { expect } from "../../test/fixtures/fixture";
 import { randomUUID } from "crypto";
 
+type BaseLocator = {
+  iframe?: string;
+};
+
+type ByLocator = {
+  locator: Locator;
+};
+
+type ByTestId = {
+  getByTestId: string;
+};
+
+type ByCss = {
+  selector: string;
+};
+
+type XOR<T, U> =
+  | (T & { [K in keyof U]?: never })
+  | (U & { [K in keyof T]?: never });
+
+type XOR3<A, B, C> =
+  | XOR<A, B | C>
+  | XOR<B, A | C>
+  | XOR<C, A | B>;
+
+export type LocatorConfig =
+  BaseLocator &
+  XOR3<ByLocator, ByTestId, ByCss>;
+
 export abstract class BaseEntity {
   page: Page;
 
-  readonly selectors: Locator[];
-  readonly attentiveIframe: Locator;
-  readonly popup: Locator;
-  readonly closeBtn: Locator;
-  readonly attentiveOverlay: Locator;
-  readonly modalPanel: Locator;
-  readonly closePanelBtn: Locator;
-
   constructor(page: Page) {
     this.page = page;
-
-    this.selectors = [
-      this.locator("#closeIconContainer"),
-      this.locator("#dismissbutton2header1"),
-      this.locator(".close-icon"),
-      this.locator('button[class*="close"]'),
-      this.page.getByTestId('closeIcon'),
-    ];
-
-    this.modalPanel = this.locator(".css-183k8kr");
-
-    this.attentiveIframe = this.locator("iframe#attentive_creative");
-    this.popup = this.locator("#overlayContainer");
-    this.closeBtn = this.locator("#closeIconContainer");
-    this.attentiveOverlay = this.page.locator('#attentive_overlay');
-    this.closePanelBtn = this.page
-        .frameLocator('iframe#attentive_creative')
-        .getByTestId('closeIcon');
-  }
-
-  async closeAttentiveOverlay(): Promise<void> {
-    if (await this.attentiveOverlay.isVisible({ timeout: 5000 }).catch(() => false)) {
-      await this.page.evaluate(() => {
-        const overlay = document.getElementById('attentive_overlay');
-        if (overlay) {
-          overlay.remove();
-        }
-      });
-    }
   }
 
   async safeClick(locator: Locator, timeout = 60000) {
@@ -57,18 +49,10 @@ export abstract class BaseEntity {
     locator: Locator,
     options?: { timeout?: number }
   ): Promise<void> {
-    const timeout = options?.timeout ?? 60000;
-
-    if (await this.attentiveOverlay.isVisible().catch(() => false)) {
-      await this.attentiveOverlay.evaluate(el => el.remove());
-    }
-
+    await this.page.waitForTimeout(5000);
     await locator.scrollIntoViewIfNeeded();
-    await expect(locator).toBeVisible({ timeout });
-
-    await Promise.all([
-      locator.click({force: true}),
-    ]);
+    await expect(locator).toBeVisible();
+    await locator.click({force: true});
   }
 
   async safeFill(locator: Locator, value: string, timeout = 60000) {
@@ -90,27 +74,19 @@ export abstract class BaseEntity {
     await this.page.reload({ waitUntil: "domcontentloaded" });
   }
 
-  async closeDynamicPopupIfPresent(): Promise<void> {
-    if(this.isMobile()) return;
+  // async waitAndClosePopup(): Promise<void> {
+    // if(this.isMobile()) return;
 
-    try{
-      await this.closePanelBtn.click();
-    }catch(e){}
-  }
+    // await this.page.waitForTimeout(1000);
 
-  async waitAndClosePopup(): Promise<void> {
-    if(this.isMobile()) return;
+    // if ((await this.popup.count()) > 0) {
+    //   console.log("Popup detected, closing...");
 
-    await this.page.waitForTimeout(1000);
-
-    if ((await this.popup.count()) > 0) {
-      console.log("Popup detected, closing...");
-
-      await this.closeBtn.click({ force: true }).catch(() => {
-        console.warn("Close button found but click failed");
-      });
-    }
-  }
+    //   await this.closeBtn.click({ force: true }).catch(() => {
+    //     console.warn("Close button found but click failed");
+    //   });
+    // }
+  // }
 
   async clickIfVisible(locator: Locator): Promise<void> {
     const count = await locator.count();
@@ -137,7 +113,7 @@ export abstract class BaseEntity {
     throw new Error(errorMessage);
   }
 
-  protected getPlatformSelector(desktop: string, mobile: string): string {
+  protected getPlatformSelector(desktop: string | LocatorConfig, mobile: string | LocatorConfig): string | LocatorConfig {
     return this.isMobile() ? mobile : desktop;
   }
 
@@ -145,10 +121,66 @@ export abstract class BaseEntity {
     return this.page.viewportSize()?.width! < 768;
   }
 
-  protected locator(desktop: string, mobile?: string): Locator {
+  protected locator(desktop: string | LocatorConfig, mobile?: string | LocatorConfig): Locator {
     return mobile === undefined
-      ? this.page.locator(desktop)
-      : this.page.locator(this.getPlatformSelector(desktop, mobile));
+      ? this.getLocator(desktop)
+      : this.getLocator(this.getPlatformSelector(desktop, mobile));
+  }
+
+  // protected getLocator(config: string | LocatorConfig): Locator {
+  //    if(typeof(config) === "string") return this.page.locator(config);
+
+  //   const root = config.iframe
+  //     ? this.page.frameLocator(config.iframe)
+  //     : this.page;
+
+  //   if (config.getByTestId) {
+  //     return root.getByTestId(config.getByTestId);
+  //   }
+
+  //   if (config.selector) {
+  //     return root.locator(config.selector);
+  //   }
+  // }
+
+  protected getLocator(config: string | LocatorConfig): Locator {
+    if (typeof config === "string") {
+      return this.page.locator(config);
+    }
+
+    if ("locator" in config) {
+      return config.locator;
+    }
+
+    const root = config.iframe
+      ? this.page.frameLocator(config.iframe)
+      : this.page;
+
+    if ("getByTestId" in config) {
+      return root.getByTestId(config.getByTestId);
+    }
+
+    if ("selector" in config) {
+      return root.locator(config.selector);
+    }
+  }
+
+  protected getLocatorInRoot(root: Locator, config: string | LocatorConfig): Locator {
+    if (typeof config === "string") {
+      return root.locator(config);
+    }
+
+    if ("locator" in config) {
+      return config.locator;
+    }
+
+    if ("getByTestId" in config) {
+      return root.getByTestId(config.getByTestId);
+    }
+
+    if ("selector" in config) {
+      return root.locator(config.selector);
+    }
   }
 
   protected async enterField(locator: Locator, value: string) {

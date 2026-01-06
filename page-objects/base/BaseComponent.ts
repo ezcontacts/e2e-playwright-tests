@@ -1,19 +1,19 @@
-import { Locator, Page } from "@playwright/test";
-import { BaseEntity } from "./BaseEntity";
+import { FrameLocator, Locator, Page } from "@playwright/test";
+import { BaseEntity, LocatorConfig } from "./BaseEntity";
 
 export abstract class BaseComponent extends BaseEntity {
   readonly root: Locator;
 
-  constructor(page: Page, root: string | Locator) {
+  constructor(page: Page, root: string | LocatorConfig) {
     super(page);
-
-    this.root = typeof root === "string" ? page.locator(root) : root;
+    
+    this.root = this.getLocator(root);
   }
 
-  protected within(desktop: string, mobile?: string): Locator {
+  protected within(desktop: string | LocatorConfig , mobile?: string | LocatorConfig): Locator {
     return mobile === undefined
-      ? this.root.locator(desktop)
-      : this.root.locator(this.getPlatformSelector(desktop, mobile));
+      ? this.getLocatorInRoot(this.root, desktop)
+      : this.getLocatorInRoot(this.root, this.getPlatformSelector(desktop, mobile));
   }
 
   protected async isVisible(selector?: string): Promise<boolean> {
@@ -33,5 +33,6 @@ export abstract class BaseComponent extends BaseEntity {
 
   async scrollToComponent() {
     await this.root.scrollIntoViewIfNeeded();
+    this.root
   }
 }

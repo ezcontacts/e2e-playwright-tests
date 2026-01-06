@@ -3,8 +3,6 @@ Feature: Measure Pupil Distance
 
   Background:
     Given I visit the homepage
-    And I have dismissed the "No Thanks" popup if present
-    And the dynamic popup is closed if present
 
 @smoke
   Scenario: Validate core sections of the PD page

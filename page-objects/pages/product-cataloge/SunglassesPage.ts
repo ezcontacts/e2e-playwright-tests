@@ -13,7 +13,7 @@ export class SunglassesPage extends ProductCatalogePage {
       new ProductCardComponent(
         this.page,
         index,
-        this.getPlatformSelector(".glass-mask", "li.ng-scope")
+        this.getPlatformSelector(".glass-mask", "li.ng-scope") as string
       );
   }
 

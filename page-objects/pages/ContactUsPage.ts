@@ -41,7 +41,8 @@ export class ContactUsPage extends BasePage {
     this.contactNameField = this.locator("#ContactName");
     this.contactMessageField = this.locator("#ContactMessage");
     this.errorEmailModalHeader = this.locator(".reset-modal h4");
-    this.message = new MessageComponent(this.page);
+    
+    this.message = new MessageComponent(page);
   }
 
   async clickOnTopic(topic: string): Promise<void> {

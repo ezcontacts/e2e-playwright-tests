@@ -10,6 +10,7 @@ export class PromotionComponent extends BaseComponent {
   readonly emailField: Locator;
   readonly continueBtn: Locator;
   readonly errorMessage: Locator;
+  readonly legalInformation: Locator;
 
   constructor(page: Page, root: string | LocatorConfig = {iframe: "iframe#attentive_creative", selector: "#contentframe"}) {
     super(page, root);
@@ -21,7 +22,7 @@ export class PromotionComponent extends BaseComponent {
     this.emailField = this.within('#input0input')
     this.continueBtn = this.within('#ctabutton1header1');
     this.errorMessage = this.within('#input0input-error');
-
+    this.legalInformation = this.within('#legalTextLabelForCheckbox-0');
     this.closePromoteBtn = this.page
         .frameLocator('iframe#attentive_creative')
         .getByTestId('closeIcon');
@@ -50,6 +51,10 @@ export class PromotionComponent extends BaseComponent {
 
   async verifyErrorMessage(text: string): Promise<void>{
     await expect(this.errorMessage).toHaveText(text);
+  }
+
+  async verifyLegalInformationIsVisible(): Promise<void>{
+    await expect(this.legalInformation).toBeVisible();
   }
 
   async closeDynamicPopupIfPresent(): Promise<void> {

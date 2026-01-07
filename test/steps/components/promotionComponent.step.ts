@@ -26,8 +26,6 @@ When("I enter valide mobile number in the field", async ({ homePage }) => {
   }
 );
 
-
-
 Then("I should see the red strip indicating {string}", async ({ homePage }, text) => {
     await homePage.promotion.verifyPromoteText(text);
   }
@@ -35,5 +33,10 @@ Then("I should see the red strip indicating {string}", async ({ homePage }, text
 
 Then("I should see the error message {string} if the popup is present", async ({ homePage }, text) => {
     await homePage.promotion.verifyErrorMessage(text);
+  }
+);
+
+Then("I should see the legal information", async ({ homePage }, text) => {
+    await homePage.promotion.verifyLegalInformationIsVisible();
   }
 );

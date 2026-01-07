@@ -24,19 +24,10 @@ Feature: Verify the Promotion Popup Screen
     And I click on continue button
     Then I should see the error message "Please enter your mobile number." if the popup is present
 
-  @skip
   Scenario: Verify validation for the invalide mobile number in the promotion popup
     When I enter valide email in the email field
     And I click on continue button
-    And I enter invalide value in the field
+    Then I should see the legal information
+    When I enter invalide value in the field
     And I click on continue button
     Then I should see the error message "Please enter a 10-digit mobile number." if the popup is present
-
-  @skip
-  Scenario: Complete the registration and activate the 10% OFF offer
-    When I enter valide email in the email field
-    And I click on continue button
-    And I enter valide mobile in the email field
-    And I click on continue button
-    And I complete the registration on the promotion popup if it is present
-    Then I should activate the 10% OFF offer if the popup is present

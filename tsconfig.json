@@ -1,20 +1,15 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "module": "CommonJS",
-    "moduleResolution": "Node",
-    "resolveJsonModule": true,
-    "isolatedModules": false,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "types": ["node", "playwright"],
-    "outDir": "dist"
+    "strict": true
   },
   "include": [
-    "features",
-    "steps",
-    "test",
-    "page-objects",
-    "playwright.config.ts"
+
+    "scripts/**/*.ts",
+     "constant/**/*.ts"
   ]
 }

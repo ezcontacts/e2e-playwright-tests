@@ -1,48 +1,66 @@
-import { defineConfig } from "@playwright/test";
-import { defineBddConfig } from "playwright-bdd";
-import { devices } from "@playwright/test";
+import { defineConfig, devices } from "@playwright/test";
+import { defineBddProject } from "playwright-bdd";
 
-const testDir = defineBddConfig({
-  testDir: "test/generated",
-  features: "test/features/**/*.feature",
-  steps: "test/**/*.ts",
-});
+const htmlProject =
+  process.env.PLAYWRIGHT_HTML_PROJECT_RUNTIME ??
+  process.env.PLAYWRIGHT_HTML_PROJECT;
+
+const reporter = htmlProject
+  ? [
+      [
+        "html",
+        {
+          outputFolder: `playwright-report/${htmlProject}`,
+          open: "never",
+        },
+      ],
+    ]
+  : [
+      [
+        "html",
+        {
+          open: "never",
+        },
+      ],
+    ];
 
 export default defineConfig({
-  testDir,
-  reporter: [
-    ["html", { open: "never" }],
-    ["json", { outputFile: "reports/report.json" }],
-  ],
-  fullyParallel: true,
-  workers: process.env.CI ? 2 : undefined,
-  retries: process.env.CI ? 1 : 0,
-  timeout: 100000,
-  expect: {
-    timeout: 60000,
-  },
   use: {
     headless: true,
-    viewport: { width: 1440, height: 900 },
-    trace: 'on-first-retry',
-    screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
+    screenshot: "only-on-failure",
+    video: "retain-on-failure",
+    trace: "on-first-retry",
     ignoreHTTPSErrors: true,
   },
 
+  reporter,
+
   projects: [
-    {
+    defineBddProject({
       name: "desktop",
+      features: "test/features/**/*.feature",
+      steps: [
+        "test/steps/**/*.ts",
+        "test/fixtures/fixture.ts",
+      ],
+      outputDir: "test/generated/desktop",
       use: {
         viewport: { width: 1440, height: 900 },
         isMobile: false,
       },
-    },
-    {
+    }),
+
+    defineBddProject({
       name: "mobile",
+      features: "test/features/**/*.feature",
+      steps: [
+        "test/steps/**/*.ts",
+        "test/fixtures/fixture.ts",
+      ],
+      outputDir: "test/generated/mobile",
       use: {
         ...devices["iPhone 14"],
       },
-    },
+    }),
   ],
 });

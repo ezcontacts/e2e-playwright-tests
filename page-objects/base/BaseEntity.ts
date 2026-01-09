@@ -74,20 +74,6 @@ export abstract class BaseEntity {
     await this.page.reload({ waitUntil: "domcontentloaded" });
   }
 
-  // async waitAndClosePopup(): Promise<void> {
-    // if(this.isMobile()) return;
-
-    // await this.page.waitForTimeout(1000);
-
-    // if ((await this.popup.count()) > 0) {
-    //   console.log("Popup detected, closing...");
-
-    //   await this.closeBtn.click({ force: true }).catch(() => {
-    //     console.warn("Close button found but click failed");
-    //   });
-    // }
-  // }
-
   async clickIfVisible(locator: Locator): Promise<void> {
     const count = await locator.count();
     if (count > 0) {
@@ -127,29 +113,13 @@ export abstract class BaseEntity {
       : this.getLocator(this.getPlatformSelector(desktop, mobile));
   }
 
-  // protected getLocator(config: string | LocatorConfig): Locator {
-  //    if(typeof(config) === "string") return this.page.locator(config);
-
-  //   const root = config.iframe
-  //     ? this.page.frameLocator(config.iframe)
-  //     : this.page;
-
-  //   if (config.getByTestId) {
-  //     return root.getByTestId(config.getByTestId);
-  //   }
-
-  //   if (config.selector) {
-  //     return root.locator(config.selector);
-  //   }
-  // }
-
   protected getLocator(config: string | LocatorConfig): Locator {
     if (typeof config === "string") {
       return this.page.locator(config);
     }
 
     if ("locator" in config) {
-      return config.locator;
+      return config.locator!;
     }
 
     const root = config.iframe
@@ -157,12 +127,14 @@ export abstract class BaseEntity {
       : this.page;
 
     if ("getByTestId" in config) {
-      return root.getByTestId(config.getByTestId);
+      return root.getByTestId(config.getByTestId!);
     }
 
     if ("selector" in config) {
       return root.locator(config.selector);
     }
+
+    throw new Error(`Any locator or selector no set`);
   }
 
   protected getLocatorInRoot(root: Locator, config: string | LocatorConfig): Locator {
@@ -171,16 +143,18 @@ export abstract class BaseEntity {
     }
 
     if ("locator" in config) {
-      return config.locator;
+      return config.locator!;
     }
 
     if ("getByTestId" in config) {
-      return root.getByTestId(config.getByTestId);
+      return root.getByTestId(config.getByTestId!);
     }
 
     if ("selector" in config) {
       return root.locator(config.selector);
     }
+
+    throw new Error(`Any locator or selector no set`);
   }
 
   protected async enterField(locator: Locator, value: string) {

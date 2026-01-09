@@ -20,7 +20,11 @@ export abstract class BasePage extends BaseEntity {
   }
 
   async open() {
-    await this.page.goto(`${testConfig.baseUrl}${this.endpoint}`, {
+    await this.openByEndpoint(this.endpoint);
+  }
+
+  async openByEndpoint(endpoint: string): Promise<void>{
+    await this.page.goto(`${testConfig.baseUrl}${endpoint}`, {
       timeout: 60000,
       waitUntil: "domcontentloaded",
     });

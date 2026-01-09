@@ -1,0 +1,161 @@
+name: Daily Playwright-BDD Tests
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  desktop:
+    name: Desktop Tests
+    runs-on: ubuntu-latest
+    continue-on-error: true
+
+    env:
+      CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+      CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+      ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+      ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+      SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+      ENV: stage
+      PLAYWRIGHT_HTML_PROJECT_RUNTIME: desktop
+      PLAYWRIGHT_JSON_OUTPUT_NAME: report-desktop.json
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+      - run: npx playwright install --with-deps
+      - run: npm run desktop
+
+      - name: Upload Desktop HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-desktop-report
+          path: playwright-report/desktop
+
+      - name: Upload Desktop JSON report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-desktop-json
+          path: report-desktop.json
+
+      - name: Send Desktop Slack report
+        if: always()
+        run: |
+          JSON="report-desktop.json"
+          REPORT_DIR="playwright-report/desktop/assets"
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          ARTIFACT_URL="$RUN_URL#artifacts"
+
+          # Если JSON нет — создаём пустой
+          [ -f "$JSON" ] || echo '{}' > "$JSON"
+
+          # Подсчёт тестов
+          TOTAL=$(jq '[.. | objects | select(has("status"))] | length' "$JSON")
+          PASSED=$(jq '[.. | objects | select(.status=="passed")] | length' "$JSON")
+          FAILED=$(jq '[.. | objects | select(.status=="failed")] | length' "$JSON")
+          SKIPPED=$(jq '[.. | objects | select(.status=="skipped")] | length' "$JSON")
+
+          # Список провальных тестов с артефактами
+          FAILED_TESTS=$(jq -r --arg dir "$REPORT_DIR" '
+            .. | objects
+            | select(has("status"))
+            | select(.status=="failed")
+            | "\(.title) - " + ((.attachments // [] | map(.path) | map("\($dir)/\(.)")) | join(", "))
+          ' "$JSON")
+
+          if [ -n "$FAILED_TESTS" ]; then
+            FAILED_LIST="\n*Failed tests with artifacts:*\n$FAILED_TESTS"
+          else
+            FAILED_LIST=""
+          fi
+
+          MESSAGE="*Playwright BDD — Desktop*\n*ENV:* $ENV\n*Total:* $TOTAL\n✅ Passed: $PASSED\n❌ Failed: $FAILED\n⏭ Skipped: $SKIPPED\n\n<$ARTIFACT_URL|📦 Download report>"
+
+          curl -s -X POST \
+            -H "Authorization: Bearer $SLACK_BOT_TOKEN" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            --data "{\"channel\":\"C0A1W3PEFG9\",\"text\":\"$MESSAGE\"}" \
+            https://slack.com/api/chat.postMessage
+
+  mobile:
+    name: Mobile Tests
+    runs-on: ubuntu-latest
+    needs: desktop
+    continue-on-error: true
+
+    env:
+      CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+      CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+      ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+      ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+      SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+      ENV: stage
+      PLAYWRIGHT_HTML_PROJECT_RUNTIME: mobile
+      PLAYWRIGHT_JSON_OUTPUT_NAME: report-mobile.json
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+      - run: npx playwright install --with-deps
+      - run: npm run mobile
+
+      - name: Upload Mobile HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-mobile-report
+          path: playwright-report/mobile
+
+      - name: Upload Mobile JSON report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-mobile-json
+          path: report-mobile.json
+
+      - name: Send Mobile Slack report
+        if: always()
+        run: |
+          JSON="report-mobile.json"
+          REPORT_DIR="playwright-report/mobile/assets"
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          ARTIFACT_URL="$RUN_URL#artifacts"
+
+          [ -f "$JSON" ] || echo '{}' > "$JSON"
+
+          TOTAL=$(jq '[.. | objects | select(has("status"))] | length' "$JSON")
+          PASSED=$(jq '[.. | objects | select(.status=="passed")] | length' "$JSON")
+          FAILED=$(jq '[.. | objects | select(.status=="failed")] | length' "$JSON")
+          SKIPPED=$(jq '[.. | objects | select(.status=="skipped")] | length' "$JSON")
+
+          FAILED_TESTS=$(jq -r --arg dir "$REPORT_DIR" '
+            .. | objects
+            | select(has("status"))
+            | select(.status=="failed")
+            | "\(.title) - " + ((.attachments // [] | map(.path) | map("\($dir)/\(.)")) | join(", "))
+          ' "$JSON")
+
+          if [ -n "$FAILED_TESTS" ]; then
+            FAILED_LIST="\n*Failed tests with artifacts:*\n$FAILED_TESTS"
+          else
+            FAILED_LIST=""
+          fi
+
+          MESSAGE="*Playwright BDD — Mobile*\n*ENV:* $ENV\n*Total:* $TOTAL\n✅ Passed: $PASSED\n❌ Failed: $FAILED\n⏭ Skipped: $SKIPPED\n\n<$ARTIFACT_URL|📦 Download report>"
+
+          curl -s -X POST \
+            -H "Authorization: Bearer $SLACK_BOT_TOKEN" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            --data "{\"channel\":\"C0A1W3PEFG9\",\"text\":\"$MESSAGE\"}" \
+            https://slack.com/api/chat.postMessage

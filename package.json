@@ -14,14 +14,15 @@
   "scripts": {
     "auth": "node saveGoogleSession.js",
     "pretest": "npm run bdd:gen",
-    "bdd:gen": "npx playwright-bdd",
+    "bdd:pre": "node --loader ts-node/esm scripts/generate-features.ts",
+    "bdd:gen": "npm run bdd:pre && npx playwright-bdd",
     "test": "playwright test",
     "test:ui": "npm run bdd:gen && playwright test --ui",
     "desktop": "npm run bdd:gen && npx playwright test --project=desktop --grep-invert @mobileOnly",
     "desktop:ui": "npm run bdd:gen && npx playwright test --project=desktop --ui --grep-invert @mobileOnly",
     "mobile": "npm run bdd:gen && npx playwright test --project=mobile --grep-invert @desktopOnly",
     "mobile:ui": "npm run bdd:gen && npx playwright test --project=mobile --ui --grep-invert @desktopOnly",
-    "push": "npm run bdd:gen && npx playwright test --project=desktop --grep-invert @mobileOnly && npx playwright test --project=mobile --grep-invert @desktopOnly",
+    "push": "bash ./scripts/run/push-run-projects.sh",
     "only": "npm run bdd:gen && npx playwright test --project=desktop --grep @onlyThis"
   }
 }

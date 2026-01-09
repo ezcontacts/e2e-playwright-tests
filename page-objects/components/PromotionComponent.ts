@@ -34,7 +34,6 @@ export class PromotionComponent extends BaseComponent {
 
   async verifyPromoteText(text: string): Promise<void> {
     await expect(this.promoteText).toHaveText(text);
-    await this.page.waitForTimeout(60000);
   }
 
   async clickOnCloseBtn(): Promise<void>{

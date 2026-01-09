@@ -9,7 +9,7 @@ export class CartItemComponent extends BaseComponent {
   readonly removeBtn: Locator;
   readonly price: Locator;
 
-  constructor(page: Page, index: number, root: string = ".cart-product") {
+  constructor(page: Page, index: number = 0, root: string = ".cart-product") {
     const rootLocator = page.locator(root).nth(index);
 
     super(page, {locator:rootLocator});
@@ -21,23 +21,23 @@ export class CartItemComponent extends BaseComponent {
     this.price = this.within("tbody > :nth-child(2) > :nth-child(2)").first();
   }
 
-  async verifyNameIsVisible(){
+  async verifyNameIsVisible(): Promise<void> {
     await expect(this.name).toBeVisible();
   }
 
-  async verifyImageIsVisible(){
+  async verifyImageIsVisible(): Promise<void> {
     await expect(this.image).toBeVisible();
   }
 
-  async verifyEditBtnIsVisible(){
+  async verifyEditBtnIsVisible(): Promise<void> {
     await expect(this.editBtn).toBeVisible();
   }
 
-  async verifyRemoveBtnIsVisible(){
+  async verifyRemoveBtnIsVisible(): Promise<void> {
     await expect(this.editBtn).toBeVisible();
   }
 
-  async verifyPriceIsVisible(){
+  async verifyPriceIsVisible(): Promise<void> {
     await expect(this.price).toBeVisible();
   }
 }

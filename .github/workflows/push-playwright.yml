@@ -51,26 +51,7 @@ jobs:
         run: npm run bdd:gen
 
       - name: Run Desktop & Mobile Tests
-        run: |
-          set +e
-          DESKTOP_STATUS=0
-          MOBILE_STATUS=0
-
-          echo "▶ Running Desktop tests"
-          PLAYWRIGHT_HTML_PROJECT_RUNTIME=desktop \
-          npx playwright test --project=desktop --grep-invert @mobileOnly || DESKTOP_STATUS=$?
-
-          echo "▶ Running Mobile tests"
-          PLAYWRIGHT_HTML_PROJECT_RUNTIME=mobile \
-          npx playwright test --project=mobile --grep-invert @desktopOnly || MOBILE_STATUS=$?
-
-          echo "Desktop exit code: $DESKTOP_STATUS"
-          echo "Mobile exit code: $MOBILE_STATUS"
-
-          # Fail workflow if any project failed
-          if [ "$DESKTOP_STATUS" -ne 0 ] || [ "$MOBILE_STATUS" -ne 0 ]; then
-            exit 1
-          fi
+        run: npm run push
 
       # Upload BDD JSON / snapshots
       - name: Upload Desktop BDD Report
@@ -78,7 +59,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: playwright-bdd-desktop-${{ github.run_number }}
-          path: playwright-report/desktop
+          path: test/generated/desktop
           retention-days: 7
 
       - name: Upload Mobile BDD Report
@@ -86,16 +67,18 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: playwright-bdd-mobile-${{ github.run_number }}
-          path: playwright-report/mobile
+          path: test/generated/mobile
           retention-days: 7
 
-      # Upload HTML reports separately
+      # Upload HTML reports including screenshots/video
       - name: Upload Desktop HTML Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: playwright-html-desktop-${{ github.run_number }}
-          path: playwright-report/desktop
+          path: |
+            playwright-report/desktop
+            playwright-report/desktop/assets
           if-no-files-found: ignore
           retention-days: 7
 
@@ -104,7 +87,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: playwright-html-mobile-${{ github.run_number }}
-          path: playwright-report/mobile
+          path: |
+            playwright-report/mobile
+            playwright-report/mobile/assets
           if-no-files-found: ignore
           retention-days: 7
 

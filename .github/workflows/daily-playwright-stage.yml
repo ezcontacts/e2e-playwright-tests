@@ -1,0 +1,150 @@
+name: Daily Playwright-BDD Tests
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  desktop:
+    name: Desktop Tests
+    runs-on: ubuntu-latest
+    continue-on-error: true
+
+    env:
+      CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+      CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+      ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+      ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+      SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+      ENV: stage
+      PLAYWRIGHT_HTML_PROJECT_RUNTIME: desktop
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+      - run: npx playwright install --with-deps
+      - run: npm run desktop
+
+      - name: Upload Desktop HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-desktop-report
+          path: playwright-report/default
+
+      - name: Upload Desktop JSON report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-desktop-json
+          path: reports/report.json
+
+      - name: Send Desktop Slack report
+        if: always()
+        run: |
+          JSON="reports/report.json"
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          ARTIFACT_URL="$RUN_URL#artifacts"
+
+          if [ ! -f "$JSON" ]; then
+            echo "Playwright JSON report not found"
+            exit 1
+          fi
+
+          PASSED=$(jq '[.suites[]?.suites[]?.specs[]?.tests[]?.results[]? | select(.status=="passed")] | length' "$JSON")
+          FAILED=$(jq '[.suites[]?.suites[]?.specs[]?.tests[]?.results[]? | select(.status=="failed")] | length' "$JSON")
+          SKIPPED=$(jq '[.suites[]?.suites[]?.specs[]?.tests[]? | select(.status=="skipped")] | length' "$JSON")
+          TOTAL=$((PASSED + FAILED + SKIPPED))
+
+          MESSAGE="*Playwright BDD — Desktop*
+          *ENV:* $ENV
+          *Total:* $TOTAL
+          ✅ Passed: $PASSED
+          ❌ Failed: $FAILED
+          ⏭ Skipped: $SKIPPED
+
+          <$ARTIFACT_URL|📦 Download report>"
+
+          curl -s -X POST \
+            -H "Authorization: Bearer $SLACK_BOT_TOKEN" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            --data "{\"channel\":\"C0A1W3PEFG9\",\"text\":\"$MESSAGE\"}" \
+            https://slack.com/api/chat.postMessage
+
+  mobile:
+    name: Mobile Tests
+    runs-on: ubuntu-latest
+    needs: desktop
+    continue-on-error: true
+
+    env:
+      CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+      CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+      ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+      ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+      SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+      ENV: stage
+      PLAYWRIGHT_HTML_PROJECT_RUNTIME: mobile
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+      - run: npx playwright install --with-deps
+      - run: npm run mobile
+
+      - name: Upload Mobile HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-mobile-report
+          path: playwright-report/default
+
+      - name: Upload Mobile JSON report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-mobile-json
+          path: reports/report.json
+
+      - name: Send Mobile Slack report
+        if: always()
+        run: |
+          JSON="reports/report.json"
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          ARTIFACT_URL="$RUN_URL#artifacts"
+
+          if [ ! -f "$JSON" ]; then
+            echo "Playwright JSON report not found"
+            exit 1
+          fi
+
+          PASSED=$(jq '[.suites[]?.suites[]?.specs[]?.tests[]?.results[]? | select(.status=="passed")] | length' "$JSON")
+          FAILED=$(jq '[.suites[]?.suites[]?.specs[]?.tests[]?.results[]? | select(.status=="failed")] | length' "$JSON")
+          SKIPPED=$(jq '[.suites[]?.suites[]?.specs[]?.tests[]? | select(.status=="skipped")] | length' "$JSON")
+          TOTAL=$((PASSED + FAILED + SKIPPED))
+
+          MESSAGE="*Playwright BDD — Mobile*
+          *ENV:* $ENV
+          *Total:* $TOTAL
+          ✅ Passed: $PASSED
+          ❌ Failed: $FAILED
+          ⏭ Skipped: $SKIPPED
+
+          <$ARTIFACT_URL|📦 Download report>"
+
+          curl -s -X POST \
+            -H "Authorization: Bearer $SLACK_BOT_TOKEN" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            --data "{\"channel\":\"C0A1W3PEFG9\",\"text\":\"$MESSAGE\"}" \
+            https://slack.com/api/chat.postMessage

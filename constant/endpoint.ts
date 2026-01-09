@@ -11,5 +11,6 @@ export const ENDPOINT = {
   onlineVision: "/account/online-vision-test-purchases",
   onlineVisionTestIntroduction: "/online-vision-test",
   adminPanel: "/admin-manage",
-  checkout: "/checkout"
+  checkout: "/checkout",
+  deals: "/eyewear/deals",
 };

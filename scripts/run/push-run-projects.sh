@@ -4,11 +4,11 @@ DESKTOP_STATUS=0
 MOBILE_STATUS=0
 
 echo "Running Desktop tests"
-PLAYWRIGHT_HTML_PROJECT_RUNTIME=desktop \
+ENV_PLATFORM=desktop \
 npx playwright test --project=desktop --grep-invert @mobileOnly || DESKTOP_STATUS=$?
 
 echo "Running Mobile tests"
-PLAYWRIGHT_HTML_PROJECT_RUNTIME=mobile \
+ENV_PLATFORM=mobile \
 npx playwright test --project=mobile --grep-invert @desktopOnly || MOBILE_STATUS=$?
 
 echo "Desktop exit code: $DESKTOP_STATUS"

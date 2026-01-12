@@ -49,3 +49,16 @@ export const PRODUCT = {
 
 
 export const BRANDS = ["Polo", "Michael Kors", "Ralph Lauren", "Persol"];
+
+export const FILTER_VALUE: Record<
+  string,
+  { endpoint: string; value: string }
+>  = {
+  'Best Match': { endpoint: '', value: '-' },
+  'Popularity': { endpoint:'/sort:bestsellers/', value: 'total_sold-desc' },
+  'Newest': { endpoint:'/sort:newest/', value: 'date_created-desc' },
+  'Name (A-Z)': { endpoint:'/sort:name-az/', value: 'name-asc' },
+  'Name (Z-A)': { endpoint:'/sort:name-za/', value: 'name-desc' },
+  'Price ($-$$$)': { endpoint:'/sort:price-low/', value: 'min_price-asc' },
+  'Price ($$$-$)': { endpoint:'/sort:price-high/', value: 'min_price-desc' },
+};

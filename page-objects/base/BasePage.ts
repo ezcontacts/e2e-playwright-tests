@@ -34,4 +34,8 @@ export abstract class BasePage extends BaseEntity {
     await this.header.cartLink.waitFor({ state: "visible" });
     await expect(this.page).toHaveURL(new RegExp(`${this.endpoint}`));
   }
+
+  async verifyUrlEndpoint(endpoint: string) {
+    await expect(this.page).toHaveURL(new RegExp(`${endpoint}$`));
+  }
 }

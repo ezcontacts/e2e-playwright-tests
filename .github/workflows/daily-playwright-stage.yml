@@ -57,9 +57,9 @@ jobs:
             exit 1
           fi
 
-          PASSED=$(jq '[.suites[]?.suites[]?.specs[]?.tests[]?.results[]? | select(.status=="passed")] | length' "$JSON")
-          FAILED=$(jq '[.suites[]?.suites[]?.specs[]?.tests[]?.results[]? | select(.status=="failed")] | length' "$JSON")
-          SKIPPED=$(jq '[.suites[]?.suites[]?.specs[]?.tests[]? | select(.status=="skipped")] | length' "$JSON")
+          PASSED=$(jq '[.. | objects | .results? // empty | .[] | select(.status=="passed")] | length' "$JSON")
+          FAILED=$(jq '[.. | objects | .results? // empty | .[] | select(.status=="failed")] | length' "$JSON")
+          SKIPPED=$(jq '[.. | objects | .results? // empty | .[] | select(.status=="skipped")] | length' "$JSON")
           TOTAL=$((PASSED + FAILED + SKIPPED))
 
           MESSAGE="*Playwright BDD — Desktop*
@@ -129,9 +129,9 @@ jobs:
             exit 1
           fi
 
-          PASSED=$(jq '[.suites[]?.suites[]?.specs[]?.tests[]?.results[]? | select(.status=="passed")] | length' "$JSON")
-          FAILED=$(jq '[.suites[]?.suites[]?.specs[]?.tests[]?.results[]? | select(.status=="failed")] | length' "$JSON")
-          SKIPPED=$(jq '[.suites[]?.suites[]?.specs[]?.tests[]? | select(.status=="skipped")] | length' "$JSON")
+          PASSED=$(jq '[.. | objects | .results? // empty | .[] | select(.status=="passed")] | length' "$JSON")
+          FAILED=$(jq '[.. | objects | .results? // empty | .[] | select(.status=="failed")] | length' "$JSON")
+          SKIPPED=$(jq '[.. | objects | .results? // empty | .[] | select(.status=="skipped")] | length' "$JSON")
           TOTAL=$((PASSED + FAILED + SKIPPED))
 
           MESSAGE="*Playwright BDD — Mobile*

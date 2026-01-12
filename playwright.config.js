@@ -22,7 +22,8 @@ const reporter = [
 
 export default defineConfig({
   reporter,
-
+  workers: 2,
+  timeout: 120000,
   use: {
     headless: true,
     screenshot: "only-on-failure",

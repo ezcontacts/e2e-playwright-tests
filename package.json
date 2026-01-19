@@ -16,6 +16,8 @@
 
   "scripts": {
     "auth": "node saveGoogleSession.js",
+    "xray:gen": "node scripts/merge-playwright-reports.js",
+
     "pretest": "npm run bdd:gen",
     "bdd:pre": "node --loader ts-node/esm scripts/generate-features.ts",
     "bdd:gen": "npm run bdd:pre && npx playwright-bdd",
@@ -25,7 +27,6 @@
     "desktop:ui": "npm run bdd:gen && cross-env ENV_PLATFORM=desktop npx playwright test --project=desktop --ui --grep-invert @mobileOnly",
     "mobile": "npm run bdd:gen && cross-env ENV_PLATFORM=mobile npx playwright test --project=mobile --grep-invert @desktopOnly",
     "mobile:ui": "npm run bdd:gen && cross-env ENV_PLATFORM=mobile npx playwright test --project=mobile --ui --grep-invert @desktopOnly",
-    "push": "bash ./scripts/run/push-run-projects.sh",
-    "only": "npm run bdd:gen && npx playwright test --project=desktop --grep @onlyThis"
+    "push": "bash ./scripts/run/push-run-projects.sh"
   }
 }

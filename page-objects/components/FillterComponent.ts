@@ -6,6 +6,7 @@ export class FillterComponent extends BaseComponent {
   readonly searchField: Locator;
   readonly brands: Locator;
   readonly menuMobile: Locator;
+  readonly ratingTab: Locator;
 
   readonly genderLabel: (label: string) => Locator;
   readonly typeLabel: (label: string) => Locator;
@@ -17,6 +18,7 @@ export class FillterComponent extends BaseComponent {
     this.searchField = this.within("input.brand-input");
     this.brands = this.within(".brand-list li");
     this.menuMobile = this.within(".fa-bars");
+    this.ratingTab = this.within(".unbxd_rating_average_uFilter li");
 
     this.genderLabel = (label: string) =>
       this.page.locator(".gender_uFilter label.label-element", {
@@ -53,6 +55,11 @@ export class FillterComponent extends BaseComponent {
 
   async verifyBrandMustBeExist(): Promise<void> {
     const count = await this.brands.count();
-    expect(count).toBeGreaterThan(0);
+    await expect(count).toBeGreaterThan(0);
+  }
+
+  async clickOnFirstRatingFilter(): Promise<void>{
+    await this.ratingTab.first().click();
+    await this.waitForDomContentLoad();
   }
 }

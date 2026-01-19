@@ -40,3 +40,28 @@ export enum ProductType {
   EyeVitamins = 'eye-vitamins',
   EyeCream = 'eye-cream',
 }
+
+export enum MatchType {
+  Eyeglasses = 'eyeglasses',
+  ContactLenses = 'contact-lenses',
+  Sunglasses = 'sunglasses',
+  EyeDrops = 'eye-drops',
+  HairAndScalpTreatments = 'hair-and-scalp-treatments',
+  BracesCare = 'braces-care',
+  TaxableProduct = 'taxable-product',
+  RabiaTester = 'rabia-tester',
+  EyeTest = 'Eye Test',
+  EyecareTest = 'eyecare-test',
+  EyeVitamins = 'eye-vitamins',
+  EyeCream = 'eye-cream',
+}
+
+export enum MatchFilterType {
+  BEST_MATCH = 'Best Match',
+  POPULARITY = 'Popularity',
+  NEWEST = 'Newest',
+  NAME_AZ = 'Name (A-Z)',
+  NAME_ZA = 'Name (Z-A)',
+  PRICE_LOW = 'Price ($-$$$)',
+  PRICE_HIGH = 'Price ($$$-$)',
+}

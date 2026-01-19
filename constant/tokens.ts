@@ -11,7 +11,7 @@ export const TOKENS: TokenValues = {
     'CONTACT LENSES',
     'EYE CARE',
     'DEALS'
-  ],
+  ]
 };
 
 export const TOKEN_ENDPOINT: Record<string, string> = {

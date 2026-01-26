@@ -18,11 +18,8 @@ import { OnlineVisionTestPage } from "../../page-objects/pages/OnlineVisionTestP
 import { VisionTestIntroductionPage } from "../../page-objects/pages/VisionTestIntroductionPage";
 import { AdminPanelPage } from "../../page-objects/pages/AdminPanelPage";
 import { CheckoutPage } from "../../page-objects/pages/CheckoutPage";
-import { CardState } from "../../page-objects/components/ProductCardComponent";
-
-export type CatalogeContext = {
-  cardsState: CardState[];
-};
+import { AccountPage } from "../../page-objects/pages/AccountPage";
+import { EzPointsPage } from "../../page-objects/pages/Account/EzPointsPage";
 
 export const test = bddTest.extend<{
   page: Page;
@@ -43,8 +40,8 @@ export const test = bddTest.extend<{
   visionTestIntroductionPage: VisionTestIntroductionPage;
   adminPanelPage: AdminPanelPage;
   checkoutPage: CheckoutPage;
-
-  catalogContext: CatalogeContext;
+  accountPage: AccountPage;
+  ezPointsPage: EzPointsPage;
 }>({
   context: async ({ browser }, use) => {
     const context = await browser.newContext({
@@ -107,10 +104,10 @@ export const test = bddTest.extend<{
     await use(new AdminPanelPage(page)),
   checkoutPage: async ({ page }, use) =>
     await use(new CheckoutPage(page)),
-
-  catalogContext: async ({}, use) => {
-    await use({});
-  },
+  accountPage: async ({ page }, use) =>
+    await use(new AccountPage(page)),
+  ezPointsPage: async ({ page }, use) =>
+    await use(new EzPointsPage(page)),
 });
 
 export const expect = test.expect;

@@ -1,8 +1,5 @@
 @add_to_cart @validation
-Feature: Add products to cart
-
-  Background:
-    Given I visit the homepage
+Feature: Cart - Add products to cart
 
   @smoke  @func
   Scenario: Verify User can add sunglasses to cart

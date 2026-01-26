@@ -1,5 +1,5 @@
 @promotions @validation @desktopOnly
-Feature: Verify the Promotion Popup Screen
+Feature: Promotion - Verify the Promotion Popup Screen
 
   Background:
     Given I visit the homepage

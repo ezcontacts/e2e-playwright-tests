@@ -1,5 +1,5 @@
 @pd_measure @validation @func
-Feature: Measure Pupil Distance
+Feature:  Measure Pupil Distance Page - Core Sections Validation
 
   Background:
     Given I visit the homepage

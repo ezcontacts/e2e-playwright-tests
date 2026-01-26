@@ -4,10 +4,10 @@ import { BaseEntity, LocatorConfig } from "./BaseEntity";
 export abstract class BaseComponent extends BaseEntity {
   readonly root: Locator;
 
-  constructor(page: Page, root: string | LocatorConfig) {
+  constructor(page: Page, desktop: string | LocatorConfig, mobile?: string | LocatorConfig) {
     super(page);
     
-    this.root = this.getLocator(root);
+    this.root = this.locator(desktop, mobile);
   }
 
   protected within(desktop: string | LocatorConfig , mobile?: string | LocatorConfig): Locator {

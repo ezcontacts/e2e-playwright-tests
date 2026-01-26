@@ -1,4 +1,5 @@
-Feature: Verify product name and review data display below each product icon
+@EZSANISOFT-5352
+Feature: Catalog - Verify Product Name and Review Data
 
 Background:
   Given the user visite "{{CATEGORY}}" page

@@ -23,6 +23,11 @@ Given("I visit the login page", async ({ loginPage }) => {
   await loginPage.open();
 });
 
+Given("the user is logged in", async ({ loginPage }) => {
+  await loginPage.open();
+  await loginPage.clickOnGoogleLoginBtn();
+});
+
 When("User enters a Yopmail email", async ({ loginPage }) => {
   await loginPage.clickOnMagicLinkBtn();
   await loginPage.fillEmail(ACCOUNT.email);
@@ -47,7 +52,10 @@ Then(
   }
 );
 
-Then('I should see the login success message', async ({ loginPage }) => {
+Then("I should see the login success message", async ({ loginPage }) => {
   await loginPage.message.verifyConfirmationMessage(MESSAGE.successLogin);
 });
 
+Then("the user is on the My Account page", async ({ loginPage }) => {
+  await loginPage.message.verifyConfirmationMessage(MESSAGE.successLogin);
+});

@@ -1,5 +1,5 @@
 @homePage_UI @validation
-Feature: FAQ Section and UI verification
+Feature: FAQ - Section and UI verification
 
  Background:
   Given I visit the homepage

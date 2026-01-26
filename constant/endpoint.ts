@@ -13,4 +13,6 @@ export const ENDPOINT = {
   adminPanel: "/admin-manage",
   checkout: "/checkout",
   deals: "/eyewear/deals",
+  accountMain: "/account/main",
+  eqPoints: "/account/ezpoints",
 };

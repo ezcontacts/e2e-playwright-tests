@@ -65,3 +65,16 @@ export enum MatchFilterType {
   PRICE_LOW = 'Price ($-$$$)',
   PRICE_HIGH = 'Price ($$$-$)',
 }
+
+export enum AccountMenu {
+  AccountSettings = 'Account Settings',
+  AddressAndPayment = 'Address & Payment',
+  OrderHistory = 'Order History',
+  RxInformation = 'Rx Information',
+  EzPoints = 'EZ Points',
+  RecentPrescriptions = 'Recent',
+  WishList = 'Wish List',
+  OnlineVisionTest = 'Online Vision Test',
+  EzRefill = 'EZ Refill',
+  StoreCredit = 'Store Credit',
+}

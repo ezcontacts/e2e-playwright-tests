@@ -1,4 +1,4 @@
-import { Given, When, Then, CatalogeContext } from "../../fixtures/fixture";
+import { Given, When, Then } from "../../fixtures/fixture";
 import { TOKEN_ENDPOINT } from '../../../constant/tokens';
 import { FILTER_VALUE } from "../../data-test/testData";
 import { CardState } from "../../../page-objects/components/ProductCardComponent";

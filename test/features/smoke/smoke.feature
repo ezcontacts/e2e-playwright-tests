@@ -17,7 +17,7 @@ Feature: Smoke tests for production environment
     And I should see the recommended products section
 
   @desktopOnly
-  Scenario: Verify that the footer loads correctly
+  Scenario: Verify footer sections
     Given I should see the footer with policy links
     And I should see the footer sections:
       | section        |

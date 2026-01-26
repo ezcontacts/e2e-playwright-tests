@@ -1,8 +1,8 @@
 @first
-Feature: Login with Magic link
+Feature: Authentication
 
 @desktopOnly
-Scenario: Verify login email
+Scenario: Login with Magic Link
   Given I visit the homepage
   And I navigate to the login page
   And User enters a Yopmail email

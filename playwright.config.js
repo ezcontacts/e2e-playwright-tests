@@ -53,6 +53,9 @@ export default defineConfig({
       outputDir: "test/generated/mobile",
       use: {
         ...devices["iPhone 14"],
+        launchOptions: {
+          args: ["--window-size=390,844"],
+        },
       },
     }),
   ],

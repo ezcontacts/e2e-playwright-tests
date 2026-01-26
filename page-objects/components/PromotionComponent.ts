@@ -1,6 +1,7 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { BaseComponent } from "../base/BaseComponent";
 import { LocatorConfig } from "../base/BaseEntity";
+import { time } from "console";
 
 export class PromotionComponent extends BaseComponent {
   readonly bubbleBtn: Locator;

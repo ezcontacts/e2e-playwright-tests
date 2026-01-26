@@ -1,4 +1,4 @@
-import { MatchFilterType } from "./productTypes";
+import { AccountMenu, MatchFilterType } from "./productTypes";
 
 export const ACCOUNT = {
   name: "John Doe",
@@ -52,19 +52,6 @@ export const PRODUCT = {
 
 export const BRANDS = ["Polo", "Michael Kors", "Ralph Lauren", "Persol"];
 
-// export const FILTER_VALUE: Record<
-//   string,
-//   { endpoint: string; value: string }
-// >  = {
-//   'Best Match': { endpoint: '', value: '-' },
-//   'Popularity': { endpoint:'/sort:bestsellers/', value: 'total_sold-desc' },
-//   'Newest': { endpoint:'/sort:newest/', value: 'date_created-desc' },
-//   'Name (A-Z)': { endpoint:'/sort:name-az/', value: 'name-asc' },
-//   'Name (Z-A)': { endpoint:'/sort:name-za/', value: 'name-desc' },
-//   'Price ($-$$$)': { endpoint:'/sort:price-low/', value: 'min_price-asc' },
-//   'Price ($$$-$)': { endpoint:'/sort:price-high/', value: 'min_price-desc' },
-// };
-
 export const FILTER_VALUE: Record<MatchFilterType | string, { endpoint: string; value: string }> = {
   [MatchFilterType.BEST_MATCH]: { endpoint: '', value: '-' },
   [MatchFilterType.POPULARITY]: { endpoint: '/sort:bestsellers/', value: 'total_sold-desc' },
@@ -74,3 +61,34 @@ export const FILTER_VALUE: Record<MatchFilterType | string, { endpoint: string; 
   [MatchFilterType.PRICE_LOW]: { endpoint: '/sort:price-low/', value: 'min_price-asc' },
   [MatchFilterType.PRICE_HIGH]: { endpoint: '/sort:price-high/', value: 'min_price-desc' },
 };
+
+export const ACCOUNT_MENU_LINKS: Record<AccountMenu | string, { endpoint: string; title: string }> = {
+  [AccountMenu.AccountSettings]: { endpoint:'/account/main', title: 'Account settings'},
+  [AccountMenu.AddressAndPayment]: { endpoint:'/account/address-and-payment', title: 'Account settings'},
+  [AccountMenu.OrderHistory]: { endpoint:'/account/order-history', title: 'Order History'},
+  [AccountMenu.RxInformation]: { endpoint:'/account/prescriptions', title: 'PRESCRIPTION INFORMATION'},
+  [AccountMenu.EzPoints]: { endpoint:'/account/ezpoints',  title: 'EZPOINTS'},
+  [AccountMenu.RecentPrescriptions]: { endpoint:'/account/prescriptions/contact-lenses/recent',  title: ''},
+  [AccountMenu.WishList]: { endpoint:'/account/wishlist',  title: 'Wish List'},
+  [AccountMenu.OnlineVisionTest]: { endpoint:'/account/online-vision-test-purchases',  title: 'ONLINE VISION TEST'},
+  [AccountMenu.EzRefill]: { endpoint:'/account/subscription-history',  title: 'Subscription History'},
+  [AccountMenu.StoreCredit]: { endpoint:'/account/store-credit',  title: 'Store Credit'},
+};
+
+export function getAccountMenuFromValue(
+  value: string | AccountMenu
+): AccountMenu {
+  if (typeof value !== "string") {
+      return value;
+  }
+
+  const menuBtn = Object.values(AccountMenu).find(
+    v => v === value
+  );
+
+  if (!menuBtn) {
+    throw new Error(`AccountMenu not found for value: "${value}"`);
+  }
+
+  return menuBtn;
+}

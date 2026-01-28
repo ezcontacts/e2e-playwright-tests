@@ -1,4 +1,3 @@
-import { AccountMenu } from "../../../data-test/productTypes";
 import { Given, When, Then } from "../../../fixtures/fixture";
 
 Then("the page should display the heading {string}", async ({ ezPointsPage }, text: string) => {

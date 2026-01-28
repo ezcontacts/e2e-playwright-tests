@@ -18,8 +18,9 @@ import { OnlineVisionTestPage } from "../../page-objects/pages/OnlineVisionTestP
 import { VisionTestIntroductionPage } from "../../page-objects/pages/VisionTestIntroductionPage";
 import { AdminPanelPage } from "../../page-objects/pages/AdminPanelPage";
 import { CheckoutPage } from "../../page-objects/pages/CheckoutPage";
-import { AccountPage } from "../../page-objects/pages/AccountPage";
+import { AccountPage } from "../../page-objects/pages/Account/AccountPage";
 import { EzPointsPage } from "../../page-objects/pages/Account/EzPointsPage";
+import { AccountSettingsPage } from "../../page-objects/pages/Account/AccountSettingsPage";
 
 export const test = bddTest.extend<{
   page: Page;
@@ -42,6 +43,7 @@ export const test = bddTest.extend<{
   checkoutPage: CheckoutPage;
   accountPage: AccountPage;
   ezPointsPage: EzPointsPage;
+  accountSettingsPage: AccountSettingsPage;
 }>({
   context: async ({ browser }, use) => {
     const context = await browser.newContext({
@@ -108,6 +110,8 @@ export const test = bddTest.extend<{
     await use(new AccountPage(page)),
   ezPointsPage: async ({ page }, use) =>
     await use(new EzPointsPage(page)),
+  accountSettingsPage: async ({ page }, use) =>
+    await use(new AccountSettingsPage(page)),
 });
 
 export const expect = test.expect;

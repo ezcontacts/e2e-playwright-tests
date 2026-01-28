@@ -1,3 +1,4 @@
+
 import { createBdd, test as bddTest } from "playwright-bdd";
 import { Page } from "@playwright/test";
 
@@ -22,6 +23,9 @@ import { AccountPage } from "../../page-objects/pages/Account/AccountPage";
 import { EzPointsPage } from "../../page-objects/pages/Account/EzPointsPage";
 import { AccountSettingsPage } from "../../page-objects/pages/Account/AccountSettingsPage";
 import { AccountInfoPage } from "../../page-objects/pages/Account/AcountInfoPage";
+import { CardState } from "../../page-objects/components/ProductCardComponent";
+
+export type CatalogeContext = { cardsState: CardState[] };
 
 export const test = bddTest.extend<{
   page: Page;
@@ -46,19 +50,26 @@ export const test = bddTest.extend<{
   ezPointsPage: EzPointsPage;
   accountSettingsPage: AccountSettingsPage;
   accountInfoPage: AccountInfoPage;
+
+  portalContext: PortalContext;
+  catalogContext: CatalogeContext;
 }>({
   context: async ({ browser }, use) => {
-    const context = await browser.newContext({
-      storageState: "google-session.json",
-    });
-
+    const context = await browser.newContext({ storageState: "google-session.json" });
     await use(context);
     await context.close();
   },
+  
+
+   portalContext: async ({}, use) => {
+    await use({ selectedTab: undefined });
+  },
+
 
   page: async ({ context }, use) => {
     const page = await context.newPage();
 
+    // Remove overlays & animations
     await page.addInitScript(() => {
       const removeAttentive = () => {
         const overlay = document.getElementById('attentive_overlay');
@@ -69,14 +80,7 @@ export const test = bddTest.extend<{
       observer.observe(document.documentElement, { childList: true, subtree: true });
     });
 
-    await page.addStyleTag({
-      content: `
-        * {
-          animation: none !important;
-          transition: none !important;
-        }
-      `,
-    });
+    await page.addStyleTag({ content: `* { animation: none !important; transition: none !important; }` });
 
     await use(page);
   },
@@ -86,37 +90,36 @@ export const test = bddTest.extend<{
   eyeglassesPage: async ({ page }, use) => await use(new EyeglassesPage(page)),
   sunglassesPage: async ({ page }, use) => await use(new SunglassesPage(page)),
   productPage: async ({ page }, use) => await use(new ProductPage(page)),
-  yopmailPage: async ({ page }, use) => {
-    await page.setViewportSize({ width: 1440, height: 900 });
-    await use(new YopmailPage(page));
-  },
+  yopmailPage: async ({ page }, use) => { await page.setViewportSize({ width: 1440, height: 900 }); await use(new YopmailPage(page)); },
   contactUsPage: async ({ page }, use) => await use(new ContactUsPage(page)),
   faqPage: async ({ page }, use) => await use(new FaqPage(page)),
   cartPage: async ({ page }, use) => await use(new CartPage(page)),
   eyeCarePage: async ({ page }, use) => await use(new EyeCarePage(page)),
-  contactLensesPage: async ({ page }, use) =>
-    await use(new ContactLensesPage(page)),
-  contactLensesProductPage: async ({ page }, use) =>
-    await use(new ContactLensesProductPage(page)),
-  measurePdActionsPage: async ({ page }, use) =>
-    await use(new MeasurePupilDistancePage(page)),
-  onlineVisionPage: async ({ page }, use) =>
-    await use(new OnlineVisionTestPage(page)),
-  visionTestIntroductionPage: async ({ page }, use) =>
-    await use(new VisionTestIntroductionPage(page)),
-  adminPanelPage: async ({ page }, use) =>
-    await use(new AdminPanelPage(page)),
-  checkoutPage: async ({ page }, use) =>
-    await use(new CheckoutPage(page)),
-  accountPage: async ({ page }, use) =>
-    await use(new AccountPage(page)),
-  ezPointsPage: async ({ page }, use) =>
-    await use(new EzPointsPage(page)),
-  accountSettingsPage: async ({ page }, use) =>
-    await use(new AccountSettingsPage(page)),
-  accountInfoPage: async ({ page }, use) =>
-    await use(new AccountInfoPage(page)),
+  contactLensesPage: async ({ page }, use) => await use(new ContactLensesPage(page)),
+  contactLensesProductPage: async ({ page }, use) => await use(new ContactLensesProductPage(page)),
+  measurePdActionsPage: async ({ page }, use) => await use(new MeasurePupilDistancePage(page)),
+  onlineVisionPage: async ({ page }, use) => await use(new OnlineVisionTestPage(page)),
+  visionTestIntroductionPage: async ({ page }, use) => await use(new VisionTestIntroductionPage(page)),
+  adminPanelPage: async ({ page }, use) => await use(new AdminPanelPage(page)),
+  checkoutPage: async ({ page }, use) => await use(new CheckoutPage(page)),
+  accountPage: async ({ page }, use) => await use(new AccountPage(page)),
+  ezPointsPage: async ({ page }, use) => await use(new EzPointsPage(page)),
+  accountSettingsPage: async ({ page }, use) => await use(new AccountSettingsPage(page)),
+  accountInfoPage: async ({ page }, use) => await use(new AccountInfoPage(page)),
+
+
+  //portalPage: async ({ page }, use) => await use(new PortalPage(page)),
+
+  catalogContext: async ({}, use) => await use({ cardsState: [] }),
 });
+
+
+export type PortalContext = {
+  selectedTab?: string;
+  previousTab?: string; 
+};
+
+
 
 export const expect = test.expect;
 export const { Given, When, Then } = createBdd(test);

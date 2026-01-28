@@ -174,4 +174,12 @@ export abstract class BaseEntity {
     await locator.click();
     await this.waitForLoadState();
   }
+  
+  protected exactText(text: string): RegExp {
+    return new RegExp(`^${text.replace(/[’']/g, "['’]")}$`, "i");
+  }
+
+  protected byExactText(text: string) {
+    return { hasText: this.exactText(text) };
+  }
 }

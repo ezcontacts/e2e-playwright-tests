@@ -3,7 +3,10 @@ import { ENDPOINT } from "../../constant/endpoint";
 import { BaseComponent } from "../base/BaseComponent";
 import { expect } from "../../test/fixtures/fixture";
 
+<<<<<<< HEAD
 //I see you forgot renamed and changed this class)
+=======
+>>>>>>> 615ba2c (Wishlist Changes - To Review)
 export class FaqSectionComponent extends BaseComponent {
     readonly wishList: Locator;
     readonly result: Locator;

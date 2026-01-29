@@ -29,9 +29,16 @@ import { CartComponent } from "../../page-objects/components/CartComponent";
 import { AddToWishListPage } from "../../page-objects/pages/Account/AddToWishListPage";  //added by NP
 // import { MyAccountPage } from "../../page-objects/pages/MyAccountPage"; // added by NP
 
+import { AddToWishList } from "../../page-objects/pages/AddToWishList";
+
 export type CatalogeContext = { cardsState: CardState[] };
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 615ba2c (Wishlist Changes - To Review)
 export const test = bddTest.extend<{
   page: Page;
   homePage: HomePage;
@@ -55,7 +62,11 @@ export const test = bddTest.extend<{
   ezPointsPage: EzPointsPage;
   accountSettingsPage: AccountSettingsPage;
   accountInfoPage: AccountInfoPage;
+<<<<<<< HEAD
   addToWishListPage: AddToWishListPage;  //added by NP (Very good)
+=======
+  addToWishListPage: AddToWishList;
+>>>>>>> 615ba2c (Wishlist Changes - To Review)
 
   portalContext: PortalContext;
   catalogContext: CatalogeContext;
@@ -108,8 +119,12 @@ export const test = bddTest.extend<{
   ezPointsPage: async ({ page }, use) => await use(new EzPointsPage(page)),
   accountSettingsPage: async ({ page }, use) => await use(new AccountSettingsPage(page)),
   accountInfoPage: async ({ page }, use) => await use(new AccountInfoPage(page)),
+<<<<<<< HEAD
   
   addToWishListPage: async ({ page }, use) => await use(new AddToWishListPage(page)),  //added by NP (Very good)
+=======
+  addToWishListPage: async ({ page }, use) => await use(new AddToWishList(page)),
+>>>>>>> 615ba2c (Wishlist Changes - To Review)
 
   //portalPage: async ({ page }, use) => await use(new PortalPage(page)),
   catalogContext: async ({}, use) => await use({ cardsState: [] }),

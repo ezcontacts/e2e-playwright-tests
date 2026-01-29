@@ -18,6 +18,7 @@ import { OnlineVisionTestPage } from "../../page-objects/pages/OnlineVisionTestP
 import { VisionTestIntroductionPage } from "../../page-objects/pages/VisionTestIntroductionPage";
 import { AdminPanelPage } from "../../page-objects/pages/AdminPanelPage";
 import { CheckoutPage } from "../../page-objects/pages/CheckoutPage";
+import { AddToWishList } from "../../page-objects/pages/AddToWishList";  //added by NP
 
 export const test = bddTest.extend<{
   page: Page;
@@ -38,6 +39,8 @@ export const test = bddTest.extend<{
   visionTestIntroductionPage: VisionTestIntroductionPage;
   adminPanelPage: AdminPanelPage;
   checkoutPage: CheckoutPage;
+  addToWishListPage: AddToWishList;  //added by NP
+
 }>({
   context: async ({ browser }, use) => {
     const context = await browser.newContext({
@@ -100,6 +103,10 @@ export const test = bddTest.extend<{
     await use(new AdminPanelPage(page)),
   checkoutPage: async ({ page }, use) =>
     await use(new CheckoutPage(page)),
+  
+  //added by NP
+  addToWishListPage: async ({ page }, use) =>
+    await use(new AddToWishList(page)),
 });
 
 export const expect = test.expect;

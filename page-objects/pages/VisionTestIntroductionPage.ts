@@ -40,8 +40,6 @@ export class VisionTestIntroductionPage extends BasePage {
 
   readonly rightEye: EyeDetail;
   readonly leftEye: EyeDetail;
-
-  readonly promotion: PromotionComponent;
   
   constructor(page: Page) {
     super(page, ENDPOINT.onlineVisionTestIntroduction);
@@ -69,8 +67,6 @@ export class VisionTestIntroductionPage extends BasePage {
       cylinder: this.locator("#AccountPrescriptionEyeglassesLeftCyl"),
       axis: this.locator("#AccountPrescriptionEyeglassesLeftAxis"),
     });
-
-    this.promotion = new PromotionComponent(page);
   }
 
   async open(): Promise<void>{

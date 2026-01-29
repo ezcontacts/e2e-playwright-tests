@@ -41,7 +41,6 @@ Scenario: Verify sections available on Edit Account Settings page
 #-----------------------------------
 # Edit Account Details
 #-----------------------------------
-@skip
 Scenario Outline: Verify user can edit account detail fields
   When the user clicks on the "Edit Details" link
   And the user updates the "<FieldName>" field with valid data
@@ -52,8 +51,8 @@ Scenario Outline: Verify user can edit account detail fields
     | First Name    |
     | Last Name     |
     | Phone Number  |
-    | Email Address |
-    | Email Sign Up |
+    | New Email     |
+    | Confirm Email |
 
 #-----------------------------------
 # Cancel Changes
@@ -61,7 +60,7 @@ Scenario Outline: Verify user can edit account detail fields
 @skip
 Scenario: Verify Cancel button discards changes
   When the user clicks on the "Edit Details" link
-  And the user has updated the following account fields:
+  And the user has updated valid account details:
     | Field Name   |
     | First Name   |
     | Phone Number |
@@ -74,11 +73,12 @@ Scenario: Verify Cancel button discards changes
 #-----------------------------------
 @skip
 Scenario: Verify Save Changes button updates account details
-  Given the user has updated valid account details:
+  When the user clicks on the "Edit Details" link
+  And the user has updated valid account details:
     | Field Name     |
     | First Name     |
     | Last Name      |
     | Email Address  |
-  When the user clicks the "Save Changes" button
+  And the user clicks the "Save Changes" button
   Then the user should remain on "/account/settings/edit"
   And the confirmation message "Account settings successfully updated." should be displayed

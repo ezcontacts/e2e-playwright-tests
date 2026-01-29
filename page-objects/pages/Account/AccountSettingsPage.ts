@@ -10,6 +10,7 @@ export class AccountSettingsPage extends AccountPage {
   readonly saveChangesBtn: Locator;
 
   readonly column: (text: string) => Locator;
+  readonly fieldInput: (text: string) => Locator;
 
   constructor(page: Page) {
     super(page);
@@ -21,6 +22,7 @@ export class AccountSettingsPage extends AccountPage {
     this.cancelBtn = this.locator('.cancel');
     this.saveChangesBtn = this.locator('.pull-right .btn');
     this.column = (text: string) => this.locator(`.table-responsive th`).filter({ hasText: text });
+    this.fieldInput = (text: string) => this.locator('.control-label').filter({ hasText: text }).locator('+ .errorholder input');
   }
 
   async verifyFieldIsVisible(text: string): Promise<void> {
@@ -64,6 +66,15 @@ export class AccountSettingsPage extends AccountPage {
 
   async verifySaveChangesBtnIsVisible(): Promise<void> {
     await expect(this.saveChangesBtn).toBeVisible();
+  }
+
+  async fillSettingEditField(fieldName: string, value: string): Promise<void> {
+    await this.fieldInput(fieldName).fill(value);
+  }
+
+  async verifySettingEditField(fieldName: string, value: string): Promise<void> {
+    const field = this.fieldInput(fieldName);
+    await expect(field).toHaveValue(value);
   }
 
   async clickOnEditLink(): Promise<void> {

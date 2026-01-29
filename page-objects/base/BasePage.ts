@@ -4,12 +4,14 @@ import { BaseEntity } from "./BaseEntity";
 import { HeaderComponent } from "../components/HeaderComponent";
 import { FooterComponent } from "../components/FooterComponent";
 import { expect } from "../../test/fixtures/fixture";
+import { PromotionComponent } from "../components/PromotionComponent";
 
 export abstract class BasePage extends BaseEntity {
   readonly endpoint: string;
 
   readonly header: HeaderComponent;
   readonly footer: FooterComponent;
+  readonly promotion: PromotionComponent
 
   constructor(page: Page, endpoint: string) {
     super(page);
@@ -17,6 +19,7 @@ export abstract class BasePage extends BaseEntity {
 
     this.header = new HeaderComponent(page);
     this.footer = new FooterComponent(page);
+    this.promotion = new PromotionComponent(page);
   }
 
   async open() {
@@ -28,6 +31,7 @@ export abstract class BasePage extends BaseEntity {
       timeout: 60000,
       waitUntil: "domcontentloaded",
     });
+    this.promotion.closeDynamicPopupIfPresent();
   }
 
   async verifyUrl() {

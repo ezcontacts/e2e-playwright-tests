@@ -8,8 +8,7 @@
     "strict": true
   },
   "include": [
-
     "scripts/**/*.ts",
-     "constant/**/*.ts"
+    "constant/**/*.ts",
   ]
 }

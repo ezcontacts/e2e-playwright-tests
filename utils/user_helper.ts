@@ -2,7 +2,7 @@ function randomId(length = 6) {
   return Math.random().toString(36).slice(2, 2 + length);
 }
 
-function generateUser() {
+export function generateUser() {
   const id = randomId();
 
   return {

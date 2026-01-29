@@ -11,7 +11,6 @@ export abstract class ProductCatalogePage extends BasePage {
   readonly paginationList: (index: number) => Locator;
 
   readonly fillter: FillterComponent;
-  readonly promotion: PromotionComponent;
   readonly productCard: (index: number) => ProductCardComponent;
 
   constructor(page: Page, endpoint: string) {
@@ -21,7 +20,6 @@ export abstract class ProductCatalogePage extends BasePage {
     this.productMatchDropdown = this.locator('.unbxd-sort-container .multi');
 
     this.fillter = new FillterComponent(page);
-    this.promotion = new PromotionComponent(page);
 
     this.productCard = (index: number = 0) =>
         new ProductCardComponent(

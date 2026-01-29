@@ -9,7 +9,6 @@ export class HomePage extends BasePage {
   readonly noThanksBtnPopup: Locator;
 
   readonly faqSection: FaqSectionComponent;
-  readonly promotion: PromotionComponent;
 
   constructor(page: Page) {
     super(page, ENDPOINT.home);
@@ -18,8 +17,6 @@ export class HomePage extends BasePage {
     this.noThanksBtnPopup = this.locator("div.ltkpopup-no-thanks button");
 
     this.faqSection = new FaqSectionComponent(page);
-    this.promotion = new PromotionComponent(page);
-
   }
 
   async clickOnNoThanksBtn(): Promise<void> {

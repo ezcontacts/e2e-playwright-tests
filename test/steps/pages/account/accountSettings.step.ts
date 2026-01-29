@@ -1,5 +1,6 @@
 import { DataTable } from "playwright-bdd";
 import { Given, When, Then } from "../../../fixtures/fixture";
+import { generateUser } from "../../../../utils/user_helper";
 
 let fieldValue: string;
 
@@ -10,11 +11,18 @@ When(
   }
 );
 
+When("the user updates the {string} field with valid data", async ({ accountSettingsPage }, fieldName: string) => {
+  fieldValue = generateUser().phone;
+  await accountSettingsPage.fillSettingEditField(fieldName, fieldValue);
+});
+
 Then("the user should be redirected to {string}", async ({ accountSettingsPage }, url: string) => {
   await accountSettingsPage.verifyUrlEndpoint(url);
 });
 
-Then("the following fields should be visible in read-only mode:", async ({ accountSettingsPage }, dataTable: DataTable) => {
+Then(
+  "the following fields should be visible in read-only mode:",
+  async ({ accountSettingsPage }, dataTable: DataTable) => {
   const entries = dataTable.hashes();
 
   for (const { Field } of entries) {
@@ -56,6 +64,6 @@ Then("the following action buttons should be visible:", async ({ accountSettings
   await accountSettingsPage.verifySaveChangesBtnIsVisible();
 });
 
-When("the user updates the {string} field with valid data", async ({ accountSettingsPage }, fieldName: string) => {
-
+Then("the {string} field should reflect the updated value", async ({ accountSettingsPage }, fieldName: string) => {
+  await accountSettingsPage.verifySettingEditField(fieldName, fieldValue);
 });

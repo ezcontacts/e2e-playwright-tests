@@ -4,9 +4,13 @@ import { BaseComponent } from "../base/BaseComponent";
 import { expect } from "../../test/fixtures/fixture";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 //I see you forgot renamed and changed this class)
 =======
 >>>>>>> 615ba2c (Wishlist Changes - To Review)
+=======
+//I see you forgot renamed and changed this class)
+>>>>>>> 951ed67 (feat: Added comments)
 export class FaqSectionComponent extends BaseComponent {
     readonly wishList: Locator;
     readonly result: Locator;

@@ -39,7 +39,7 @@ export const test = bddTest.extend<{
   visionTestIntroductionPage: VisionTestIntroductionPage;
   adminPanelPage: AdminPanelPage;
   checkoutPage: CheckoutPage;
-  addToWishListPage: AddToWishList;  //added by NP
+  addToWishListPage: AddToWishList;  //added by NP (Very good)
 
 }>({
   context: async ({ browser }, use) => {
@@ -104,7 +104,7 @@ export const test = bddTest.extend<{
   checkoutPage: async ({ page }, use) =>
     await use(new CheckoutPage(page)),
   
-  //added by NP
+  //added by NP (Very good)
   addToWishListPage: async ({ page }, use) =>
     await use(new AddToWishList(page)),
 });

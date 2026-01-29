@@ -119,7 +119,7 @@ export const test = bddTest.extend<{
   accountInfoPage: async ({ page }, use) =>
     await use(new AccountInfoPage(page)),
   
-  //added by NP
+  //added by NP (Very good)
   addToWishListPage: async ({ page }, use) =>
     await use(new AddToWishList(page)),
 });

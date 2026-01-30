@@ -52,6 +52,7 @@ When('the user selects {string} from the Sort By dropdown',
 
 When('set first rating filter',
   async ({ sunglassesPage }) => {
+    await sunglassesPage.promotion.closeDynamicPopupIfPresent();
     await sunglassesPage.fillter.clickOnFirstRatingFilter();
   }
 );

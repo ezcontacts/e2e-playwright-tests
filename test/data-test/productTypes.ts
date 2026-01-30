@@ -78,3 +78,20 @@ export enum AccountMenu {
   EzRefill = 'EZ Refill',
   StoreCredit = 'Store Credit',
 }
+
+export enum AccountInfoFields {
+  FirstName = "First Name",
+  LastName = "Last Name",
+  Phone = "Phone",
+  Email = "Email",
+  EmailSignUp = "Email Sign up",
+}
+
+export enum AccountSettingsFields {
+  FirstName = "First Name",
+  LastName = "Last Name",
+  Phone = "Phone Number",
+  CurrentEmail = "Current Email",
+  NewEmail = "New Email",
+  ConfirmEmail = "Confirm Email",
+}

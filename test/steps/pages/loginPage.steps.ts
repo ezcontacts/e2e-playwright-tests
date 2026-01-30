@@ -55,7 +55,3 @@ Then(
 Then("I should see the login success message", async ({ loginPage }) => {
   await loginPage.message.verifyConfirmationMessage(MESSAGE.successLogin);
 });
-
-Then("the user is on the My Account page", async ({ loginPage }) => {
-  await loginPage.message.verifyConfirmationMessage(MESSAGE.successLogin);
-});

@@ -1,3 +1,4 @@
+@Only
 Feature: My Account - Verify The content of the Account Page
 
 Background:
@@ -7,6 +8,7 @@ Background:
 #-----------------------------------
 # Account Settings – View Mode
 #-----------------------------------
+
 Scenario: Verify Account Settings page is displayed in view mode
   Then the Account Settings page should be displayed
   And the following fields should be visible in read-only mode:
@@ -57,11 +59,10 @@ Scenario Outline: Verify user can edit account detail fields
 #-----------------------------------
 # Cancel Changes
 #-----------------------------------
-@skip
 Scenario: Verify Cancel button discards changes
   When the user clicks on the "Edit Details" link
   And the user has updated valid account details:
-    | Field Name   |
+    | Field        |
     | First Name   |
     | Phone Number |
   And the user clicks the "Cancel" button
@@ -75,10 +76,10 @@ Scenario: Verify Cancel button discards changes
 Scenario: Verify Save Changes button updates account details
   When the user clicks on the "Edit Details" link
   And the user has updated valid account details:
-    | Field Name     |
+    | Field          |
     | First Name     |
     | Last Name      |
-    | Email Address  |
+    | New Email      |
   And the user clicks the "Save Changes" button
-  Then the user should remain on "/account/settings/edit"
-  And the confirmation message "Account settings successfully updated." should be displayed
+  Then the user should be redirected to "/account/settings/edit"
+  And I should see a message indicating "Account settings successfully updated."

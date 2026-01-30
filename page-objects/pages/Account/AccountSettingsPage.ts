@@ -1,5 +1,6 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { AccountPage } from "./AccountPage";
+import { AccountSettingsFields } from "../../../test/data-test/productTypes";
 
 export class AccountSettingsPage extends AccountPage {
   readonly fieldName: Locator;
@@ -72,13 +73,38 @@ export class AccountSettingsPage extends AccountPage {
     await this.fieldInput(fieldName).fill(value);
   }
 
+  async fillConfirmEmailField(): Promise<void> {
+    const text = await this.fieldInput(AccountSettingsFields.NewEmail).inputValue();
+    await this.fieldInput(AccountSettingsFields.ConfirmEmail).fill(text);
+  }
+
   async verifySettingEditField(fieldName: string, value: string): Promise<void> {
     const field = this.fieldInput(fieldName);
     await expect(field).toHaveValue(value);
   }
 
-  async clickOnEditLink(): Promise<void> {
-    await this.editLink.click();
-    await this.waitForDomContentLoad();
+  async clickEditLink(): Promise<void> {
+    await this.clickWithLoad(this.editLink);
+  }
+
+  async clickCancelBtn(): Promise<void> {
+    await this.clickWithLoad(this.cancelBtn);
+  }
+
+  async clickSaveChangesBtn(): Promise<void> {
+    await this.clickWithLoad(this.saveChangesBtn);
+  }
+
+  async clickSettingBtn(buttonName: string): Promise<void> {
+    switch (buttonName) {
+      case 'Cancel':
+        await this.clickCancelBtn();
+        break;
+      case 'Save Changes':
+        await this.clickSaveChangesBtn();
+        break;
+      default:
+        throw new Error(`Button with name "${buttonName}" is not recognized.`);
+    }
   }
 }

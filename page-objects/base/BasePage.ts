@@ -31,7 +31,7 @@ export abstract class BasePage extends BaseEntity {
       timeout: 60000,
       waitUntil: "domcontentloaded",
     });
-    this.promotion.closeDynamicPopupIfPresent();
+    await this.promotion.closeDynamicPopupIfPresent();
   }
 
   async verifyUrl() {

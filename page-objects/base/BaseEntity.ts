@@ -169,4 +169,9 @@ export abstract class BaseEntity {
   public generateRandomEmail(): string {
     return `user_${randomUUID()}@example.com`;
   }
+
+  public async clickWithLoad(locator: Locator): Promise<void> {
+    await locator.click();
+    await this.waitForLoadState();
+  }
 }

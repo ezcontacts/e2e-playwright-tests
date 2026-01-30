@@ -59,6 +59,7 @@ export class PromotionComponent extends BaseComponent {
 
   async closeDynamicPopupIfPresent(): Promise<void> {
     try{
+      await this.closePromoteBtn.waitFor({timeout: 30_000});
       await this.closePromoteBtn.click();
     }catch(e){}
   }

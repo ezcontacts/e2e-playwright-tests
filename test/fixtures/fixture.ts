@@ -18,7 +18,8 @@ import { OnlineVisionTestPage } from "../../page-objects/pages/OnlineVisionTestP
 import { VisionTestIntroductionPage } from "../../page-objects/pages/VisionTestIntroductionPage";
 import { AdminPanelPage } from "../../page-objects/pages/AdminPanelPage";
 import { CheckoutPage } from "../../page-objects/pages/CheckoutPage";
-import { AddToWishList } from "../../page-objects/pages/AddToWishList";  //added by NP
+import { AddToWishList } from "../../page-objects/pages/AddToWishListPage";  //added by NP
+import { MyAccountPage } from "../../page-objects/pages/MyAccountPage"; // added by NP
 
 export const test = bddTest.extend<{
   page: Page;

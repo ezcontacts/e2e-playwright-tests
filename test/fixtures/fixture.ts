@@ -22,7 +22,8 @@ import { AccountPage } from "../../page-objects/pages/Account/AccountPage";
 import { EzPointsPage } from "../../page-objects/pages/Account/EzPointsPage";
 import { AccountSettingsPage } from "../../page-objects/pages/Account/AccountSettingsPage";
 import { AccountInfoPage } from "../../page-objects/pages/Account/AcountInfoPage";
-import { AddToWishList } from "../../page-objects/pages/AddToWishList";  //added by NP
+import { AddToWishList } from "../../page-objects/pages/AddToWishListPage";  //added by NP
+import { MyAccountPage } from "../../page-objects/pages/MyAccountPage"; // added by NP
 
 export const test = bddTest.extend<{
   page: Page;

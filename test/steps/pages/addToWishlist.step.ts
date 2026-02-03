@@ -1,25 +1,14 @@
 import { MESSAGE } from "../../data-test/testData";
-import { Given, Then, When } from "../../fixtures/fixture";
+import { Given, test, Then, When } from "../../fixtures/fixture";
 
-// This step already exists in other file you don't need to redefine it here
-Given("I visit the homepage", async ({ homePage }) => {
-  await homePage.open();
-});
-
-// This step already exists in other file you don't need to redefine it here
-Given("I navigate to the login page", async ({ loginPage }) => {
-  await loginPage.open();
-  await loginPage.clickOnGoogleLoginBtn();
-
-});
 
 Given('the user is logged in', async ({ loginPage }) => {
   await loginPage.message.verifyConfirmationMessage(MESSAGE.successLogin);
 });
 
 
-Given('the user is on the My Account page', async () => {
-
+Given('the user is on the My Account page', async ({myAccountPage}) => {
+  await myAccountPage.navigateToMyAccountPage();
 });
 
 /* -------------------- Scenario Steps -------------------- */

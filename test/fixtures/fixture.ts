@@ -26,11 +26,10 @@ import { AccountSettingsPage } from "../../page-objects/pages/Account/AccountSet
 import { AccountInfoPage } from "../../page-objects/pages/Account/AcountInfoPage";
 import { CardState } from "../../page-objects/components/ProductCardComponent";
 
-import { AddToWishList } from "../../page-objects/pages/AddToWishList";
+// import { AddToWishListPage } from "../../page-objects/pages/AddToWishListPage";  //added by NP
+// import { MyAccountPage } from "../../page-objects/pages/MyAccountPage"; // added by NP
 
 export type CatalogeContext = { cardsState: CardState[] };
-
-
 
 
 export const test = bddTest.extend<{
@@ -56,7 +55,7 @@ export const test = bddTest.extend<{
   ezPointsPage: EzPointsPage;
   accountSettingsPage: AccountSettingsPage;
   accountInfoPage: AccountInfoPage;
-  addToWishListPage: AddToWishList;
+  //addToWishListPage: AddToWishListPage;
 
   portalContext: PortalContext;
   catalogContext: CatalogeContext;
@@ -113,7 +112,8 @@ export const test = bddTest.extend<{
   ezPointsPage: async ({ page }, use) => await use(new EzPointsPage(page)),
   accountSettingsPage: async ({ page }, use) => await use(new AccountSettingsPage(page)),
   accountInfoPage: async ({ page }, use) => await use(new AccountInfoPage(page)),
-  addToWishListPage: async ({ page }, use) => await use(new AddToWishList(page)),
+  //addToWishListPage: async ({ page }, use) => await use(new AddToWishListPage(page)),
+
   //portalPage: async ({ page }, use) => await use(new PortalPage(page)),
   catalogContext: async ({}, use) => await use({ cardsState: [] }),
 });

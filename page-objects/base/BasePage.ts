@@ -31,6 +31,7 @@ export abstract class BasePage extends BaseEntity {
       timeout: 60000,
       waitUntil: "domcontentloaded",
     });
+
     await this.promotion.closeDynamicPopupIfPresent();
   }
 

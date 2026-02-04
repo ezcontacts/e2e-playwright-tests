@@ -10,6 +10,8 @@ export class HeaderComponent extends BaseComponent {
   readonly freeShopingLink: Locator;
   readonly specialTopMessage: Locator;
 
+  readonly linkWithText: (text: string) => Locator;
+
   constructor(page: Page, root: string = "#main-header") {
     super(page, root);
 
@@ -30,6 +32,8 @@ export class HeaderComponent extends BaseComponent {
     this.specialTopMessage = this.within(
       '[data-target="#special-top-message-modal"]'
     );
+
+    this.linkWithText = (text: string) => this.within("a").filter({hasText: new RegExp(text), visible: true });
   }
 
   async verifyMainImageIsVisible(): Promise<void> {
@@ -58,5 +62,14 @@ export class HeaderComponent extends BaseComponent {
 
   async verifySpecialTopMessageVisible(): Promise<void> {
     await expect(this.specialTopMessage).toBeVisible();
+  }
+
+  async verifyLinkWithTextVisible(text: string): Promise<void>{
+    await expect(this.linkWithText(text)).toBeVisible();
+  }
+
+  async clickOnLinkWithText(text: string): Promise<void>{
+    const link = await this.linkWithText(text);
+    await link.click();
   }
 }

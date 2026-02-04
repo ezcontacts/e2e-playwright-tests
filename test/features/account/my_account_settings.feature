@@ -1,4 +1,3 @@
-@Only
 Feature: My Account - Verify The content of the Account Page
 
 Background:

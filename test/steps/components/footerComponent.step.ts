@@ -29,3 +29,54 @@ Then(
     }
   }
 );
+
+Then(
+  "the user is viewing the footer",
+  async ({ homePage }) => {
+    await homePage.footer.verifyIsVisible();
+  }
+);
+
+Then(
+  "the {string} section should be displayed",
+  async ({ homePage }, section: string) => {
+    await homePage.footer.verifySectionIsVisible(section);
+  }
+);
+
+Then(
+  "the information text should be displayed as: {string}",
+  async ({ homePage }, text: string) => {
+    await homePage.footer.verifyQuestionContactUs(text);
+  }
+);
+
+Then(
+  "the following icons with titles should be displayed:",
+  async ({ homePage }, dataTable: DataTable) => {
+    const links = dataTable.hashes();
+
+    for (const { Icon, Title } of links) {
+      await homePage.footer.verifyContactUsLinkTitle(Title)
+      await homePage.footer.verifyContactUsIcon(Title, Icon);
+    }
+  }
+);
+
+Then(
+  "the user clicks on the {string}",
+  async ({ homePage }, title: string) => {
+    homePage.footer.clickOnContactUsIcon(title);
+  }
+);
+
+Then(
+  "the icon should have in link:",
+  async ({ homePage }, dataTable: DataTable) => {
+    const links = dataTable.hashes();
+    for (const { Icon, Endpoint } of links) {
+      homePage.footer.verifyContactUsLink(Icon, Endpoint);
+    }
+  }
+);
+

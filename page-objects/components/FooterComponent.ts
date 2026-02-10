@@ -4,6 +4,11 @@ import { BaseComponent } from "../base/BaseComponent";
 export class FooterComponent extends BaseComponent {
   readonly privacyPolicyLink: Locator;
   readonly termsOfServiceLink: Locator;
+  readonly questionContactUs: Locator;
+
+  readonly contactUsTitle: (title: string) => Locator;
+  readonly contactUsIcon: (icon: string) => Locator;
+  readonly contactUsTitleLink: (title: string) => Locator;
 
   readonly sectionHeader: (section: string) => Locator;
   readonly link: (name: string) => Locator;
@@ -13,6 +18,13 @@ export class FooterComponent extends BaseComponent {
 
     this.privacyPolicyLink = this.within(".cstm-privacy");
     this.termsOfServiceLink = this.within(".cstm-terms");
+    this.questionContactUs = this.within(".contact-us-section p");
+
+    this.contactUsTitle = (title: string) =>
+      this.within('.contact-us-list a').filter({ hasText: title });
+
+    this.contactUsIcon = (title: string) =>
+      this.contactUsTitle(title).locator('span');
 
     this.sectionHeader = (section) =>
       this.root.locator("h3", { hasText: section });
@@ -46,6 +58,31 @@ export class FooterComponent extends BaseComponent {
   async verifyLinkIsVisible(linkText: string): Promise<void> {
     const link = this.link(linkText);
     await expect(link).toBeVisible();
+  }
+
+  async verifyQuestionContactUs(text: string): Promise<void>{
+    const question = await this.questionContactUs.innerText();
+    await expect(question).toBe(text);
+  }
+
+  async verifyContactUsLinkTitle(title: string): Promise<void>{
+    const link = await this.contactUsTitle(title);
+    await expect(link).toBeVisible();
+  }
+
+  async verifyContactUsIcon(title: string, cssClass: string): Promise<void>{
+    const icon = await this.contactUsIcon(title);
+    await expect(icon).toHaveClass(new RegExp(`\\b${cssClass}\\b`));
+  }
+
+  async verifyContactUsLink(title: string, linkText: string): Promise<void>{
+    const link = await this.contactUsTitle(title);
+    await expect(link).toHaveAttribute('href',new RegExp(linkText));
+  }
+
+  async clickOnContactUsIcon(title: string): Promise<void>{
+    const icon = await this.contactUsIcon(title);
+    await icon.click();
   }
 
   async clickOnSection(section: string): Promise<void> {

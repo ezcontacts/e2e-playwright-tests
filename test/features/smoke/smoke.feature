@@ -3,8 +3,6 @@ Feature: Smoke tests for production environment
 
   Background:
     Given I visit the homepage
-    And I have dismissed the "No Thanks" popup if present
-    And the dynamic popup is closed if present
 
   @desktopOnly
   Scenario: Verify that the homepage loads correctly
@@ -19,7 +17,7 @@ Feature: Smoke tests for production environment
     And I should see the recommended products section
 
   @desktopOnly
-  Scenario: Verify that the footer loads correctly
+  Scenario: Verify footer sections
     Given I should see the footer with policy links
     And I should see the footer sections:
       | section        |

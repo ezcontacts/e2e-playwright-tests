@@ -31,8 +31,9 @@ export class MeasurePupilDistancePage extends BasePage {
 
   async verifyBtnWithTextIsVisible(text: string): Promise<void>{
     const button = this.btnWithText(text);
+    const btn = this.btnWithText(text);
 
-    await expect(button).toBeVisible();
+    await expect(btn).toBeVisible();
   }
 
   async verifySectionIsVisible(text: string): Promise<void>{

@@ -1,0 +1,170 @@
+{
+  "config": {
+    "configFile": "E:\\work\\e2e-playwright-tests\\playwright.config.js",
+    "rootDir": "E:/work/e2e-playwright-tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "json",
+        {
+          "outputFile": "reports/desktop/report.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "outputFolder": "playwright-report/desktop",
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "E:/work/e2e-playwright-tests/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "E:/work/e2e-playwright-tests/test/generated/desktop",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "E:/work/e2e-playwright-tests/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile",
+        "name": "mobile",
+        "testDir": "E:/work/e2e-playwright-tests/test/generated/mobile",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.57.0",
+    "workers": 4,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "test\\generated\\desktop\\test\\features\\account\\my_account_settings.feature.spec.js",
+      "file": "test/generated/desktop/test/features/account/my_account_settings.feature.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "My Account - Verify The content of the Account Page",
+          "file": "test/generated/desktop/test/features/account/my_account_settings.feature.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Verify user can edit account detail fields",
+              "file": "test/generated/desktop/test/features/account/my_account_settings.feature.spec.js",
+              "line": 123,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Example #3",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 13261,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "When the user clicks on the \"Edit Details\" link",
+                              "duration": 1633
+                            },
+                            {
+                              "title": "And the user updates the \"Phone Number\" field with valid data",
+                              "duration": 631
+                            },
+                            {
+                              "title": "Then the \"Phone Number\" field should reflect the updated value",
+                              "duration": 146
+                            }
+                          ],
+                          "startTime": "2026-01-29T13:37:04.489Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "E:\\work\\e2e-playwright-tests\\test-results\\test-features-account-my_a-c4191-unt-detail-fields-Example-3-desktop\\trace.zip"
+                            }
+                          ]
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "76d4d5187108cc13b056-776fa55919e6e672fc15",
+                  "file": "test/generated/desktop/test/features/account/my_account_settings.feature.spec.js",
+                  "line": 156,
+                  "column": 5
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-01-29T13:37:00.413Z",
+    "duration": 19077.489,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

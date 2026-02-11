@@ -1,10 +1,5 @@
 @add_to_cart @validation
-Feature: Add products to cart
-
-  Background:
-    Given I visit the homepage
-    And I have dismissed the "No Thanks" popup if present
-    And the dynamic popup is closed if present
+Feature: Cart - Add products to cart
 
   @smoke  @func
   Scenario: Verify User can add sunglasses to cart
@@ -31,7 +26,6 @@ Feature: Add products to cart
     And I select contact lens details on Contact Lenses Product Page
     Then I should see the success message for adding the product to the cart
 
-  @skip
   Scenario: Verify User can add eye care product to cart
     Given I visit the eye care page
     When I click on the first product card in the list

@@ -3,6 +3,7 @@ import { BasePage } from "../base/BasePage";
 import { ENDPOINT } from "../../constant/endpoint";
 import { expect } from "../../test/fixtures/fixture";
 import { EyeDetail } from "../base/types";
+import { PromotionComponent } from "../components/PromotionComponent";
 
 type PrescriptionUserData = {
   name?: string;
@@ -71,6 +72,7 @@ export class VisionTestIntroductionPage extends BasePage {
   async open(): Promise<void>{
     await super.open();
     await this.closeDynamicPopupIfPresent();
+    await this.promotion.closeDynamicPopupIfPresent();
   }
 
   async verifyTitleIsVisible(): Promise<void>{

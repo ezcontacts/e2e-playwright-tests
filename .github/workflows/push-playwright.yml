@@ -8,7 +8,7 @@ on:
     inputs:
       test_script:
         description: "Select npm test script to run"
-        default: "test"
+        default: "push"
         type: choice
         options:
           - test
@@ -56,29 +56,58 @@ jobs:
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
           ENV: ${{ env.ENV }}
 
-      # HTML report
-      - name: Upload Playwright HTML Report
+      - name: Build Tests
+        run: npm run bdd:gen
+
+      - name: Run Desktop & Mobile Tests
+        run: npm run push
+
+      # Upload BDD JSON / snapshots
+      - name: Upload Desktop BDD Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-html-report-${{ github.run_number }}
-          path: playwright-report
+          name: playwright-bdd-desktop-${{ github.run_number }}
+          path: test/generated/desktop
           retention-days: 7
 
-      # Traces, screenshots, videos
+      - name: Upload Mobile BDD Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-bdd-mobile-${{ github.run_number }}
+          path: test/generated/mobile
+          retention-days: 7
+
+      # Upload HTML reports including screenshots/video
+      - name: Upload Desktop HTML Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-html-desktop-${{ github.run_number }}
+          path: |
+            playwright-report/desktop
+            playwright-report/desktop/assets
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Upload Mobile HTML Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-html-mobile-${{ github.run_number }}
+          path: |
+            playwright-report/mobile
+            playwright-report/mobile/assets
+          if-no-files-found: ignore
+          retention-days: 7
+
+      # Upload standard Playwright test-results
       - name: Upload Playwright Test Results
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: playwright-test-results-${{ github.run_number }}
           path: test-results
-          retention-days: 7
-
-      # Cucumber JSON
-      - name: Upload Cucumber JSON
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-cucumber-json-${{ github.run_number }}
-          path: reports/cucumber.json
           if-no-files-found: ignore
+          retention-days: 7

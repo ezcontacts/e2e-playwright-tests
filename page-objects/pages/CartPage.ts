@@ -19,7 +19,6 @@ export class CartPage extends BasePage {
   constructor(page: Page) {
     super(page, ENDPOINT.contactUs);
 
-    this.message = new MessageComponent(this.page);
     this.title = this.locator("h2.section-title");
     this.cartNumber = this.locator("h5 > strong");
     this.continueShoppingBtn = this.locator(".active-link");
@@ -27,6 +26,7 @@ export class CartPage extends BasePage {
     this.totalPrice = this.locator("#itemTotal");
     this.checkoutBtn = this.locator('[data-value="1"]');
 
+    this.message = new MessageComponent(page);
     this.item = (index: number) => new CartItemComponent(this.page, index);
   }
 

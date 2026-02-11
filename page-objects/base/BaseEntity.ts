@@ -2,6 +2,7 @@ import { Locator, Page } from "@playwright/test";
 import { expect } from "../../test/fixtures/fixture";
 import { randomUUID } from "crypto";
 
+<<<<<<< HEAD
 export abstract class BaseEntity {
   page: Page;
 
@@ -44,6 +45,42 @@ export abstract class BaseEntity {
         }
       });
     }
+=======
+type BaseLocator = {
+  iframe?: string;
+};
+
+type ByLocator = {
+  locator: Locator;
+};
+
+type ByTestId = {
+  getByTestId: string;
+};
+
+type ByCss = {
+  selector: string;
+};
+
+type XOR<T, U> =
+  | (T & { [K in keyof U]?: never })
+  | (U & { [K in keyof T]?: never });
+
+type XOR3<A, B, C> =
+  | XOR<A, B | C>
+  | XOR<B, A | C>
+  | XOR<C, A | B>;
+
+export type LocatorConfig =
+  BaseLocator &
+  XOR3<ByLocator, ByTestId, ByCss>;
+
+export abstract class BaseEntity {
+  page: Page;
+
+  constructor(page: Page) {
+    this.page = page;
+>>>>>>> 48fed5af059a1875e60d90d7c2d2edcab53473f6
   }
 
   async safeClick(locator: Locator, timeout = 60000) {
@@ -57,18 +94,10 @@ export abstract class BaseEntity {
     locator: Locator,
     options?: { timeout?: number }
   ): Promise<void> {
-    const timeout = options?.timeout ?? 60000;
-
-    if (await this.attentiveOverlay.isVisible().catch(() => false)) {
-      await this.attentiveOverlay.evaluate(el => el.remove());
-    }
-
+    await this.page.waitForTimeout(5000);
     await locator.scrollIntoViewIfNeeded();
-    await expect(locator).toBeVisible({ timeout });
-
-    await Promise.all([
-      locator.click({force: true}),
-    ]);
+    await expect(locator).toBeVisible();
+    await locator.click({force: true});
   }
 
   async safeFill(locator: Locator, value: string, timeout = 60000) {
@@ -90,6 +119,7 @@ export abstract class BaseEntity {
     await this.page.reload({ waitUntil: "domcontentloaded" });
   }
 
+<<<<<<< HEAD
   async closeDynamicPopupIfPresent(): Promise<void> {
     if(this.isMobile()) return;
 
@@ -112,6 +142,8 @@ export abstract class BaseEntity {
     }
   }
 
+=======
+>>>>>>> 48fed5af059a1875e60d90d7c2d2edcab53473f6
   async clickIfVisible(locator: Locator): Promise<void> {
     const count = await locator.count();
     if (count > 0) {
@@ -137,7 +169,7 @@ export abstract class BaseEntity {
     throw new Error(errorMessage);
   }
 
-  protected getPlatformSelector(desktop: string, mobile: string): string {
+  protected getPlatformSelector(desktop: string | LocatorConfig, mobile: string | LocatorConfig): string | LocatorConfig {
     return this.isMobile() ? mobile : desktop;
   }
 
@@ -145,10 +177,54 @@ export abstract class BaseEntity {
     return this.page.viewportSize()?.width! < 768;
   }
 
-  protected locator(desktop: string, mobile?: string): Locator {
+  protected locator(desktop: string | LocatorConfig, mobile?: string | LocatorConfig): Locator {
     return mobile === undefined
-      ? this.page.locator(desktop)
-      : this.page.locator(this.getPlatformSelector(desktop, mobile));
+      ? this.getLocator(desktop)
+      : this.getLocator(this.getPlatformSelector(desktop, mobile));
+  }
+
+  protected getLocator(config: string | LocatorConfig): Locator {
+    if (typeof config === "string") {
+      return this.page.locator(config);
+    }
+
+    if ("locator" in config) {
+      return config.locator!;
+    }
+
+    const root = config.iframe
+      ? this.page.frameLocator(config.iframe)
+      : this.page;
+
+    if ("getByTestId" in config) {
+      return root.getByTestId(config.getByTestId!);
+    }
+
+    if ("selector" in config) {
+      return root.locator(config.selector);
+    }
+
+    throw new Error(`Any locator or selector no set`);
+  }
+
+  protected getLocatorInRoot(root: Locator, config: string | LocatorConfig): Locator {
+    if (typeof config === "string") {
+      return root.locator(config);
+    }
+
+    if ("locator" in config) {
+      return config.locator!;
+    }
+
+    if ("getByTestId" in config) {
+      return root.getByTestId(config.getByTestId!);
+    }
+
+    if ("selector" in config) {
+      return root.locator(config.selector);
+    }
+
+    throw new Error(`Any locator or selector no set`);
   }
 
   protected async enterField(locator: Locator, value: string) {
@@ -162,5 +238,10 @@ export abstract class BaseEntity {
 
   public generateRandomEmail(): string {
     return `user_${randomUUID()}@example.com`;
+  }
+
+  public async clickWithLoad(locator: Locator): Promise<void> {
+    await locator.click();
+    await this.waitForLoadState();
   }
 }

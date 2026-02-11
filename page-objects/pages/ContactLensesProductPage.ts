@@ -12,7 +12,7 @@ export class ContactLensesProductPage extends ProductPage {
 
     this.addCartContactLenses = this.locator(".btn-cart > #addtocart");
 
-    this.enterPrescription = new EnterPrescriptionComponent(this.page);
+    this.enterPrescription = new EnterPrescriptionComponent(page);
   }
 
   override async clickOnAddToCart(): Promise<void> {

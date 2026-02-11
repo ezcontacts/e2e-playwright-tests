@@ -34,7 +34,7 @@ export class LoginPage extends BasePage {
       magicLinkBtn: this.locator("a#login-with-link-email"),
     }
 
-    this.message = new MessageComponent(this.page);
+    this.message = new MessageComponent(page);
   }
 
   async clickOnMagicLinkBtn(): Promise<void> {

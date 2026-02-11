@@ -1,4 +1,8 @@
-import { Then } from "../../fixtures/fixture";
+import { Then, When } from "../../fixtures/fixture";
+
+When("the user clicks on the {string} link in the header section", async ({ homePage }, text: string) => {
+  await homePage.header.clickOnLinkWithText(text);
+});
 
 Then("I should see the main image", async ({ homePage }) => {
   await homePage.header.verifyMainImageIsVisible();
@@ -30,4 +34,8 @@ Then("I should see promo banner or tag if available", async ({ homePage }) => {
 
 Then("I should see the terms of service", async ({ homePage }) => {
   await homePage.header.verifySpecialTopMessageVisible();
+});
+
+Then("the user should see the {string} link in the header section", async ({ homePage }, text: string) => {
+  await homePage.header.verifyLinkWithTextVisible(text);
 });

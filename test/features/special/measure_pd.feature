@@ -1,10 +1,8 @@
 @pd_measure @validation @func
-Feature: Measure Pupil Distance
+Feature:  Measure Pupil Distance Page - Core Sections Validation
 
   Background:
     Given I visit the homepage
-    And I have dismissed the "No Thanks" popup if present
-    And the dynamic popup is closed if present
 
 @smoke
   Scenario: Validate core sections of the PD page

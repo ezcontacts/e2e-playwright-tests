@@ -18,8 +18,15 @@ import { OnlineVisionTestPage } from "../../page-objects/pages/OnlineVisionTestP
 import { VisionTestIntroductionPage } from "../../page-objects/pages/VisionTestIntroductionPage";
 import { AdminPanelPage } from "../../page-objects/pages/AdminPanelPage";
 import { CheckoutPage } from "../../page-objects/pages/CheckoutPage";
-import { AddToWishList } from "../../page-objects/pages/AddToWishListPage";  //added by NP
+
+import { AddToWishListPage } from "../../page-objects/pages/Account/AddToWishListPage";  //added by NP
 import { MyAccountPage } from "../../page-objects/pages/MyAccountPage"; // added by NP
+
+import { AccountPage } from "../../page-objects/pages/Account/AccountPage";
+import { EzPointsPage } from "../../page-objects/pages/Account/EzPointsPage";
+import { AccountSettingsPage } from "../../page-objects/pages/Account/AccountSettingsPage";
+import { AccountInfoPage } from "../../page-objects/pages/Account/AcountInfoPage";
+
 
 export const test = bddTest.extend<{
   page: Page;
@@ -40,7 +47,14 @@ export const test = bddTest.extend<{
   visionTestIntroductionPage: VisionTestIntroductionPage;
   adminPanelPage: AdminPanelPage;
   checkoutPage: CheckoutPage;
-  addToWishListPage: AddToWishList;  //added by NP (Very good)
+
+  addToWishListPage: AddToWishListPage;  //added by NP (Very good)
+
+
+  accountPage: AccountPage;
+  ezPointsPage: EzPointsPage;
+  accountSettingsPage: AccountSettingsPage;
+  accountInfoPage: AccountInfoPage;
 
 }>({
   context: async ({ browser }, use) => {
@@ -104,10 +118,21 @@ export const test = bddTest.extend<{
     await use(new AdminPanelPage(page)),
   checkoutPage: async ({ page }, use) =>
     await use(new CheckoutPage(page)),
+
   
   //added by NP (Very good)
   addToWishListPage: async ({ page }, use) =>
-    await use(new AddToWishList(page)),
+    await use(new AddToWishListPage(page)),
+
+  accountPage: async ({ page }, use) =>
+    await use(new AccountPage(page)),
+  ezPointsPage: async ({ page }, use) =>
+    await use(new EzPointsPage(page)),
+  accountSettingsPage: async ({ page }, use) =>
+    await use(new AccountSettingsPage(page)),
+  accountInfoPage: async ({ page }, use) =>
+    await use(new AccountInfoPage(page)),
+
 });
 
 export const expect = test.expect;

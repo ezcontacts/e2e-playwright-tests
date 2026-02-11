@@ -21,6 +21,8 @@ export class FooterComponent extends BaseComponent {
       this.root.locator("a", {
         hasText: new RegExp(`^${name}$`, "i"),
       });
+
+      this.page.getAttribute
   }
 
   async verifyPrivatePolicyIsVisible(): Promise<void> {

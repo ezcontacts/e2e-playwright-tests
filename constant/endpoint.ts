@@ -12,5 +12,10 @@ export const ENDPOINT = {
   onlineVisionTestIntroduction: "/online-vision-test",
   adminPanel: "/admin-manage",
   checkout: "/checkout",
-  wishlist: "/account/wishlist",
+
+  wishlist: "/account/wishlist",  //added by NP
+
+  deals: "/eyewear/deals",
+  accountMain: "/account/main",
+  eqPoints: "/account/ezpoints",
 };

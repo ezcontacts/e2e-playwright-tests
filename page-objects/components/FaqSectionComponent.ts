@@ -7,7 +7,7 @@ export class FaqSectionComponent extends BaseComponent {
   readonly description: Locator;
   readonly allFaqQuestions: Locator;
   readonly faqAnswer: Locator;
-  readonly viewAllButton: Locator;
+  readonly viewAllBtn: Locator;
 
   constructor(page: Page, root: string = ".faq-section") {
     super(page, root);
@@ -16,7 +16,7 @@ export class FaqSectionComponent extends BaseComponent {
     this.description = this.within(".section-head p");
     this.allFaqQuestions = this.within(".accordion-list li h3");
     this.faqAnswer = this.within(".accordion-list li .answer");
-    this.viewAllButton = this.within("a");
+    this.viewAllBtn = this.within("a");
   }
 
   async verifyDescriptionContains(expectedText: string): Promise<void> {
@@ -40,10 +40,10 @@ export class FaqSectionComponent extends BaseComponent {
   }
 
   async verifyViewAllIsVisible(): Promise<void> {
-    await expect(this.viewAllButton).toBeVisible();
+    await expect(this.viewAllBtn).toBeVisible();
   }
 
   async verifyViewAllHaveCorrectUrl(): Promise<void> {
-    await expect(this.viewAllButton).toHaveAttribute("href", ENDPOINT.faq);
+    await expect(this.viewAllBtn).toHaveAttribute("href", ENDPOINT.faq);
   }
 }

@@ -40,3 +40,58 @@ export enum ProductType {
   EyeVitamins = 'eye-vitamins',
   EyeCream = 'eye-cream',
 }
+
+export enum MatchType {
+  Eyeglasses = 'eyeglasses',
+  ContactLenses = 'contact-lenses',
+  Sunglasses = 'sunglasses',
+  EyeDrops = 'eye-drops',
+  HairAndScalpTreatments = 'hair-and-scalp-treatments',
+  BracesCare = 'braces-care',
+  TaxableProduct = 'taxable-product',
+  RabiaTester = 'rabia-tester',
+  EyeTest = 'Eye Test',
+  EyecareTest = 'eyecare-test',
+  EyeVitamins = 'eye-vitamins',
+  EyeCream = 'eye-cream',
+}
+
+export enum MatchFilterType {
+  BEST_MATCH = 'Best Match',
+  POPULARITY = 'Popularity',
+  NEWEST = 'Newest',
+  NAME_AZ = 'Name (A-Z)',
+  NAME_ZA = 'Name (Z-A)',
+  PRICE_LOW = 'Price ($-$$$)',
+  PRICE_HIGH = 'Price ($$$-$)',
+}
+
+export enum AccountMenu {
+  AccountSettings = 'Account Settings',
+  AddressAndPayment = 'Address & Payment',
+  OrderHistory = 'Order History',
+  RxInformation = 'Rx Information',
+  EzPoints = 'EZ Points',
+  RecentPrescriptions = 'Recent',
+  WishList = 'Wish List',
+  OnlineVisionTest = 'Online Vision Test',
+  EzRefill = 'EZ Refill',
+  StoreCredit = 'Store Credit',
+}
+
+export enum AccountInfoFields {
+  FirstName = "First Name",
+  LastName = "Last Name",
+  Phone = "Phone",
+  Email = "Email",
+  EmailSignUp = "Email Sign up",
+}
+
+export enum AccountSettingsFields {
+  FirstName = "First Name",
+  LastName = "Last Name",
+  Phone = "Phone Number",
+  CurrentEmail = "Current Email",
+  NewEmail = "New Email",
+  ConfirmEmail = "Confirm Email",
+}

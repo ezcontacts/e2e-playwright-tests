@@ -1,5 +1,5 @@
 @contact_us @validation @func
-Feature: Contact Us Form Submission Confirmation
+Feature: Contact Us - Form Submission Confirmation
 
   As a customer, I want to receive a confirmation message after submitting the Contact Us form So that I know my message has been sent successfully
 

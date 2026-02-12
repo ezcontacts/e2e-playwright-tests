@@ -23,6 +23,7 @@ import { EzPointsPage } from "../../page-objects/pages/Account/EzPointsPage";
 import { AccountSettingsPage } from "../../page-objects/pages/Account/AccountSettingsPage";
 import { AccountInfoPage } from "../../page-objects/pages/Account/AcountInfoPage";
 
+
 export const test = bddTest.extend<{
   page: Page;
   homePage: HomePage;
@@ -46,6 +47,7 @@ export const test = bddTest.extend<{
   ezPointsPage: EzPointsPage;
   accountSettingsPage: AccountSettingsPage;
   accountInfoPage: AccountInfoPage;
+  clContext: clContext;
 }>({
   context: async ({ browser }, use) => {
     const context = await browser.newContext({
@@ -55,6 +57,10 @@ export const test = bddTest.extend<{
     await use(context);
     await context.close();
   },
+
+  clContext: async ({}, use) => {
+    await use({ selectedTab: undefined });
+  },
 
   page: async ({ context }, use) => {
     const page = await context.newPage();
@@ -116,7 +122,18 @@ export const test = bddTest.extend<{
     await use(new AccountSettingsPage(page)),
   accountInfoPage: async ({ page }, use) =>
     await use(new AccountInfoPage(page)),
-});
+}
+
+
+
+
+);
+
+
+export type clContext = {
+  selectedTab?: string;
+  previousTab?: string;
+};
 
 export const expect = test.expect;
 export const { Given, When, Then } = createBdd(test);

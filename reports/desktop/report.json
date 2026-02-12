@@ -1,7 +1,7 @@
 {
   "config": {
-    "configFile": "E:\\work\\e2e-playwright-tests\\playwright.config.js",
-    "rootDir": "E:/work/e2e-playwright-tests",
+    "configFile": "C:\\Automation\\e2e-playwright-tests\\playwright.config.js",
+    "rootDir": "C:/Automation/e2e-playwright-tests",
     "forbidOnly": false,
     "fullyParallel": false,
     "globalSetup": null,
@@ -36,7 +36,7 @@
     "quiet": false,
     "projects": [
       {
-        "outputDir": "E:/work/e2e-playwright-tests/test-results",
+        "outputDir": "C:/Automation/e2e-playwright-tests/test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -44,7 +44,7 @@
         },
         "id": "desktop",
         "name": "desktop",
-        "testDir": "E:/work/e2e-playwright-tests/test/generated/desktop",
+        "testDir": "C:/Automation/e2e-playwright-tests/test/generated/desktop",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -52,7 +52,7 @@
         "timeout": 120000
       },
       {
-        "outputDir": "E:/work/e2e-playwright-tests/test-results",
+        "outputDir": "C:/Automation/e2e-playwright-tests/test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -60,7 +60,7 @@
         },
         "id": "mobile",
         "name": "mobile",
-        "testDir": "E:/work/e2e-playwright-tests/test/generated/mobile",
+        "testDir": "C:/Automation/e2e-playwright-tests/test/generated/mobile",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -78,29 +78,232 @@
   },
   "suites": [
     {
-      "title": "test\\generated\\desktop\\test\\features\\account\\my_account_settings.feature.spec.js",
-      "file": "test/generated/desktop/test/features/account/my_account_settings.feature.spec.js",
+      "title": "test\\generated\\desktop\\test\\features\\.generation\\cataloge\\pagination.contact-lenses.feature.spec.js",
+      "file": "test/generated/desktop/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "My Account - Verify The content of the Account Page",
-          "file": "test/generated/desktop/test/features/account/my_account_settings.feature.spec.js",
+          "title": "Pagination on CONTACT LENSES",
+          "file": "test/generated/desktop/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
           "line": 3,
           "column": 6,
-          "specs": [],
+          "specs": [
+            {
+              "title": "Verify products per CONTACT LENSES page",
+              "ok": true,
+              "tags": [
+                "EZSANISOFT-5353"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 43252,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Then the Products per page dropdown should be visible",
+                          "duration": 64
+                        },
+                        {
+                          "title": "And the default 30 products per page value should be selected",
+                          "duration": 37
+                        }
+                      ],
+                      "startTime": "2026-02-05T14:44:50.493Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Automation\\e2e-playwright-tests\\test-results\\test-features-.generation--acb28-cts-per-CONTACT-LENSES-page-desktop\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "6310675f7bff7d8e34a7-0dba645d08422723c492",
+              "file": "test/generated/desktop/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+              "line": 13,
+              "column": 3
+            },
+            {
+              "title": "Verify Sort By dropdown is displayed",
+              "ok": true,
+              "tags": [
+                "EZSANISOFT-5353"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 36362,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Then the Sort By dropdown should be visible",
+                          "duration": 35
+                        },
+                        {
+                          "title": "And the Sort By dropdown should display \"Best Match\" option as by default selected option",
+                          "duration": 21
+                        }
+                      ],
+                      "startTime": "2026-02-05T14:48:27.683Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Automation\\e2e-playwright-tests\\test-results\\test-features-.generation--6d497-rt-By-dropdown-is-displayed-desktop\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "6310675f7bff7d8e34a7-ab5c3d09c0163e45302f",
+              "file": "test/generated/desktop/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+              "line": 85,
+              "column": 3
+            }
+          ],
           "suites": [
             {
-              "title": "Verify user can edit account detail fields",
-              "file": "test/generated/desktop/test/features/account/my_account_settings.feature.spec.js",
-              "line": 123,
+              "title": "Verify Products per page dropdown selection - CONTACT LENSES",
+              "file": "test/generated/desktop/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+              "line": 27,
               "column": 8,
               "specs": [
                 {
-                  "title": "Example #3",
-                  "ok": true,
-                  "tags": [],
+                  "title": "Example #1",
+                  "ok": false,
+                  "tags": [
+                    "EZSANISOFT-5353"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 37967,
+                          "error": {
+                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m30\u001b[39m\nReceived: \u001b[31m24\u001b[39m",
+                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m30\u001b[39m\nReceived: \u001b[31m24\u001b[39m\n    at ProductCardComponent.verifyQuantityCart (C:\\Automation\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts:41:25)\n    at Object.<anonymous> (C:\\Automation\\e2e-playwright-tests\\test\\steps\\pages\\categoryPage.step.ts:63:3)\n    at C:\\Automation\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\.generation\\cataloge\\pagination.contact-lenses.feature.spec.js:19:7",
+                            "location": {
+                              "file": "C:\\Automation\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts",
+                              "column": 25,
+                              "line": 41
+                            },
+                            "snippet": "\u001b[90m   at \u001b[39mpage-objects\\components\\ProductCardComponent.ts:41\n\n\u001b[0m \u001b[90m 39 |\u001b[39m   \u001b[36masync\u001b[39m verifyQuantityCart(quantity\u001b[33m:\u001b[39m number)\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\n \u001b[90m 40 |\u001b[39m     \u001b[36mconst\u001b[39m count \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mgetQuantityCart()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 41 |\u001b[39m     \u001b[36mawait\u001b[39m expect(count)\u001b[33m.\u001b[39mtoBe(quantity)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 42 |\u001b[39m   }\n \u001b[90m 43 |\u001b[39m\n \u001b[90m 44 |\u001b[39m   \u001b[36masync\u001b[39m verifyTitleIsVisible()\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\u001b[0m"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "C:\\Automation\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts",
+                                "column": 25,
+                                "line": 41
+                              },
+                              "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m30\u001b[39m\nReceived: \u001b[31m24\u001b[39m\n\n\u001b[90m   at \u001b[39mpage-objects\\components\\ProductCardComponent.ts:41\n\n\u001b[0m \u001b[90m 39 |\u001b[39m   \u001b[36masync\u001b[39m verifyQuantityCart(quantity\u001b[33m:\u001b[39m number)\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\n \u001b[90m 40 |\u001b[39m     \u001b[36mconst\u001b[39m count \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mgetQuantityCart()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 41 |\u001b[39m     \u001b[36mawait\u001b[39m expect(count)\u001b[33m.\u001b[39mtoBe(quantity)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 42 |\u001b[39m   }\n \u001b[90m 43 |\u001b[39m\n \u001b[90m 44 |\u001b[39m   \u001b[36masync\u001b[39m verifyTitleIsVisible()\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\u001b[0m\n\u001b[2m    at ProductCardComponent.verifyQuantityCart (C:\\Automation\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts:41:25)\u001b[22m\n\u001b[2m    at Object.<anonymous> (C:\\Automation\\e2e-playwright-tests\\test\\steps\\pages\\categoryPage.step.ts:63:3)\u001b[22m\n\u001b[2m    at C:\\Automation\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\.generation\\cataloge\\pagination.contact-lenses.feature.spec.js:19:7\u001b[22m"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "When the user selects \"30\" from the Products per page dropdown",
+                              "duration": 132
+                            },
+                            {
+                              "title": "Then the Product Listing page should display \"30\" products per page",
+                              "duration": 82,
+                              "error": {
+                                "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m30\u001b[39m\nReceived: \u001b[31m24\u001b[39m",
+                                "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m30\u001b[39m\nReceived: \u001b[31m24\u001b[39m\n    at ProductCardComponent.verifyQuantityCart (C:\\Automation\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts:41:25)\n    at Object.<anonymous> (C:\\Automation\\e2e-playwright-tests\\test\\steps\\pages\\categoryPage.step.ts:63:3)\n    at C:\\Automation\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\.generation\\cataloge\\pagination.contact-lenses.feature.spec.js:19:7",
+                                "location": {
+                                  "file": "C:\\Automation\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts",
+                                  "column": 25,
+                                  "line": 41
+                                },
+                                "snippet": "\u001b[90m   at \u001b[39mpage-objects\\components\\ProductCardComponent.ts:41\n\n\u001b[0m \u001b[90m 39 |\u001b[39m   \u001b[36masync\u001b[39m verifyQuantityCart(quantity\u001b[33m:\u001b[39m number)\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\n \u001b[90m 40 |\u001b[39m     \u001b[36mconst\u001b[39m count \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mgetQuantityCart()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 41 |\u001b[39m     \u001b[36mawait\u001b[39m expect(count)\u001b[33m.\u001b[39mtoBe(quantity)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 42 |\u001b[39m   }\n \u001b[90m 43 |\u001b[39m\n \u001b[90m 44 |\u001b[39m   \u001b[36masync\u001b[39m verifyTitleIsVisible()\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\u001b[0m"
+                              }
+                            }
+                          ],
+                          "startTime": "2026-02-05T14:45:36.735Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "C:\\Automation\\e2e-playwright-tests\\test-results\\test-features-.generation--35b97----CONTACT-LENSES-Example-1-desktop\\test-failed-1.png"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "C:\\Automation\\e2e-playwright-tests\\test-results\\test-features-.generation--35b97----CONTACT-LENSES-Example-1-desktop\\error-context.md"
+                            },
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "C:\\Automation\\e2e-playwright-tests\\test-results\\test-features-.generation--35b97----CONTACT-LENSES-Example-1-desktop\\trace.zip"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "C:\\Automation\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts",
+                            "column": 25,
+                            "line": 41
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "6310675f7bff7d8e34a7-854a266a392255e04b13",
+                  "file": "test/generated/desktop/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+                  "line": 28,
+                  "column": 5
+                },
+                {
+                  "title": "Example #2",
+                  "ok": false,
+                  "tags": [
+                    "EZSANISOFT-5353"
+                  ],
                   "tests": [
                     {
                       "timeout": 120000,
@@ -112,33 +315,325 @@
                         {
                           "workerIndex": 1,
                           "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 41774,
+                          "error": {
+                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m48\u001b[39m\nReceived: \u001b[31m24\u001b[39m",
+                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m48\u001b[39m\nReceived: \u001b[31m24\u001b[39m\n    at ProductCardComponent.verifyQuantityCart (C:\\Automation\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts:41:25)\n    at Object.<anonymous> (C:\\Automation\\e2e-playwright-tests\\test\\steps\\pages\\categoryPage.step.ts:63:3)\n    at C:\\Automation\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\.generation\\cataloge\\pagination.contact-lenses.feature.spec.js:24:7",
+                            "location": {
+                              "file": "C:\\Automation\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts",
+                              "column": 25,
+                              "line": 41
+                            },
+                            "snippet": "\u001b[90m   at \u001b[39mpage-objects\\components\\ProductCardComponent.ts:41\n\n\u001b[0m \u001b[90m 39 |\u001b[39m   \u001b[36masync\u001b[39m verifyQuantityCart(quantity\u001b[33m:\u001b[39m number)\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\n \u001b[90m 40 |\u001b[39m     \u001b[36mconst\u001b[39m count \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mgetQuantityCart()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 41 |\u001b[39m     \u001b[36mawait\u001b[39m expect(count)\u001b[33m.\u001b[39mtoBe(quantity)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 42 |\u001b[39m   }\n \u001b[90m 43 |\u001b[39m\n \u001b[90m 44 |\u001b[39m   \u001b[36masync\u001b[39m verifyTitleIsVisible()\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\u001b[0m"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "C:\\Automation\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts",
+                                "column": 25,
+                                "line": 41
+                              },
+                              "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m48\u001b[39m\nReceived: \u001b[31m24\u001b[39m\n\n\u001b[90m   at \u001b[39mpage-objects\\components\\ProductCardComponent.ts:41\n\n\u001b[0m \u001b[90m 39 |\u001b[39m   \u001b[36masync\u001b[39m verifyQuantityCart(quantity\u001b[33m:\u001b[39m number)\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\n \u001b[90m 40 |\u001b[39m     \u001b[36mconst\u001b[39m count \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mgetQuantityCart()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 41 |\u001b[39m     \u001b[36mawait\u001b[39m expect(count)\u001b[33m.\u001b[39mtoBe(quantity)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 42 |\u001b[39m   }\n \u001b[90m 43 |\u001b[39m\n \u001b[90m 44 |\u001b[39m   \u001b[36masync\u001b[39m verifyTitleIsVisible()\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\u001b[0m\n\u001b[2m    at ProductCardComponent.verifyQuantityCart (C:\\Automation\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts:41:25)\u001b[22m\n\u001b[2m    at Object.<anonymous> (C:\\Automation\\e2e-playwright-tests\\test\\steps\\pages\\categoryPage.step.ts:63:3)\u001b[22m\n\u001b[2m    at C:\\Automation\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\.generation\\cataloge\\pagination.contact-lenses.feature.spec.js:24:7\u001b[22m"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "When the user selects \"48\" from the Products per page dropdown",
+                              "duration": 78
+                            },
+                            {
+                              "title": "Then the Product Listing page should display \"48\" products per page",
+                              "duration": 40,
+                              "error": {
+                                "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m48\u001b[39m\nReceived: \u001b[31m24\u001b[39m",
+                                "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m48\u001b[39m\nReceived: \u001b[31m24\u001b[39m\n    at ProductCardComponent.verifyQuantityCart (C:\\Automation\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts:41:25)\n    at Object.<anonymous> (C:\\Automation\\e2e-playwright-tests\\test\\steps\\pages\\categoryPage.step.ts:63:3)\n    at C:\\Automation\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\.generation\\cataloge\\pagination.contact-lenses.feature.spec.js:24:7",
+                                "location": {
+                                  "file": "C:\\Automation\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts",
+                                  "column": 25,
+                                  "line": 41
+                                },
+                                "snippet": "\u001b[90m   at \u001b[39mpage-objects\\components\\ProductCardComponent.ts:41\n\n\u001b[0m \u001b[90m 39 |\u001b[39m   \u001b[36masync\u001b[39m verifyQuantityCart(quantity\u001b[33m:\u001b[39m number)\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\n \u001b[90m 40 |\u001b[39m     \u001b[36mconst\u001b[39m count \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mgetQuantityCart()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 41 |\u001b[39m     \u001b[36mawait\u001b[39m expect(count)\u001b[33m.\u001b[39mtoBe(quantity)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 42 |\u001b[39m   }\n \u001b[90m 43 |\u001b[39m\n \u001b[90m 44 |\u001b[39m   \u001b[36masync\u001b[39m verifyTitleIsVisible()\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\u001b[0m"
+                              }
+                            }
+                          ],
+                          "startTime": "2026-02-05T14:46:20.890Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "C:\\Automation\\e2e-playwright-tests\\test-results\\test-features-.generation--e9efb----CONTACT-LENSES-Example-2-desktop\\test-failed-1.png"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "C:\\Automation\\e2e-playwright-tests\\test-results\\test-features-.generation--e9efb----CONTACT-LENSES-Example-2-desktop\\error-context.md"
+                            },
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "C:\\Automation\\e2e-playwright-tests\\test-results\\test-features-.generation--e9efb----CONTACT-LENSES-Example-2-desktop\\trace.zip"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "C:\\Automation\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts",
+                            "column": 25,
+                            "line": 41
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "6310675f7bff7d8e34a7-5b6fc989141528f0f0c5",
+                  "file": "test/generated/desktop/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+                  "line": 42,
+                  "column": 5
+                },
+                {
+                  "title": "Example #3",
+                  "ok": false,
+                  "tags": [
+                    "EZSANISOFT-5353"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 37246,
+                          "error": {
+                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m72\u001b[39m\nReceived: \u001b[31m24\u001b[39m",
+                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m72\u001b[39m\nReceived: \u001b[31m24\u001b[39m\n    at ProductCardComponent.verifyQuantityCart (C:\\Automation\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts:41:25)\n    at Object.<anonymous> (C:\\Automation\\e2e-playwright-tests\\test\\steps\\pages\\categoryPage.step.ts:63:3)\n    at C:\\Automation\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\.generation\\cataloge\\pagination.contact-lenses.feature.spec.js:29:7",
+                            "location": {
+                              "file": "C:\\Automation\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts",
+                              "column": 25,
+                              "line": 41
+                            },
+                            "snippet": "\u001b[90m   at \u001b[39mpage-objects\\components\\ProductCardComponent.ts:41\n\n\u001b[0m \u001b[90m 39 |\u001b[39m   \u001b[36masync\u001b[39m verifyQuantityCart(quantity\u001b[33m:\u001b[39m number)\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\n \u001b[90m 40 |\u001b[39m     \u001b[36mconst\u001b[39m count \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mgetQuantityCart()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 41 |\u001b[39m     \u001b[36mawait\u001b[39m expect(count)\u001b[33m.\u001b[39mtoBe(quantity)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 42 |\u001b[39m   }\n \u001b[90m 43 |\u001b[39m\n \u001b[90m 44 |\u001b[39m   \u001b[36masync\u001b[39m verifyTitleIsVisible()\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\u001b[0m"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "C:\\Automation\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts",
+                                "column": 25,
+                                "line": 41
+                              },
+                              "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m72\u001b[39m\nReceived: \u001b[31m24\u001b[39m\n\n\u001b[90m   at \u001b[39mpage-objects\\components\\ProductCardComponent.ts:41\n\n\u001b[0m \u001b[90m 39 |\u001b[39m   \u001b[36masync\u001b[39m verifyQuantityCart(quantity\u001b[33m:\u001b[39m number)\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\n \u001b[90m 40 |\u001b[39m     \u001b[36mconst\u001b[39m count \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mgetQuantityCart()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 41 |\u001b[39m     \u001b[36mawait\u001b[39m expect(count)\u001b[33m.\u001b[39mtoBe(quantity)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 42 |\u001b[39m   }\n \u001b[90m 43 |\u001b[39m\n \u001b[90m 44 |\u001b[39m   \u001b[36masync\u001b[39m verifyTitleIsVisible()\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\u001b[0m\n\u001b[2m    at ProductCardComponent.verifyQuantityCart (C:\\Automation\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts:41:25)\u001b[22m\n\u001b[2m    at Object.<anonymous> (C:\\Automation\\e2e-playwright-tests\\test\\steps\\pages\\categoryPage.step.ts:63:3)\u001b[22m\n\u001b[2m    at C:\\Automation\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\.generation\\cataloge\\pagination.contact-lenses.feature.spec.js:29:7\u001b[22m"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "When the user selects \"72\" from the Products per page dropdown",
+                              "duration": 84
+                            },
+                            {
+                              "title": "Then the Product Listing page should display \"72\" products per page",
+                              "duration": 38,
+                              "error": {
+                                "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m72\u001b[39m\nReceived: \u001b[31m24\u001b[39m",
+                                "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m72\u001b[39m\nReceived: \u001b[31m24\u001b[39m\n    at ProductCardComponent.verifyQuantityCart (C:\\Automation\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts:41:25)\n    at Object.<anonymous> (C:\\Automation\\e2e-playwright-tests\\test\\steps\\pages\\categoryPage.step.ts:63:3)\n    at C:\\Automation\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\.generation\\cataloge\\pagination.contact-lenses.feature.spec.js:29:7",
+                                "location": {
+                                  "file": "C:\\Automation\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts",
+                                  "column": 25,
+                                  "line": 41
+                                },
+                                "snippet": "\u001b[90m   at \u001b[39mpage-objects\\components\\ProductCardComponent.ts:41\n\n\u001b[0m \u001b[90m 39 |\u001b[39m   \u001b[36masync\u001b[39m verifyQuantityCart(quantity\u001b[33m:\u001b[39m number)\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\n \u001b[90m 40 |\u001b[39m     \u001b[36mconst\u001b[39m count \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mgetQuantityCart()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 41 |\u001b[39m     \u001b[36mawait\u001b[39m expect(count)\u001b[33m.\u001b[39mtoBe(quantity)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 42 |\u001b[39m   }\n \u001b[90m 43 |\u001b[39m\n \u001b[90m 44 |\u001b[39m   \u001b[36masync\u001b[39m verifyTitleIsVisible()\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\u001b[0m"
+                              }
+                            }
+                          ],
+                          "startTime": "2026-02-05T14:47:05.469Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "C:\\Automation\\e2e-playwright-tests\\test-results\\test-features-.generation--87f7a----CONTACT-LENSES-Example-3-desktop\\test-failed-1.png"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "C:\\Automation\\e2e-playwright-tests\\test-results\\test-features-.generation--87f7a----CONTACT-LENSES-Example-3-desktop\\error-context.md"
+                            },
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "C:\\Automation\\e2e-playwright-tests\\test-results\\test-features-.generation--87f7a----CONTACT-LENSES-Example-3-desktop\\trace.zip"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "C:\\Automation\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts",
+                            "column": 25,
+                            "line": 41
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "6310675f7bff7d8e34a7-693bca976580f8ebfbb9",
+                  "file": "test/generated/desktop/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+                  "line": 56,
+                  "column": 5
+                },
+                {
+                  "title": "Example #4",
+                  "ok": false,
+                  "tags": [
+                    "EZSANISOFT-5353"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 40456,
+                          "error": {
+                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m96\u001b[39m\nReceived: \u001b[31m24\u001b[39m",
+                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m96\u001b[39m\nReceived: \u001b[31m24\u001b[39m\n    at ProductCardComponent.verifyQuantityCart (C:\\Automation\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts:41:25)\n    at Object.<anonymous> (C:\\Automation\\e2e-playwright-tests\\test\\steps\\pages\\categoryPage.step.ts:63:3)\n    at C:\\Automation\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\.generation\\cataloge\\pagination.contact-lenses.feature.spec.js:34:7",
+                            "location": {
+                              "file": "C:\\Automation\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts",
+                              "column": 25,
+                              "line": 41
+                            },
+                            "snippet": "\u001b[90m   at \u001b[39mpage-objects\\components\\ProductCardComponent.ts:41\n\n\u001b[0m \u001b[90m 39 |\u001b[39m   \u001b[36masync\u001b[39m verifyQuantityCart(quantity\u001b[33m:\u001b[39m number)\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\n \u001b[90m 40 |\u001b[39m     \u001b[36mconst\u001b[39m count \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mgetQuantityCart()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 41 |\u001b[39m     \u001b[36mawait\u001b[39m expect(count)\u001b[33m.\u001b[39mtoBe(quantity)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 42 |\u001b[39m   }\n \u001b[90m 43 |\u001b[39m\n \u001b[90m 44 |\u001b[39m   \u001b[36masync\u001b[39m verifyTitleIsVisible()\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\u001b[0m"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "C:\\Automation\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts",
+                                "column": 25,
+                                "line": 41
+                              },
+                              "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m96\u001b[39m\nReceived: \u001b[31m24\u001b[39m\n\n\u001b[90m   at \u001b[39mpage-objects\\components\\ProductCardComponent.ts:41\n\n\u001b[0m \u001b[90m 39 |\u001b[39m   \u001b[36masync\u001b[39m verifyQuantityCart(quantity\u001b[33m:\u001b[39m number)\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\n \u001b[90m 40 |\u001b[39m     \u001b[36mconst\u001b[39m count \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mgetQuantityCart()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 41 |\u001b[39m     \u001b[36mawait\u001b[39m expect(count)\u001b[33m.\u001b[39mtoBe(quantity)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 42 |\u001b[39m   }\n \u001b[90m 43 |\u001b[39m\n \u001b[90m 44 |\u001b[39m   \u001b[36masync\u001b[39m verifyTitleIsVisible()\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\u001b[0m\n\u001b[2m    at ProductCardComponent.verifyQuantityCart (C:\\Automation\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts:41:25)\u001b[22m\n\u001b[2m    at Object.<anonymous> (C:\\Automation\\e2e-playwright-tests\\test\\steps\\pages\\categoryPage.step.ts:63:3)\u001b[22m\n\u001b[2m    at C:\\Automation\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\.generation\\cataloge\\pagination.contact-lenses.feature.spec.js:34:7\u001b[22m"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "When the user selects \"96\" from the Products per page dropdown",
+                              "duration": 88
+                            },
+                            {
+                              "title": "Then the Product Listing page should display \"96\" products per page",
+                              "duration": 42,
+                              "error": {
+                                "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m96\u001b[39m\nReceived: \u001b[31m24\u001b[39m",
+                                "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m96\u001b[39m\nReceived: \u001b[31m24\u001b[39m\n    at ProductCardComponent.verifyQuantityCart (C:\\Automation\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts:41:25)\n    at Object.<anonymous> (C:\\Automation\\e2e-playwright-tests\\test\\steps\\pages\\categoryPage.step.ts:63:3)\n    at C:\\Automation\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\.generation\\cataloge\\pagination.contact-lenses.feature.spec.js:34:7",
+                                "location": {
+                                  "file": "C:\\Automation\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts",
+                                  "column": 25,
+                                  "line": 41
+                                },
+                                "snippet": "\u001b[90m   at \u001b[39mpage-objects\\components\\ProductCardComponent.ts:41\n\n\u001b[0m \u001b[90m 39 |\u001b[39m   \u001b[36masync\u001b[39m verifyQuantityCart(quantity\u001b[33m:\u001b[39m number)\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\n \u001b[90m 40 |\u001b[39m     \u001b[36mconst\u001b[39m count \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mgetQuantityCart()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 41 |\u001b[39m     \u001b[36mawait\u001b[39m expect(count)\u001b[33m.\u001b[39mtoBe(quantity)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 42 |\u001b[39m   }\n \u001b[90m 43 |\u001b[39m\n \u001b[90m 44 |\u001b[39m   \u001b[36masync\u001b[39m verifyTitleIsVisible()\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\u001b[0m"
+                              }
+                            }
+                          ],
+                          "startTime": "2026-02-05T14:47:44.905Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "C:\\Automation\\e2e-playwright-tests\\test-results\\test-features-.generation--a8627----CONTACT-LENSES-Example-4-desktop\\test-failed-1.png"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "C:\\Automation\\e2e-playwright-tests\\test-results\\test-features-.generation--a8627----CONTACT-LENSES-Example-4-desktop\\error-context.md"
+                            },
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "C:\\Automation\\e2e-playwright-tests\\test-results\\test-features-.generation--a8627----CONTACT-LENSES-Example-4-desktop\\trace.zip"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "C:\\Automation\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts",
+                            "column": 25,
+                            "line": 41
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "6310675f7bff7d8e34a7-1f5c9d0f13193ffcadb3",
+                  "file": "test/generated/desktop/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+                  "line": 70,
+                  "column": 5
+                }
+              ]
+            },
+            {
+              "title": "Verify Sort By dropdown selection works correctly",
+              "file": "test/generated/desktop/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+              "line": 99,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Example #1",
+                  "ok": true,
+                  "tags": [
+                    "EZSANISOFT-5353"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [
+                        {
+                          "workerIndex": 4,
+                          "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 13261,
+                          "duration": 39459,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
                           "steps": [
                             {
-                              "title": "When the user clicks on the \"Edit Details\" link",
-                              "duration": 1633
+                              "title": "When the user selects \"Popularity\" from the Sort By dropdown",
+                              "duration": 128
                             },
                             {
-                              "title": "And the user updates the \"Phone Number\" field with valid data",
-                              "duration": 631
-                            },
-                            {
-                              "title": "Then the \"Phone Number\" field should reflect the updated value",
-                              "duration": 146
+                              "title": "Then the products should be sorted according to \"Popularity\"",
+                              "duration": 18
                             }
                           ],
-                          "startTime": "2026-01-29T13:37:04.489Z",
+                          "startTime": "2026-02-05T14:49:04.604Z",
                           "annotations": [],
                           "attachments": [
                             {
                               "name": "trace",
                               "contentType": "application/zip",
-                              "path": "E:\\work\\e2e-playwright-tests\\test-results\\test-features-account-my_a-c4191-unt-detail-fields-Example-3-desktop\\trace.zip"
+                              "path": "C:\\Automation\\e2e-playwright-tests\\test-results\\test-features-.generation--ea3e5-n-works-correctly-Example-1-desktop\\trace.zip"
                             }
                           ]
                         }
@@ -146,9 +641,269 @@
                       "status": "expected"
                     }
                   ],
-                  "id": "76d4d5187108cc13b056-776fa55919e6e672fc15",
-                  "file": "test/generated/desktop/test/features/account/my_account_settings.feature.spec.js",
+                  "id": "6310675f7bff7d8e34a7-e7000fe31e1356b4ffe4",
+                  "file": "test/generated/desktop/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+                  "line": 100,
+                  "column": 5
+                },
+                {
+                  "title": "Example #2",
+                  "ok": true,
+                  "tags": [
+                    "EZSANISOFT-5353"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [
+                        {
+                          "workerIndex": 4,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 35403,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "When the user selects \"Newest\" from the Sort By dropdown",
+                              "duration": 88
+                            },
+                            {
+                              "title": "Then the products should be sorted according to \"Newest\"",
+                              "duration": 14
+                            }
+                          ],
+                          "startTime": "2026-02-05T14:49:44.430Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "C:\\Automation\\e2e-playwright-tests\\test-results\\test-features-.generation--6f27d-n-works-correctly-Example-2-desktop\\trace.zip"
+                            }
+                          ]
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "6310675f7bff7d8e34a7-011e0354b896e284b8dd",
+                  "file": "test/generated/desktop/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+                  "line": 114,
+                  "column": 5
+                },
+                {
+                  "title": "Example #3",
+                  "ok": true,
+                  "tags": [
+                    "EZSANISOFT-5353"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [
+                        {
+                          "workerIndex": 4,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 39315,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "When the user selects \"Name (A-Z)\" from the Sort By dropdown",
+                              "duration": 97
+                            },
+                            {
+                              "title": "Then the products should be sorted according to \"Name (A-Z)\"",
+                              "duration": 16
+                            }
+                          ],
+                          "startTime": "2026-02-05T14:50:20.186Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "C:\\Automation\\e2e-playwright-tests\\test-results\\test-features-.generation--22d6e-n-works-correctly-Example-3-desktop\\trace.zip"
+                            }
+                          ]
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "6310675f7bff7d8e34a7-7caaf9bbf9ceb801dd4f",
+                  "file": "test/generated/desktop/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+                  "line": 128,
+                  "column": 5
+                },
+                {
+                  "title": "Example #4",
+                  "ok": true,
+                  "tags": [
+                    "EZSANISOFT-5353"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [
+                        {
+                          "workerIndex": 4,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 36002,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "When the user selects \"Name (Z-A)\" from the Sort By dropdown",
+                              "duration": 113
+                            },
+                            {
+                              "title": "Then the products should be sorted according to \"Name (Z-A)\"",
+                              "duration": 22
+                            }
+                          ],
+                          "startTime": "2026-02-05T14:50:59.884Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "C:\\Automation\\e2e-playwright-tests\\test-results\\test-features-.generation--e97c5-n-works-correctly-Example-4-desktop\\trace.zip"
+                            }
+                          ]
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "6310675f7bff7d8e34a7-fe1a47663b9b5e0dc5e0",
+                  "file": "test/generated/desktop/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+                  "line": 142,
+                  "column": 5
+                },
+                {
+                  "title": "Example #5",
+                  "ok": true,
+                  "tags": [
+                    "EZSANISOFT-5353"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [
+                        {
+                          "workerIndex": 4,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 40547,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "When the user selects \"Price ($-$$$)\" from the Sort By dropdown",
+                              "duration": 87
+                            },
+                            {
+                              "title": "Then the products should be sorted according to \"Price ($-$$$)\"",
+                              "duration": 17
+                            }
+                          ],
+                          "startTime": "2026-02-05T14:51:36.298Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "C:\\Automation\\e2e-playwright-tests\\test-results\\test-features-.generation--0cc74-n-works-correctly-Example-5-desktop\\trace.zip"
+                            }
+                          ]
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "6310675f7bff7d8e34a7-979c5481ee705de402e0",
+                  "file": "test/generated/desktop/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
                   "line": 156,
+                  "column": 5
+                },
+                {
+                  "title": "Example #6",
+                  "ok": true,
+                  "tags": [
+                    "EZSANISOFT-5353"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [
+                        {
+                          "workerIndex": 4,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 35564,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "When the user selects \"Price ($$$-$)\" from the Sort By dropdown",
+                              "duration": 94
+                            },
+                            {
+                              "title": "Then the products should be sorted according to \"Price ($$$-$)\"",
+                              "duration": 17
+                            }
+                          ],
+                          "startTime": "2026-02-05T14:52:17.244Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "C:\\Automation\\e2e-playwright-tests\\test-results\\test-features-.generation--65a80-n-works-correctly-Example-6-desktop\\trace.zip"
+                            }
+                          ]
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "6310675f7bff7d8e34a7-b84280d7495165138fd5",
+                  "file": "test/generated/desktop/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+                  "line": 170,
                   "column": 5
                 }
               ]
@@ -160,11 +915,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-01-29T13:37:00.413Z",
-    "duration": 19077.489,
-    "expected": 1,
+    "startTime": "2026-02-05T14:44:46.819Z",
+    "duration": 486694.80000000005,
+    "expected": 8,
     "skipped": 0,
-    "unexpected": 0,
+    "unexpected": 4,
     "flaky": 0
   }
 }

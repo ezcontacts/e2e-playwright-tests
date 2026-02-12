@@ -20,4 +20,5 @@ export const TOKEN_ENDPOINT: Record<string, string> = {
   'CONTACT LENSES': ENDPOINT.contactLenses,
   'EYE CARE': ENDPOINT.eyeCare,
   'DEALS': ENDPOINT.deals,
+  'READERS': ENDPOINT.readers,
 };

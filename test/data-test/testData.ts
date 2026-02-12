@@ -92,3 +92,68 @@ export function getAccountMenuFromValue(
 
   return menuBtn;
 }
+
+
+/// EZSANISOFT-5345
+
+export interface SubMenuConfig {
+  key: string;
+  uiText: string;
+}
+
+export const TABS = {
+  SUNGLASSES: "Sunglasses",
+  EYEGLASSES: "Eyeglasses",
+  CONTACT_LENSES: "Contact Lenses",
+  READERS: "Readers",
+  EYE_CARE: "Eye Care",
+  DEALS: "Deals",
+  SALES: "Sales",
+};
+
+// Here, you can skip storing keys and just use a list, for example: Sunglasses: [
+//     "Men’s",
+//     "Women’s",
+//     "Children's",
+//   ], .....
+export const SUB_MENUS: Record<string, SubMenuConfig[]> = {
+  Sunglasses: [
+    { key: "men", uiText: "Men’s" },
+    { key: "women", uiText: "Women’s" },
+    { key: "children", uiText: "Children's" },
+  ],
+  Eyeglasses: [
+    { key: "brands", uiText: "Featured Brands" },
+    { key: "men", uiText: "Men’s" },
+    { key: "women", uiText: "Women’s" },
+    { key: "children", uiText: "Children's" },
+  ],
+  "Contact Lenses": [
+    { key: "softlens", uiText: "Softlens" },
+    { key: "acuvue", uiText: "Acuvue" },
+    { key: "extreme-h2o", uiText: "Extreme H2O" },
+    { key: "cooper-vision", uiText: "Cooper Vision" },
+  ],
+  Readers: [
+    { key: "men", uiText: "Men" },
+    { key: "women", uiText: "Women" },
+    { key: "brands", uiText: "Featured Brands" },
+  ],
+  "Eye Care": [
+    { key: "drops", uiText: "Eye Drops" },
+    { key: "vitamins", uiText: "Eye Vitamins" },
+    { key: "solutions", uiText: "Solutions" },
+  ],
+  Deals: [
+    { key: "clearance", uiText: "Clearance" },
+    { key: "special-offers", uiText: "Special Offers" },
+    { key: "all-deals", uiText: "All Deals" },
+  ],
+  Sales: [
+    { key: "flash-sale", uiText: "Flash Sale" },
+    { key: "member-sale", uiText: "Member Sale" },
+  ],
+};
+
+
+/// EZSANISOFT-5345

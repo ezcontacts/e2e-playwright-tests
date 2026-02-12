@@ -55,6 +55,7 @@ export const test = bddTest.extend<{
   portalContext: PortalContext;
   catalogContext: CatalogeContext;
   cartComponent: CartComponent;
+  clContext: clContext;
 }>({
   context: async ({ browser }, use) => {
     const context = await browser.newContext({
@@ -68,8 +69,8 @@ export const test = bddTest.extend<{
     await use({ selectedTab: undefined });
   },
 
-  cartComponent: async ({ page }, use) => {
-    await use(new CartComponent(page));
+  clContext: async ({}, use) => {
+    await use({ selectedTab: undefined });
   },
 
   homePage: async ({ page }, use) => await use(new HomePage(page)),
@@ -103,12 +104,18 @@ export const test = bddTest.extend<{
     await use(new AccountSettingsPage(page)),
   accountInfoPage: async ({ page }, use) =>
     await use(new AccountInfoPage(page)),
+
   adminProductPage: async ({ page }, use) =>
     await use(new AdminProductPage(page)),
   //portalPage: async ({ page }, use) => await use(new PortalPage(page)),
 
   catalogContext: async ({}, use) => await use({ cardsState: [] }),
 });
+
+export type clContext = {
+  selectedTab?: string;
+  previousTab?: string;
+};
 
 export type PortalContext = {
   selectedTab?: string;

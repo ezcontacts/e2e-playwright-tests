@@ -22,7 +22,7 @@ import { AccountPage } from "../../page-objects/pages/Account/AccountPage";
 import { EzPointsPage } from "../../page-objects/pages/Account/EzPointsPage";
 import { AccountSettingsPage } from "../../page-objects/pages/Account/AccountSettingsPage";
 import { AccountInfoPage } from "../../page-objects/pages/Account/AcountInfoPage";
-import { AddToWishList } from "../../page-objects/pages/AddToWishListPage";  //added by NP
+import { AddToWishListPage } from "../../page-objects/pages/Account/AddToWishListPage";  //added by NP
 import { MyAccountPage } from "../../page-objects/pages/MyAccountPage"; // added by NP
 
 export const test = bddTest.extend<{
@@ -48,7 +48,8 @@ export const test = bddTest.extend<{
   ezPointsPage: EzPointsPage;
   accountSettingsPage: AccountSettingsPage;
   accountInfoPage: AccountInfoPage;
-  addToWishListPage: AddToWishList;  //added by NP
+  addToWishListPage: AddToWishListPage;  //added by NP
+  myAccountPage: MyAccountPage;
 }>({
   context: async ({ browser }, use) => {
     const context = await browser.newContext({
@@ -122,7 +123,7 @@ export const test = bddTest.extend<{
   
   //added by NP (Very good)
   addToWishListPage: async ({ page }, use) =>
-    await use(new AddToWishList(page)),
+    await use(new AddToWishListPage(page)),
 });
 
 export const expect = test.expect;

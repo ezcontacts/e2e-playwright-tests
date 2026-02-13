@@ -23,6 +23,7 @@ import { EzPointsPage } from "../../page-objects/pages/Account/EzPointsPage";
 import { AccountSettingsPage } from "../../page-objects/pages/Account/AccountSettingsPage";
 import { AccountInfoPage } from "../../page-objects/pages/Account/AcountInfoPage";
 
+// TODO by Potrys M: register the CLContactLensPage here to use it in the test steps.
 
 export const test = bddTest.extend<{
   page: Page;

@@ -3,8 +3,7 @@ import { BasePage } from "../base/BasePage";
 import { ENDPOINT } from "../../constant/endpoint";
 
 export class CLContactLensPage extends BasePage {
-
-readonly productBrand: Locator;
+  readonly productBrand: Locator;
   readonly productName: Locator;
 
   constructor(page: Page) {
@@ -15,6 +14,7 @@ readonly productBrand: Locator;
   }
 
   async navigateToProductDetailPage(): Promise<void> {
+    // TODO by Potrys M: endpoint should be hold in endpoint.ts
     await this.page.goto('/contact-lenses/sample-product');
   }
 
@@ -22,10 +22,12 @@ readonly productBrand: Locator;
     await this.productName.waitFor({ state: 'visible' });
   }
 
+  // TODO by Potrys M: locators already readonly have readonly modifier and this getter makes no sense.
   getProductBrand(): Locator {
     return this.productBrand;
   }
 
+  // TODO by Potrys M: locators already readonly have readonly modifier and this getter makes no sense.
   getProductName(): Locator {
     return this.productName;
   }

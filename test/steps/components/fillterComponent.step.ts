@@ -1,5 +1,12 @@
 import { DataTable } from "playwright-bdd";
-import { Given, Then } from "../../fixtures/fixture";
+import { Given, When, Then } from "../../fixtures/fixture";
+
+When(
+  "the user applies a filter",
+  async ({ eyeglassesPage }) => {
+    await eyeglassesPage.fillter.verifyInStockIsVisible();
+  }
+);
 
 Then(
   "the {string} filter toggle should exist",
@@ -38,5 +45,12 @@ Then(
   "I should see a list of brand checkboxes under the brand filter",
   async ({ eyeglassesPage }) => {
     await eyeglassesPage.fillter.verifyBrandMustBeExist();
+  }
+);
+
+Then(
+  "all available filters should be displayed on the Product Listing page",
+  async ({ eyeglassesPage }) => {
+    await eyeglassesPage.fillter.verifyIsVisible();
   }
 );

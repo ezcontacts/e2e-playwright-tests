@@ -26,6 +26,8 @@ import { AccountPage } from "../../page-objects/pages/Account/AccountPage";
 import { EzPointsPage } from "../../page-objects/pages/Account/EzPointsPage";
 import { AccountSettingsPage } from "../../page-objects/pages/Account/AccountSettingsPage";
 import { AccountInfoPage } from "../../page-objects/pages/Account/AcountInfoPage";
+import { AddToWishListPage } from "../../page-objects/pages/Account/AddToWishListPage";  //added by NP
+import { MyAccountPage } from "../../page-objects/pages/MyAccountPage"; // added by NP
 
 
 export const test = bddTest.extend<{
@@ -56,6 +58,7 @@ export const test = bddTest.extend<{
   accountSettingsPage: AccountSettingsPage;
   accountInfoPage: AccountInfoPage;
 
+  myAccountPage: MyAccountPage;
 }>({
   context: async ({ browser }, use) => {
     const context = await browser.newContext({

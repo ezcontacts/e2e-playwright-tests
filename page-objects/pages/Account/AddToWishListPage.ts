@@ -1,7 +1,7 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { AccountPage } from "./AccountPage";
 import { ENDPOINT } from "../../../constant/endpoint";
-
+import { AccountMenuComponent } from "../../components/AccountMenuComponent";
 
 //I recomend to use 'Page' suffix for page object classes for Exemple: AddToWishListPage -- Done.
 export class AddToWishListPage extends AccountPage {
@@ -9,6 +9,8 @@ export class AddToWishListPage extends AccountPage {
   readonly column: (text: string) => Locator;
   readonly text: (text: string) => Locator;
   readonly link: (link: string) => Locator;
+  readonly menu: AccountMenuComponent;
+  
 
   constructor(page: Page) {
     super(page, ENDPOINT.wishlist);
@@ -18,9 +20,15 @@ export class AddToWishListPage extends AccountPage {
     this.text = (text: string) => this.locator(`h4:has-text('${text}')`);
     this.link = (link: string) => this.locator(`a[href*="${link}"]`);
 
+    this.menu = new AccountMenuComponent(page);
+
   }
 
-    async verifyUrlContains(expectedPath: string): Promise<void> {
+  async verifyHeadingText(expectedText: string): Promise<void> {
+    await expect(this.heading).toHaveText(expectedText);
+  }
+
+  async verifyUrlContains(expectedPath: string): Promise<void> {
     await expect(this.page).toHaveURL(new RegExp(expectedPath));
   }
 
@@ -35,8 +43,9 @@ export class AddToWishListPage extends AccountPage {
   }
 
   //When the wishlist is empty.
-  async verifyWhenNoItem(textToVerify: string): Promise<void> {
+  async verifyWishListIsEmpty(textToVerify: string): Promise<void> {
     const text = this.text(textToVerify);
+    await expect(text).toBeVisible();
   }
 
   //When the wishlist is empty.
@@ -45,6 +54,11 @@ export class AddToWishListPage extends AccountPage {
     await expect(linkElement).toBeVisible();
   }
 
-
+  async verifyMultipleLinksVisible(links: string[]): Promise<void> {
+    for (const linkText of links) {
+      const link = this.link(linkText);
+      await expect(link).toBeVisible();
+    }
+  }
 
 }

@@ -1,5 +1,6 @@
 import { FrameLocator, Locator, Page } from "@playwright/test";
 import { BaseEntity, LocatorConfig } from "./BaseEntity";
+import { expect } from "../../test/fixtures/fixture";
 
 export abstract class BaseComponent extends BaseEntity {
   readonly root: Locator;
@@ -29,6 +30,10 @@ export abstract class BaseComponent extends BaseEntity {
     } else {
       await this.root.waitFor({ state: "visible" });
     }
+  }
+  
+  async verifyIsVisible(): Promise<void>{
+    await expect(this.root).toBeVisible();
   }
 
   async scrollToComponent() {

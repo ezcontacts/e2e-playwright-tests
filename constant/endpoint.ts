@@ -18,4 +18,5 @@ export const ENDPOINT = {
   deals: "/eyewear/deals",
   accountMain: "/account/main",
   eqPoints: "/account/ezpoints",
+  wishlist: "/account/wishlist",
 };

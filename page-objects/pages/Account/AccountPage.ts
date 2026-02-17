@@ -15,7 +15,7 @@ export class AccountPage extends BasePage {
     super(page, endpoint);
 
     this.heading = this.locator('.account-heading h2');
-    this.title = this.locator('.m-off .section-title', '.visible-xs .section-title');
+    this.title = this.visibleLocator('.section-title');
     this.subtitle = this.locator('.visible-xs .subtitle', '.m-off .subtitle');
 
     this.menu = new AccountMenuComponent(page);

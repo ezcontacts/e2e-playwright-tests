@@ -26,7 +26,8 @@ When("the user clicks on the {string} option from the My Account menu", async ({
 });
 
 Then("the page should display the heading {string}", async ({ addToWishListPage }, text: string) => {
-  await addToWishListPage.verifyHeadingText(text);
+  //await addToWishListPage.verifyHeadingText(text);
+  await addToWishListPage.verifyTitleHaveText(text);
 });
 
 Then("the page URL should contain {string}", async ({ addToWishListPage }, text: string) => {
@@ -34,7 +35,7 @@ Then("the page URL should contain {string}", async ({ addToWishListPage }, text:
 });
 
 Then("the page should display the heading as {string}", async ({ addToWishListPage }, text: string) => {
-  await addToWishListPage.verifyHeadingText(text);
+  await addToWishListPage.verifyTitleHaveText(text);
 });
 
 Then('the page should display a message {string}',async ({ addToWishListPage }, message: string) => {

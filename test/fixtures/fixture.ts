@@ -106,8 +106,7 @@ export const test = bddTest.extend<{
   ezPointsPage: async ({ page }, use) => await use(new EzPointsPage(page)),
   accountSettingsPage: async ({ page }, use) => await use(new AccountSettingsPage(page)),
   accountInfoPage: async ({ page }, use) => await use(new AccountInfoPage(page)),
-
-
+  
   //portalPage: async ({ page }, use) => await use(new PortalPage(page)),
 
   catalogContext: async ({}, use) => await use({ cardsState: [] }),

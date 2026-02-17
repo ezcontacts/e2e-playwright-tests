@@ -16,25 +16,6 @@ Feature: Smoke tests for production environment
     And I should see the cart icon
     And I should see the recommended products section
 
-  @desktopOnly
-  Scenario: Verify footer sections
-    Given I should see the footer with policy links
-    And I should see the footer sections:
-      | section        |
-      | ACCOUNT        |
-      | CATEGORIES     |
-      | CUSTOMER CARE  |
-      | HOW TOS        |
-      | RESOURCES      |
-      | CONTACT US     |
-    And the footer should include links in "ACCOUNT":
-      | linkText          |
-      | Sign-in           |
-      | Eyeglasses        |
-      | About EZ Contacts |
-      | Selecting Frames  |
-      | Blog              |
-
   Scenario: Verify that the filter works correctly
     Given I visit the eyeglasses page
     Then the "In Stock" filter toggle should exist

@@ -27,6 +27,8 @@
     "desktop:ui": "npm run bdd:gen && cross-env ENV_PLATFORM=desktop npx playwright test --project=desktop --ui --grep-invert @mobileOnly",
     "mobile": "npm run bdd:gen && cross-env ENV_PLATFORM=mobile npx playwright test --project=mobile --grep-invert @desktopOnly",
     "mobile:ui": "npm run bdd:gen && cross-env ENV_PLATFORM=mobile npx playwright test --project=mobile --ui --grep-invert @desktopOnly",
-    "push": "bash ./scripts/run/push-run-projects.sh"
+    "push": "bash ./scripts/run/push-run-projects.sh",
+    "mobile:debug": "npm run bdd:gen && cross-env ENV_PLATFORM=mobile PWDEBUG=1 npx playwright test --project=mobile --grep @debug",
+    "desktop:debug": "npm run bdd:gen && cross-env ENV_PLATFORM=desktop PWDEBUG=1 npx playwright test --project=desktop --grep @debug"
   }
 }

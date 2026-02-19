@@ -239,3 +239,4 @@ export abstract class ProductCatalogePage extends BasePage {
   }
 
 }
+

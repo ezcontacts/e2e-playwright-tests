@@ -1,7 +1,6 @@
 import { expect, Locator, Page} from "@playwright/test";
 import { BaseComponent } from "../base/BaseComponent";
 import { PAYMENT } from "../../test/data-test/testData";
-
 export class CartComponent extends BaseComponent {
 
   readonly checkoutNowButton: Locator;
@@ -93,6 +92,22 @@ export class CartComponent extends BaseComponent {
   }
 
 
+
+async clickOnCheckoutNowButton(): Promise<void> {
+    // Ensure visible & enabled
+    await expect(this.checkoutNowButton).toBeVisible({ timeout: 15000 });
+    await expect(this.checkoutNowButton).toBeEnabled();
+
+    // Listen for new page if clicking opens a new tab
+    const [newPage] = await Promise.all([
+      this.page.context().waitForEvent('page'), // Waits for new page if opened
+      this.checkoutNowButton.click(),           // Click triggers navigation
+    ]).catch(() => [this.page]); // fallback if no new page opens
+
+    // Wait for URL load in the correct page context
+    await newPage.waitForURL(/checkout/, { timeout: 30000 });
+    await newPage.waitForLoadState('networkidle');
+  }
   async getCheckoutType(): Promise<"old" | "new"> {
 
     const url = this.page.url();
@@ -508,194 +523,195 @@ async verifyOrderConfirmation() {
 // =======================
 // AFFIRM PAYMENT FLOW
 // =======================
-async payWithAffirm() {
-  console.log("🔵 Starting Affirm flow...");
+  async payWithAffirm() {
+    console.log("🔵 Starting Affirm flow...");
 
-  await this.verifyPaymentPageLoaded();
+    await this.verifyPaymentPageLoaded();
+
+    // =======================
+    // SELECT AFFIRM OPTION
+    // =======================
+    console.log("Selecting Affirm payment...");
+
+    await this.affirmOption.waitFor({ state: "visible", timeout: 60000 });
+
+    await Promise.all([
+      this.page.waitForLoadState("domcontentloaded"),
+      this.affirmOption.click()
+    ]);
+
+    const frame = this.page.frameLocator('iframe[src*="affirm"]');
+
+    // =======================
+    // STEP 1: PHONE
+    // =======================
+    console.log("Entering phone...");
+
+    const phoneField = frame.getByTestId("phone-number-field");
+    await phoneField.waitFor({ state: "visible", timeout: 60000 });
+    await phoneField.fill(this.paymentData.affirmPhone);
+
+    const phoneContinue = frame.locator('[data-testid="submit-button"]')
+      .filter({ hasText: /continue/i })
+      .first();
+
+    await phoneContinue.waitFor({ state: "visible" });
+
+    await Promise.all([
+      this.page.waitForLoadState("domcontentloaded"),
+      phoneContinue.click({ force: true })
+    ]);
+
+    console.log("✅ Phone submitted");
+
+    // =======================
+    // STEP 2: OTP
+    // =======================
+    console.log("Entering OTP...");
+
+    const otpField = frame.getByTestId("phone-pin-field");
+    await otpField.waitFor({ state: "visible", timeout: 60000 });
+    await otpField.fill(this.paymentData.affirmOtp);
+
+    const otpContinue = frame.locator('[data-testid="submit-button"]')
+      .filter({ hasText: /confirm|continue|next/i })
+      .first();
+
+    await otpContinue.waitFor({ state: "visible" });
+
+    await Promise.all([
+      this.page.waitForLoadState("domcontentloaded"),
+      otpContinue.click({ force: true })
+    ]);
+
+    console.log("✅ OTP submitted");
 
   // =======================
-  // SELECT AFFIRM OPTION
+  // STEP 3: PLAN (FIXED FOR IFRAME RELOAD)
   // =======================
-  console.log("Selecting Affirm payment...");
+  console.log("Waiting for plan options to load...");
 
-  await this.affirmOption.waitFor({ state: "visible", timeout: 60000 });
+  // 🔥 RE-GET FRAME (critical fix)
+  const freshFrame = this.page.frameLocator('iframe[src*="affirm"]');
+
+  const planIndicators = freshFrame.locator('[data-testid="indicator"]');
+
+  // wait until at least one plan is visible
+  await planIndicators.first().waitFor({ state: "visible", timeout: 90000 });
+
+  // buffer for UI stabilization
+  await this.page.waitForTimeout(3000);
+
+  console.log("Selecting plan...");
+
+  const plan = freshFrame.locator('label:has([data-testid="indicator"])').first();
+
+  await plan.waitFor({ state: "visible", timeout: 60000 });
+
+  await plan.click({ force: true });
+
+  console.log("✅ Plan selected");
+
+  // =======================
+  // STEP 4: CHOOSE PLAN (WAIT PROPERLY)
+  // =======================
+  console.log("Waiting for 'Choose plan' button...");
+
+  const choosePlan = frame.getByTestId("continue-with-selected-term-button");
+
+  // wait for button visible
+  await choosePlan.waitFor({ state: "visible", timeout: 60000 });
+
+  await expect(choosePlan).toBeEnabled({ timeout: 60000 });
+
+
+  // extra buffer (important for Affirm UI)
+  await this.page.waitForTimeout(1500);
 
   await Promise.all([
     this.page.waitForLoadState("domcontentloaded"),
-    this.affirmOption.click()
+    choosePlan.click({ force: true })
   ]);
 
-  const frame = this.page.frameLocator('iframe[src*="affirm"]');
+  console.log("✅ Plan chosen");
 
-  // =======================
-  // STEP 1: PHONE
-  // =======================
-  console.log("Entering phone...");
+    // =======================
+    // STEP 5: HANDLE CHECKBOX OR DIRECT CONFIRM
+    // =======================
+    console.log("Handling disclosure / confirm...");
 
-  const phoneField = frame.getByTestId("phone-number-field");
-  await phoneField.waitFor({ state: "visible", timeout: 60000 });
-  await phoneField.fill(this.paymentData.affirmPhone);
+    const checkboxInput = frame.locator('[data-testid="disclosure-checkbox"]');
+    const confirmBtn = frame.locator('[data-testid="submit-button"]')
+      .filter({ hasText: /accept|confirm|continue|next|review/i })
+      .first();
 
-  const phoneContinue = frame.locator('[data-testid="submit-button"]')
-    .filter({ hasText: /continue/i })
-    .first();
+    // Wait for either checkbox OR confirm button
+    await Promise.race([
+      checkboxInput.waitFor({ state: "visible", timeout: 15000 }).catch(() => {}),
+      confirmBtn.waitFor({ state: "visible", timeout: 15000 })
+    ]);
 
-  await phoneContinue.waitFor({ state: "visible" });
+    // ===== CHECKBOX FLOW =====
+    if (await checkboxInput.isVisible().catch(() => false)) {
+      console.log("✅ Checkbox detected");
 
-  await Promise.all([
-    this.page.waitForLoadState("domcontentloaded"),
-    phoneContinue.click({ force: true })
-  ]);
+      try {
+        // 🔥 ONLY CLICK INPUT (NO LABEL / NO TEXT)
+        await checkboxInput.check({ force: true });
 
-  console.log("✅ Phone submitted");
+        await expect(checkboxInput).toBeChecked({ timeout: 5000 });
 
-  // =======================
-  // STEP 2: OTP
-  // =======================
-  console.log("Entering OTP...");
+        console.log("✅ Checkbox checked safely");
+      } catch (err) {
+        console.log("⚠️ Checkbox check failed, fallback JS");
 
-  const otpField = frame.getByTestId("phone-pin-field");
-  await otpField.waitFor({ state: "visible", timeout: 60000 });
-  await otpField.fill(this.paymentData.affirmOtp);
-
-  const otpContinue = frame.locator('[data-testid="submit-button"]')
-    .filter({ hasText: /confirm|continue|next/i })
-    .first();
-
-  await otpContinue.waitFor({ state: "visible" });
-
-  await Promise.all([
-    this.page.waitForLoadState("domcontentloaded"),
-    otpContinue.click({ force: true })
-  ]);
-
-  console.log("✅ OTP submitted");
-
-// =======================
-// STEP 3: PLAN (FIXED FOR IFRAME RELOAD)
-// =======================
-console.log("Waiting for plan options to load...");
-
-// 🔥 RE-GET FRAME (critical fix)
-const freshFrame = this.page.frameLocator('iframe[src*="affirm"]');
-
-const planIndicators = freshFrame.locator('[data-testid="indicator"]');
-
-// wait until at least one plan is visible
-await planIndicators.first().waitFor({ state: "visible", timeout: 90000 });
-
-// buffer for UI stabilization
-await this.page.waitForTimeout(3000);
-
-console.log("Selecting plan...");
-
-const plan = freshFrame.locator('label:has([data-testid="indicator"])').first();
-
-await plan.waitFor({ state: "visible", timeout: 60000 });
-
-await plan.click({ force: true });
-
-console.log("✅ Plan selected");
-
-// =======================
-// STEP 4: CHOOSE PLAN (WAIT PROPERLY)
-// =======================
-console.log("Waiting for 'Choose plan' button...");
-
-const choosePlan = frame.getByTestId("continue-with-selected-term-button");
-
-// wait for button visible
-await choosePlan.waitFor({ state: "visible", timeout: 60000 });
-
-await expect(choosePlan).toBeEnabled({ timeout: 60000 });
-
-
-// extra buffer (important for Affirm UI)
-await this.page.waitForTimeout(1500);
-
-await Promise.all([
-  this.page.waitForLoadState("domcontentloaded"),
-  choosePlan.click({ force: true })
-]);
-
-console.log("✅ Plan chosen");
-
-  // =======================
-  // STEP 5: HANDLE CHECKBOX OR DIRECT CONFIRM
-  // =======================
-  console.log("Handling disclosure / confirm...");
-
-  const checkboxInput = frame.locator('[data-testid="disclosure-checkbox"]');
-  const confirmBtn = frame.locator('[data-testid="submit-button"]')
-    .filter({ hasText: /accept|confirm|continue|next|review/i })
-    .first();
-
-  // Wait for either checkbox OR confirm button
-  await Promise.race([
-    checkboxInput.waitFor({ state: "visible", timeout: 15000 }).catch(() => {}),
-    confirmBtn.waitFor({ state: "visible", timeout: 15000 })
-  ]);
-
-  // ===== CHECKBOX FLOW =====
-  if (await checkboxInput.isVisible().catch(() => false)) {
-    console.log("✅ Checkbox detected");
-
-    try {
-      // 🔥 ONLY CLICK INPUT (NO LABEL / NO TEXT)
-      await checkboxInput.check({ force: true });
-
-      await expect(checkboxInput).toBeChecked({ timeout: 5000 });
-
-      console.log("✅ Checkbox checked safely");
-    } catch (err) {
-      console.log("⚠️ Checkbox check failed, fallback JS");
-
-      const el = await checkboxInput.elementHandle();
-      if (el) {
-        await el.evaluate((node: any) => node.click());
+        const el = await checkboxInput.elementHandle();
+        if (el) {
+          await el.evaluate((node: any) => node.click());
+        }
       }
+    } else {
+      console.log("ℹ️ No checkbox, direct confirm flow");
     }
-  } else {
-    console.log("ℹ️ No checkbox, direct confirm flow");
+
+    // =======================
+    // STEP 6: FINAL CONFIRM
+    // =======================
+    console.log("Clicking final confirm...");
+
+    await confirmBtn.waitFor({ state: "visible", timeout: 20000 });
+
+    await Promise.all([
+      this.page.waitForLoadState("domcontentloaded"),
+      confirmBtn.click({ force: true })
+    ]);
+
+    console.log("✅ Final confirm clicked");
+
+    // =======================
+    // STEP 7: CONFIRMATION
+    // =======================
+    console.log("Waiting for confirmation...");
+
+    await this.page.waitForLoadState("domcontentloaded");
+
+    await this.page.waitForURL(/complete|confirmation|success/, {
+      timeout: 60000
+    }).catch(() => {
+      console.log("⚠️ Confirmation URL not detected");
+    });
+
+    await this.page.locator("text=/thank you|order number|order #/i")
+      .first()
+      .waitFor({ state: "visible", timeout: 60000 })
+      .catch(() => console.log("⚠️ Confirmation text not found"));
+
+    // =======================
+    // STEP 8: VERIFY ORDER
+    // =======================
+    await this.verifyOrderConfirmation();
+
+    console.log("🎉 Affirm flow completed!");
   }
-
-  // =======================
-  // STEP 6: FINAL CONFIRM
-  // =======================
-  console.log("Clicking final confirm...");
-
-  await confirmBtn.waitFor({ state: "visible", timeout: 20000 });
-
-  await Promise.all([
-    this.page.waitForLoadState("domcontentloaded"),
-    confirmBtn.click({ force: true })
-  ]);
-
-  console.log("✅ Final confirm clicked");
-
-  // =======================
-  // STEP 7: CONFIRMATION
-  // =======================
-  console.log("Waiting for confirmation...");
-
-  await this.page.waitForLoadState("domcontentloaded");
-
-  await this.page.waitForURL(/complete|confirmation|success/, {
-    timeout: 60000
-  }).catch(() => {
-    console.log("⚠️ Confirmation URL not detected");
-  });
-
-  await this.page.locator("text=/thank you|order number|order #/i")
-    .first()
-    .waitFor({ state: "visible", timeout: 60000 })
-    .catch(() => console.log("⚠️ Confirmation text not found"));
-
-  // =======================
-  // STEP 8: VERIFY ORDER
-  // =======================
-  await this.verifyOrderConfirmation();
-
-  console.log("🎉 Affirm flow completed!");
 }
-}
+

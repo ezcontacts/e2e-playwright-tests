@@ -6,8 +6,10 @@ import {
 } from "../../data-test/productTypes";
 import { Given, Then, When } from "../../fixtures/fixture";
 
-When("I add the product to the cart", async ({ productPage }) => {
+When("I add the product to the cart", async ({ productPage, page }) => {
   await productPage.clickOnAddToCart();
+
+  console.log("After add to cart URL:", page.url());
 });
 
 When("I select the prescription type", async ({ productPage }) => {

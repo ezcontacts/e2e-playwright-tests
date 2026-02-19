@@ -1,0 +1,21 @@
+Feature: Verify Payment method options and successful payment for different order types
+
+@debug
+Scenario: Add product to cart
+  Given I visit the sunglasses page
+  When I click on the first product card in the list
+  And I add the product to the cart
+  Then I should see the success message for adding the product to the cart
+
+  When I proceed to checkout
+  Then I should be redirected to the checkout page
+  When I enter guest user ID to proceed further
+  And I Click on Checkout button
+  Then I should be redirected to checkout payment page
+
+  When I fill the shipping address details
+  And I click on Continue to Payment
+  And I enter card details
+  And I click on Place Order and verify confirmation
+
+ 

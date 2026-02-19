@@ -26,7 +26,6 @@ export const CUSTOMER = {
 
 
 export const PAYMENT = {
-
   get emailg() {
   const now = new Date();
 
@@ -40,7 +39,6 @@ export const PAYMENT = {
 
   return `test_${formatted}@yopmail.com`;
   },
-  
   email: 'doy@yopmail.com',
 
   firstName: 'Doyle',
@@ -59,9 +57,9 @@ export const PAYMENT = {
   Month:'12',
   Year:'40',
   CVC: '123',
-
   affirmPhone: "(855) 423-3729",
   affirmOtp: "123456"
+
 };
 
 

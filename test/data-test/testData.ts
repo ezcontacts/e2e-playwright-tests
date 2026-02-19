@@ -24,6 +24,28 @@ export const CUSTOMER = {
   phone: "+1 217 555 0198",
 };
 
+
+export const PAYMENT = {
+  email: 'doy@yopmail.com',
+
+  firstName: 'Doyle',
+  lastName: 'Test',
+
+  addressLine1: '2 Bergen Tpke, Suite 104 PO BOX',
+  addressLine2: 'Ridgefield Park',
+  city: 'NEW JERSEY',
+  state: 'New Jersey',
+  zipCode: '07660',
+
+  phone: '+1 123 456-7890',
+
+  CreditCard: '4242424242424242',
+  Expiry: '12/40',
+  CVC: '123'
+};
+
+
+
 export const ADMIN = {
   createOrder: {
     shippingAddressTitle: "Select Shipping Address",
@@ -39,6 +61,7 @@ export const MESSAGE = {
   successAddToCart: "Item successfully added to your cart.",
   successLogin: "You have successfully logged in.",
   successOrderCreated: "Order created successfully.",
+  YopmailsuccessLogin: "Welcome to your new EZContacts.com Account."
 };
 
 export const PRODUCT = {

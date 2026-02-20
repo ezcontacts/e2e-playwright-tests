@@ -1,5 +1,5 @@
-@EZSANISOFT-5353
-Feature: Filter on {{CATEGORY}}
+@EZSANISOFT-5367
+Feature: Verify filter selection and product result updates on Product Listing page - {{CATEGORY}}
 
 Background:
   Given the user visite "{{CATEGORY}}" page
@@ -161,19 +161,21 @@ Scenario: Verify filter panel is displayed
 #   Then the selected filter should be removed
 #   And the product results should update accordingly
 
-@skip
 Scenario: Verify filter selection persists across pagination
   When the user applies a filter
-  And navigates to the next page using pagination
+  And the user views a product on the listing page
+  And the user navigates to the next page using pagination
+  And the user navigates to the previous page using pagination
   Then the selected filter should remain applied
-  And the product results should remain filtered  
+  And the product name and review data should remain visible and unchanged
   
-# @skip
-# Scenario: Verify filter selection persists on page refresh
-#   When the user applies a filter
-#   And refreshes the Product Listing page
-#   Then the selected filter should remain applied
-#   And the product results should remain filtered
+Scenario: Verify filter selection persists on page refresh
+  When the user applies a filter
+  And the user views a product on the listing page
+  And the user refreshes the Product Listing page
+  Then the selected filter should remain applied
+  And the product results should remain filtered
+  And the product name and review data should remain visible and unchanged
   
   
 # @skip

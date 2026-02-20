@@ -7,8 +7,10 @@ export class FillterComponent extends BaseComponent {
   readonly brands: Locator;
   readonly menuMobile: Locator;
   readonly ratingTab: Locator;
+  readonly brandTab: Locator;
 
-  readonly genderLabel: (label: string) => Locator;
+  readonly genderTab: (label: string) => Locator;
+  readonly genderCheckbox: (label: string) => Locator;
   readonly typeLabel: (label: string) => Locator;
 
   constructor(page: Page, root: string = ".contacts-wrap") {
@@ -20,19 +22,26 @@ export class FillterComponent extends BaseComponent {
     this.menuMobile = this.within(".fa-bars");
     this.ratingTab = this.within(".unbxd_rating_average_uFilter li");
 
-    this.genderLabel = (label: string) =>
-      this.page.locator(".gender_uFilter label.label-element", {
-        hasText: new RegExp(label),
+    this.genderTab = (label: string) =>
+      this.page.locator(".gender_uFilter li", {
+        has: this.page.locator("label.label-element", {
+          hasText: new RegExp(label),
+        }),
       });
+
+    this.genderCheckbox = (label: string) =>
+      this.genderTab(label).locator("input");
 
     this.typeLabel = (label: string) =>
       this.page.locator(".frame_type_uFilter", {
         hasText: new RegExp(label),
       });
+
+    this.brandTab = this.locator(".brand-selection-desktop li");
   }
 
   async verifyGenderLabelIsVisible(label: string): Promise<void> {
-    const labelLocator = this.genderLabel(label);
+    const labelLocator = this.genderTab(label);
     await expect(labelLocator).toBeVisible();
   }
 
@@ -58,6 +67,11 @@ export class FillterComponent extends BaseComponent {
     await expect(count).toBeGreaterThan(0);
   }
 
+  async verifyGanderIsChecked(label: string): Promise<void> {
+    const checkbox = await this.genderCheckbox(label);
+    await expect(checkbox).toBeChecked();
+  }
+
   async clickOnFirstRatingFilter(): Promise<void> {
     await this.ratingTab.first().click();
     await this.waitForDomContentLoad();
@@ -65,5 +79,57 @@ export class FillterComponent extends BaseComponent {
       .first()
       .locator(".checked")
       .waitFor({ state: "visible", timeout: 30000 });
+  }
+
+  async clickOnGanderLabel(label: string): Promise<void> {
+    await this.genderTab(label).click();
+    await this.waitForDomContentLoad();
+  }
+
+  async clickOnBrandWithCountItems(countItems: number): Promise<void> {
+    const items = this.page.locator(".brand-selection-desktop li");
+    const count = await items.count();
+
+    for (let i = 0; i < count; i++) {
+      const item = items.nth(i);
+      const label = item.locator("label");
+
+      const text = await label.innerText();
+      const match = text.match(/\((\d+)\)/);
+      if (!match) continue;
+
+      const number = Number(match[1]);
+
+      if (number > countItems) {
+        console.log("Found:", text);
+        await label.click();
+      }
+    }
+
+    await this.waitForDomContentLoad();
+    await this.page.waitForTimeout(10_000);
+  }
+
+  async verifyOnBrandWithCountItemsIsChecked(
+    countItems: number,
+  ): Promise<void> {
+    const items = this.page.locator(".brand-selection-desktop li");
+    const count = await items.count();
+
+    for (let i = 0; i < count; i++) {
+      const item = items.nth(i);
+      const label = item.locator("label");
+
+      const text = await label.innerText();
+      const match = text.match(/\((\d+)\)/);
+      if (!match) continue;
+
+      const number = Number(match[1]);
+      const checkbox = item.locator('input[type="checkbox"]');
+      console.log("ItemStep " + i);
+      if (number > countItems) {
+        await expect(checkbox).toHaveAttribute("checked");
+      }
+    }
   }
 }

@@ -30,6 +30,12 @@ When('the user navigates to the next page using pagination',
   }
 );
 
+When('the user navigates to the previous page using pagination',
+  async ({ sunglassesPage }) => {
+    await sunglassesPage.clickOnPaginationButton(0);
+  }
+);
+
 When('the user refreshes the Product Listing page',
   async ({ sunglassesPage }) => {
     await sunglassesPage.reloadPage();

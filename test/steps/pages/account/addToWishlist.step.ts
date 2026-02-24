@@ -1,4 +1,6 @@
 import { Given, test, Then, When } from "../../../fixtures/fixture";
+import { DataTable } from "playwright-bdd";
+
 
 // TODO by M. Potrys: this step already exist -- Done, Marked this line as commented.
 /*
@@ -38,15 +40,19 @@ Then("the page should display the heading as {string}", async ({ addToWishListPa
   await addToWishListPage.verifyTitleHaveText(text);
 });
 
-Then('the page should display a message {string}',async ({ addToWishListPage }, message: string) => {
-   await addToWishListPage.verifyWishListIsEmpty(message);
- });
 
-  Then('a link to {string}, {string}, {string} should be visible', async ({ addToWishListPage }, link1: string, link2: string, link3: string) => {
-    await addToWishListPage.verifyMultipleLinksVisible([
-      link1,
-      link2,
-      link3,
-    ]);
+Given('the user is on the {string} page', async ({ addToWishListPage }, pageName: string) => {
+  await addToWishListPage.menu.ClickOnMenuBtn(pageName);
+  await addToWishListPage.navigateToWishListPage();
+});
+
+Then('the page should display a message {string}',async ({ addToWishListPage }, message: string) => {
+    await addToWishListPage.verifyMessageVisible(message);
+  }
+);
+
+Then('the following links should be visible:',async ({ addToWishListPage }, dataTable: DataTable) => {
+    const links = dataTable.raw().flat();
+    await addToWishListPage.verifyMultipleLinksVisible(links);
   }
 );

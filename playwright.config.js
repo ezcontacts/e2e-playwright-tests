@@ -36,12 +36,9 @@ export default defineConfig({
   projects: [
     {
       name: "desktop",
-<<<<<<< HEAD
       features: "test/features/**/*.feature",
       steps: ["test/steps/**/*.ts", "test/fixtures/fixture.ts"],
       outputDir: "test/generated/desktop",
-=======
->>>>>>> c84059c (Wishlist - in progress)
       use: {
         viewport: { width: 1440, height: 900 },
         isMobile: false,
@@ -49,12 +46,9 @@ export default defineConfig({
     },
     {
       name: "mobile",
-<<<<<<< HEAD
       features: "test/features/**/*.feature",
       steps: ["test/steps/**/*.ts", "test/fixtures/fixture.ts"],
       outputDir: "test/generated/mobile",
-=======
->>>>>>> c84059c (Wishlist - in progress)
       use: {
         ...devices["iPhone 14"],
       },

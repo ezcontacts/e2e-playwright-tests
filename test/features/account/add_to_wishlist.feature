@@ -1,19 +1,19 @@
-@EZSANISOFT-5388
+# @EZSANISOFT-5388
+@first
 Feature: Navigate to Wish List section
+  As a logged-in user, I want to navigate to the Wish List section from the My Account page, so that I can view and manage my wish list products.
 
 Background:
   Given the user is logged in
-  And the user is on the My Account page
+  #And I visited to My Account page
 
 # Navigation to Wish List Page
 Scenario: Navigate to Wish List section
-<<<<<<< HEAD
     Given the user is logged in
     When the user clicks on the "Wish List" option from the My Account menu
     Then the Wish List page should be displayed
     And the page URL should contain "/account/wishlist"
     And the page should display the heading as "Wish List"
-=======
   When the user clicks on the "Wish List" option from the My Account menu
   Then the page should display the heading "Wish List"
   And the page URL should contain "/account/wishlist"
@@ -59,12 +59,11 @@ Scenario: Remove product from Wish List
 
 
 # When the wishlist is empty.
-@skip
 Scenario: Verify empty Wish List message
-  Given the user is on the Wish List page
+  #Given the user is on the "Wish List" page
   Then the page should display a message "There are no products in your wishlist."
   Then the following links should be visible:
   | Shop for Contact Lenses |
   | Shop for Eyeglasses     |
   | Shop for Sunglasses     |
->>>>>>> a9694b0 (Work is in Progress for AddToWishList)
+  | Shop for Sunglasses     | 

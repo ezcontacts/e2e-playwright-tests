@@ -41,23 +41,33 @@ export class AddToWishListPage extends AccountPage {
     await expect(column).toBeVisible();
   }
 
-  //When the wishlist is empty.
-  async verifyWishListIsEmpty(textToVerify: string): Promise<void> {
-    const text = this.text(textToVerify);
+    //Navigation
+  async navigateToWishListPage(): Promise<void> {
+    await this.page.goto('/account/wishlist');
+  }
+
+  //Verify page loaded
+  async verifyWishListPageLoaded(): Promise<void> {
+    await expect(this.page).toHaveURL(/\/account\/wishlist/);
+    await expect(
+      this.page.getByRole('heading', { name: 'Wish List' })
+    ).toBeVisible();
+  }
+
+  //Verify empty message
+  async verifyMessageVisible(message: string): Promise<void> {
+    const text = this.page.getByText(message, { exact: true });
     await expect(text).toBeVisible();
   }
 
-  //When the wishlist is empty.
-  async verifyLink(link: string): Promise<void> {
-    const linkElement = this.link(link);
-    await expect(linkElement).toBeVisible();
-  }
-
   async verifyMultipleLinksVisible(links: string[]): Promise<void> {
-    for (const linkText of links) {
-      const link = this.link(linkText);
-      await expect(link).toBeVisible();
+      for (const linkText of links) {
+        const link = this.page.getByRole('link', {
+          name: linkText,
+          exact: true,
+        });
+        await expect(link).toBeVisible();
+      }
     }
-  }
 
 }

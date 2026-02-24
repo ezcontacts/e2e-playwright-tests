@@ -1,9 +1,11 @@
-@EZSANISOFT-5388
+# @EZSANISOFT-5388
+@first
 Feature: Navigate to Wish List section
+  As a logged-in user, I want to navigate to the Wish List section from the My Account page, so that I can view and manage my wish list products.
 
 Background:
   Given the user is logged in
-  And the user is on the My Account page
+  #And I visited to My Account page
 
 # Navigation to Wish List Page
 Scenario: Navigate to Wish List section
@@ -52,11 +54,10 @@ Scenario: Remove product from Wish List
 
 
 # When the wishlist is empty.
-@skip
 Scenario: Verify empty Wish List message
-  Given the user is on the Wish List page
+  #Given the user is on the "Wish List" page
   Then the page should display a message "There are no products in your wishlist."
   Then the following links should be visible:
   | Shop for Contact Lenses |
   | Shop for Eyeglasses     |
-  | Shop for Sunglasses     |
+  | Shop for Sunglasses     | 

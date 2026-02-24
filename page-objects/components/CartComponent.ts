@@ -108,6 +108,7 @@ async clickOnCheckoutNowButton(): Promise<void> {
     await newPage.waitForURL(/checkout/, { timeout: 30000 });
     await newPage.waitForLoadState('networkidle');
   }
+
   async getCheckoutType(): Promise<"old" | "new"> {
 
     const url = this.page.url();
@@ -123,78 +124,53 @@ async clickOnCheckoutNowButton(): Promise<void> {
     throw new Error(`Unknown checkout type: ${url}`);
   }
 
-  async proceedToCheckout() {
 
-    await expect(this.checkoutNowButton).toBeVisible({ timeout: 30000 });
+
+  async proceedToCheckout() {
+    const checkoutBtn = this.page.getByRole('link', { name: /checkout now/i });
+
+    await expect(checkoutBtn).toBeVisible({ timeout: 30000 });
 
     await Promise.all([
-      this.page.waitForURL(/\/checkout/, { timeout: 90000 }),
-      this.checkoutNowButton.click(),
+      this.page.waitForURL(/\/checkout\/sign-in/, { timeout: 30000 }),
+      checkoutBtn.click()
     ]);
-
-    await this.page.waitForLoadState("domcontentloaded");
-    await this.page.waitForLoadState("networkidle");
-
-    console.log("Checkout page loaded");
   }
 
-async enterGuestEmail() {
-  await expect(this.emailField).toBeVisible();
+  async enterGuestEmail(email: string) {
+    const emailField = this.page.locator('#UserEmail');
 
-  const email = PAYMENT.emailg; // ✅ correct way
-  await this.emailField.fill(email);
-
-  console.log("Using guest email:", email);
-}
+    await expect(emailField).toBeVisible();
+    await emailField.fill(email);
+  }
 
   async clickCheckoutSignIn() {
+    const checkoutBtn = this.page.locator('#checkout-sign-in-submit-btn');
+    await checkoutBtn.click();
 
-    await this.checkoutSignInButton.click();
-
-    await this.page.waitForURL(
-      (url) => {
-        const href = url.toString();
-        return (
-          href.includes("/checkout/shipping") ||
-          href.endsWith("/checkout")
-        );
-      },
-      { timeout: 90000 }
-    );
-
-    await this.page.waitForLoadState("domcontentloaded");
-    await this.page.waitForLoadState("networkidle");
-
-    console.log("Navigated to shipping page");
+    await expect(this.page.locator('#add-shipping-address'))
+      .toBeVisible({ timeout: 60000 });
   }
 
-  async fillShippingAddress() {
+  async fillShippingAddress(data: any) {
+    await this.page.locator('#AccountShippingAddressFirstName').fill(data.firstName);
+    await this.page.locator('#AccountShippingAddressLastName').fill(data.lastName);
+    await this.page.locator('#AccountShippingAddressAddressLine1').fill(data.addressLine1);
+    await this.page.locator('#AccountShippingAddressAddressLine2').fill(data.addressLine2);
+    await this.page.locator('#AccountShippingAddressAddressCity').fill(data.city);
+    await this.page.locator('#AccountShippingAddressUsAddressRegion')
+      .selectOption({ label: data.state });
+    await this.page.locator('#AccountShippingAddressAddressPostalZip').fill(data.zipCode);
+    await this.page.locator('#AccountShippingAddressAddressShipPhonePrimary')
+      .fill(data.phone);
+  }
 
-    console.log("Waiting for shipping form...");
+  async continueToPayment() {
+    const continueBtn = this.page.locator('#add-shipping-address');
+    await continueBtn.click();
 
-    await this.firstNameInput.waitFor({ state: "visible", timeout: 60000 });
-
-    await this.firstNameInput.fill(PAYMENT.firstName);
-    await this.lastNameInput.fill(PAYMENT.lastName);
-    await this.addressLine1Input.fill(PAYMENT.addressLine1);
-    await this.addressLine2Input.fill(PAYMENT.addressLine2);
-    await this.cityInput.fill(PAYMENT.city);
-
-    await this.stateDropdown.selectOption({ label: PAYMENT.state });
-
-    await this.zipCodeInput.fill(PAYMENT.zipCode);
-    await this.phoneInput.fill(PAYMENT.phone);
-
-    await this.phoneInput.press("Tab");
-
-    await this.page.evaluate(() => {
-      const active = document.activeElement as HTMLElement | null;
-      if (active) active.blur();
-    });
-
-    await this.page.waitForTimeout(1500);
-
-    console.log("Shipping form filled");
+    await expect(this.page.locator('#credit-card-box-container'))
+      .toBeVisible({ timeout: 60000 });
   }
 
   async continueFromShippingIfNeeded() {

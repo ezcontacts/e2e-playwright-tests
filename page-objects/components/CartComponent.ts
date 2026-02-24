@@ -7,6 +7,8 @@ export class CartComponent extends BaseComponent {
   constructor(page: Page) {
     super(page, "body"); // use body as root
     // Robust locator for your checkout button
+
+    // TODO by Potrys M: You can use ths.locator() method on this.within()
     this.checkoutNowButton = page.locator('a.checkout:has-text("Checkout Now")');
   }
 
@@ -23,6 +25,7 @@ export class CartComponent extends BaseComponent {
 
     // Wait for URL load in the correct page context
     await newPage.waitForURL(/checkout/, { timeout: 30000 });
+
     await newPage.waitForLoadState('networkidle');
   }
 
@@ -39,6 +42,9 @@ export class CartComponent extends BaseComponent {
   }
 
   async enterGuestEmail(email: string) {
+    //TODO by Potrys M: You need to move the locator to the beginning
+    // of the class and reuse it here. This will allow you to reuse one
+    // locator in several places and change it in one place if the frontend ever changes. 
     const emailField = this.page.locator('#UserEmail');
 
     await expect(emailField).toBeVisible();
@@ -46,14 +52,20 @@ export class CartComponent extends BaseComponent {
   }
 
   async clickCheckoutSignIn() {
+    // TODO by Potrys M: You need to move the locator to the beginning
+    // of the class and reuse it here.
     const checkoutBtn = this.page.locator('#checkout-sign-in-submit-btn');
     await checkoutBtn.click();
 
+    // TODO by Potrys M: You need to move the locator to the beginning
+    // of the class and reuse it here.
     await expect(this.page.locator('#add-shipping-address'))
       .toBeVisible({ timeout: 60000 });
   }
 
   async fillShippingAddress(data: any) {
+    // TODO by Potrys M: You need to move the locator to the beginning
+    // of the class and reuse it here.
     await this.page.locator('#AccountShippingAddressFirstName').fill(data.firstName);
     await this.page.locator('#AccountShippingAddressLastName').fill(data.lastName);
     await this.page.locator('#AccountShippingAddressAddressLine1').fill(data.addressLine1);
@@ -67,20 +79,28 @@ export class CartComponent extends BaseComponent {
   }
 
   async continueToPayment() {
+    // TODO by Potrys M: You need to move the locator to the beginning
+    // of the class and reuse it here.
     const continueBtn = this.page.locator('#add-shipping-address');
     await continueBtn.click();
 
+    // TODO by Potrys M: You need to move the locator to the beginning
+    // of the class and reuse it here.
     await expect(this.page.locator('#credit-card-box-container'))
       .toBeVisible({ timeout: 60000 });
   }
 
   async enterCardDetails(data: any) {
+    // TODO by Potrys M: You need to move the locator to the beginning
+    // of the class and reuse it here.
     await this.page.locator('#AppProductCardNumber').fill(data.CreditCard);
     await this.page.locator('#card-expiry-input').fill(data.Expiry);
     await this.page.locator('#AppProductCvc').fill(data.CVC);
   }
 
   async placeOrder() {
+    // TODO by Potrys M: You need to move the locator to the beginning
+    // of the class and reuse it here.
     const placeOrderBtn = this.page.locator('#add-billing-address');
     await placeOrderBtn.click();
 

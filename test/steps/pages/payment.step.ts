@@ -6,7 +6,6 @@ Given("I am on home page", async ({ homePage }) => {
   await homePage.open();
 });
 
-
 When("I proceed to checkout", async ({ cartComponent }) => {
   await cartComponent.proceedToCheckout();
 });
@@ -36,17 +35,17 @@ When("I click on Place Order and verify confirmation", async ({ cartComponent })
   console.log("Order successfully placed:", orderNumber);
 });
 
-
 Then(
   "I should be redirected to the checkout page",
   async ({ page }) => {
+    //TODO by Potrys M: this expect need move to POM and create method 
     await expect(page).toHaveURL(/\/checkout\/sign-in/, {
       timeout: 30000
     });
   }
 );
 
-
 Then("I should be redirected to checkout payment page", async ({ page }) => {
+  //TODO by Potrys M: this expect need move to POM and create method 
   await expect(page).toHaveURL(/\/checkout$/, { timeout: 60000 });
 });

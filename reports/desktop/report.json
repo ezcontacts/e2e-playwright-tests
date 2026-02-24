@@ -49,7 +49,7 @@
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
         ],
-        "timeout": 120000
+        "timeout": 180000
       },
       {
         "outputDir": "D:/EZ Project/e2e-playwright-tests/test-results",
@@ -65,7 +65,7 @@
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
         ],
-        "timeout": 120000
+        "timeout": 180000
       }
     ],
     "shard": null,
@@ -98,7 +98,7 @@
               ],
               "tests": [
                 {
-                  "timeout": 120000,
+                  "timeout": 180000,
                   "annotations": [],
                   "expectedStatus": "passed",
                   "projectId": "desktop",
@@ -107,23 +107,26 @@
                     {
                       "workerIndex": 0,
                       "parallelIndex": 0,
-                      "status": "timedOut",
-                      "duration": 121882,
+                      "status": "failed",
+                      "duration": 171185,
                       "error": {
-                        "message": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m",
-                        "stack": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m"
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#credit-card-box-container')\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for locator('#credit-card-box-container')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#credit-card-box-container')\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for locator('#credit-card-box-container')\u001b[22m\n\n    at CartComponent.continueToPayment (D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\CartComponent.ts:74:8)\n    at Object.<anonymous> (D:\\EZ Project\\e2e-playwright-tests\\test\\steps\\pages\\payment.step.ts:27:3)\n    at D:\\EZ Project\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\Payment\\Payment.feature.spec.js:17:5",
+                        "location": {
+                          "file": "D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\CartComponent.ts",
+                          "column": 8,
+                          "line": 74
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mpage-objects\\components\\CartComponent.ts:74\n\n\u001b[0m \u001b[90m 72 |\u001b[39m\n \u001b[90m 73 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(\u001b[32m'#credit-card-box-container'\u001b[39m))\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 74 |\u001b[39m       \u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 75 |\u001b[39m   }\n \u001b[90m 76 |\u001b[39m\n \u001b[90m 77 |\u001b[39m   \u001b[36masync\u001b[39m enterCardDetails(data\u001b[33m:\u001b[39m any) {\u001b[0m"
                       },
                       "errors": [
                         {
-                          "message": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m"
-                        },
-                        {
                           "location": {
-                            "file": "D:\\EZ Project\\e2e-playwright-tests\\test\\steps\\pages\\payment.step.ts",
-                            "column": 6,
-                            "line": 115
+                            "file": "D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\CartComponent.ts",
+                            "column": 8,
+                            "line": 74
                           },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#credit-card-box-container')\nExpected: visible\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for locator('#credit-card-box-container')\u001b[22m\n\n\n\u001b[90m   at \u001b[39mtest\\steps\\pages\\payment.step.ts:115\n\n\u001b[0m \u001b[90m 113 |\u001b[39m\n \u001b[90m 114 |\u001b[39m   \u001b[36mawait\u001b[39m expect(creditCardSection)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 115 |\u001b[39m     \u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 116 |\u001b[39m\n \u001b[90m 117 |\u001b[39m   console\u001b[33m.\u001b[39mlog(\u001b[32m\"Payment section loaded\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 118 |\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at Object.<anonymous> (D:\\EZ Project\\e2e-playwright-tests\\test\\steps\\pages\\payment.step.ts:115:6)\u001b[22m\n\u001b[2m    at D:\\EZ Project\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\Payment\\Payment.feature.spec.js:17:5\u001b[22m"
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#credit-card-box-container')\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for locator('#credit-card-box-container')\u001b[22m\n\n\n\u001b[90m   at \u001b[39mpage-objects\\components\\CartComponent.ts:74\n\n\u001b[0m \u001b[90m 72 |\u001b[39m\n \u001b[90m 73 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(\u001b[32m'#credit-card-box-container'\u001b[39m))\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 74 |\u001b[39m       \u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 75 |\u001b[39m   }\n \u001b[90m 76 |\u001b[39m\n \u001b[90m 77 |\u001b[39m   \u001b[36masync\u001b[39m enterCardDetails(data\u001b[33m:\u001b[39m any) {\u001b[0m\n\u001b[2m    at CartComponent.continueToPayment (D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\CartComponent.ts:74:8)\u001b[22m\n\u001b[2m    at Object.<anonymous> (D:\\EZ Project\\e2e-playwright-tests\\test\\steps\\pages\\payment.step.ts:27:3)\u001b[22m\n\u001b[2m    at D:\\EZ Project\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\Payment\\Payment.feature.spec.js:17:5\u001b[22m"
                         }
                       ],
                       "stdout": [
@@ -132,18 +135,6 @@
                         },
                         {
                           "text": "After add to cart URL: https://staging.ezcontacts.com/checkout/cart\n"
-                        },
-                        {
-                          "text": "Guest email entered: doy@yopmail.com\n"
-                        },
-                        {
-                          "text": "Checkout shipping page loaded\n"
-                        },
-                        {
-                          "text": "Shipping details filled successfully\n"
-                        },
-                        {
-                          "text": "After click URL: https://staging.ezcontacts.com/checkout/payment\n"
                         }
                       ],
                       "stderr": [],
@@ -151,60 +142,60 @@
                       "steps": [
                         {
                           "title": "Given I visit the sunglasses page",
-                          "duration": 70594
+                          "duration": 70435
                         },
                         {
                           "title": "When I click on the first product card in the list",
-                          "duration": 8904
+                          "duration": 9047
                         },
                         {
                           "title": "And I add the product to the cart",
-                          "duration": 10968
+                          "duration": 10757
                         },
                         {
                           "title": "Then I should see the success message for adding the product to the cart",
-                          "duration": 145
+                          "duration": 2785
                         },
                         {
                           "title": "When I proceed to checkout",
-                          "duration": 4567
+                          "duration": 3324
                         },
                         {
                           "title": "Then I should be redirected to the checkout page",
-                          "duration": 59
+                          "duration": 79
                         },
                         {
                           "title": "When I enter guest user ID to proceed further",
-                          "duration": 139
+                          "duration": 130
                         },
                         {
                           "title": "And I Click on Checkout button",
-                          "duration": 5578
+                          "duration": 5531
                         },
                         {
                           "title": "Then I should be redirected to checkout payment page",
-                          "duration": 30
+                          "duration": 268
                         },
                         {
                           "title": "When I fill the shipping address details",
-                          "duration": 419
+                          "duration": 1021
                         },
                         {
                           "title": "And I click on Continue to Payment",
-                          "duration": 19384,
+                          "duration": 62127,
                           "error": {
-                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#credit-card-box-container')\nExpected: visible\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for locator('#credit-card-box-container')\u001b[22m\n",
-                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#credit-card-box-container')\nExpected: visible\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for locator('#credit-card-box-container')\u001b[22m\n\n    at Object.<anonymous> (D:\\EZ Project\\e2e-playwright-tests\\test\\steps\\pages\\payment.step.ts:115:6)\n    at D:\\EZ Project\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\Payment\\Payment.feature.spec.js:17:5",
+                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#credit-card-box-container')\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for locator('#credit-card-box-container')\u001b[22m\n",
+                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#credit-card-box-container')\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for locator('#credit-card-box-container')\u001b[22m\n\n    at CartComponent.continueToPayment (D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\CartComponent.ts:74:8)\n    at Object.<anonymous> (D:\\EZ Project\\e2e-playwright-tests\\test\\steps\\pages\\payment.step.ts:27:3)\n    at D:\\EZ Project\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\Payment\\Payment.feature.spec.js:17:5",
                             "location": {
-                              "file": "D:\\EZ Project\\e2e-playwright-tests\\test\\steps\\pages\\payment.step.ts",
-                              "column": 6,
-                              "line": 115
+                              "file": "D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\CartComponent.ts",
+                              "column": 8,
+                              "line": 74
                             },
-                            "snippet": "\u001b[90m   at \u001b[39mtest\\steps\\pages\\payment.step.ts:115\n\n\u001b[0m \u001b[90m 113 |\u001b[39m\n \u001b[90m 114 |\u001b[39m   \u001b[36mawait\u001b[39m expect(creditCardSection)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 115 |\u001b[39m     \u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 116 |\u001b[39m\n \u001b[90m 117 |\u001b[39m   console\u001b[33m.\u001b[39mlog(\u001b[32m\"Payment section loaded\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 118 |\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m"
+                            "snippet": "\u001b[90m   at \u001b[39mpage-objects\\components\\CartComponent.ts:74\n\n\u001b[0m \u001b[90m 72 |\u001b[39m\n \u001b[90m 73 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(\u001b[32m'#credit-card-box-container'\u001b[39m))\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 74 |\u001b[39m       \u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 75 |\u001b[39m   }\n \u001b[90m 76 |\u001b[39m\n \u001b[90m 77 |\u001b[39m   \u001b[36masync\u001b[39m enterCardDetails(data\u001b[33m:\u001b[39m any) {\u001b[0m"
                           }
                         }
                       ],
-                      "startTime": "2026-02-19T16:17:01.777Z",
+                      "startTime": "2026-02-24T06:37:11.448Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -222,7 +213,12 @@
                           "contentType": "application/zip",
                           "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-Payment-Paym-9de76-r-types-Add-product-to-cart-desktop\\trace.zip"
                         }
-                      ]
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\CartComponent.ts",
+                        "column": 8,
+                        "line": 74
+                      }
                     }
                   ],
                   "status": "unexpected"
@@ -240,8 +236,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-02-19T16:16:57.916Z",
-    "duration": 128198.161,
+    "startTime": "2026-02-24T06:37:07.638Z",
+    "duration": 179226.822,
     "expected": 0,
     "skipped": 0,
     "unexpected": 1,

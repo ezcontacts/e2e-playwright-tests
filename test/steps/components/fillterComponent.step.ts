@@ -1,5 +1,15 @@
 import { DataTable } from "playwright-bdd";
-import { Given, Then } from "../../fixtures/fixture";
+import { Given, When, Then } from "../../fixtures/fixture";
+import { CardState } from "../../../page-objects/components/ProductCardComponent";
+
+let catalogState: CardState[];
+
+When(
+  "the user applies a filter",
+  async ({ eyeglassesPage }) => {
+    await eyeglassesPage.fillter.clickOnBrandWithCountItems(30);
+  }
+);
 
 Then(
   "the {string} filter toggle should exist",
@@ -16,6 +26,20 @@ Then(
     for (const { gender } of entries) {
       await eyeglassesPage.fillter.verifyGenderLabelIsVisible(gender);
     }
+  }
+);
+
+Then(
+  "the selected filter should remain applied",
+  async ({ eyeglassesPage }) => {
+    await eyeglassesPage.fillter.verifyOnBrandWithCountItemsIsChecked(30);
+  }
+);
+
+Then(
+  "the product results should remain filtered",
+  async ({ eyeglassesPage }) => {
+    await eyeglassesPage.fillter.verifyOnBrandWithCountItemsIsChecked(30);
   }
 );
 
@@ -38,5 +62,12 @@ Then(
   "I should see a list of brand checkboxes under the brand filter",
   async ({ eyeglassesPage }) => {
     await eyeglassesPage.fillter.verifyBrandMustBeExist();
+  }
+);
+
+Then(
+  "all available filters should be displayed on the Product Listing page",
+  async ({ eyeglassesPage }) => {
+    await eyeglassesPage.fillter.verifyIsVisible();
   }
 );

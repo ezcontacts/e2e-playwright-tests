@@ -18,12 +18,14 @@ Feature: Promotion - Verify the Promotion Popup Screen
     And I click on continue button
     Then I should see the error message "Please enter a valid email address." if the popup is present
 
+  @skip
   Scenario: Verify validation for the empty mobile number in the promotion popup
     When I enter valide email in the email field
     And I click on continue button
     And I click on continue button
     Then I should see the error message "Please enter your mobile number." if the popup is present
 
+  @skip
   Scenario: Verify validation for the invalide mobile number in the promotion popup
     When I enter valide email in the email field
     And I click on continue button

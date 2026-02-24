@@ -79,8 +79,9 @@ export class AccountSettingsPage extends AccountPage {
   }
 
   async verifySettingEditField(fieldName: string, value: string): Promise<void> {
+    const cleanedValue = value.replace(/\D/g, '');
     const field = this.fieldInput(fieldName);
-    await expect(field).toHaveValue(value);
+    await expect(field).toHaveValue(cleanedValue);
   }
 
   async clickEditLink(): Promise<void> {

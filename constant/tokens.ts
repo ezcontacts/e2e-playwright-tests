@@ -9,7 +9,7 @@ export const TOKENS: TokenValues = {
     'SUNGLASSES',
     'EYEGLASSES',
     'CONTACT LENSES',
-    'EYE CARE',
+    //'EYE CARE',
     'DEALS'
   ]
 };

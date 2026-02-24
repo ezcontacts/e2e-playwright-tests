@@ -8,7 +8,7 @@ Background:
 
 Scenario: Verify navigation to My Account page
   Then the user should be redirected to "/account/main"
-  And the "Account settings" option should be selected by default
+  And the "Account Settings" option should be selected by default
 
 #-----------------------------------
 # My Account Page Options

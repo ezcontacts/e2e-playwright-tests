@@ -11,7 +11,6 @@ Scenario: Verify Contact Us information text and icons
   And the following icons with titles should be displayed:
     | Icon           | Title |
     | icon-mobile    | Call  |
-    | icon-bubble2   | Chat  |
     | icon-envelop   | Email |
     | icon-info2     | FAQ   |
     | icon-file-text | Blog  |

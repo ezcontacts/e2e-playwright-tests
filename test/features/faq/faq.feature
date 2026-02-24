@@ -5,7 +5,7 @@ Feature: FAQ - Section and UI verification
   Given I visit the homepage
 
  Scenario: Verify the FAQ section header and description
-  Then I should see the FAQ section with the header "Order Processing Information"
+  Then I should see the FAQ section with the header "FrequentlyAsked Questions"
   And I should see the description containing "Have any questions or doubts about choosing the right pair of glasses or contact lenses?"
 
   Scenario: Verify the "All FAQ’s" button redirects correctly

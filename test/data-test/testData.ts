@@ -41,6 +41,8 @@ export const PAYMENT = {
 
   CreditCard: '4242424242424242',
   Expiry: '12/40',
+  Month:'12',
+  Year:'40',
   CVC: '123'
 };
 

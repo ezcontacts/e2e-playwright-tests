@@ -92,7 +92,7 @@
           "specs": [
             {
               "title": "Add product to cart",
-              "ok": false,
+              "ok": true,
               "tags": [
                 "debug"
               ],
@@ -107,34 +107,42 @@
                     {
                       "workerIndex": 0,
                       "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 171185,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#credit-card-box-container')\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for locator('#credit-card-box-container')\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#credit-card-box-container')\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for locator('#credit-card-box-container')\u001b[22m\n\n    at CartComponent.continueToPayment (D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\CartComponent.ts:74:8)\n    at Object.<anonymous> (D:\\EZ Project\\e2e-playwright-tests\\test\\steps\\pages\\payment.step.ts:27:3)\n    at D:\\EZ Project\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\Payment\\Payment.feature.spec.js:17:5",
-                        "location": {
-                          "file": "D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\CartComponent.ts",
-                          "column": 8,
-                          "line": 74
-                        },
-                        "snippet": "\u001b[90m   at \u001b[39mpage-objects\\components\\CartComponent.ts:74\n\n\u001b[0m \u001b[90m 72 |\u001b[39m\n \u001b[90m 73 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(\u001b[32m'#credit-card-box-container'\u001b[39m))\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 74 |\u001b[39m       \u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 75 |\u001b[39m   }\n \u001b[90m 76 |\u001b[39m\n \u001b[90m 77 |\u001b[39m   \u001b[36masync\u001b[39m enterCardDetails(data\u001b[33m:\u001b[39m any) {\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\CartComponent.ts",
-                            "column": 8,
-                            "line": 74
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#credit-card-box-container')\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for locator('#credit-card-box-container')\u001b[22m\n\n\n\u001b[90m   at \u001b[39mpage-objects\\components\\CartComponent.ts:74\n\n\u001b[0m \u001b[90m 72 |\u001b[39m\n \u001b[90m 73 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(\u001b[32m'#credit-card-box-container'\u001b[39m))\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 74 |\u001b[39m       \u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 75 |\u001b[39m   }\n \u001b[90m 76 |\u001b[39m\n \u001b[90m 77 |\u001b[39m   \u001b[36masync\u001b[39m enterCardDetails(data\u001b[33m:\u001b[39m any) {\u001b[0m\n\u001b[2m    at CartComponent.continueToPayment (D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\CartComponent.ts:74:8)\u001b[22m\n\u001b[2m    at Object.<anonymous> (D:\\EZ Project\\e2e-playwright-tests\\test\\steps\\pages\\payment.step.ts:27:3)\u001b[22m\n\u001b[2m    at D:\\EZ Project\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\Payment\\Payment.feature.spec.js:17:5\u001b[22m"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 130995,
+                      "errors": [],
                       "stdout": [
                         {
                           "text": "After product click URL: https://staging.ezcontacts.com/product/sunglasses/58731-58740/persol-po3114s\n"
                         },
                         {
                           "text": "After add to cart URL: https://staging.ezcontacts.com/checkout/cart\n"
+                        },
+                        {
+                          "text": "Navigated to shipping page successfully.\n"
+                        },
+                        {
+                          "text": "On shipping page. Waiting for shipping form...\n"
+                        },
+                        {
+                          "text": "Looking for Continue button...\n"
+                        },
+                        {
+                          "text": "Continue button enabled state: \u001b[33mtrue\u001b[39m\n"
+                        },
+                        {
+                          "text": "Clicked Continue. Waiting for next step...\n"
+                        },
+                        {
+                          "text": "Successfully moved to payment step.\n"
+                        },
+                        {
+                          "text": "Detected NEW checkout\n"
+                        },
+                        {
+                          "text": "Entering NEW checkout card details\n"
+                        },
+                        {
+                          "text": "Order successfully placed: 17922\n"
                         }
                       ],
                       "stderr": [],
@@ -142,86 +150,73 @@
                       "steps": [
                         {
                           "title": "Given I visit the sunglasses page",
-                          "duration": 70435
+                          "duration": 71777
                         },
                         {
                           "title": "When I click on the first product card in the list",
-                          "duration": 9047
+                          "duration": 10109
                         },
                         {
                           "title": "And I add the product to the cart",
-                          "duration": 10757
+                          "duration": 9342
                         },
                         {
                           "title": "Then I should see the success message for adding the product to the cart",
-                          "duration": 2785
+                          "duration": 2951
                         },
                         {
                           "title": "When I proceed to checkout",
-                          "duration": 3324
+                          "duration": 248
                         },
                         {
-                          "title": "Then I should be redirected to the checkout page",
-                          "duration": 79
+                          "title": "Then I should be redirected to the checkout \"sign-in\" page",
+                          "duration": 1203
                         },
                         {
                           "title": "When I enter guest user ID to proceed further",
-                          "duration": 130
+                          "duration": 1128
                         },
                         {
                           "title": "And I Click on Checkout button",
-                          "duration": 5531
+                          "duration": 5017
                         },
                         {
-                          "title": "Then I should be redirected to checkout payment page",
-                          "duration": 268
+                          "title": "Then I should be redirected to the checkout \"shipping\" page",
+                          "duration": 3
                         },
                         {
                           "title": "When I fill the shipping address details",
-                          "duration": 1021
+                          "duration": 3570
                         },
                         {
                           "title": "And I click on Continue to Payment",
-                          "duration": 62127,
-                          "error": {
-                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#credit-card-box-container')\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for locator('#credit-card-box-container')\u001b[22m\n",
-                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#credit-card-box-container')\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for locator('#credit-card-box-container')\u001b[22m\n\n    at CartComponent.continueToPayment (D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\CartComponent.ts:74:8)\n    at Object.<anonymous> (D:\\EZ Project\\e2e-playwright-tests\\test\\steps\\pages\\payment.step.ts:27:3)\n    at D:\\EZ Project\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\Payment\\Payment.feature.spec.js:17:5",
-                            "location": {
-                              "file": "D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\CartComponent.ts",
-                              "column": 8,
-                              "line": 74
-                            },
-                            "snippet": "\u001b[90m   at \u001b[39mpage-objects\\components\\CartComponent.ts:74\n\n\u001b[0m \u001b[90m 72 |\u001b[39m\n \u001b[90m 73 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(\u001b[32m'#credit-card-box-container'\u001b[39m))\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 74 |\u001b[39m       \u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 75 |\u001b[39m   }\n \u001b[90m 76 |\u001b[39m\n \u001b[90m 77 |\u001b[39m   \u001b[36masync\u001b[39m enterCardDetails(data\u001b[33m:\u001b[39m any) {\u001b[0m"
-                          }
+                          "duration": 360
+                        },
+                        {
+                          "title": "Then I should be redirected to the checkout \"payment\" page",
+                          "duration": 5298
+                        },
+                        {
+                          "title": "When I enter card details",
+                          "duration": 455
+                        },
+                        {
+                          "title": "And I click on Place Order and verify confirmation",
+                          "duration": 13650
                         }
                       ],
-                      "startTime": "2026-02-24T06:37:11.448Z",
+                      "startTime": "2026-02-25T13:33:57.837Z",
                       "annotations": [],
                       "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-Payment-Paym-9de76-r-types-Add-product-to-cart-desktop\\test-failed-1.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-Payment-Paym-9de76-r-types-Add-product-to-cart-desktop\\error-context.md"
-                        },
                         {
                           "name": "trace",
                           "contentType": "application/zip",
                           "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-Payment-Paym-9de76-r-types-Add-product-to-cart-desktop\\trace.zip"
                         }
-                      ],
-                      "errorLocation": {
-                        "file": "D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\CartComponent.ts",
-                        "column": 8,
-                        "line": 74
-                      }
+                      ]
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "aac9f05ebf35061c4571-c51e86fa2c619646131c",
@@ -236,11 +231,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-02-24T06:37:07.638Z",
-    "duration": 179226.822,
-    "expected": 0,
+    "startTime": "2026-02-25T13:33:54.509Z",
+    "duration": 140239.723,
+    "expected": 1,
     "skipped": 0,
-    "unexpected": 1,
+    "unexpected": 0,
     "flaky": 0
   }
 }

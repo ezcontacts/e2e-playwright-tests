@@ -58,8 +58,9 @@ export const PAYMENT = {
   Year:'40',
   CVC: '123',
   affirmPhone: "(855) 423-3729",
-  affirmOtp: "123456"
-
+  affirmOtp: "123456",
+  paypalEmail: 'test-buyer@sanisoft.com',
+  paypalPassword: "12345678"
 };
 
 

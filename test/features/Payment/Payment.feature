@@ -8,14 +8,14 @@ Scenario: Add product to cart
   Then I should see the success message for adding the product to the cart
 
   When I proceed to checkout
-  Then I should be redirected to the checkout page
+  Then I should be redirected to the checkout "sign-in" page
   When I enter guest user ID to proceed further
   And I Click on Checkout button
-  Then I should be redirected to checkout payment page
+  Then I should be redirected to the checkout "shipping" page
 
   When I fill the shipping address details
   And I click on Continue to Payment
-  And I enter card details
-  And I click on Place Order and verify confirmation
+  Then I should be redirected to the checkout "payment" page
 
- 
+  When I enter card details
+  And I click on Place Order and verify confirmation

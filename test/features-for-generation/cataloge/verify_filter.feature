@@ -178,14 +178,9 @@ Scenario: Verify filter selection persists on page refresh
   And the product name and review data should remain visible and unchanged
   
   
-# @skip
-# Scenario: Verify resetting all filters at once
-#   When the user applies one or more than one filters as per given example
-#   | Filter Category | Filter Option |
-#   | Gender          | Men           |
-#   | In Stock        | In Stock      |
-#   | Brand           | Oakley        |
-#   Then "Reset All Filters" link should get displayed at the top left of product listing section
-#   And the user clicks the "Reset All Filters" button
-#   Then no filters should remain applied
-#   And the product results should reset to default
+Scenario: Verify resetting all filters at once
+  When the user applies a filter
+  Then Reset All Filters link should get displayed at the top left of product listing section
+  When the user clicks the Reset All Filters button
+  Then no filters should remain applied
+  # And the product results should reset to default

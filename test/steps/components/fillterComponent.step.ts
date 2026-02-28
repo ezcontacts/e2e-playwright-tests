@@ -11,6 +11,27 @@ When(
   }
 );
 
+When(
+  "the user clicks the Reset All Filters button",
+  async ({ eyeglassesPage }) => {
+    await eyeglassesPage.fillter.clickResetAllFiltersIsVisible();
+  }
+);
+
+Then(
+  "no filters should remain applied",
+  async ({ eyeglassesPage }) => {
+    await eyeglassesPage.fillter.verifyIsNotFilters();
+  }
+);
+
+Then(
+  "Reset All Filters link should get displayed at the top left of product listing section",
+  async ({ eyeglassesPage }) => {
+    await eyeglassesPage.fillter.verifyResetAllFiltersIsVisible();
+  }
+);
+
 Then(
   "the {string} filter toggle should exist",
   async ({ eyeglassesPage }, label: string) => {

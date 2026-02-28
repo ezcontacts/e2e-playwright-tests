@@ -8,6 +8,8 @@ export class FillterComponent extends BaseComponent {
   readonly menuMobile: Locator;
   readonly ratingTab: Locator;
   readonly brandTab: Locator;
+  readonly resetLink: Locator;
+  readonly brandItem: Locator;
 
   readonly genderTab: (label: string) => Locator;
   readonly genderCheckbox: (label: string) => Locator;
@@ -21,6 +23,8 @@ export class FillterComponent extends BaseComponent {
     this.brands = this.within(".brand-list li");
     this.menuMobile = this.within(".fa-bars");
     this.ratingTab = this.within(".unbxd_rating_average_uFilter li");
+    this.resetLink = this.locator(".clear_all_selected_facets");
+    this.brandItem = this.within(".brand-selection-desktop li");
 
     this.genderTab = (label: string) =>
       this.page.locator(".gender_uFilter li", {
@@ -72,6 +76,26 @@ export class FillterComponent extends BaseComponent {
     await expect(checkbox).toBeChecked();
   }
 
+  async verifyResetAllFiltersIsVisible(): Promise<void> {
+    await expect(this.resetLink).toBeVisible();
+  }
+
+  //TODO
+  async verifyIsNotFilters(): Promise<void> {
+    const count = await this.brandItem.count();
+
+    for (let i = 0; i < count; i++) {
+      const item = this.brandItem.nth(i);
+      const checkbox = item.locator("a");
+      await expect(checkbox).not.toHaveClass(/checked/);
+    }
+  }
+
+  async clickResetAllFiltersIsVisible(): Promise<void> {
+    await this.resetLink.click();
+    await this.waitForDomContentLoad();
+  }
+
   async clickOnFirstRatingFilter(): Promise<void> {
     await this.ratingTab.first().click();
     await this.waitForDomContentLoad();
@@ -87,11 +111,10 @@ export class FillterComponent extends BaseComponent {
   }
 
   async clickOnBrandWithCountItems(countItems: number): Promise<void> {
-    const items = this.page.locator(".brand-selection-desktop li");
-    const count = await items.count();
+    const count = await this.brandItem.count();
 
     for (let i = 0; i < count; i++) {
-      const item = items.nth(i);
+      const item = this.brandItem.nth(i);
       const label = item.locator("label");
 
       const text = await label.innerText();
@@ -101,7 +124,6 @@ export class FillterComponent extends BaseComponent {
       const number = Number(match[1]);
 
       if (number > countItems) {
-        console.log("Found:", text);
         await label.click();
       }
     }
@@ -113,11 +135,10 @@ export class FillterComponent extends BaseComponent {
   async verifyOnBrandWithCountItemsIsChecked(
     countItems: number,
   ): Promise<void> {
-    const items = this.page.locator(".brand-selection-desktop li");
-    const count = await items.count();
+    const count = await this.brandItem.count();
 
     for (let i = 0; i < count; i++) {
-      const item = items.nth(i);
+      const item = this.brandItem.nth(i);
       const label = item.locator("label");
 
       const text = await label.innerText();
@@ -126,7 +147,6 @@ export class FillterComponent extends BaseComponent {
 
       const number = Number(match[1]);
       const checkbox = item.locator('input[type="checkbox"]');
-      console.log("ItemStep " + i);
       if (number > countItems) {
         await expect(checkbox).toHaveAttribute("checked");
       }

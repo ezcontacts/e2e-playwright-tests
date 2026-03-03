@@ -16,19 +16,23 @@ export class AccountSettingsPage extends AccountPage {
   constructor(page: Page) {
     super(page);
 
-    this.fieldName = this.locator('.acc-field');
-    this.fieldValue = this.locator('.acc-field-val');
-    this.editLink = this.locator('.acc-edit a');
-    this.selectionName = this.locator('h2');
-    this.cancelBtn = this.locator('.cancel');
-    this.saveChangesBtn = this.locator('.pull-right .btn');
-    this.column = (text: string) => this.locator(`.table-responsive th`).filter({ hasText: text });
-    this.fieldInput = (text: string) => this.locator('.control-label').filter({ hasText: text }).locator('+ .errorholder input');
+    this.fieldName = this.locator(".acc-field");
+    this.fieldValue = this.locator(".acc-field-val");
+    this.editLink = this.locator(".acc-edit a");
+    this.selectionName = this.locator("h2");
+    this.cancelBtn = this.locator(".cancel");
+    this.saveChangesBtn = this.locator(".pull-right .btn");
+    this.column = (text: string) =>
+      this.locator(`.table-responsive th`).filter({ hasText: text });
+    this.fieldInput = (text: string) =>
+      this.locator(".control-label")
+        .filter({ hasText: text })
+        .locator("+ .errorholder input");
   }
 
   async verifyFieldIsVisible(text: string): Promise<void> {
     const field = this.fieldName.filter({
-      hasText: new RegExp(`^${text}$`)
+      hasText: new RegExp(`^${text}$`),
     });
 
     await expect(field).toHaveCount(1);
@@ -37,7 +41,7 @@ export class AccountSettingsPage extends AccountPage {
 
   async verifySelectionIsVisible(text: string): Promise<void> {
     const selection = this.selectionName.filter({
-      hasText: new RegExp(`^${text}$`)
+      hasText: new RegExp(`^${text}$`),
     });
 
     await expect(selection).toHaveCount(1);
@@ -48,7 +52,7 @@ export class AccountSettingsPage extends AccountPage {
     const count = await this.fieldValue.count();
 
     for (let i = 0; i < count; ++i) {
-      await expect(this.fieldValue.nth(i)).not.toHaveText('');
+      await expect(this.fieldValue.nth(i)).not.toHaveText("");
     }
   }
 
@@ -74,12 +78,17 @@ export class AccountSettingsPage extends AccountPage {
   }
 
   async fillConfirmEmailField(): Promise<void> {
-    const text = await this.fieldInput(AccountSettingsFields.NewEmail).inputValue();
+    const text = await this.fieldInput(
+      AccountSettingsFields.NewEmail,
+    ).inputValue();
     await this.fieldInput(AccountSettingsFields.ConfirmEmail).fill(text);
   }
 
-  async verifySettingEditField(fieldName: string, value: string): Promise<void> {
-    const cleanedValue = value.replace(/\D/g, '');
+  async verifySettingEditField(
+    fieldName: string,
+    value: string,
+  ): Promise<void> {
+    const cleanedValue = value.replace(/[^a-zA-Z0-9.@]/g, "");
     const field = this.fieldInput(fieldName);
     await expect(field).toHaveValue(cleanedValue);
   }
@@ -98,10 +107,10 @@ export class AccountSettingsPage extends AccountPage {
 
   async clickSettingBtn(buttonName: string): Promise<void> {
     switch (buttonName) {
-      case 'Cancel':
+      case "Cancel":
         await this.clickCancelBtn();
         break;
-      case 'Save Changes':
+      case "Save Changes":
         await this.clickSaveChangesBtn();
         break;
       default:

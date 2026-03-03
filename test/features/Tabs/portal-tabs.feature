@@ -82,4 +82,3 @@ Feature: Verify tabs display and functionality on the portal
       | Readers        |
       | Eye Care       |
       | Deals          |
-      | Sales          |

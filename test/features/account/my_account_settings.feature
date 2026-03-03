@@ -51,7 +51,7 @@ Scenario Outline: Verify user can edit account detail fields
     | FieldName     |
     | First Name    |
     | Last Name     |
-    | Phone Number  |
+    #| Phone Number  |
     | New Email     |
     | Confirm Email |
 

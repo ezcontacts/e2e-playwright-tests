@@ -78,23 +78,24 @@
   },
   "suites": [
     {
-      "title": "test\\generated\\desktop\\test\\features\\Payment\\Payment.feature.spec.js",
-      "file": "test/generated/desktop/test/features/Payment/Payment.feature.spec.js",
+      "title": "test\\generated\\desktop\\test\\features\\Payment\\LoginPayment.feature.spec.js",
+      "file": "test/generated/desktop/test/features/Payment/LoginPayment.feature.spec.js",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "Verify Payment method options and successful payment for different order types",
-          "file": "test/generated/desktop/test/features/Payment/Payment.feature.spec.js",
+          "title": "Payment Login via Magic Link",
+          "file": "test/generated/desktop/test/features/Payment/LoginPayment.feature.spec.js",
           "line": 4,
           "column": 6,
           "specs": [
             {
-              "title": "Add product to cart",
+              "title": "User logs in via Yopmail magic link for payment",
               "ok": true,
               "tags": [
-                "debug"
+                "payment",
+                "magic-link"
               ],
               "tests": [
                 {
@@ -108,110 +109,44 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 137241,
+                      "duration": 63256,
                       "errors": [],
-                      "stdout": [
-                        {
-                          "text": "After product click URL: https://staging.ezcontacts.com/product/sunglasses/58731-58733/persol-po3114s\n"
-                        },
-                        {
-                          "text": "After add to cart URL: https://staging.ezcontacts.com/checkout/cart\n"
-                        },
-                        {
-                          "text": "Navigated to shipping page successfully.\n"
-                        },
-                        {
-                          "text": "On shipping page. Waiting for shipping form...\n"
-                        },
-                        {
-                          "text": "Looking for Continue button...\n"
-                        },
-                        {
-                          "text": "Continue button enabled state: \u001b[33mtrue\u001b[39m\n"
-                        },
-                        {
-                          "text": "Clicked Continue. Waiting for next step...\n"
-                        },
-                        {
-                          "text": "Successfully moved to payment step.\n"
-                        },
-                        {
-                          "text": "Detected OLD checkout\n"
-                        },
-                        {
-                          "text": "Entering OLD checkout card details\n"
-                        },
-                        {
-                          "text": "Order successfully placed: 18089\n"
-                        }
-                      ],
+                      "stdout": [],
                       "stderr": [],
                       "retry": 0,
                       "steps": [
                         {
-                          "title": "Given I visit the sunglasses page",
-                          "duration": 71517
+                          "title": "When User enters a Yopmail email for payment",
+                          "duration": 878
                         },
                         {
-                          "title": "When I click on the first product card in the list",
-                          "duration": 13320
+                          "title": "And User clicks on the send login link button for payment",
+                          "duration": 320
                         },
                         {
-                          "title": "And I add the product to the cart",
-                          "duration": 11732
+                          "title": "And opens the Yopmail inbox for payment",
+                          "duration": 10953
                         },
                         {
-                          "title": "Then I should see the success message for adding the product to the cart",
-                          "duration": 147
+                          "title": "And User opens the Yopmail inbox for the email",
+                          "duration": 844
                         },
                         {
-                          "title": "When I proceed to checkout",
-                          "duration": 205
+                          "title": "And User navigates using the magic login link",
+                          "duration": 10244
                         },
                         {
-                          "title": "Then I should be redirected to the checkout \"sign-in\" page",
-                          "duration": 1304
-                        },
-                        {
-                          "title": "When I enter guest user ID to proceed further",
-                          "duration": 2084
-                        },
-                        {
-                          "title": "And I Click on Checkout button",
-                          "duration": 4461
-                        },
-                        {
-                          "title": "Then I should be redirected to the checkout \"shipping\" page",
-                          "duration": 3
-                        },
-                        {
-                          "title": "When I fill the shipping address details",
-                          "duration": 2847
-                        },
-                        {
-                          "title": "And I click on Continue to Payment",
-                          "duration": 1081
-                        },
-                        {
-                          "title": "Then I should be redirected to the checkout \"payment\" page",
-                          "duration": 4738
-                        },
-                        {
-                          "title": "When I enter card details",
-                          "duration": 734
-                        },
-                        {
-                          "title": "And I click on Place Order and verify confirmation",
-                          "duration": 19066
+                          "title": "Then I should see the login success message for payment",
+                          "duration": 92
                         }
                       ],
-                      "startTime": "2026-03-04T05:04:44.138Z",
+                      "startTime": "2026-03-04T14:17:30.957Z",
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "trace",
                           "contentType": "application/zip",
-                          "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-Payment-Paym-9de76-r-types-Add-product-to-cart-desktop\\trace.zip"
+                          "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-Payment-Logi-807b4-mail-magic-link-for-payment-desktop\\trace.zip"
                         }
                       ]
                     }
@@ -219,9 +154,9 @@
                   "status": "expected"
                 }
               ],
-              "id": "aac9f05ebf35061c4571-c51e86fa2c619646131c",
-              "file": "test/generated/desktop/test/features/Payment/Payment.feature.spec.js",
-              "line": 6,
+              "id": "9a7dd9660049589e74ff-ff3f6d6f3df6b68d5e6a",
+              "file": "test/generated/desktop/test/features/Payment/LoginPayment.feature.spec.js",
+              "line": 10,
               "column": 3
             }
           ]
@@ -231,8 +166,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-03-04T05:04:41.797Z",
-    "duration": 143646.50300000003,
+    "startTime": "2026-03-04T14:17:27.971Z",
+    "duration": 69447.34999999999,
     "expected": 1,
     "skipped": 0,
     "unexpected": 0,

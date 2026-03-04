@@ -108,11 +108,11 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 130995,
+                      "duration": 137241,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "After product click URL: https://staging.ezcontacts.com/product/sunglasses/58731-58740/persol-po3114s\n"
+                          "text": "After product click URL: https://staging.ezcontacts.com/product/sunglasses/58731-58733/persol-po3114s\n"
                         },
                         {
                           "text": "After add to cart URL: https://staging.ezcontacts.com/checkout/cart\n"
@@ -136,13 +136,13 @@
                           "text": "Successfully moved to payment step.\n"
                         },
                         {
-                          "text": "Detected NEW checkout\n"
+                          "text": "Detected OLD checkout\n"
                         },
                         {
-                          "text": "Entering NEW checkout card details\n"
+                          "text": "Entering OLD checkout card details\n"
                         },
                         {
-                          "text": "Order successfully placed: 17922\n"
+                          "text": "Order successfully placed: 18089\n"
                         }
                       ],
                       "stderr": [],
@@ -150,35 +150,35 @@
                       "steps": [
                         {
                           "title": "Given I visit the sunglasses page",
-                          "duration": 71777
+                          "duration": 71517
                         },
                         {
                           "title": "When I click on the first product card in the list",
-                          "duration": 10109
+                          "duration": 13320
                         },
                         {
                           "title": "And I add the product to the cart",
-                          "duration": 9342
+                          "duration": 11732
                         },
                         {
                           "title": "Then I should see the success message for adding the product to the cart",
-                          "duration": 2951
+                          "duration": 147
                         },
                         {
                           "title": "When I proceed to checkout",
-                          "duration": 248
+                          "duration": 205
                         },
                         {
                           "title": "Then I should be redirected to the checkout \"sign-in\" page",
-                          "duration": 1203
+                          "duration": 1304
                         },
                         {
                           "title": "When I enter guest user ID to proceed further",
-                          "duration": 1128
+                          "duration": 2084
                         },
                         {
                           "title": "And I Click on Checkout button",
-                          "duration": 5017
+                          "duration": 4461
                         },
                         {
                           "title": "Then I should be redirected to the checkout \"shipping\" page",
@@ -186,26 +186,26 @@
                         },
                         {
                           "title": "When I fill the shipping address details",
-                          "duration": 3570
+                          "duration": 2847
                         },
                         {
                           "title": "And I click on Continue to Payment",
-                          "duration": 360
+                          "duration": 1081
                         },
                         {
                           "title": "Then I should be redirected to the checkout \"payment\" page",
-                          "duration": 5298
+                          "duration": 4738
                         },
                         {
                           "title": "When I enter card details",
-                          "duration": 455
+                          "duration": 734
                         },
                         {
                           "title": "And I click on Place Order and verify confirmation",
-                          "duration": 13650
+                          "duration": 19066
                         }
                       ],
-                      "startTime": "2026-02-25T13:33:57.837Z",
+                      "startTime": "2026-03-04T05:04:44.138Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -231,8 +231,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-02-25T13:33:54.509Z",
-    "duration": 140239.723,
+    "startTime": "2026-03-04T05:04:41.797Z",
+    "duration": 143646.50300000003,
     "expected": 1,
     "skipped": 0,
     "unexpected": 0,

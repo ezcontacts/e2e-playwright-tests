@@ -151,15 +151,15 @@ Scenario: Verify filter panel is displayed
 #   | Price                | $50 to $75          |
 #   | Price                | $75 to $100         |
 
-# @skip
-# Scenario: Verify multiple filters applied together
-#   When the user applies multiple filters
-#   Then the product results should update based on all selected filters
-#   And only products matching all selected filter criteria should be displayed
-#   And the applied filters should be displayed above the product listing section
-#   When the user clicks on the remove (X) icon for an applied filter
-#   Then the selected filter should be removed
-#   And the product results should update accordingly
+
+Scenario: Verify multiple filters applied together
+  When the user applies multiple filters
+  # Then the product results should update based on all selected filters
+  # And only products matching all selected filter criteria should be displayed
+  # And the applied filters should be displayed above the product listing section
+  # When the user clicks on the remove (X) icon for an applied filter
+  # Then the selected filter should be removed
+  # And the product results should update accordingly
 
 Scenario: Verify filter selection persists across pagination
   When the user applies a filter

@@ -10,6 +10,7 @@ export class FillterComponent extends BaseComponent {
   readonly brandTab: Locator;
   readonly resetLink: Locator;
   readonly brandItem: Locator;
+  readonly priceTab: Locator;
 
   readonly genderTab: (label: string) => Locator;
   readonly genderCheckbox: (label: string) => Locator;
@@ -25,6 +26,7 @@ export class FillterComponent extends BaseComponent {
     this.ratingTab = this.within(".unbxd_rating_average_uFilter li");
     this.resetLink = this.locator(".clear_all_selected_facets");
     this.brandItem = this.within(".brand-selection-desktop li");
+    this.priceTab = this.within(".v_price .has-pretty-child input");
 
     this.genderTab = (label: string) =>
       this.page.locator(".gender_uFilter li", {
@@ -99,10 +101,6 @@ export class FillterComponent extends BaseComponent {
   async clickOnFirstRatingFilter(): Promise<void> {
     await this.ratingTab.first().click();
     await this.waitForDomContentLoad();
-    await this.ratingTab
-      .first()
-      .locator(".checked")
-      .waitFor({ state: "visible", timeout: 30000 });
   }
 
   async clickOnGanderLabel(label: string): Promise<void> {
@@ -110,8 +108,9 @@ export class FillterComponent extends BaseComponent {
     await this.waitForDomContentLoad();
   }
 
-  async clickOnBrandWithCountItems(countItems: number): Promise<void> {
+  async clickOnBrandWithCountItems(countItems: number): Promise<string[]> {
     const count = await this.brandItem.count();
+    const checkedBrands: string[] = [];
 
     for (let i = 0; i < count; i++) {
       const item = this.brandItem.nth(i);
@@ -124,12 +123,30 @@ export class FillterComponent extends BaseComponent {
       const number = Number(match[1]);
 
       if (number > countItems) {
+        checkedBrands.push(text);
         await label.click();
       }
     }
 
     await this.waitForDomContentLoad();
     await this.page.waitForTimeout(10_000);
+
+    return checkedBrands;
+  }
+
+  async clickOnBrandByIndex(index: number): Promise<void> {
+    await this.brandTab.nth(index).click();
+    await this.waitForDomContentLoad();
+  }
+
+  async clickOnPriceFilterByIndex(index: number): Promise<string[]> {
+    const checkedPrices: string[] = [];
+
+    await this.priceTab.nth(index).click();
+    await this.waitForDomContentLoad();
+    await this.page.waitForTimeout(100_000);
+
+    return checkedPrices;
   }
 
   async verifyOnBrandWithCountItemsIsChecked(

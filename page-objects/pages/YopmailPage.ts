@@ -5,8 +5,20 @@ export class YopmailPage extends BasePage {
   readonly url = "https://yopmail.com/en/";
 
   readonly linkBtn: Locator;
+  // Main page locators
   readonly loginField: Locator;
   readonly refreshBtn: Locator;
+
+  // Frame locators
+  readonly inboxFrame;
+  readonly mailFrame;
+
+  // Inbox locators
+  readonly emailItems: Locator;
+  readonly latestEmail: Locator;
+
+  // Mail locators
+  readonly mailLinks: Locator;
   private magicLinkUrl: string | null = null;
 
   constructor(page: Page) {
@@ -15,6 +27,20 @@ export class YopmailPage extends BasePage {
     this.linkBtn = this.page.locator("#ifmail");
     this.loginField = this.page.locator("#login");
     this.refreshBtn = this.page.locator("div[id='refreshbut']");
+    // Main page
+    this.loginField = this.page.locator("#login");
+    this.refreshBtn = this.page.locator("div[id='refreshbut']");
+
+    // Frames
+    this.inboxFrame = this.page.frameLocator("#ifinbox");
+    this.mailFrame = this.page.frameLocator("#ifmail");
+
+    // Inbox elements
+    this.emailItems = this.inboxFrame.locator("div.m");
+    this.latestEmail = this.emailItems.first();
+
+    // Mail elements
+    this.mailLinks = this.mailFrame.locator("a");
   }
 
   async open(): Promise<void> {
@@ -44,31 +70,24 @@ export class YopmailPage extends BasePage {
   }
 
 //EZSANISOFT-5409
-  async openLatestEmailAndGetMagicLink(tokenKeyword: string): Promise<string> {
-  const page = this.page;
+async openLatestEmailAndGetMagicLink(keyword: string): Promise<string> {
+  await this.latestEmail.waitFor({ state: "visible", timeout: 60000 });
+  await this.latestEmail.click();
 
-  // Inbox frame
-  const inboxFrame = page.frameLocator("#ifinbox");
+  // 🔥 keyword is valid here
+  const magicLinkLocator = this.mailFrame
+    .locator(`a[href*="${keyword}"]`)
+    .first();
 
-  await inboxFrame.locator("div.m").first().waitFor({ timeout: 60000 });
-  await inboxFrame.locator("div.m").first().click();
+  await magicLinkLocator.waitFor({ state: "visible", timeout: 60000 });
 
-  // Email body frame
-  const mailFrame = page.frameLocator("#ifmail");
-  await mailFrame.locator("a").first().waitFor({ timeout: 60000 });
+  const href = await magicLinkLocator.getAttribute("href");
 
-  const links = mailFrame.locator("a");
-  const count = await links.count();
-
-  for (let i = 0; i < count; i++) {
-    const href = await links.nth(i).getAttribute("href");
-
-    if (href && href.includes(tokenKeyword)) {
-      return href;
-    }
+  if (!href) {
+    throw new Error(`Magic link containing "${keyword}" not found`);
   }
 
-  throw new Error(`Magic link containing "${tokenKeyword}" not found in email`);
+  return href;
 }
 
 async openInbox(email: string) {
@@ -76,19 +95,18 @@ async openInbox(email: string) {
   await this.clickOnRefreshBtn();
 }
 
-async getMagicLinkFromLatestEmail(keyword: string = "login-with-token"): Promise<string> {
-  // 🔹 Wait for inbox iframe and click latest email
-  const inboxFrame = this.page.frameLocator("#ifinbox");
+async getMagicLinkFromLatestEmail(
+  keyword: string = "login-with-token"
+): Promise<string> {
 
-  const latestEmail = inboxFrame.locator("div.m").first();
-  await latestEmail.waitFor({ state: "visible", timeout: 60000 });
-  await latestEmail.click();
+  // Open latest email
+  await this.latestEmail.waitFor({ state: "visible", timeout: 60000 });
+  await this.latestEmail.click();
 
-  // 🔹 Wait for mail content iframe to load
-  const mailFrame = this.page.frameLocator("#ifmail");
-
-  // Wait specifically for link containing keyword
-  const magicLinkLocator = mailFrame.locator(`a[href*="${keyword}"]`).first();
+  // Dynamically filter from predefined mailLinks
+  const magicLinkLocator = this.mailLinks
+    .filter({ has: this.page.locator(`a[href*="${keyword}"]`) })
+    .first();
 
   await magicLinkLocator.waitFor({
     state: "visible",
@@ -104,24 +122,23 @@ async getMagicLinkFromLatestEmail(keyword: string = "login-with-token"): Promise
   return magicLink;
 }
 
-async extractMagicLink(keyword: string) {
-  const mailFrame = this.page.frameLocator("#ifmail");
+async extractMagicLink(keyword: string): Promise<string> {
+  const magicLinkLocator = this.mailFrame
+    .locator(`a[href*="${keyword}"]`)
+    .first();
 
-  await mailFrame.locator("a").first().waitFor({ timeout: 60000 });
+  await magicLinkLocator.waitFor({
+    state: "visible",
+    timeout: 60000,
+  });
 
-  const links = mailFrame.locator("a");
-  const count = await links.count();
+  const href = await magicLinkLocator.getAttribute("href");
 
-  for (let i = 0; i < count; i++) {
-    const href = await links.nth(i).getAttribute("href");
-
-    if (href && href.includes(keyword)) {
-      this.magicLinkUrl = href;
-      return;
-    }
+  if (!href) {
+    throw new Error(`Magic link containing "${keyword}" not found`);
   }
 
-  throw new Error(`Magic link containing "${keyword}" not found`);
+  return href;
 }
 
 
@@ -130,11 +147,37 @@ async navigateToMagicLink(url: string): Promise<void> {
   await this.page.waitForLoadState("networkidle");
 }
 
-  async clickLatestEmail() {
-    const inboxFrame = this.page.frameLocator("#ifinbox");
+async clickEmailByIndex(index: number = 0): Promise<void> {
+  const email = this.emailItems.nth(index);
 
-    await inboxFrame.locator("div.m").first().waitFor({ timeout: 60000 });
-    await inboxFrame.locator("div.m").first().click();
+  await email.waitFor({ state: "visible", timeout: 60000 });
+  await email.click();
+}
+
+async clickLatestEmail(): Promise<void> {
+  await this.clickEmailByIndex(0);
+}
+
+async openMagicLinkFromLatestEmail(
+  email: string,
+  options?: {
+    emailIndex?: number;
+    keyword?: string;
   }
+): Promise<void> {
+  const {
+    emailIndex = 0,
+    keyword = "login-with-token",
+  } = options || {};
+
+  await this.open();
+  await this.openInbox(email);
+
+  await this.clickEmailByIndex(emailIndex);
+
+  const magicLink = await this.extractMagicLink(keyword);
+
+  await this.navigateToMagicLink(magicLink);
+}
 
 }

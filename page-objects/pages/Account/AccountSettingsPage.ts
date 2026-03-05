@@ -103,6 +103,8 @@ export class AccountSettingsPage extends AccountPage {
 
   async clickSaveChangesBtn(): Promise<void> {
     await this.clickWithLoad(this.saveChangesBtn);
+    //await this.saveChangesBtn.click();
+    await this.waitForDomContentLoad();
   }
 
   async clickSettingBtn(buttonName: string): Promise<void> {

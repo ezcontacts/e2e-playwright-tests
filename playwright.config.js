@@ -11,7 +11,7 @@ const reporter = [
       outputFolder: `playwright-report/${project}`,
       open: "never",
     },
-  ]
+  ],
 ];
 
 export default defineConfig({
@@ -32,10 +32,7 @@ export default defineConfig({
     defineBddProject({
       name: "desktop",
       features: "test/features/**/*.feature",
-      steps: [
-        "test/steps/**/*.ts",
-        "test/fixtures/fixture.ts",
-      ],
+      steps: ["test/steps/**/*.ts", "test/fixtures/fixture.ts"],
       outputDir: "test/generated/desktop",
       use: {
         viewport: { width: 1440, height: 900 },
@@ -46,10 +43,7 @@ export default defineConfig({
     defineBddProject({
       name: "mobile",
       features: "test/features/**/*.feature",
-      steps: [
-        "test/steps/**/*.ts",
-        "test/fixtures/fixture.ts",
-      ],
+      steps: ["test/steps/**/*.ts", "test/fixtures/fixture.ts"],
       outputDir: "test/generated/mobile",
       use: {
         ...devices["iPhone 14"],

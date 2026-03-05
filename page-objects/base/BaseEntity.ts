@@ -22,14 +22,9 @@ type XOR<T, U> =
   | (T & { [K in keyof U]?: never })
   | (U & { [K in keyof T]?: never });
 
-type XOR3<A, B, C> =
-  | XOR<A, B | C>
-  | XOR<B, A | C>
-  | XOR<C, A | B>;
+type XOR3<A, B, C> = XOR<A, B | C> | XOR<B, A | C> | XOR<C, A | B>;
 
-export type LocatorConfig =
-  BaseLocator &
-  XOR3<ByLocator, ByTestId, ByCss>;
+export type LocatorConfig = BaseLocator & XOR3<ByLocator, ByTestId, ByCss>;
 
 export abstract class BaseEntity {
   page: Page;
@@ -47,12 +42,12 @@ export abstract class BaseEntity {
 
   protected async safeClickAndWaitForNetworkIdle(
     locator: Locator,
-    options?: { timeout?: number }
+    options?: { timeout?: number },
   ): Promise<void> {
     await this.page.waitForTimeout(5000);
     await locator.scrollIntoViewIfNeeded();
     await expect(locator).toBeVisible();
-    await locator.click({force: true});
+    await locator.click({ force: true });
   }
 
   async safeFill(locator: Locator, value: string, timeout = 60000) {
@@ -84,7 +79,7 @@ export abstract class BaseEntity {
   async verifyAnyCondition(
     locator: Locator,
     condition: (el: Locator) => Promise<boolean>,
-    errorMessage = `Condition: ${condition} not valid`
+    errorMessage = `Condition: ${condition} not valid`,
   ) {
     const count = await locator.count();
 
@@ -99,7 +94,10 @@ export abstract class BaseEntity {
     throw new Error(errorMessage);
   }
 
-  protected getPlatformSelector(desktop: string | LocatorConfig, mobile: string | LocatorConfig): string | LocatorConfig {
+  protected getPlatformSelector(
+    desktop: string | LocatorConfig,
+    mobile: string | LocatorConfig,
+  ): string | LocatorConfig {
     return this.isMobile() ? mobile : desktop;
   }
 
@@ -107,7 +105,10 @@ export abstract class BaseEntity {
     return this.page.viewportSize()?.width! < 768;
   }
 
-  protected locator(desktop: string | LocatorConfig, mobile?: string | LocatorConfig): Locator {
+  protected locator(
+    desktop: string | LocatorConfig,
+    mobile?: string | LocatorConfig,
+  ): Locator {
     return mobile === undefined
       ? this.getLocator(desktop)
       : this.getLocator(this.getPlatformSelector(desktop, mobile));
@@ -137,7 +138,10 @@ export abstract class BaseEntity {
     throw new Error(`Any locator or selector no set`);
   }
 
-  protected getLocatorInRoot(root: Locator, config: string | LocatorConfig): Locator {
+  protected getLocatorInRoot(
+    root: Locator,
+    config: string | LocatorConfig,
+  ): Locator {
     if (typeof config === "string") {
       return root.locator(config);
     }
@@ -159,7 +163,7 @@ export abstract class BaseEntity {
 
   protected async enterField(locator: Locator, value: string) {
     await locator.scrollIntoViewIfNeeded();
-    
+
     await expect(locator).toBeVisible();
     await expect(locator).toBeEnabled();
 
@@ -171,10 +175,11 @@ export abstract class BaseEntity {
   }
 
   public async clickWithLoad(locator: Locator): Promise<void> {
+    await locator.waitFor({ state: "visible", timeout: 30000 });
     await locator.click();
     await this.waitForLoadState();
   }
-  
+
   protected exactText(text: string): RegExp {
     return new RegExp(`^${text.replace(/[’']/g, "['’]")}$`, "i");
   }

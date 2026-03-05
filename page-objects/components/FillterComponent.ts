@@ -58,8 +58,12 @@ export class FillterComponent extends BaseComponent {
     await expect(count).toBeGreaterThan(0);
   }
 
-  async clickOnFirstRatingFilter(): Promise<void>{
+  async clickOnFirstRatingFilter(): Promise<void> {
     await this.ratingTab.first().click();
     await this.waitForDomContentLoad();
+    await this.ratingTab
+      .first()
+      .locator(".checked")
+      .waitFor({ state: "visible", timeout: 30000 });
   }
 }

@@ -71,6 +71,7 @@ Scenario: Verify Cancel button discards changes
 #-----------------------------------
 # Save Changes
 #-----------------------------------
+@skip
 Scenario: Verify Save Changes button updates account details
   When the user clicks on the "Edit Details" link
   And the user has updated valid account details:

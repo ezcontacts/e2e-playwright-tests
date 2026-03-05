@@ -3,7 +3,10 @@ import { BasePage } from "../../base/BasePage";
 import { FillterComponent } from "../../components/FillterComponent";
 import { PromotionComponent } from "../../components/PromotionComponent";
 import { expect } from "../../../test/fixtures/fixture";
-import { CardState, ProductCardComponent } from "../../components/ProductCardComponent";
+import {
+  CardState,
+  ProductCardComponent,
+} from "../../components/ProductCardComponent";
 
 export abstract class ProductCatalogePage extends BasePage {
   readonly productCountDropdown: Locator;
@@ -16,19 +19,22 @@ export abstract class ProductCatalogePage extends BasePage {
   constructor(page: Page, endpoint: string) {
     super(page, endpoint);
 
-    this.productCountDropdown = this.locator('.unbxd-pagesize-container .multi');
-    this.productMatchDropdown = this.locator('.unbxd-sort-container .multi');
+    this.productCountDropdown = this.locator(
+      ".unbxd-pagesize-container .multi",
+    );
+    this.productMatchDropdown = this.locator(".unbxd-sort-container .multi");
 
     this.fillter = new FillterComponent(page);
 
     this.productCard = (index: number = 0) =>
-        new ProductCardComponent(
-          this.page,
-          index,
-          this.getPlatformSelector(".unbxd-product", "li.ng-scope") as string
-        );
+      new ProductCardComponent(
+        this.page,
+        index,
+        this.getPlatformSelector(".unbxd-product", "li.ng-scope") as string,
+      );
 
-    this.paginationList = (index: number) => this.locator(".pagination li.unbxd_page a").nth(index);
+    this.paginationList = (index: number) =>
+      this.locator(".pagination li.unbxd_page a").nth(index);
   }
 
   async open(): Promise<void> {
@@ -45,11 +51,15 @@ export abstract class ProductCatalogePage extends BasePage {
   }
 
   async verifyProductCountDropdownIsHaveValue(text: string): Promise<void> {
-    await expect(this.productCountDropdown).toHaveValue(text, {timeout: 30000});
+    await expect(this.productCountDropdown).toHaveValue(text, {
+      timeout: 30000,
+    });
   }
 
   async verifyProductMatchDropdownIsHaveValue(text: string): Promise<void> {
-    await expect(this.productMatchDropdown).toHaveValue(text, {timeout: 30000});
+    await expect(this.productMatchDropdown).toHaveValue(text, {
+      timeout: 30000,
+    });
   }
 
   async setProductCountDropdownValue(text: string): Promise<void> {
@@ -68,10 +78,11 @@ export abstract class ProductCatalogePage extends BasePage {
   }
 
   async verifyProductTitlesIsVisible(): Promise<void> {
-    await this.forEachProductCard(card => card.verifyTitleIsVisible());
+    await this.forEachProductCard((card) => card.verifyTitleIsVisible());
   }
 
-  private async forEachProductCard(action: (card: ProductCardComponent) => Promise<void>
+  private async forEachProductCard(
+    action: (card: ProductCardComponent) => Promise<void>,
   ): Promise<void> {
     const card = await this.productCard(0);
     await card.waitForVisible();
@@ -84,15 +95,15 @@ export abstract class ProductCatalogePage extends BasePage {
   }
 
   async verifyProductRatingsIsVisible(): Promise<void> {
-    await this.forEachProductCard(card => card.verifyRatingIsVisible());
+    await this.forEachProductCard((card) => card.verifyRatingIsVisible());
   }
 
   async verifyProductReviewsIsVisible(): Promise<void> {
-    await this.forEachProductCard(card => card.verifyReviewsIsVisible());
+    await this.forEachProductCard((card) => card.verifyReviewsIsVisible());
   }
 
   async verifyInfoCardsIsCenter(): Promise<void> {
-    await this.forEachProductCard(card => card.verifyIsCenter());
+    await this.forEachProductCard((card) => card.verifyIsCenter());
   }
 
   async getCatalogState(): Promise<CardState[]> {
@@ -118,7 +129,7 @@ export abstract class ProductCatalogePage extends BasePage {
     for (let i = 0; i < states.length; ++i) {
       const card = await this.productCard(i);
       const state = states.at(i);
-      if(!state) continue;
+      if (!state) continue;
 
       await card.verifyState(state);
     }
@@ -133,7 +144,7 @@ export abstract class ProductCatalogePage extends BasePage {
     return await this.productCard(count - 1);
   }
 
-  async clickOnPaginationButton(num: number): Promise<void>{
+  async clickOnPaginationButton(num: number): Promise<void> {
     const btn = await this.paginationList(num);
     await btn.click();
     await this.waitForDomContentLoad();

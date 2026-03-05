@@ -9,15 +9,12 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   },
-
   "dependencies": {
     "dotenv": "^17.2.3"
   },
-
   "scripts": {
     "auth": "node saveGoogleSession.js",
     "xray:gen": "node scripts/merge-playwright-reports.js",
-
     "pretest": "npm run bdd:gen",
     "bdd:pre": "node --loader ts-node/esm scripts/generate-features.ts",
     "bdd:gen": "npm run bdd:pre && npx playwright-bdd",

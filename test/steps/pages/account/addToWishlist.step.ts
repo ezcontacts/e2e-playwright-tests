@@ -29,5 +29,4 @@ Then('the following links should be visible:',async ({ addToWishListPage }, data
     await addToWishListPage.verifyMultipleLinksVisible(links);
   }
 );
-
 // Completed -> # When the wishlist is empty.

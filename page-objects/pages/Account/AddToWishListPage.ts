@@ -3,24 +3,23 @@ import { AccountPage } from "./AccountPage";
 import { ENDPOINT } from "../../../constant/endpoint";
 import { AccountMenuComponent } from "../../components/AccountMenuComponent";
 
-//I recomend to use 'Page' suffix for page object classes for Exemple: AddToWishListPage -- Done.
 export class AddToWishListPage extends AccountPage {
   readonly table: Locator;
   readonly column: (text: string) => Locator;
   readonly text: (text: string) => Locator;
   readonly link: (link: string) => Locator;
   readonly menu: AccountMenuComponent;
-  
+
   constructor(page: Page) {
     super(page, ENDPOINT.wishlist);
 
-    this.table = this.locator('.table-responsive');
-    this.column = (text: string) => this.locator(`.table-responsive th`).filter({ hasText: text });
+    this.table = this.locator(".table-responsive");
+    this.column = (text: string) =>
+      this.locator(`.table-responsive th`).filter({ hasText: text });
     this.text = (text: string) => this.locator(`h4:has-text('${text}')`);
     this.link = (link: string) => this.locator(`a[href*="${link}"]`);
 
     this.menu = new AccountMenuComponent(page);
-
   }
 
   async verifyHeadingText(expectedText: string): Promise<void> {
@@ -41,33 +40,36 @@ export class AddToWishListPage extends AccountPage {
     await expect(column).toBeVisible();
   }
 
-    //Navigation
+  //TODO by Potrys M: You can use method open() instead of navigateToWishListPage()
+  //Navigation
   async navigateToWishListPage(): Promise<void> {
-    await this.page.goto('/account/wishlist');
+    await this.page.goto("/account/wishlist");
   }
 
   //Verify page loaded
   async verifyWishListPageLoaded(): Promise<void> {
     await expect(this.page).toHaveURL(/\/account\/wishlist/);
     await expect(
-      this.page.getByRole('heading', { name: 'Wish List' })
+      //TODO by Potrys M: You need create Locator variable and use this locator
+      this.page.getByRole("heading", { name: "Wish List" }),
     ).toBeVisible();
   }
 
   //Verify empty message
   async verifyMessageVisible(message: string): Promise<void> {
+    //TODO by Potrys M: You need create Locator variable and use this locator
     const text = this.page.getByText(message, { exact: true });
     await expect(text).toBeVisible();
   }
 
   async verifyMultipleLinksVisible(links: string[]): Promise<void> {
-      for (const linkText of links) {
-        const link = this.page.getByRole('link', {
-          name: linkText,
-          exact: true,
-        });
-        await expect(link).toBeVisible();
-      }
+    for (const linkText of links) {
+      //TODO by Potrys M: You need create Locator variable and use this locator
+      const link = this.page.getByRole("link", {
+        name: linkText,
+        exact: true,
+      });
+      await expect(link).toBeVisible();
     }
-
+  }
 }

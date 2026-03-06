@@ -63,9 +63,11 @@ export abstract class ProductCatalogePage extends BasePage {
   }
 
   async clickOnProductByIndex(index: number): Promise<void> {
+    await this.closeAttentivePopupIfPresent();
     await this.productCard(index).clickOnViewBtn();
-    await this.waitForDomContentLoad();
+    //await this.waitForDomContentLoad();
   }
+
 
   async verifyProductTitlesIsVisible(): Promise<void> {
     await this.forEachProductCard(card => card.verifyTitleIsVisible());
@@ -138,4 +140,19 @@ export abstract class ProductCatalogePage extends BasePage {
     await btn.click();
     await this.waitForDomContentLoad();
   }
+
+  private async closeAttentivePopupIfPresent(): Promise<void> {
+  const closeButton = this.page
+    .frameLocator('#attentive_creative')
+    .getByTestId('closeIcon');
+
+  try {
+    if (await closeButton.isVisible({ timeout: 2000 })) {
+      await closeButton.click();
+    }
+  } catch {
+    // Popup not present, ignore
+  }
+}
+
 }

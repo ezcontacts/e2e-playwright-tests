@@ -3,11 +3,12 @@ import { BasePage } from "../base/BasePage";
 import { ENDPOINT } from "../../constant/endpoint";
 import { FaqSectionComponent } from "../components/FaqSectionComponent";
 import { PromotionComponent } from "../components/PromotionComponent";
+import { CartComponent } from "../components/CartComponent";
 
 export class HomePage extends BasePage {
   readonly recommendedProds: Locator;
   readonly noThanksBtnPopup: Locator;
-
+  readonly cart: CartComponent;
   readonly faqSection: FaqSectionComponent;
 
   constructor(page: Page) {
@@ -15,7 +16,7 @@ export class HomePage extends BasePage {
 
     this.recommendedProds = this.locator('[id^="product-slider"]');
     this.noThanksBtnPopup = this.locator("div.ltkpopup-no-thanks button");
-
+    this.cart = new CartComponent(page);
     this.faqSection = new FaqSectionComponent(page);
   }
 

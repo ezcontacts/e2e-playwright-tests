@@ -1,7 +1,7 @@
 {
   "config": {
-    "configFile": "E:\\work\\e2e-playwright-tests\\playwright.config.js",
-    "rootDir": "E:/work/e2e-playwright-tests",
+    "configFile": "D:\\EZ Project\\e2e-playwright-tests\\playwright.config.js",
+    "rootDir": "D:/EZ Project/e2e-playwright-tests",
     "forbidOnly": false,
     "fullyParallel": false,
     "globalSetup": null,
@@ -36,7 +36,7 @@
     "quiet": false,
     "projects": [
       {
-        "outputDir": "E:/work/e2e-playwright-tests/test-results",
+        "outputDir": "D:/EZ Project/e2e-playwright-tests/test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -44,15 +44,15 @@
         },
         "id": "desktop",
         "name": "desktop",
-        "testDir": "E:/work/e2e-playwright-tests/test/generated/desktop",
+        "testDir": "D:/EZ Project/e2e-playwright-tests/test/generated/desktop",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
         ],
-        "timeout": 120000
+        "timeout": 180000
       },
       {
-        "outputDir": "E:/work/e2e-playwright-tests/test-results",
+        "outputDir": "D:/EZ Project/e2e-playwright-tests/test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -60,17 +60,17 @@
         },
         "id": "mobile",
         "name": "mobile",
-        "testDir": "E:/work/e2e-playwright-tests/test/generated/mobile",
+        "testDir": "D:/EZ Project/e2e-playwright-tests/test/generated/mobile",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
         ],
-        "timeout": 120000
+        "timeout": 180000
       }
     ],
     "shard": null,
     "tags": [],
-    "updateSnapshots": "missing",
+    "updateSnapshots": "all",
     "updateSourceMethod": "patch",
     "version": "1.57.0",
     "workers": 4,
@@ -78,80 +78,156 @@
   },
   "suites": [
     {
-      "title": "test\\generated\\desktop\\test\\features\\account\\my_account_settings.feature.spec.js",
-      "file": "test/generated/desktop/test/features/account/my_account_settings.feature.spec.js",
+      "title": "test\\generated\\desktop\\test\\features\\Payment\\Payment.feature.spec.js",
+      "file": "test/generated/desktop/test/features/Payment/Payment.feature.spec.js",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "My Account - Verify The content of the Account Page",
-          "file": "test/generated/desktop/test/features/account/my_account_settings.feature.spec.js",
-          "line": 3,
+          "title": "Verify Payment method options and successful payment for different order types",
+          "file": "test/generated/desktop/test/features/Payment/Payment.feature.spec.js",
+          "line": 4,
           "column": 6,
-          "specs": [],
-          "suites": [
+          "specs": [
             {
-              "title": "Verify user can edit account detail fields",
-              "file": "test/generated/desktop/test/features/account/my_account_settings.feature.spec.js",
-              "line": 123,
-              "column": 8,
-              "specs": [
+              "title": "Add product to cart",
+              "ok": false,
+              "tags": [
+                "debug"
+              ],
+              "tests": [
                 {
-                  "title": "Example #3",
-                  "ok": true,
-                  "tags": [],
-                  "tests": [
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
                     {
-                      "timeout": 120000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "desktop",
-                      "projectName": "desktop",
-                      "results": [
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 171185,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#credit-card-box-container')\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for locator('#credit-card-box-container')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#credit-card-box-container')\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for locator('#credit-card-box-container')\u001b[22m\n\n    at CartComponent.continueToPayment (D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\CartComponent.ts:74:8)\n    at Object.<anonymous> (D:\\EZ Project\\e2e-playwright-tests\\test\\steps\\pages\\payment.step.ts:27:3)\n    at D:\\EZ Project\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\Payment\\Payment.feature.spec.js:17:5",
+                        "location": {
+                          "file": "D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\CartComponent.ts",
+                          "column": 8,
+                          "line": 74
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mpage-objects\\components\\CartComponent.ts:74\n\n\u001b[0m \u001b[90m 72 |\u001b[39m\n \u001b[90m 73 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(\u001b[32m'#credit-card-box-container'\u001b[39m))\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 74 |\u001b[39m       \u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 75 |\u001b[39m   }\n \u001b[90m 76 |\u001b[39m\n \u001b[90m 77 |\u001b[39m   \u001b[36masync\u001b[39m enterCardDetails(data\u001b[33m:\u001b[39m any) {\u001b[0m"
+                      },
+                      "errors": [
                         {
-                          "workerIndex": 1,
-                          "parallelIndex": 0,
-                          "status": "passed",
-                          "duration": 13261,
-                          "errors": [],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "steps": [
-                            {
-                              "title": "When the user clicks on the \"Edit Details\" link",
-                              "duration": 1633
-                            },
-                            {
-                              "title": "And the user updates the \"Phone Number\" field with valid data",
-                              "duration": 631
-                            },
-                            {
-                              "title": "Then the \"Phone Number\" field should reflect the updated value",
-                              "duration": 146
-                            }
-                          ],
-                          "startTime": "2026-01-29T13:37:04.489Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "trace",
-                              "contentType": "application/zip",
-                              "path": "E:\\work\\e2e-playwright-tests\\test-results\\test-features-account-my_a-c4191-unt-detail-fields-Example-3-desktop\\trace.zip"
-                            }
-                          ]
+                          "location": {
+                            "file": "D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\CartComponent.ts",
+                            "column": 8,
+                            "line": 74
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#credit-card-box-container')\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for locator('#credit-card-box-container')\u001b[22m\n\n\n\u001b[90m   at \u001b[39mpage-objects\\components\\CartComponent.ts:74\n\n\u001b[0m \u001b[90m 72 |\u001b[39m\n \u001b[90m 73 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(\u001b[32m'#credit-card-box-container'\u001b[39m))\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 74 |\u001b[39m       \u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 75 |\u001b[39m   }\n \u001b[90m 76 |\u001b[39m\n \u001b[90m 77 |\u001b[39m   \u001b[36masync\u001b[39m enterCardDetails(data\u001b[33m:\u001b[39m any) {\u001b[0m\n\u001b[2m    at CartComponent.continueToPayment (D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\CartComponent.ts:74:8)\u001b[22m\n\u001b[2m    at Object.<anonymous> (D:\\EZ Project\\e2e-playwright-tests\\test\\steps\\pages\\payment.step.ts:27:3)\u001b[22m\n\u001b[2m    at D:\\EZ Project\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\Payment\\Payment.feature.spec.js:17:5\u001b[22m"
                         }
                       ],
-                      "status": "expected"
+                      "stdout": [
+                        {
+                          "text": "After product click URL: https://staging.ezcontacts.com/product/sunglasses/58731-58740/persol-po3114s\n"
+                        },
+                        {
+                          "text": "After add to cart URL: https://staging.ezcontacts.com/checkout/cart\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Given I visit the sunglasses page",
+                          "duration": 70435
+                        },
+                        {
+                          "title": "When I click on the first product card in the list",
+                          "duration": 9047
+                        },
+                        {
+                          "title": "And I add the product to the cart",
+                          "duration": 10757
+                        },
+                        {
+                          "title": "Then I should see the success message for adding the product to the cart",
+                          "duration": 2785
+                        },
+                        {
+                          "title": "When I proceed to checkout",
+                          "duration": 3324
+                        },
+                        {
+                          "title": "Then I should be redirected to the checkout page",
+                          "duration": 79
+                        },
+                        {
+                          "title": "When I enter guest user ID to proceed further",
+                          "duration": 130
+                        },
+                        {
+                          "title": "And I Click on Checkout button",
+                          "duration": 5531
+                        },
+                        {
+                          "title": "Then I should be redirected to checkout payment page",
+                          "duration": 268
+                        },
+                        {
+                          "title": "When I fill the shipping address details",
+                          "duration": 1021
+                        },
+                        {
+                          "title": "And I click on Continue to Payment",
+                          "duration": 62127,
+                          "error": {
+                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#credit-card-box-container')\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for locator('#credit-card-box-container')\u001b[22m\n",
+                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#credit-card-box-container')\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for locator('#credit-card-box-container')\u001b[22m\n\n    at CartComponent.continueToPayment (D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\CartComponent.ts:74:8)\n    at Object.<anonymous> (D:\\EZ Project\\e2e-playwright-tests\\test\\steps\\pages\\payment.step.ts:27:3)\n    at D:\\EZ Project\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\Payment\\Payment.feature.spec.js:17:5",
+                            "location": {
+                              "file": "D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\CartComponent.ts",
+                              "column": 8,
+                              "line": 74
+                            },
+                            "snippet": "\u001b[90m   at \u001b[39mpage-objects\\components\\CartComponent.ts:74\n\n\u001b[0m \u001b[90m 72 |\u001b[39m\n \u001b[90m 73 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(\u001b[32m'#credit-card-box-container'\u001b[39m))\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 74 |\u001b[39m       \u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 75 |\u001b[39m   }\n \u001b[90m 76 |\u001b[39m\n \u001b[90m 77 |\u001b[39m   \u001b[36masync\u001b[39m enterCardDetails(data\u001b[33m:\u001b[39m any) {\u001b[0m"
+                          }
+                        }
+                      ],
+                      "startTime": "2026-02-24T06:37:11.448Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-Payment-Paym-9de76-r-types-Add-product-to-cart-desktop\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-Payment-Paym-9de76-r-types-Add-product-to-cart-desktop\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-Payment-Paym-9de76-r-types-Add-product-to-cart-desktop\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\CartComponent.ts",
+                        "column": 8,
+                        "line": 74
+                      }
                     }
                   ],
-                  "id": "76d4d5187108cc13b056-776fa55919e6e672fc15",
-                  "file": "test/generated/desktop/test/features/account/my_account_settings.feature.spec.js",
-                  "line": 156,
-                  "column": 5
+                  "status": "unexpected"
                 }
-              ]
+              ],
+              "id": "aac9f05ebf35061c4571-c51e86fa2c619646131c",
+              "file": "test/generated/desktop/test/features/Payment/Payment.feature.spec.js",
+              "line": 6,
+              "column": 3
             }
           ]
         }
@@ -160,11 +236,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-01-29T13:37:00.413Z",
-    "duration": 19077.489,
-    "expected": 1,
+    "startTime": "2026-02-24T06:37:07.638Z",
+    "duration": 179226.822,
+    "expected": 0,
     "skipped": 0,
-    "unexpected": 0,
+    "unexpected": 1,
     "flaky": 0
   }
 }

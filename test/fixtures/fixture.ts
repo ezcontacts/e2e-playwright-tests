@@ -24,6 +24,7 @@ import { EzPointsPage } from "../../page-objects/pages/Account/EzPointsPage";
 import { AccountSettingsPage } from "../../page-objects/pages/Account/AccountSettingsPage";
 import { AccountInfoPage } from "../../page-objects/pages/Account/AcountInfoPage";
 import { CardState } from "../../page-objects/components/ProductCardComponent";
+import { CartComponent } from "../../page-objects/components/CartComponent";
 
 export type CatalogeContext = { cardsState: CardState[] };
 
@@ -53,6 +54,7 @@ export const test = bddTest.extend<{
 
   portalContext: PortalContext;
   catalogContext: CatalogeContext;
+  cartComponent: CartComponent;
 }>({
   context: async ({ browser }, use) => {
     const context = await browser.newContext({ storageState: "google-session.json" });
@@ -65,6 +67,9 @@ export const test = bddTest.extend<{
     await use({ selectedTab: undefined });
   },
 
+    cartComponent: async ({ page }, use) => {
+    await use(new CartComponent(page));
+  },
 
   page: async ({ context }, use) => {
     const page = await context.newPage();
@@ -106,7 +111,8 @@ export const test = bddTest.extend<{
   ezPointsPage: async ({ page }, use) => await use(new EzPointsPage(page)),
   accountSettingsPage: async ({ page }, use) => await use(new AccountSettingsPage(page)),
   accountInfoPage: async ({ page }, use) => await use(new AccountInfoPage(page)),
-  
+
+
   //portalPage: async ({ page }, use) => await use(new PortalPage(page)),
 
   catalogContext: async ({}, use) => await use({ cardsState: [] }),

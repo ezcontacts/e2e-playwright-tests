@@ -72,9 +72,19 @@ export class ProductPage extends BasePage {
     throw new Error("ProductPage has not static endpoint");
   }
 
-  async clickOnAddToCart(): Promise<void> {
+ /* async clickOnAddToCart(): Promise<void> {
     await this.safeClickAndWaitForNetworkIdle(this.addCart);
-  }
+  }*/
+
+async clickOnAddToCart(): Promise<void> {
+  await this.addCart.waitFor({ state: "visible" });
+  await expect(this.addCart).toBeEnabled();
+
+  await Promise.all([
+    this.page.waitForURL(/\/checkout\/cart/, { timeout: 30000 }),
+    this.addCart.click()
+  ]);
+}
 
   async clickOnPrescriptionType(index: number): Promise<void> {
     await this.prescriptionType.nth(index).click();

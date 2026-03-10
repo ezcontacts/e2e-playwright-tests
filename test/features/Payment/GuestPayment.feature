@@ -1,6 +1,6 @@
 Feature: Verify Payment method options and successful payment for different order types
 
-@debug
+
 Scenario: Add product to cart
   Given I visit the sunglasses page
   When I click on the first product card in the list

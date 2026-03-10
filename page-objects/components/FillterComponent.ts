@@ -1,5 +1,6 @@
 import { Page, Locator, expect } from "@playwright/test";
 import { BaseComponent } from "../base/BaseComponent";
+import { escapeRegex, toFilterFormat } from "../../helpers/filterHelper";
 
 export class FillterComponent extends BaseComponent {
   readonly inStock: Locator;
@@ -12,6 +13,7 @@ export class FillterComponent extends BaseComponent {
   readonly brandItem: Locator;
   readonly priceTab: Locator;
 
+  readonly currentFilter: (label: string) => Locator;
   readonly genderTab: (label: string) => Locator;
   readonly genderCheckbox: (label: string) => Locator;
   readonly typeLabel: (label: string) => Locator;
@@ -26,7 +28,15 @@ export class FillterComponent extends BaseComponent {
     this.ratingTab = this.within(".unbxd_rating_average_uFilter li");
     this.resetLink = this.locator(".clear_all_selected_facets");
     this.brandItem = this.within(".brand-selection-desktop li");
-    this.priceTab = this.within(".v_price .has-pretty-child input");
+    this.priceTab = this.within(".v_price .has-pretty-child label");
+    this.currentFilter = (label: string) => {
+      const safe = escapeRegex(label);
+
+      const filterLocator = this.locator("a.selected-facet-delete").filter({
+        hasText: new RegExp(`^${safe}×?$`),
+      });
+      return filterLocator;
+    };
 
     this.genderTab = (label: string) =>
       this.page.locator(".gender_uFilter li", {
@@ -82,6 +92,18 @@ export class FillterComponent extends BaseComponent {
     await expect(this.resetLink).toBeVisible();
   }
 
+  async verifyAppliedFilterIsVisible(filter: string): Promise<void> {
+    const filterLocator = this.currentFilter(filter);
+
+    await expect(filterLocator).toBeVisible();
+  }
+
+  async verifyAppliedFilterIsNotExist(filter: string): Promise<void> {
+    const filterLocator = this.currentFilter(filter);
+
+    await expect(filterLocator).toHaveCount(0);
+  }
+
   //TODO
   async verifyIsNotFilters(): Promise<void> {
     const count = await this.brandItem.count();
@@ -108,6 +130,17 @@ export class FillterComponent extends BaseComponent {
     await this.waitForDomContentLoad();
   }
 
+  async clickOnFirstBrand(): Promise<string> {
+    const item = this.brandItem.nth(0);
+    const label = item.locator("label");
+    await label.click();
+    await this.waitForDomContentLoad();
+    const text = await label.innerText();
+    const brandName = toFilterFormat(text);
+    await this.page.waitForTimeout(5_000);
+    return brandName;
+  }
+
   async clickOnBrandWithCountItems(countItems: number): Promise<string[]> {
     const count = await this.brandItem.count();
     const checkedBrands: string[] = [];
@@ -123,13 +156,14 @@ export class FillterComponent extends BaseComponent {
       const number = Number(match[1]);
 
       if (number > countItems) {
-        checkedBrands.push(text);
+        const brandName = toFilterFormat(text);
+        checkedBrands.push(brandName);
         await label.click();
       }
     }
 
     await this.waitForDomContentLoad();
-    await this.page.waitForTimeout(10_000);
+    await this.page.waitForTimeout(5_000);
 
     return checkedBrands;
   }
@@ -142,11 +176,22 @@ export class FillterComponent extends BaseComponent {
   async clickOnPriceFilterByIndex(index: number): Promise<string[]> {
     const checkedPrices: string[] = [];
 
-    await this.priceTab.nth(index).click();
+    const priceTab = this.priceTab.nth(index);
+    await priceTab.click();
     await this.waitForDomContentLoad();
-    await this.page.waitForTimeout(100_000);
+    await this.page.waitForTimeout(5_000);
 
+    const brandName = toFilterFormat(await priceTab.innerText());
+
+    checkedPrices.push(brandName);
     return checkedPrices;
+  }
+
+  async removeFilterByName(filter: string): Promise<void> {
+    const filterLocator = this.currentFilter(filter);
+
+    await filterLocator.click();
+    await filterLocator.waitFor({ state: "detached" });
   }
 
   async verifyOnBrandWithCountItemsIsChecked(

@@ -1,12 +1,13 @@
 import { Locator, Page } from "@playwright/test";
 import { BasePage } from "../../base/BasePage";
 import { FillterComponent } from "../../components/FillterComponent";
-import { PromotionComponent } from "../../components/PromotionComponent";
 import { expect } from "../../../test/fixtures/fixture";
 import {
   CardState,
   ProductCardComponent,
 } from "../../components/ProductCardComponent";
+import { Product } from "../../../types/productType";
+import { ENDPOINT_API, ENDPOINT_URL } from "../../../constant/endpoint";
 
 export abstract class ProductCatalogePage extends BasePage {
   readonly productCountDropdown: Locator;
@@ -106,7 +107,7 @@ export abstract class ProductCatalogePage extends BasePage {
     await this.forEachProductCard((card) => card.verifyIsCenter());
   }
 
-  async getCatalogState(): Promise<CardState[]> {
+  async getCatalogeState(): Promise<CardState[]> {
     const firstCard = await this.productCard(0);
     await firstCard.waitForVisible();
 
@@ -132,6 +133,44 @@ export abstract class ProductCatalogePage extends BasePage {
       if (!state) continue;
 
       await card.verifyState(state);
+    }
+  }
+
+  async getCatalogeAPIState(): Promise<Product[]> {
+    const response = await this.page.waitForResponse(
+      (res) =>
+        res.url().includes(ENDPOINT_URL) &&
+        res.url().includes(ENDPOINT_API.cataloge),
+    );
+
+    const text = await response.text();
+
+    const json = JSON.parse(text.replace(/^[^(]+\(/, "").replace(/\);?$/, ""));
+
+    return json.response.products as Product[];
+  }
+
+  async verifyCatalogStateAfterFiltering(
+    products: Product[],
+    brands: string[],
+    prices: string[],
+  ): Promise<void> {
+    for (const product of products) {
+      if (brands.length > 0) {
+        expect(product.brand.some((b) => brands.includes(b))).toBeTruthy();
+      }
+
+      const priceMatches = prices.some((range) => {
+        const nums = range.match(/\d+/g);
+        if (!nums) return false;
+
+        const min = Number(nums[0]);
+        const max = nums[1] ? Number(nums[1]) : Infinity;
+
+        return product.min_price >= min && product.min_price <= max;
+      });
+
+      expect(priceMatches).toBeTruthy();
     }
   }
 

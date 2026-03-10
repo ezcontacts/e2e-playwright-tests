@@ -154,12 +154,11 @@ Scenario: Verify filter panel is displayed
 
 Scenario: Verify multiple filters applied together
   When the user applies multiple filters
-  # Then the product results should update based on all selected filters
-  # And only products matching all selected filter criteria should be displayed
-  # And the applied filters should be displayed above the product listing section
-  # When the user clicks on the remove (X) icon for an applied filter
-  # Then the selected filter should be removed
-  # And the product results should update accordingly
+  Then only products matching all selected filter criteria should be displayed
+  Then the applied filters should be displayed above the product listing section
+  When the user clicks on the remove (X) icon for an applied filter
+  Then the selected filter should be removed
+  And only products matching all selected filter criteria should be displayed
 
 Scenario: Verify filter selection persists across pagination
   When the user applies a filter

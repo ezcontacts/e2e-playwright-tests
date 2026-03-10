@@ -159,9 +159,14 @@ Then("I should see the order confirmation page", async ({ page }) => {
   console.log("Order confirmation page verified successfully.");
 });
 
+///****************************** */
 
+When("I enter card details for Logged In", async ({ cartComponent }) => {
+  await cartComponent.enterPaymentForLoggedIn(PAYMENT);
+});
 
-
-
-
-
+Then("I should see order confirmation", async ({ cartComponent }) => {
+  const orderNumber = await cartComponent.placeOrderAndVerify();
+  console.log("Order placed successfully:", orderNumber);
+  }
+);

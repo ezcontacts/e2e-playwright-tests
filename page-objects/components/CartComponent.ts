@@ -68,7 +68,7 @@ export class CartComponent extends BaseComponent {
   // =====================================================
   // 🔎 CHECKOUT TYPE DETECTION
   // =====================================================
-private async getCheckoutType(): Promise<"old" | "new"> {
+ async getCheckoutType(): Promise<"old" | "new"> {
     const url = this.page.url();
 
     if (url.includes("/checkout/shipping") || url.match("/checkout/payment")) {
@@ -281,37 +281,150 @@ async continueFromShippingIfNeeded() {
   // =====================================================
   // PLACE ORDER (OLD + NEW)
   // =====================================================
-  async placeOrderAndVerify() {
-    await this.placeOrderButton.scrollIntoViewIfNeeded();
-    await expect(this.placeOrderButton).toBeEnabled();
+ async placeOrderAndVerify() {
+  console.log("Starting order verification...");
+
+  const oldBtn = this.page.locator("#add-billing-address");
+  const newBtn = this.page.locator("#affirm-place-order");
+
+  let placeOrderBtn: Locator | null = null;
+
+  if (await oldBtn.count() > 0) {
+    placeOrderBtn = oldBtn;
+  } else if (await newBtn.count() > 0) {
+    placeOrderBtn = newBtn;
+  } else {
+    console.log("Place Order button not found, assuming already on confirmation page");
+  }
+
+  // Handle blocking modal if present
+  const blockingModal = this.page.locator("#content-blocking-modal");
+  if (await blockingModal.isVisible().catch(() => false)) {
+    console.log("Blocking modal detected, waiting for it to disappear...");
+    await blockingModal.waitFor({ state: "hidden", timeout: 60000 }).catch(() => {});
+  }
+
+  // Click place order if still present
+  if (placeOrderBtn) {
+    const visible = await placeOrderBtn.isVisible().catch(() => false);
+    const enabled = await placeOrderBtn.isEnabled().catch(() => false);
+
+    if (visible && enabled) {
+      console.log("Clicking Place Order...");
+      await placeOrderBtn.scrollIntoViewIfNeeded();
+
+      await placeOrderBtn.click({ force: true }).catch(() => {});
+    } else {
+      console.log("Button already clicked or navigation started.");
+    }
+  }
+
+console.log("Waiting for order confirmation...");
+
+// Wait until either confirmation element OR URL appears
+await Promise.race([
+  this.page.waitForURL(/\/checkout\/complete/, { timeout: 180000 }),
+  this.page.locator("a.order-detail-link").first().waitFor({ state: "visible", timeout: 180000 })
+]);
+
+// After navigation settles, locate element again (fresh DOM)
+const orderLink = this.page.locator("a.order-detail-link").first();
+
+await expect(orderLink).toBeVisible({ timeout: 60000 });
+
+const text = await orderLink.textContent();
+const orderNumber = text?.match(/\d+/)?.[0];
+
+console.log("Order confirmed:", orderNumber);
+
+return orderNumber;
+}
+///********************************* */
+async enterPaymentForLoggedIn(data: any) {
+  const currentUrl = this.page.url();
+  console.log("Current URL:", currentUrl);
+
+  // ===== OLD CHECKOUT SHIPPING PAGE =====
+  if (currentUrl.includes("/checkout/shipping")) {
+    console.log("OLD checkout detected - Shipping page");
+
+    const continueBtn = this.page.locator("#add-shipping-address");
+    await continueBtn.scrollIntoViewIfNeeded();
 
     await Promise.all([
-      this.page.waitForLoadState("networkidle"),
-      this.placeOrderButton.click(),
+      this.page.waitForURL("**/checkout/payment", { timeout: 60000 }),
+      continueBtn.click()
     ]);
-
-    await this.page.waitForTimeout(3000);
-
-    // OLD checkout confirmation
-    const oldOrderLink = this.page.locator("a.order-detail-link").first();
-    if (await oldOrderLink.count() > 0) {
-      await oldOrderLink.waitFor({ state: "visible", timeout: 180000 });
-      const text = await oldOrderLink.textContent();
-      return text?.match(/\d+/)?.[0];
-    }
-
-    // NEW checkout confirmation
-    const newHeading = this.page.locator(
-      "h3.title",
-      { hasText: /Thank You for Your Order/i }
-    ).first();
-
-    if (await newHeading.count() > 0) {
-      await newHeading.waitFor({ state: "visible", timeout: 180000 });
-      const text = await newHeading.locator("a").first().textContent();
-      return text?.match(/\d+/)?.[0];
-    }
-
-    throw new Error("Order confirmation not detected.");
   }
+
+  // ===== PAYMENT PAGE =====
+  await this.page.waitForLoadState("domcontentloaded");
+
+  const savedCardDropdown = this.page.locator("#AppProductSavedCard");
+
+  if (await savedCardDropdown.isVisible().catch(() => false)) {
+    console.log("OLD checkout - selecting saved card");
+    await savedCardDropdown.selectOption({ index: 1 });
+  } else {
+    console.log("NEW checkout detected - skipping saved card dropdown");
+  }
+
+  // ===== ENTER CVC =====
+  const cvcField = this.page.locator("#AppProductCvc").first();
+  await cvcField.waitFor({ state: "visible", timeout: 60000 });
+
+  await cvcField.click();
+  await cvcField.clear();
+  await cvcField.type(data.CVC, { delay: 200 });
+
+  await this.page.waitForTimeout(500);
+  console.log("CVC entered successfully");
+
+  // ===== PLACE ORDER BUTTON DETECTION =====
+  const oldBtn = this.page.locator("#add-billing-address");
+  const newBtn = this.page.locator("#affirm-place-order");
+
+  let placeOrderBtn: Locator | null = null;
+
+  if (await oldBtn.count() > 0) {
+    placeOrderBtn = oldBtn;
+  } else if (await newBtn.count() > 0) {
+    placeOrderBtn = newBtn;
+  }
+
+  // ===== CLICK PLACE ORDER =====
+  if (placeOrderBtn) {
+    await placeOrderBtn.scrollIntoViewIfNeeded();
+    await expect(placeOrderBtn).toBeEnabled();
+
+    console.log("Clicking Place Order...");
+    console.log("Clicking Place Order...");
+
+    // Click and wait for navigation to start
+    await Promise.all([
+    this.page.waitForLoadState("domcontentloaded"),
+    placeOrderBtn.click({ force: true })
+]);
+
+console.log("Waiting for order confirmation...");
+  }
+
+  console.log("Waiting for order confirmation page...");
+
+  // ===== WAIT FOR ORDER CONFIRMATION =====
+  const orderLink = this.page.locator("a.order-detail-link").first();
+
+  await orderLink.waitFor({
+    state: "visible",
+    timeout: 180000
+  });
+
+  const text = await orderLink.textContent();
+  const orderNumber = text?.match(/\d+/)?.[0];
+
+  console.log("Order confirmed:", orderNumber);
+
+  return orderNumber;
+}
+  
  }

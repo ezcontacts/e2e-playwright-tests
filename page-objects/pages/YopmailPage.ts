@@ -25,8 +25,6 @@ export class YopmailPage extends BasePage {
     super(page, "");
 
     this.linkBtn = this.page.locator("#ifmail");
-    this.loginField = this.page.locator("#login");
-    this.refreshBtn = this.page.locator("div[id='refreshbut']");
     // Main page
     this.loginField = this.page.locator("#login");
     this.refreshBtn = this.page.locator("div[id='refreshbut']");
@@ -44,11 +42,11 @@ export class YopmailPage extends BasePage {
   }
 
   async open(): Promise<void> {
-    await this.page.goto(this.url, {
-      timeout: 30000,
-    });
+  await this.page.goto(this.url, {
+    waitUntil: "domcontentloaded",
+  });
 
-    await this.waitForDomContentLoad();
+  await this.loginField.waitFor({ state: "visible", timeout: 60000 });
   }
 
   async verifyEmailIsExist(): Promise<void> {
@@ -63,11 +61,19 @@ export class YopmailPage extends BasePage {
     await this.refreshBtn.click();
   }
 
-  async fillLogin(value: string): Promise<void> {
-    await this.loginField.waitFor();
-    await this.loginField.click();
-    await this.loginField.fill(value);
-  }
+async fillLogin(value: string): Promise<void> {
+  await this.loginField.waitFor({ state: "visible" });
+
+  await this.loginField.fill(value);
+
+  // THIS loads the mailbox
+  await this.loginField.press("Enter");
+
+  await this.inboxFrame.locator("div.m").first().waitFor({
+    state: "visible",
+    timeout: 60000,
+  });
+}
 
 //EZSANISOFT-5409
 async openLatestEmailAndGetMagicLink(keyword: string): Promise<string> {
@@ -91,8 +97,14 @@ async openLatestEmailAndGetMagicLink(keyword: string): Promise<string> {
 }
 
 async openInbox(email: string) {
-  await this.fillLogin(email);
-  await this.clickOnRefreshBtn();
+  await this.page.goto(`https://yopmail.com/en/?login=${email}`, {
+    waitUntil: "domcontentloaded",
+  });
+
+  await this.inboxFrame.locator("div.m").first().waitFor({
+    state: "visible",
+    timeout: 60000,
+  });
 }
 
 async getMagicLinkFromLatestEmail(
@@ -151,7 +163,14 @@ async clickEmailByIndex(index: number = 0): Promise<void> {
   const email = this.emailItems.nth(index);
 
   await email.waitFor({ state: "visible", timeout: 60000 });
+
   await email.click();
+
+  // Wait for email body to load
+  await this.mailFrame.locator("body").waitFor({
+    state: "visible",
+    timeout: 60000,
+  });
 }
 
 async clickLatestEmail(): Promise<void> {

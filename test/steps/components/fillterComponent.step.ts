@@ -1,21 +1,26 @@
 import { DataTable } from "playwright-bdd";
 import { Given, When, Then } from "../../fixtures/fixture";
 import { CardState } from "../../../page-objects/components/ProductCardComponent";
+import { Product } from "../../../types/productType";
 
 let catalogState: CardState[];
-let filters: Array<string> = [];
+let filtersBrand: Array<string> = [];
+let filtersPrice: Array<string> = [];
+let apiState: Product[];
 
 When("the user applies a filter", async ({ eyeglassesPage }) => {
   await eyeglassesPage.fillter.clickOnBrandWithCountItems(30);
 });
 
 When("the user applies multiple filters", async ({ eyeglassesPage }) => {
-  filters = [];
-
-  filters.push(
-    ...(await eyeglassesPage.fillter.clickOnBrandWithCountItems(30)),
+  filtersPrice.push(
+    ...(await eyeglassesPage.fillter.clickOnPriceFilterByIndex(0)),
   );
-  filters.push(...(await eyeglassesPage.fillter.clickOnPriceFilterByIndex(0)));
+  const apiResponse = eyeglassesPage.getCatalogeAPIState();
+  const brands = await eyeglassesPage.fillter.clickOnFirstBrand();
+
+  apiState = await apiResponse;
+  filtersBrand.push(brands);
 });
 
 When(
@@ -25,9 +30,40 @@ When(
   },
 );
 
+When(
+  "the user clicks on the remove \\(X) icon for an applied filter",
+  async ({ eyeglassesPage }) => {
+    const apiResponse = eyeglassesPage.getCatalogeAPIState();
+
+    await eyeglassesPage.fillter.removeFilterByName(filtersBrand[0]);
+    apiState = await apiResponse;
+  },
+);
+
+Then(
+  "only products matching all selected filter criteria should be displayed",
+  async ({ eyeglassesPage }) => {
+    await eyeglassesPage.verifyCatalogStateAfterFiltering(
+      apiState,
+      filtersBrand,
+      filtersPrice,
+    );
+  },
+);
+
+Then("the selected filter should be removed", async ({ eyeglassesPage }) => {
+  await eyeglassesPage.fillter.verifyAppliedFilterIsNotExist(filtersBrand[0]);
+  filtersBrand.shift();
+});
+
 Then(
   "the applied filters should be displayed above the product listing section",
-  async ({ eyeglassesPage }) => {},
+  async ({ eyeglassesPage }) => {
+    const allFilters = [...filtersBrand, ...filtersPrice];
+    for (const filter of filtersBrand) {
+      await eyeglassesPage.fillter.verifyAppliedFilterIsVisible(filter);
+    }
+  },
 );
 
 Then("no filters should remain applied", async ({ eyeglassesPage }) => {

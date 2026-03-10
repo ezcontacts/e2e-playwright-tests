@@ -237,3 +237,58 @@ Then("I should be redirected to the checkout page",
 Then("I should be redirected to checkout payment page", async ({ page }) => {
   await expect(page).toHaveURL(/\/checkout$/, { timeout: 60000 });
 });
+
+//
+// 🧾 PLACE ORDER (GENERIC)
+//
+When("I click on Place Order", async ({ cartComponent, page }) => {
+  await Promise.all([
+    page.waitForLoadState("networkidle"),
+    cartComponent.placeOrderButton.click(),
+  ]);
+});
+
+//
+// 🎉 CONFIRMATION PAGE (OLD + NEW SUPPORT)
+//
+Then("I should see the order confirmation page", async ({ page }) => {
+  await page.waitForLoadState("domcontentloaded");
+
+  const currentUrl = page.url();
+
+  // Accept multiple possible confirmation URL patterns
+  if (
+    !currentUrl.includes("success") &&
+    !currentUrl.includes("confirmation") &&
+    !currentUrl.includes("thank")
+  ) {
+    throw new Error(
+      `Not on confirmation page. Current URL: ${currentUrl}`
+    );
+  }
+
+  // Support both old + new confirmation UI
+  const confirmationMessage = page.locator(
+    "text=/thank you|order number|order #/i"
+  );
+
+  await confirmationMessage.first().waitFor({
+    state: "visible",
+    timeout: 60000,
+  });
+
+  console.log("Order confirmation page verified successfully.");
+});
+
+///****************************** */
+
+When("I enter card details for Logged In", async ({ cartComponent }) => {
+  await cartComponent.enterPaymentForLoggedIn();
+});
+
+Then("I should see order confirmation", async ({ cartComponent }) => {
+  const orderNumber = await cartComponent.placeOrderAndVerify();
+  console.log("Order placed successfully:", orderNumber);
+  }
+);
+

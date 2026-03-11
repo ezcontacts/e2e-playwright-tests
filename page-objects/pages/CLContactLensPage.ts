@@ -1,34 +1,53 @@
-import { expect, Locator, Page } from "@playwright/test";
+import { Page, Locator, expect } from "@playwright/test";
 import { BasePage } from "../base/BasePage";
 import { ENDPOINT } from "../../constant/endpoint";
 
 export class CLContactLensPage extends BasePage {
+
+  // Locators
   readonly productBrand: Locator;
   readonly productName: Locator;
+  readonly pageHeading: Locator;
+  
 
   constructor(page: Page) {
-    super(page, ENDPOINT.contactLenses);
+  super(page, ENDPOINT.contactLenses);
 
-    this.productBrand = this.page.locator('[data-testid="product-brand"]');
-    this.productName = this.page.locator('[data-testid="product-name"]');
+
+  this.pageHeading = page.getByRole("heading", {
+      name: "Enter Prescription",
+    });
+
+this.productBrand = this.locator('xpath=/html/body/div[5]/div[1]/div/div[2]/div[2]/div[1]/h5');
+this.productName = this.locator('xpath=/html/body/div[5]/div[1]/div/div[2]/div[2]/div[1]/div[2]/div[1]/h2');
+
   }
 
-  async navigateToProductDetailPage(): Promise<void> {
-    // TODO by Potrys M: endpoint should be hold in endpoint.ts
-    await this.page.goto('/contact-lenses/sample-product');
+  // Navigation to product detail page
+  async openProductDetailPage(pageName: string): Promise<void> {
+    if (pageName === "Contact Lenses") {
+      await this.page.goto("/contact-lenses");
+    }
   }
 
-  async waitForPageToLoad(): Promise<void> {
-    await this.productName.waitFor({ state: 'visible' });
+  // Dynamic text verification
+  text = (text: string) => this.page.getByText(text, { exact: true });
+
+  async verifyTextVisible(textToVerify: string): Promise<void> {
+    const text = this.text(textToVerify);
+    await expect(text).toBeVisible();
   }
 
-  // TODO by Potrys M: locators already readonly have readonly modifier and this getter makes no sense.
-  getProductBrand(): Locator {
-    return this.productBrand;
+  async verifyProductBrandVisible(): Promise<void> {
+    await expect(this.productBrand).toBeVisible();
   }
 
-  // TODO by Potrys M: locators already readonly have readonly modifier and this getter makes no sense.
-  getProductName(): Locator {
-    return this.productName;
+  async verifyProductNameVisible(): Promise<void> {
+    await expect(this.productName).toBeVisible();
+  }
+
+  async verifyProductDetailPageLoaded(): Promise<void> {
+    await expect(this.page).toHaveURL(/contact-lenses/);
+    await expect(this.pageHeading).toBeVisible();
   }
 }

@@ -72,6 +72,43 @@
   },
   "suites": [
     {
+      "title": "test\\generated\\desktop\\test\\features\\.generation\\cataloge\\clContactLens.feature.spec.js",
+      "file": "test/generated/desktop/test/features/.generation/cataloge/clContactLens.feature.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Contact Lens Product Detail Page",
+          "file": "test/generated/desktop/test/features/.generation/cataloge/clContactLens.feature.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Verify product title and brand are displayed",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "3557dd16f32007037848-bec50cab5c69055c0689",
+              "file": "test/generated/desktop/test/features/.generation/cataloge/clContactLens.feature.spec.js",
+              "line": 17,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
       "title": "test\\generated\\desktop\\test\\features\\.generation\\cataloge\\pagination.contact-lenses.feature.spec.js",
       "file": "test/generated/desktop/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
       "column": 0,
@@ -3906,6 +3943,43 @@
               "id": "482898b84c13b406d534-fc70fcd6cc04731810cc",
               "file": "test/generated/desktop/test/features/special/vision_test.feature.spec.js",
               "line": 41,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "test\\generated\\mobile\\test\\features\\.generation\\cataloge\\clContactLens.feature.spec.js",
+      "file": "test/generated/mobile/test/features/.generation/cataloge/clContactLens.feature.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Contact Lens Product Detail Page",
+          "file": "test/generated/mobile/test/features/.generation/cataloge/clContactLens.feature.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Verify product title and brand are displayed",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "3557dd16f32007037848-e427164f36821d9fc54b",
+              "file": "test/generated/mobile/test/features/.generation/cataloge/clContactLens.feature.spec.js",
+              "line": 17,
               "column": 3
             }
           ]
@@ -7756,10 +7830,10 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-02-05T14:41:54.817Z",
-    "duration": 1323.5200000000002,
+    "startTime": "2026-03-11T06:24:43.614Z",
+    "duration": 1165.171,
     "expected": 0,
-    "skipped": 298,
+    "skipped": 300,
     "unexpected": 0,
     "flaky": 0
   }

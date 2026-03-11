@@ -97,7 +97,7 @@ async openLatestEmailAndGetMagicLink(keyword: string): Promise<string> {
 }
 
 async openInbox(email: string) {
-  await this.page.goto(`https://yopmail.com/en/?login=${email}`, {
+  await this.page.goto(`${this.url}?login=${email}`, {
     waitUntil: "domcontentloaded",
   });
 

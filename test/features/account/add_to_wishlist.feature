@@ -16,7 +16,7 @@ Scenario: Navigate to Wish List section
 
 # When the wishlist is empty.
 Scenario: Verify empty Wish List message
-//  Given the user is on the "Wish List" page
+  Given the user is on the "Wish List" page
   When the user clicks on the "Wish List" option from the My Account menu
   Then the page should display a message "There are no products in your wishlist."
   Then the following links should be visible:

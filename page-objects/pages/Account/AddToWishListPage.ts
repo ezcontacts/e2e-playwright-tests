@@ -9,17 +9,24 @@ export class AddToWishListPage extends AccountPage {
   readonly text: (text: string) => Locator;
   readonly link: (link: string) => Locator;
   readonly menu: AccountMenuComponent;
+  readonly headingWishList: Locator;
+  readonly messageText: (message: string) => Locator;
+
 
   constructor(page: Page) {
     super(page, ENDPOINT.wishlist);
 
     this.table = this.locator(".table-responsive");
-    this.column = (text: string) =>
-      this.locator(`.table-responsive th`).filter({ hasText: text });
+    this.column = (text: string) => this.locator(`.table-responsive th`).filter({ hasText: text });
     this.text = (text: string) => this.locator(`h4:has-text('${text}')`);
-    this.link = (link: string) => this.locator(`a[href*="${link}"]`);
+    // this.link = (link: string) => this.locator(`a[href*="${link}"]`);
+    this.link = (linkText: string) => this.page.getByRole("link", { name: linkText, exact: true });
 
     this.menu = new AccountMenuComponent(page);
+
+    this.headingWishList = page.getByRole("heading", { name: "Wish List" });
+    this.messageText = (message: string) => this.page.getByText(message, { exact: true });
+
   }
 
   async verifyHeadingText(expectedText: string): Promise<void> {
@@ -40,7 +47,7 @@ export class AddToWishListPage extends AccountPage {
     await expect(column).toBeVisible();
   }
 
-  //TODO by Potrys M: You can use method open() instead of navigateToWishListPage()
+  //TODO by Potrys M: You can use method open() instead of navigateToWishListPage() --PENDING
   //Navigation
   async navigateToWishListPage(): Promise<void> {
     await this.page.goto("/account/wishlist");
@@ -49,27 +56,39 @@ export class AddToWishListPage extends AccountPage {
   //Verify page loaded
   async verifyWishListPageLoaded(): Promise<void> {
     await expect(this.page).toHaveURL(/\/account\/wishlist/);
-    await expect(
-      //TODO by Potrys M: You need create Locator variable and use this locator
-      this.page.getByRole("heading", { name: "Wish List" }),
-    ).toBeVisible();
+    await expect(this.headingWishList).toBeVisible();
+
+    // await expect(
+    //   //TODO by Potrys M: You need create Locator variable and use this locator -- DONE
+    //   this.page.getByRole("heading", { name: "Wish List" }),
+    // ).toBeVisible();
+
   }
 
   //Verify empty message
   async verifyMessageVisible(message: string): Promise<void> {
-    //TODO by Potrys M: You need create Locator variable and use this locator
-    const text = this.page.getByText(message, { exact: true });
+    const text = this.messageText(message);
     await expect(text).toBeVisible();
+
+    //TODO by Potrys M: You need create Locator variable and use this locator -- DONE
+    //    const text = this.page.getByText(message, { exact: true });
+    //    await expect(text).toBeVisible();
   }
 
   async verifyMultipleLinksVisible(links: string[]): Promise<void> {
     for (const linkText of links) {
-      //TODO by Potrys M: You need create Locator variable and use this locator
-      const link = this.page.getByRole("link", {
-        name: linkText,
-        exact: true,
-      });
+      const link = this.link(linkText);
       await expect(link).toBeVisible();
     }
+    
+    // for (const linkText of links) {
+    //   //TODO by Potrys M: You need create Locator variable and use this locator  -- DONE
+    //   const link = this.page.getByRole("link", {
+    //     name: linkText,
+    //     exact: true,
+    //   });
+    //   await expect(link).toBeVisible();
+    // }
+
   }
 }

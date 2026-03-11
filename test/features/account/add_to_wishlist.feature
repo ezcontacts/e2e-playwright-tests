@@ -19,6 +19,17 @@ Scenario: Navigate to Wish List section
   And the page URL should contain "/account/wishlist"
   And the page should display the heading as "Wish List"
 
+# When the wishlist is empty.
+Scenario: Verify empty Wish List message
+  Given the user is on the "Wish List" page
+  When the user clicks on the "Wish List" option from the My Account menu
+  Then the page should display a message "There are no products in your wishlist."
+  Then the following links should be visible:
+  | Shop for Contact Lenses |
+  | Shop for Eyeglasses     |
+  | Shop for Sunglasses     | 
+
+
 # Result Count and Pagination
 @skip
 Scenario: Verify result count and pagination on Wish List page

@@ -46,6 +46,11 @@ Given('the user is on the {string} page', async ({ addToWishListPage }, pageName
   await addToWishListPage.navigateToWishListPage();
 });
 
+Given("the user is on the {string} page",async ({ addToWishListPage }) => {
+    await addToWishListPage.open();
+  }
+);
+
 Then('the page should display a message {string}',async ({ addToWishListPage }, message: string) => {
     await addToWishListPage.verifyMessageVisible(message);
   }

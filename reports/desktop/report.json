@@ -78,30 +78,77 @@
   },
   "suites": [
     {
-      "title": "test\\generated\\desktop\\test\\features\\Payment\\LoginPayPalPayment.feature.spec.js",
-      "file": "test/generated/desktop/test/features/Payment/LoginPayPalPayment.feature.spec.js",
-      "title": "test\\generated\\desktop\\test\\features\\Payment\\LoginCreditCardPayment.feature.spec.js",
-      "file": "test/generated/desktop/test/features/Payment/LoginCreditCardPayment.feature.spec.js",
+      "title": "test\\generated\\desktop\\test\\features\\.generation\\cataloge\\pagination.contact-lenses.feature.spec.js",
+      "file": "test/generated/desktop/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "Verify Logged-in checkout using PayPal",
-          "file": "test/generated/desktop/test/features/Payment/LoginPayPalPayment.feature.spec.js",
-          "title": "Verify Logged-in checkout using Credit Card",
-          "file": "test/generated/desktop/test/features/Payment/LoginCreditCardPayment.feature.spec.js",
-          "line": 4,
+          "title": "Pagination on CONTACT LENSES",
+          "file": "test/generated/desktop/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+          "line": 3,
           "column": 6,
           "specs": [
             {
-              "title": "Logged in user completes payment using PayPal",
-              "title": "Logged in user completes payment using Credit Card",
+              "title": "Verify products per CONTACT LENSES page",
               "ok": true,
               "tags": [],
               "tests": [
                 {
-                  "timeout": 280000,
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 43252,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Then the Products per page dropdown should be visible",
+                          "duration": 64
+                        },
+                        {
+                          "title": "And the default 30 products per page value should be selected",
+                          "duration": 37
+                        }
+                      ],
+                      "startTime": "2026-02-05T14:44:50.493Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Automation\\e2e-playwright-tests\\test-results\\test-features-.generation--acb28-cts-per-CONTACT-LENSES-page-desktop\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "6310675f7bff7d8e34a7-0dba645d08422723c492",
+              "file": "test/generated/desktop/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+              "line": 13,
+              "column": 3
+            },
+            {
+              "title": "Verify Sort By dropdown is displayed",
+              "ok": true,
+              "tags": [
+                "EZSANISOFT-5353"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
                   "annotations": [],
                   "expectedStatus": "passed",
                   "projectId": "desktop",
@@ -111,78 +158,28 @@
                       "workerIndex": 4,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 114799,
+                      "duration": 36362,
                       "errors": [],
-                      "stdout": [
-                        {
-                          "text": "🔗 Navigating to magic link...\n"
-                        },
-                        {
-                          "text": "✅ Magic link navigation completed\n"
-                        },
-                        {
-                          "text": "After product click URL: https://staging.ezcontacts.com/product/sunglasses/74369-74370/guess-gu-6815\n"
-                        },
-                        {
-                          "text": "After add to cart URL: https://staging.ezcontacts.com/checkout/cart\n"
-                        },
-                        {
-                          "text": "✅ Payment UI loaded\n"
-                        },
-                        {
-                          "text": "🔍 Verifying order confirmation...\n"
-                        },
-                        {
-                          "text": "✅ Order confirmation detected\n"
-                        }
-                      ],
+                      "stdout": [],
                       "stderr": [],
                       "retry": 0,
                       "steps": [
                         {
-                          "title": "Given I visit the sunglasses page",
-                          "duration": 22281
+                          "title": "Then the Sort By dropdown should be visible",
+                          "duration": 35
                         },
                         {
-                          "title": "When I click on the first product card in the list",
-                          "duration": 11046
-                        },
-                        {
-                          "title": "And I add the product to the cart",
-                          "duration": 10712
-                        },
-                        {
-                          "title": "Then I should see the success message for adding the product to the cart",
-                          "duration": 3550
-                        },
-                        {
-                          "title": "When I proceed to checkout",
-                          "duration": 7420
-                        },
-                        {
-                          "title": "Then I should be redirected to the checkout page",
-                          "duration": 1
-                        },
-                        {
-                          "title": "When I enter card details for Logged In",
-                          "duration": 14067
-                        },
-                        {
-                          "title": "And I click on Place Order",
-                          "duration": 501
-                        },
-                        {
-                          "title": "Then I should see order confirmation",
-                          "duration": 6529
+                          "title": "And the Sort By dropdown should display \"Best Match\" option as by default selected option",
+                          "duration": 21
                         }
                       ],
-                      "startTime": "2026-04-10T09:43:27.219Z",
+                      "startTime": "2026-02-05T14:48:27.683Z",
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "trace",
                           "contentType": "application/zip",
-                          "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-Payment-Logi-ce6ad-s-payment-using-Credit-Card-desktop\\trace.zip"
+                          "path": "C:\\Automation\\e2e-playwright-tests\\test-results\\test-features-.generation--6d497-rt-By-dropdown-is-displayed-desktop\\trace.zip"
                         }
                       ]
                     }
@@ -190,12 +187,9 @@
                   "status": "expected"
                 }
               ],
-              "id": "a4150483e6dd59cc7582-b6b50a43b7a0f92a0501",
-              "file": "test/generated/desktop/test/features/Payment/LoginPayPalPayment.feature.spec.js",
-              "line": 10,
-              "id": "e2295301f63da1280d0a-9ff67682f4b668b3e7e4",
-              "file": "test/generated/desktop/test/features/Payment/LoginCreditCardPayment.feature.spec.js",
-              "line": 16,
+              "id": "6310675f7bff7d8e34a7-ab5c3d09c0163e45302f",
+              "file": "test/generated/desktop/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+              "line": 85,
               "column": 3
             }
           ]
@@ -205,11 +199,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-04-10T09:43:24.302Z",
-    "duration": 124248.99100000004,
-    "expected": 1,
+    "startTime": "2026-02-05T14:44:46.819Z",
+    "duration": 486694.80000000005,
+    "expected": 8,
     "skipped": 0,
-    "unexpected": 4,
+    "unexpected": 0,
     "flaky": 0
   }
 }

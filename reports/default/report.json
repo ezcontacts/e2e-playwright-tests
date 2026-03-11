@@ -78,6 +78,43 @@
   },
   "suites": [
     {
+      "title": "test\\generated\\desktop\\test\\features\\.generation\\cataloge\\clContactLens.feature.spec.js",
+      "file": "test/generated/desktop/test/features/.generation/cataloge/clContactLens.feature.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Contact Lens Product Detail Page",
+          "file": "test/generated/desktop/test/features/.generation/cataloge/clContactLens.feature.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Verify product title and brand are displayed",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "3557dd16f32007037848-bec50cab5c69055c0689",
+              "file": "test/generated/desktop/test/features/.generation/cataloge/clContactLens.feature.spec.js",
+              "line": 17,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
       "title": "test\\generated\\desktop\\test\\features\\Payment\\Payment.feature.spec.js",
       "file": "test/generated/desktop/test/features/Payment/Payment.feature.spec.js",
       "column": 0,
@@ -104,85 +141,1907 @@
                   "expectedStatus": "passed",
                   "projectId": "desktop",
                   "projectName": "desktop",
-                  "results": [
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1caa30625981e0ede4f9-0365a8402b6656cefac6",
+              "file": "test/generated/desktop/test/features/account/_login_with_yopmail.feature.spec.js",
+              "line": 4,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "test\\generated\\desktop\\test\\features\\account\\my_account_content.feature.spec.js",
+      "file": "test/generated/desktop/test/features/account/my_account_content.feature.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Verify the content of the My Account page",
+          "file": "test/generated/desktop/test/features/account/my_account_content.feature.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Verify navigation to My Account page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "9de3ccad4307cfbe1895-ea19e6d11824859d925b",
+              "file": "test/generated/desktop/test/features/account/my_account_content.feature.spec.js",
+              "line": 25,
+              "column": 3
+            },
+            {
+              "title": "Verify My Account page labels and menu options",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "9de3ccad4307cfbe1895-df312619fea3b11afb87",
+              "file": "test/generated/desktop/test/features/account/my_account_content.feature.spec.js",
+              "line": 38,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "test\\generated\\desktop\\test\\features\\account\\my_account_ez_point.feature.spec.js",
+      "file": "test/generated/desktop/test/features/account/my_account_ez_point.feature.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Account - Ez Points",
+          "file": "test/generated/desktop/test/features/account/my_account_ez_point.feature.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Navigate to Ez Points section",
+              "ok": true,
+              "tags": [
+                "EZSANISOFT-5387"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "2c958f9aad2ee3b1cf14-1b2332caae15d440ce69",
+              "file": "test/generated/desktop/test/features/account/my_account_ez_point.feature.spec.js",
+              "line": 24,
+              "column": 3
+            },
+            {
+              "title": "Verify Ez Points page title",
+              "ok": true,
+              "tags": [
+                "EZSANISOFT-5387"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "2c958f9aad2ee3b1cf14-44ba927ababd34d315db",
+              "file": "test/generated/desktop/test/features/account/my_account_ez_point.feature.spec.js",
+              "line": 38,
+              "column": 3
+            },
+            {
+              "title": "Verify Ez Points transaction list is displayed",
+              "ok": true,
+              "tags": [
+                "EZSANISOFT-5387"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "2c958f9aad2ee3b1cf14-98685faf77c099aee506",
+              "file": "test/generated/desktop/test/features/account/my_account_ez_point.feature.spec.js",
+              "line": 48,
+              "column": 3
+            }
+          ],
+          "suites": [
+            {
+              "title": "Verify Ez Points transaction table columns",
+              "file": "test/generated/desktop/test/features/account/my_account_ez_point.feature.spec.js",
+              "line": 58,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Example #1",
+                  "ok": true,
+                  "tags": [
+                    "EZSANISOFT-5387"
+                  ],
+                  "tests": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 100325,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.container > .success-msg').filter({ hasText: 'You have successfully logged in.' })\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for locator('.container > .success-msg').filter({ hasText: 'You have successfully logged in.' })\u001b[22m\n\u001b[2m    - waiting for\" https://staging.ezcontacts.com/account/sign-in\" navigation to finish...\u001b[22m\n\u001b[2m    - navigated to \"https://staging.ezcontacts.com/account/sign-in\"\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.container > .success-msg').filter({ hasText: 'You have successfully logged in.' })\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for locator('.container > .success-msg').filter({ hasText: 'You have successfully logged in.' })\u001b[22m\n\u001b[2m    - waiting for\" https://staging.ezcontacts.com/account/sign-in\" navigation to finish...\u001b[22m\n\u001b[2m    - navigated to \"https://staging.ezcontacts.com/account/sign-in\"\u001b[22m\n\n    at MessageComponent.verifyConfirmationMessage (D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\SuccessMessageComponent.ts:15:30)\n    at Object.<anonymous> (D:\\EZ Project\\e2e-playwright-tests\\test\\steps\\pages\\payment.step.ts:52:27)\n    at D:\\EZ Project\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\Payment\\Payment.feature.spec.js:10:5",
-                        "location": {
-                          "file": "D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\SuccessMessageComponent.ts",
-                          "column": 30,
-                          "line": 15
-                        },
-                        "snippet": "\u001b[90m   at \u001b[39mpage-objects\\components\\SuccessMessageComponent.ts:15\n\n\u001b[0m \u001b[90m 13 |\u001b[39m   \u001b[36masync\u001b[39m verifyConfirmationMessage(expected\u001b[33m:\u001b[39m string)\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\n \u001b[90m 14 |\u001b[39m     \u001b[36mconst\u001b[39m msgLocator \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mconfirmationMessage\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m expected })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 15 |\u001b[39m     \u001b[36mawait\u001b[39m expect(msgLocator)\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 16 |\u001b[39m     \u001b[36mawait\u001b[39m expect(msgLocator)\u001b[33m.\u001b[39mtoContainText(expected)\u001b[33m;\u001b[39m\n \u001b[90m 17 |\u001b[39m   }\n \u001b[90m 18 |\u001b[39m }\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\SuccessMessageComponent.ts",
-                            "column": 30,
-                            "line": 15
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.container > .success-msg').filter({ hasText: 'You have successfully logged in.' })\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for locator('.container > .success-msg').filter({ hasText: 'You have successfully logged in.' })\u001b[22m\n\u001b[2m    - waiting for\" https://staging.ezcontacts.com/account/sign-in\" navigation to finish...\u001b[22m\n\u001b[2m    - navigated to \"https://staging.ezcontacts.com/account/sign-in\"\u001b[22m\n\n\n\u001b[90m   at \u001b[39mpage-objects\\components\\SuccessMessageComponent.ts:15\n\n\u001b[0m \u001b[90m 13 |\u001b[39m   \u001b[36masync\u001b[39m verifyConfirmationMessage(expected\u001b[33m:\u001b[39m string)\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\n \u001b[90m 14 |\u001b[39m     \u001b[36mconst\u001b[39m msgLocator \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mconfirmationMessage\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m expected })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 15 |\u001b[39m     \u001b[36mawait\u001b[39m expect(msgLocator)\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 16 |\u001b[39m     \u001b[36mawait\u001b[39m expect(msgLocator)\u001b[33m.\u001b[39mtoContainText(expected)\u001b[33m;\u001b[39m\n \u001b[90m 17 |\u001b[39m   }\n \u001b[90m 18 |\u001b[39m }\u001b[0m\n\u001b[2m    at MessageComponent.verifyConfirmationMessage (D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\SuccessMessageComponent.ts:15:30)\u001b[22m\n\u001b[2m    at Object.<anonymous> (D:\\EZ Project\\e2e-playwright-tests\\test\\steps\\pages\\payment.step.ts:52:27)\u001b[22m\n\u001b[2m    at D:\\EZ Project\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\Payment\\Payment.feature.spec.js:10:5\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "steps": [
-                        {
-                          "title": "Given I navigate to the login page for payment",
-                          "duration": 38646
-                        },
-                        {
-                          "title": "When User enters a Yopmail email for payment",
-                          "duration": 693
-                        },
-                        {
-                          "title": "And User clicks on the send login link button for payment",
-                          "duration": 70
-                        },
-                        {
-                          "title": "Then I should see the login success message for payment",
-                          "duration": 60019,
-                          "error": {
-                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.container > .success-msg').filter({ hasText: 'You have successfully logged in.' })\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for locator('.container > .success-msg').filter({ hasText: 'You have successfully logged in.' })\u001b[22m\n\u001b[2m    - waiting for\" https://staging.ezcontacts.com/account/sign-in\" navigation to finish...\u001b[22m\n\u001b[2m    - navigated to \"https://staging.ezcontacts.com/account/sign-in\"\u001b[22m\n",
-                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.container > .success-msg').filter({ hasText: 'You have successfully logged in.' })\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for locator('.container > .success-msg').filter({ hasText: 'You have successfully logged in.' })\u001b[22m\n\u001b[2m    - waiting for\" https://staging.ezcontacts.com/account/sign-in\" navigation to finish...\u001b[22m\n\u001b[2m    - navigated to \"https://staging.ezcontacts.com/account/sign-in\"\u001b[22m\n\n    at MessageComponent.verifyConfirmationMessage (D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\SuccessMessageComponent.ts:15:30)\n    at Object.<anonymous> (D:\\EZ Project\\e2e-playwright-tests\\test\\steps\\pages\\payment.step.ts:52:27)\n    at D:\\EZ Project\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\Payment\\Payment.feature.spec.js:10:5",
-                            "location": {
-                              "file": "D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\SuccessMessageComponent.ts",
-                              "column": 30,
-                              "line": 15
-                            },
-                            "snippet": "\u001b[90m   at \u001b[39mpage-objects\\components\\SuccessMessageComponent.ts:15\n\n\u001b[0m \u001b[90m 13 |\u001b[39m   \u001b[36masync\u001b[39m verifyConfirmationMessage(expected\u001b[33m:\u001b[39m string)\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\n \u001b[90m 14 |\u001b[39m     \u001b[36mconst\u001b[39m msgLocator \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mconfirmationMessage\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m expected })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 15 |\u001b[39m     \u001b[36mawait\u001b[39m expect(msgLocator)\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 16 |\u001b[39m     \u001b[36mawait\u001b[39m expect(msgLocator)\u001b[33m.\u001b[39mtoContainText(expected)\u001b[33m;\u001b[39m\n \u001b[90m 17 |\u001b[39m   }\n \u001b[90m 18 |\u001b[39m }\u001b[0m"
-                          }
-                        }
-                      ],
-                      "startTime": "2026-02-13T07:05:49.204Z",
+                      "timeout": 120000,
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-Payment-Paym-281aa-with-Magic-Link-via-Yopmail-desktop\\test-failed-1.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-Payment-Paym-281aa-with-Magic-Link-via-Yopmail-desktop\\error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\SuccessMessageComponent.ts",
-                        "column": 30,
-                        "line": 15
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "2c958f9aad2ee3b1cf14-5a6d5e00f1e9e5ac5535",
+                  "file": "test/generated/desktop/test/features/account/my_account_ez_point.feature.spec.js",
+                  "line": 59,
+                  "column": 5
+                },
+                {
+                  "title": "Example #2",
+                  "ok": true,
+                  "tags": [
+                    "EZSANISOFT-5387"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "2c958f9aad2ee3b1cf14-0d0610b1510ee11005fb",
+                  "file": "test/generated/desktop/test/features/account/my_account_ez_point.feature.spec.js",
+                  "line": 69,
+                  "column": 5
+                },
+                {
+                  "title": "Example #3",
+                  "ok": true,
+                  "tags": [
+                    "EZSANISOFT-5387"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "2c958f9aad2ee3b1cf14-f48fddf4f7bf6a0fc1b1",
+                  "file": "test/generated/desktop/test/features/account/my_account_ez_point.feature.spec.js",
+                  "line": 79,
+                  "column": 5
+                },
+                {
+                  "title": "Example #4",
+                  "ok": true,
+                  "tags": [
+                    "EZSANISOFT-5387"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "2c958f9aad2ee3b1cf14-493ca40e5ca12ea65a85",
+                  "file": "test/generated/desktop/test/features/account/my_account_ez_point.feature.spec.js",
+                  "line": 89,
+                  "column": 5
+                },
+                {
+                  "title": "Example #5",
+                  "ok": true,
+                  "tags": [
+                    "EZSANISOFT-5387"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "2c958f9aad2ee3b1cf14-7fd09f516f5e929c15a0",
+                  "file": "test/generated/desktop/test/features/account/my_account_ez_point.feature.spec.js",
+                  "line": 99,
+                  "column": 5
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "test\\generated\\desktop\\test\\features\\account\\my_account_settings.feature.spec.js",
+      "file": "test/generated/desktop/test/features/account/my_account_settings.feature.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "My Account - Verify The content of the Account Page",
+          "file": "test/generated/desktop/test/features/account/my_account_settings.feature.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Verify Account Settings page is displayed in view mode",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "76d4d5187108cc13b056-238f1640a5b8a61a629d",
+              "file": "test/generated/desktop/test/features/account/my_account_settings.feature.spec.js",
+              "line": 19,
+              "column": 3
+            },
+            {
+              "title": "Verify navigation to Edit Account Settings page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "76d4d5187108cc13b056-ec97303411a2abbce6f5",
+              "file": "test/generated/desktop/test/features/account/my_account_settings.feature.spec.js",
+              "line": 65,
+              "column": 3
+            },
+            {
+              "title": "Verify sections available on Edit Account Settings page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "76d4d5187108cc13b056-38b529ecf9c4f4511c00",
+              "file": "test/generated/desktop/test/features/account/my_account_settings.feature.spec.js",
+              "line": 77,
+              "column": 3
+            },
+            {
+              "title": "Verify Cancel button discards changes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "76d4d5187108cc13b056-10dddc08d82f4ca9ed6a",
+              "file": "test/generated/desktop/test/features/account/my_account_settings.feature.spec.js",
+              "line": 207,
+              "column": 3
+            },
+            {
+              "title": "Verify Save Changes button updates account details",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "76d4d5187108cc13b056-f9de7ce4e67ca64808b1",
+              "file": "test/generated/desktop/test/features/account/my_account_settings.feature.spec.js",
+              "line": 246,
+              "column": 3
+            }
+          ],
+          "suites": [
+            {
+              "title": "Verify user can edit account detail fields",
+              "file": "test/generated/desktop/test/features/account/my_account_settings.feature.spec.js",
+              "line": 125,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Example #1",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "76d4d5187108cc13b056-e961e4ea82307de860fc",
+                  "file": "test/generated/desktop/test/features/account/my_account_settings.feature.spec.js",
+                  "line": 126,
+                  "column": 5
+                },
+                {
+                  "title": "Example #2",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "76d4d5187108cc13b056-71a41a8d7291bb88da3d",
+                  "file": "test/generated/desktop/test/features/account/my_account_settings.feature.spec.js",
+                  "line": 142,
+                  "column": 5
+                },
+                {
+                  "title": "Example #3",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "76d4d5187108cc13b056-776fa55919e6e672fc15",
+                  "file": "test/generated/desktop/test/features/account/my_account_settings.feature.spec.js",
+                  "line": 158,
+                  "column": 5
+                },
+                {
+                  "title": "Example #4",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "76d4d5187108cc13b056-f0dcc3b770ec9905a537",
+                  "file": "test/generated/desktop/test/features/account/my_account_settings.feature.spec.js",
+                  "line": 174,
+                  "column": 5
+                },
+                {
+                  "title": "Example #5",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "76d4d5187108cc13b056-0e64fca242b839ed49aa",
+                  "file": "test/generated/desktop/test/features/account/my_account_settings.feature.spec.js",
+                  "line": 190,
+                  "column": 5
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "test\\generated\\desktop\\test\\features\\admin-panel\\admin_draft_orders.feature.spec.js",
+      "file": "test/generated/desktop/test/features/admin-panel/admin_draft_orders.feature.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Admin Order Management",
+          "file": "test/generated/desktop/test/features/admin-panel/admin_draft_orders.feature.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Admin create a draft order with a saved card",
+              "ok": true,
+              "tags": [
+                "admin_draft_orders",
+                "validation",
+                "desktopOnly"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c3644eea876a9db261ad-5c171f6b92fa0758ae1c",
+              "file": "test/generated/desktop/test/features/admin-panel/admin_draft_orders.feature.spec.js",
+              "line": 40,
+              "column": 3
+            },
+            {
+              "title": "Verify that Add Payment link and New pre auth section should visible when Admin user created the Draft Order",
+              "ok": true,
+              "tags": [
+                "admin_draft_orders",
+                "validation",
+                "TEST_AC-1251",
+                "desktopOnly",
+                "skip"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "C:\\Automation\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\admin-panel\\admin_draft_orders.feature.spec.js",
+                        "line": 54,
+                        "column": 8
                       }
                     }
                   ],
-                  "status": "unexpected"
+                  "expectedStatus": "skipped",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c3644eea876a9db261ad-29ff6ad356e2286b12d7",
+              "file": "test/generated/desktop/test/features/admin-panel/admin_draft_orders.feature.spec.js",
+              "line": 54,
+              "column": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "test\\generated\\desktop\\test\\features\\checkout\\add_to_cart.feature.spec.js",
+      "file": "test/generated/desktop/test/features/checkout/add_to_cart.feature.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Cart - Add products to cart",
+          "file": "test/generated/desktop/test/features/checkout/add_to_cart.feature.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Verify User can add sunglasses to cart",
+              "ok": true,
+              "tags": [
+                "add_to_cart",
+                "validation",
+                "smoke",
+                "func"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "9eb5a7e8a708f8dcdec7-e0af9d993ce9148fe902",
+              "file": "test/generated/desktop/test/features/checkout/add_to_cart.feature.spec.js",
+              "line": 4,
+              "column": 3
+            },
+            {
+              "title": "Verify User can add eyeglasses to cart",
+              "ok": true,
+              "tags": [
+                "add_to_cart",
+                "validation"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "9eb5a7e8a708f8dcdec7-683c9806b459c527d409",
+              "file": "test/generated/desktop/test/features/checkout/add_to_cart.feature.spec.js",
+              "line": 28,
+              "column": 3
+            },
+            {
+              "title": "Verify User can add contact lenses to cart",
+              "ok": true,
+              "tags": [
+                "add_to_cart",
+                "validation",
+                "func"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "9eb5a7e8a708f8dcdec7-39da65c3c9f096a3aef3",
+              "file": "test/generated/desktop/test/features/checkout/add_to_cart.feature.spec.js",
+              "line": 65,
+              "column": 3
+            },
+            {
+              "title": "Verify User can add eye care product to cart",
+              "ok": true,
+              "tags": [
+                "add_to_cart",
+                "validation"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "9eb5a7e8a708f8dcdec7-77e339e74d805e77e4dc",
+              "file": "test/generated/desktop/test/features/checkout/add_to_cart.feature.spec.js",
+              "line": 93,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "test\\generated\\desktop\\test\\features\\contact-us\\contact_us.feature.spec.js",
+      "file": "test/generated/desktop/test/features/contact-us/contact_us.feature.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Contact Us - Form Submission Confirmation",
+          "file": "test/generated/desktop/test/features/contact-us/contact_us.feature.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Submit the Contact Us form with missing required name fields",
+              "ok": true,
+              "tags": [
+                "contact_us",
+                "validation",
+                "func"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "f3dab0725e35ec12fe7f-5654c6d4f2da5bb65c62",
+              "file": "test/generated/desktop/test/features/contact-us/contact_us.feature.spec.js",
+              "line": 13,
+              "column": 3
+            },
+            {
+              "title": "Submit the Contact Us form with missing required message fields",
+              "ok": true,
+              "tags": [
+                "contact_us",
+                "validation",
+                "func"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "f3dab0725e35ec12fe7f-41491385609dc53fa77f",
+              "file": "test/generated/desktop/test/features/contact-us/contact_us.feature.spec.js",
+              "line": 34,
+              "column": 3
+            },
+            {
+              "title": "Submit the Contact Us form with missing required email fields",
+              "ok": true,
+              "tags": [
+                "contact_us",
+                "validation",
+                "func"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "f3dab0725e35ec12fe7f-898d020ec90b02b26e58",
+              "file": "test/generated/desktop/test/features/contact-us/contact_us.feature.spec.js",
+              "line": 61,
+              "column": 3
+            },
+            {
+              "title": "Submit the Contact Us form with an invalid email",
+              "ok": true,
+              "tags": [
+                "contact_us",
+                "validation",
+                "func"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "f3dab0725e35ec12fe7f-dcc9ccfad8da843b319b",
+              "file": "test/generated/desktop/test/features/contact-us/contact_us.feature.spec.js",
+              "line": 213,
+              "column": 3
+            }
+          ],
+          "suites": [
+            {
+              "title": "Verify the Contact Us form supports different topics",
+              "file": "test/generated/desktop/test/features/contact-us/contact_us.feature.spec.js",
+              "line": 85,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Example #1",
+                  "ok": true,
+                  "tags": [
+                    "contact_us",
+                    "validation",
+                    "func"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "f3dab0725e35ec12fe7f-68e76c6081eab89f7a43",
+                  "file": "test/generated/desktop/test/features/contact-us/contact_us.feature.spec.js",
+                  "line": 86,
+                  "column": 5
+                },
+                {
+                  "title": "Example #2",
+                  "ok": true,
+                  "tags": [
+                    "contact_us",
+                    "validation",
+                    "func"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "f3dab0725e35ec12fe7f-8c814deb1674d253b7e1",
+                  "file": "test/generated/desktop/test/features/contact-us/contact_us.feature.spec.js",
+                  "line": 107,
+                  "column": 5
+                },
+                {
+                  "title": "Example #3",
+                  "ok": true,
+                  "tags": [
+                    "contact_us",
+                    "validation",
+                    "func"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "f3dab0725e35ec12fe7f-480c548a5e75a4642d66",
+                  "file": "test/generated/desktop/test/features/contact-us/contact_us.feature.spec.js",
+                  "line": 128,
+                  "column": 5
+                },
+                {
+                  "title": "Example #4",
+                  "ok": true,
+                  "tags": [
+                    "contact_us",
+                    "validation",
+                    "func"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "f3dab0725e35ec12fe7f-ec86336b814b8e6dbf89",
+                  "file": "test/generated/desktop/test/features/contact-us/contact_us.feature.spec.js",
+                  "line": 149,
+                  "column": 5
+                },
+                {
+                  "title": "Example #5",
+                  "ok": true,
+                  "tags": [
+                    "contact_us",
+                    "validation",
+                    "func"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "f3dab0725e35ec12fe7f-cea49704786895a30c13",
+                  "file": "test/generated/desktop/test/features/contact-us/contact_us.feature.spec.js",
+                  "line": 170,
+                  "column": 5
+                },
+                {
+                  "title": "Example #6",
+                  "ok": true,
+                  "tags": [
+                    "contact_us",
+                    "validation",
+                    "func"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "f3dab0725e35ec12fe7f-499799bd8e5f3b992d74",
+                  "file": "test/generated/desktop/test/features/contact-us/contact_us.feature.spec.js",
+                  "line": 191,
+                  "column": 5
+                }
+              ]
+            },
+            {
+              "title": "Verify a confirmation message after form submition",
+              "file": "test/generated/desktop/test/features/contact-us/contact_us.feature.spec.js",
+              "line": 240,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Example #1",
+                  "ok": true,
+                  "tags": [
+                    "contact_us",
+                    "validation",
+                    "func"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "f3dab0725e35ec12fe7f-9c2c85fecea59514114f",
+                  "file": "test/generated/desktop/test/features/contact-us/contact_us.feature.spec.js",
+                  "line": 241,
+                  "column": 5
+                },
+                {
+                  "title": "Example #2",
+                  "ok": true,
+                  "tags": [
+                    "contact_us",
+                    "validation",
+                    "func"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "f3dab0725e35ec12fe7f-953c03fa28a81afbb0fc",
+                  "file": "test/generated/desktop/test/features/contact-us/contact_us.feature.spec.js",
+                  "line": 271,
+                  "column": 5
+                },
+                {
+                  "title": "Example #3",
+                  "ok": true,
+                  "tags": [
+                    "contact_us",
+                    "validation",
+                    "func"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "f3dab0725e35ec12fe7f-3d022153fb20b604adf2",
+                  "file": "test/generated/desktop/test/features/contact-us/contact_us.feature.spec.js",
+                  "line": 301,
+                  "column": 5
+                },
+                {
+                  "title": "Example #4",
+                  "ok": true,
+                  "tags": [
+                    "contact_us",
+                    "validation",
+                    "func"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "f3dab0725e35ec12fe7f-143d1749de9a35eb63ec",
+                  "file": "test/generated/desktop/test/features/contact-us/contact_us.feature.spec.js",
+                  "line": 331,
+                  "column": 5
+                },
+                {
+                  "title": "Example #5",
+                  "ok": true,
+                  "tags": [
+                    "contact_us",
+                    "validation",
+                    "func"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "f3dab0725e35ec12fe7f-a26f4a8ff8abcc3bf4b7",
+                  "file": "test/generated/desktop/test/features/contact-us/contact_us.feature.spec.js",
+                  "line": 361,
+                  "column": 5
+                },
+                {
+                  "title": "Example #6",
+                  "ok": true,
+                  "tags": [
+                    "contact_us",
+                    "validation",
+                    "func"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "f3dab0725e35ec12fe7f-897b86f4e35a4b5536c4",
+                  "file": "test/generated/desktop/test/features/contact-us/contact_us.feature.spec.js",
+                  "line": 391,
+                  "column": 5
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "test\\generated\\desktop\\test\\features\\faq\\faq.feature.spec.js",
+      "file": "test/generated/desktop/test/features/faq/faq.feature.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "FAQ - Section and UI verification",
+          "file": "test/generated/desktop/test/features/faq/faq.feature.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Verify the FAQ section header and description",
+              "ok": true,
+              "tags": [
+                "homePage_UI",
+                "validation"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "8a49746c522f323d5f9e-97602a5765ebe658ba34",
+              "file": "test/generated/desktop/test/features/faq/faq.feature.spec.js",
+              "line": 13,
+              "column": 3
+            },
+            {
+              "title": "Verify the \"All FAQ’s\" button redirects correctly",
+              "ok": true,
+              "tags": [
+                "homePage_UI",
+                "validation"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "8a49746c522f323d5f9e-0e2eb8a0aedd9d35229b",
+              "file": "test/generated/desktop/test/features/faq/faq.feature.spec.js",
+              "line": 27,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "test\\generated\\desktop\\test\\features\\smoke\\smoke.feature.spec.js",
+      "file": "test/generated/desktop/test/features/smoke/smoke.feature.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Smoke tests for production environment",
+          "file": "test/generated/desktop/test/features/smoke/smoke.feature.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Verify that the homepage loads correctly",
+              "ok": true,
+              "tags": [
+                "smoke",
+                "desktopOnly"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "95c258ceff76e11c52ee-ff5dced59e6c83b177f2",
+              "file": "test/generated/desktop/test/features/smoke/smoke.feature.spec.js",
+              "line": 13,
+              "column": 3
+            },
+            {
+              "title": "Verify footer sections",
+              "ok": true,
+              "tags": [
+                "smoke",
+                "desktopOnly"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "95c258ceff76e11c52ee-4b56cd835287a5f613c5",
+              "file": "test/generated/desktop/test/features/smoke/smoke.feature.spec.js",
+              "line": 48,
+              "column": 3
+            },
+            {
+              "title": "Verify that the filter works correctly",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "95c258ceff76e11c52ee-c5f296e2070c6a274925",
+              "file": "test/generated/desktop/test/features/smoke/smoke.feature.spec.js",
+              "line": 125,
+              "column": 3
+            },
+            {
+              "title": "Verify that the checkout flow works correctly",
+              "ok": true,
+              "tags": [
+                "smoke",
+                "desktopOnly"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "95c258ceff76e11c52ee-5750bc5b1cce7ba17763",
+              "file": "test/generated/desktop/test/features/smoke/smoke.feature.spec.js",
+              "line": 196,
+              "column": 3
+            },
+            {
+              "title": "Verify that the login loads correctly",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "95c258ceff76e11c52ee-ba63b7b0f662e0854c82",
+              "file": "test/generated/desktop/test/features/smoke/smoke.feature.spec.js",
+              "line": 237,
+              "column": 3
+            },
+            {
+              "title": "Verify that the contact us works correctly",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "95c258ceff76e11c52ee-fc2ff7eb9ec3b05973f6",
+              "file": "test/generated/desktop/test/features/smoke/smoke.feature.spec.js",
+              "line": 271,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "test\\generated\\desktop\\test\\features\\special\\measure_pd.feature.spec.js",
+      "file": "test/generated/desktop/test/features/special/measure_pd.feature.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Measure Pupil Distance Page - Core Sections Validation",
+          "file": "test/generated/desktop/test/features/special/measure_pd.feature.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Validate core sections of the PD page",
+              "ok": true,
+              "tags": [
+                "pd_measure",
+                "validation",
+                "func",
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "84fccee02fdbe9efb33c-b6d9f2018f3b706e0516",
+              "file": "test/generated/desktop/test/features/special/measure_pd.feature.spec.js",
+              "line": 13,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "test\\generated\\desktop\\test\\features\\special\\promotions.feature.spec.js",
+      "file": "test/generated/desktop/test/features/special/promotions.feature.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Promotion - Verify the Promotion Popup Screen",
+          "file": "test/generated/desktop/test/features/special/promotions.feature.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Check the red strip (10% OFF) is present or not",
+              "ok": true,
+              "tags": [
+                "promotions",
+                "validation",
+                "desktopOnly"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "31cb54e0f6969999e606-2110ef49347cf137cace",
+              "file": "test/generated/desktop/test/features/special/promotions.feature.spec.js",
+              "line": 21,
+              "column": 3
+            },
+            {
+              "title": "Verify validation for empty email in the promotion popup",
+              "ok": true,
+              "tags": [
+                "promotions",
+                "validation",
+                "desktopOnly"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "31cb54e0f6969999e606-808bede1c7da827de4f2",
+              "file": "test/generated/desktop/test/features/special/promotions.feature.spec.js",
+              "line": 31,
+              "column": 3
+            },
+            {
+              "title": "Verify validation for invalid email in the promotion popup",
+              "ok": true,
+              "tags": [
+                "promotions",
+                "validation",
+                "desktopOnly"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "31cb54e0f6969999e606-7db9064401fc9beabfe4",
+              "file": "test/generated/desktop/test/features/special/promotions.feature.spec.js",
+              "line": 45,
+              "column": 3
+            },
+            {
+              "title": "Verify validation for the empty mobile number in the promotion popup",
+              "ok": true,
+              "tags": [
+                "promotions",
+                "validation",
+                "desktopOnly"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "31cb54e0f6969999e606-295dadb7cb880805619e",
+              "file": "test/generated/desktop/test/features/special/promotions.feature.spec.js",
+              "line": 63,
+              "column": 3
+            },
+            {
+              "title": "Verify validation for the invalide mobile number in the promotion popup",
+              "ok": true,
+              "tags": [
+                "promotions",
+                "validation",
+                "desktopOnly"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "31cb54e0f6969999e606-336c6d5e51089eba5198",
+              "file": "test/generated/desktop/test/features/special/promotions.feature.spec.js",
+              "line": 84,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "test\\generated\\desktop\\test\\features\\special\\vision_test.feature.spec.js",
+      "file": "test/generated/desktop/test/features/special/vision_test.feature.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Online Vision Test Functionality",
+          "file": "test/generated/desktop/test/features/special/vision_test.feature.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Start a new vision test with user details",
+              "ok": true,
+              "tags": [
+                "vision_test",
+                "validation",
+                "skip"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "C:\\Automation\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\special\\vision_test.feature.spec.js",
+                        "line": 21,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "482898b84c13b406d534-4377bfb9cb9bf3b83b55",
+              "file": "test/generated/desktop/test/features/special/vision_test.feature.spec.js",
+              "line": 21,
+              "column": 8
+            },
+            {
+              "title": "Access online vision test from My Account",
+              "ok": true,
+              "tags": [
+                "vision_test",
+                "validation"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "482898b84c13b406d534-fc70fcd6cc04731810cc",
+              "file": "test/generated/desktop/test/features/special/vision_test.feature.spec.js",
+              "line": 41,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "test\\generated\\mobile\\test\\features\\.generation\\cataloge\\pagination.contact-lenses.feature.spec.js",
+      "file": "test/generated/mobile/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Pagination on CONTACT LENSES",
+          "file": "test/generated/mobile/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Verify products per CONTACT LENSES page",
+              "ok": true,
+              "tags": [
+                "EZSANISOFT-5353"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "6310675f7bff7d8e34a7-d7a32c1d9751831c6589",
+              "file": "test/generated/mobile/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+              "line": 13,
+              "column": 3
+            },
+            {
+              "title": "Verify Sort By dropdown is displayed",
+              "ok": true,
+              "tags": [
+                "EZSANISOFT-5353"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "6310675f7bff7d8e34a7-46742a757a5b4ecf12f2",
+              "file": "test/generated/mobile/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+              "line": 85,
+              "column": 3
+            }
+          ],
+          "suites": [
+            {
+              "title": "Verify Products per page dropdown selection - CONTACT LENSES",
+              "file": "test/generated/mobile/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+              "line": 27,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Example #1",
+                  "ok": true,
+                  "tags": [
+                    "EZSANISOFT-5353"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "mobile",
+                      "projectName": "mobile",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "6310675f7bff7d8e34a7-9ddf835c04847174ed01",
+                  "file": "test/generated/mobile/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+                  "line": 28,
+                  "column": 5
+                },
+                {
+                  "title": "Example #2",
+                  "ok": true,
+                  "tags": [
+                    "EZSANISOFT-5353"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "mobile",
+                      "projectName": "mobile",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "6310675f7bff7d8e34a7-f207be65b11b1d00f1f7",
+                  "file": "test/generated/mobile/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+                  "line": 42,
+                  "column": 5
+                },
+                {
+                  "title": "Example #3",
+                  "ok": true,
+                  "tags": [
+                    "EZSANISOFT-5353"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "mobile",
+                      "projectName": "mobile",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "6310675f7bff7d8e34a7-6d4b7c0abaa0fafd95ae",
+                  "file": "test/generated/mobile/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+                  "line": 56,
+                  "column": 5
+                },
+                {
+                  "title": "Example #4",
+                  "ok": true,
+                  "tags": [
+                    "EZSANISOFT-5353"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "mobile",
+                      "projectName": "mobile",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "6310675f7bff7d8e34a7-0dec85c6cd02d1fa2619",
+                  "file": "test/generated/mobile/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+                  "line": 70,
+                  "column": 5
+                }
+              ]
+            },
+            {
+              "title": "Verify Sort By dropdown selection works correctly",
+              "file": "test/generated/mobile/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+              "line": 99,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Example #1",
+                  "ok": true,
+                  "tags": [
+                    "EZSANISOFT-5353"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "mobile",
+                      "projectName": "mobile",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "6310675f7bff7d8e34a7-71dee2257808a013a9e0",
+                  "file": "test/generated/mobile/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+                  "line": 100,
+                  "column": 5
+                },
+                {
+                  "title": "Example #2",
+                  "ok": true,
+                  "tags": [
+                    "EZSANISOFT-5353"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "mobile",
+                      "projectName": "mobile",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "6310675f7bff7d8e34a7-af5074b1f601df62420e",
+                  "file": "test/generated/mobile/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+                  "line": 114,
+                  "column": 5
+                },
+                {
+                  "title": "Example #3",
+                  "ok": true,
+                  "tags": [
+                    "EZSANISOFT-5353"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "mobile",
+                      "projectName": "mobile",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "6310675f7bff7d8e34a7-ac7adf8eeb2dd3e39219",
+                  "file": "test/generated/mobile/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+                  "line": 128,
+                  "column": 5
+                },
+                {
+                  "title": "Example #4",
+                  "ok": true,
+                  "tags": [
+                    "EZSANISOFT-5353"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "mobile",
+                      "projectName": "mobile",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "6310675f7bff7d8e34a7-8f581d5b2f023fb669e4",
+                  "file": "test/generated/mobile/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+                  "line": 142,
+                  "column": 5
+                },
+                {
+                  "title": "Example #5",
+                  "ok": true,
+                  "tags": [
+                    "EZSANISOFT-5353"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "mobile",
+                      "projectName": "mobile",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "6310675f7bff7d8e34a7-171ac6c37de40c91f91b",
+                  "file": "test/generated/mobile/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+                  "line": 156,
+                  "column": 5
+                },
+                {
+                  "title": "Example #6",
+                  "ok": true,
+                  "tags": [
+                    "EZSANISOFT-5353"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "mobile",
+                      "projectName": "mobile",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "6310675f7bff7d8e34a7-87ee5e0f4ca520854898",
+                  "file": "test/generated/mobile/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
+                  "line": 170,
+                  "column": 5
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "test\\generated\\mobile\\test\\features\\.generation\\cataloge\\pagination.deals.feature.spec.js",
+      "file": "test/generated/mobile/test/features/.generation/cataloge/pagination.deals.feature.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Pagination on DEALS",
+          "file": "test/generated/mobile/test/features/.generation/cataloge/pagination.deals.feature.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Verify products per DEALS page",
+              "ok": true,
+              "tags": [
+                "EZSANISOFT-5353"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
               "id": "aac9f05ebf35061c4571-c12dca17fc78018a618d",
@@ -314,11 +2173,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-02-13T07:05:48.046Z",
-    "duration": 101731.318,
+    "startTime": "2026-02-05T14:41:54.817Z",
+    "duration": 1323.5200000000002,
     "expected": 0,
-    "skipped": 0,
-    "unexpected": 2,
+    "skipped": 298,
+    "unexpected": 0,
     "flaky": 0
   }
 }

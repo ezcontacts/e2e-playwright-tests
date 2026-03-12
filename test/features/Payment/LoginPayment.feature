@@ -3,7 +3,7 @@ Feature: Payment Login via Magic Link
   Background:
     Given I navigate to the login page for payment
 
-  @debug
+
   @payment @magic-link
   Scenario: User logs in via Yopmail magic link for payment
     When User enters a Yopmail email for payment

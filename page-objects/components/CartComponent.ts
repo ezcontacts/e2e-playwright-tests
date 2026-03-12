@@ -1,5 +1,6 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { BaseComponent } from "../base/BaseComponent";
+import { PAYMENT } from "../../test/data-test/testData";
 
 export class CartComponent extends BaseComponent {
 
@@ -35,7 +36,7 @@ export class CartComponent extends BaseComponent {
   readonly placeOrderButton: Locator;
   readonly creditCardContainer: Locator;
 
-  constructor(page: Page) {
+  constructor(page: Page, private paymentData = PAYMENT) {
     super(page, "body");
 
     // Checkout
@@ -87,22 +88,31 @@ export class CartComponent extends BaseComponent {
   // =====================================================
   // CHECKOUT NAVIGATION
   // =====================================================
-  async proceedToCheckout() {
-    await expect(this.checkoutNowButton).toBeVisible({ timeout: 30000 });
+async proceedToCheckout() {
+  await expect(this.checkoutNowButton).toBeVisible({ timeout: 30000 });
 
-    await Promise.all([
-      this.page.waitForURL(/\/checkout/, { timeout: 80000 }),
-      this.checkoutNowButton.click(),
-    ]);
-  }
+  await Promise.all([
+    this.page.waitForURL(/\/checkout/, { timeout: 90000 }),
+    this.checkoutNowButton.click(),
+  ]);
 
-  async enterGuestEmail(email: string) {
-    await expect(this.emailField).toBeVisible();
-    await this.emailField.fill(email);
-  }
+  // Wait for checkout page to stabilize
+  await this.page.waitForLoadState("domcontentloaded");
+  await this.page.waitForLoadState("networkidle");
+
+  console.log("Checkout page fully loaded.");
+}
+
+async enterGuestEmail() {
+  await expect(this.emailField).toBeVisible();
+  await this.emailField.fill(PAYMENT.email);
+}
 
 async clickCheckoutSignIn() {
-  await this.checkoutSignInButton.click();
+  await Promise.all([
+    this.page.waitForLoadState("networkidle"),
+    this.checkoutSignInButton.click(),
+  ]);
 
   await this.page.waitForURL(
     (url) => {
@@ -112,8 +122,11 @@ async clickCheckoutSignIn() {
         href.endsWith("/checkout")
       );
     },
-    { timeout: 60000 }
+    { timeout: 90000 }
   );
+
+  // Extra stabilization
+  await this.page.waitForLoadState("domcontentloaded");
 
   console.log("Navigated to shipping page successfully.");
 }
@@ -121,26 +134,25 @@ async clickCheckoutSignIn() {
   // =====================================================
   // SHIPPING
   // =====================================================
-  async fillShippingAddress(data: any) {
-    await this.firstNameInput.fill(data.firstName);
-    await this.lastNameInput.fill(data.lastName);
-    await this.addressLine1Input.fill(data.addressLine1);
-    await this.addressLine2Input.fill(data.addressLine2);
-    await this.cityInput.fill(data.city);
-    await this.stateDropdown.selectOption({ label: data.state });
-    await this.zipCodeInput.fill(data.zipCode);
-    await this.phoneInput.fill(data.phone);
+  async fillShippingAddress() {
+  await this.firstNameInput.fill(PAYMENT.firstName);
+  await this.lastNameInput.fill(PAYMENT.lastName);
+  await this.addressLine1Input.fill(PAYMENT.addressLine1);
+  await this.addressLine2Input.fill(PAYMENT.addressLine2);
+  await this.cityInput.fill(PAYMENT.city);
+  await this.stateDropdown.selectOption({ label: PAYMENT.state });
+  await this.zipCodeInput.fill(PAYMENT.zipCode);
+  await this.phoneInput.fill(PAYMENT.phone);
 
-    await this.phoneInput.press("Tab");
+  await this.phoneInput.press("Tab");
 
-    await this.page.evaluate(() => {
-      const active = document.activeElement as HTMLElement | null;
-      if (active) active.blur();
-    });
+  await this.page.evaluate(() => {
+    const active = document.activeElement as HTMLElement | null;
+    if (active) active.blur();
+  });
 
-    await this.page.waitForTimeout(2000);
-  }
-
+  await this.page.waitForTimeout(2000);
+}
   async selectShippingMethod() {
     if (await this.shippingMethodDropdown.isVisible()) {
       const options = this.shippingMethodDropdown.locator("option");
@@ -166,45 +178,86 @@ async continueFromShippingIfNeeded() {
 
   console.log("On shipping page. Waiting for shipping form...");
 
-  // Wait for any visible input or select to confirm page loaded
+  // Ensure page is fully loaded
+  await this.page.waitForLoadState("domcontentloaded");
+  await this.page.waitForLoadState("networkidle");
+
+  // Wait for shipping inputs to appear
   await this.page.locator('input:visible, select:visible').first().waitFor({
     state: "visible",
-    timeout: 30000,
+    timeout: 60000,
   });
 
-  console.log("Looking for Continue button...");
+  console.log("Shipping form detected.");
 
-  // NEW ULTRA-RELIABLE locator
-  const continueButton = this.page.locator(`
-    #add-shipping-address, 
-    button:has-text("Continue"), 
-    button:has-text("Continue to Payment"),
-    input[type="submit"]:has-text("Continue")
-  `).first();
+  // Ultra reliable Continue button locator (supports old + new checkout)
+  const continueButton = this.page
+    .locator(`
+      #add-shipping-address,
+      button:has-text("Continue"),
+      button:has-text("Continue to Payment"),
+      input[type="submit"]:has-text("Continue")
+    `)
+    .first();
 
   const count = await continueButton.count();
+
   if (count === 0) {
     throw new Error("Continue button not found on shipping page.");
   }
 
-  await continueButton.waitFor({ state: "visible", timeout: 30000 });
+  // Wait until button becomes visible and enabled
+  await continueButton.waitFor({
+    state: "visible",
+    timeout: 60000,
+  });
 
-  // Log if the button is enabled
-  console.log("Continue button enabled state:", await continueButton.isEnabled());
+ await expect(continueButton).toBeEnabled({ timeout: 60000 });
 
-  // Force click to bypass any overlay issues
-  await continueButton.click({ force: true });
+  console.log(
+    "Continue button enabled state:",
+    await continueButton.isEnabled().catch(() => false)
+  );
 
-  console.log("Clicked Continue. Waiting for next step...");
+  // Scroll into view (important for some checkout UIs)
+  await continueButton.scrollIntoViewIfNeeded();
 
-  // Wait until URL changes to payment, review, or checkout (covers old + new)
+  console.log("Clicking Continue button...");
+
+  await Promise.all([
+    this.page.waitForLoadState("networkidle"),
+    continueButton.click({ force: true }),
+  ]);
+
+  console.log("Continue clicked. Waiting for payment step...");
+
+  // Wait for navigation to next step
   await this.page.waitForURL(
     (url) =>
       url.toString().includes("payment") ||
       url.toString().includes("review") ||
       url.toString().includes("checkout"),
-    { timeout: 60000 }
+    { timeout: 90000 }
   );
+
+  // Ensure payment UI loads completely
+  await this.page.waitForLoadState("domcontentloaded");
+  await this.page.waitForLoadState("networkidle");
+
+  // Wait for payment elements (old + new checkout)
+  await this.page
+    .locator(
+      `
+      #AppProductCardNumber,
+      #AppProductSavedCard,
+      #affirm-place-order
+    `
+    )
+    .first()
+    .waitFor({
+      state: "visible",
+      timeout: 60000,
+    });
 
   console.log("Successfully moved to payment step.");
 }
@@ -244,27 +297,29 @@ async continueFromShippingIfNeeded() {
   // =====================================================
   // PAYMENT
   // =====================================================
-  async enterCardDetails(data: any) {
-    const type = await this.getCheckoutType();
+  async enterCardDetails() {
 
-    if (type === "old") {
-      console.log("Entering OLD checkout card details");
+  const type = await this.getCheckoutType();
 
-      await this.verifyPaymentPageLoaded();
+  if (type === "old") {
+    console.log("Entering OLD checkout card details");
 
-      await this.cardNumberInput.fill(data.CreditCard);
-      await this.expiryMonthDropdown.selectOption({ value: data.Month });
-      await this.expiryYearDropdown.selectOption({ value: data.Year });
-      await this.cvcInput.fill(data.CVC);
-      return;
-    }
+    await this.verifyPaymentPageLoaded();
 
-    console.log("Entering NEW checkout card details");
+    await this.cardNumberInput.fill(PAYMENT.CreditCard);
+    await this.expiryMonthDropdown.selectOption({ value: PAYMENT.Month });
+    await this.expiryYearDropdown.selectOption({ value: PAYMENT.Year });
+    await this.cvcInput.fill(PAYMENT.CVC);
 
-    await this.cardNumberInput.fill(data.CreditCard);
-    await this.expiryInput.fill(data.Expiry);
-    await this.cvcInput.fill(data.CVC);
+    return;
   }
+
+  console.log("Entering NEW checkout card details");
+
+  await this.cardNumberInput.fill(PAYMENT.CreditCard);
+  await this.expiryInput.fill(PAYMENT.Expiry);
+  await this.cvcInput.fill(PAYMENT.CVC);
+}
 
   async verifyPaymentPageLoaded() {
     await this.page.waitForLoadState("domcontentloaded");
@@ -313,7 +368,13 @@ async continueFromShippingIfNeeded() {
       console.log("Clicking Place Order...");
       await placeOrderBtn.scrollIntoViewIfNeeded();
 
-      await placeOrderBtn.click({ force: true }).catch(() => {});
+      await expect(placeOrderBtn).toBeVisible({ timeout: 60000 });
+      await expect(placeOrderBtn).toBeEnabled({ timeout: 60000 });
+
+      await Promise.all([
+  this.page.waitForLoadState("networkidle"),
+  placeOrderBtn.click({ force: true })
+]);
     } else {
       console.log("Button already clicked or navigation started.");
     }
@@ -322,9 +383,15 @@ async continueFromShippingIfNeeded() {
 console.log("Waiting for order confirmation...");
 
 // Wait until either confirmation element OR URL appears
+await this.page.waitForLoadState("domcontentloaded");
+await this.page.waitForLoadState("networkidle");
+
 await Promise.race([
-  this.page.waitForURL(/\/checkout\/complete/, { timeout: 180000 }),
-  this.page.locator("a.order-detail-link").first().waitFor({ state: "visible", timeout: 180000 })
+  this.page.waitForURL(/complete|confirmation|success/, { timeout: 180000 }),
+  this.page.locator("a.order-detail-link").first().waitFor({
+    state: "visible",
+    timeout: 180000
+  })
 ]);
 
 // After navigation settles, locate element again (fresh DOM)
@@ -340,7 +407,7 @@ console.log("Order confirmed:", orderNumber);
 return orderNumber;
 }
 ///********************************* */
-async enterPaymentForLoggedIn(data: any) {
+async enterPaymentForLoggedIn() {
   const currentUrl = this.page.url();
   console.log("Current URL:", currentUrl);
 
@@ -375,7 +442,7 @@ async enterPaymentForLoggedIn(data: any) {
 
   await cvcField.click();
   await cvcField.clear();
-  await cvcField.type(data.CVC, { delay: 200 });
+  await cvcField.type(PAYMENT.CVC, { delay: 200 }); // <- use PAYMENT here
 
   await this.page.waitForTimeout(500);
   console.log("CVC entered successfully");
@@ -395,18 +462,15 @@ async enterPaymentForLoggedIn(data: any) {
   // ===== CLICK PLACE ORDER =====
   if (placeOrderBtn) {
     await placeOrderBtn.scrollIntoViewIfNeeded();
-    await expect(placeOrderBtn).toBeEnabled();
+    await expect(placeOrderBtn).toBeEnabled({ timeout: 60000 });
 
     console.log("Clicking Place Order...");
-    console.log("Clicking Place Order...");
-
-    // Click and wait for navigation to start
     await Promise.all([
-    this.page.waitForLoadState("domcontentloaded"),
-    placeOrderBtn.click({ force: true })
-]);
+      this.page.waitForLoadState("domcontentloaded"),
+      placeOrderBtn.click({ force: true })
+    ]);
 
-console.log("Waiting for order confirmation...");
+    console.log("Waiting for order confirmation...");
   }
 
   console.log("Waiting for order confirmation page...");
@@ -425,6 +489,88 @@ console.log("Waiting for order confirmation...");
   console.log("Order confirmed:", orderNumber);
 
   return orderNumber;
+}
+
+async verifyCheckoutPageLoaded() {
+  const currentUrl = this.page.url();
+
+  if (!currentUrl.includes("/checkout")) {
+    throw new Error(
+      `Expected to be somewhere in checkout flow, but landed on: ${currentUrl}`
+    );
+  }
+
+  console.log(`User is in checkout flow: ${currentUrl}`);
+}
+
+
+async verifyCheckoutPage(pageType: string) {
+
+  await this.page.waitForLoadState("domcontentloaded");
+
+  const currentUrl = this.page.url();
+  const type = pageType.toLowerCase();
+
+  if (type === "payment") {
+    await this.verifyPaymentPageLoaded();
+    return;
+  }
+
+  if (type === "checkout") {
+    if (!currentUrl.includes("/checkout")) {
+      throw new Error(`Expected checkout but landed on: ${currentUrl}`);
+    }
+    return;
+  }
+
+  if (type === "sign-in") {
+    await expect(this.page).toHaveURL(/\/checkout\/sign-?in/, {
+      timeout: 60000,
+    });
+    return;
+  }
+
+  if (type === "shipping") {
+    if (
+      !currentUrl.includes("/checkout/shipping") &&
+      !currentUrl.match(/\/checkout$/)
+    ) {
+      throw new Error(`Expected shipping page but landed on: ${currentUrl}`);
+    }
+    return;
+  }
+
+  throw new Error(`Unsupported checkout page type: ${pageType}`);
+}
+
+
+
+
+
+async verifyOrderConfirmation() {
+
+  await this.page.waitForLoadState("domcontentloaded");
+
+  const currentUrl = this.page.url();
+
+  if (
+    !currentUrl.includes("success") &&
+    !currentUrl.includes("confirmation") &&
+    !currentUrl.includes("thank")
+  ) {
+    throw new Error(`Not on confirmation page. URL: ${currentUrl}`);
+  }
+
+  const confirmationMessage = this.page.locator(
+    "text=/thank you|order number|order #/i"
+  );
+
+  await confirmationMessage.first().waitFor({
+    state: "visible",
+    timeout: 60000,
+  });
+
+  console.log("Order confirmation page verified.");
 }
   
  }

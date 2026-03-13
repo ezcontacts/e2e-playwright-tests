@@ -24,7 +24,7 @@ export class CreateNewOrderComponent extends AdminContentPanelComponent {
     readonly stateDropdown: Locator;
     readonly zipCodeField: Locator;
     readonly phoneField: Locator;
-  }
+  };
 
   readonly addProductBtn: Locator;
   readonly startOrderProcessingBtn: Locator;
@@ -37,9 +37,15 @@ export class CreateNewOrderComponent extends AdminContentPanelComponent {
     super(page);
 
     this.shippingAddress = {
-      firstNameField: this.within("#AccountShippingAddressAddressShipName").first(),
-      lastNameField: this.within("#AccountShippingAddressAddressShipName").last(),
-      companyNameField: this.within("#AccountShippingAddressAddressShipCompany"),
+      firstNameField: this.within(
+        "#AccountShippingAddressAddressShipName",
+      ).first(),
+      lastNameField: this.within(
+        "#AccountShippingAddressAddressShipName",
+      ).last(),
+      companyNameField: this.within(
+        "#AccountShippingAddressAddressShipCompany",
+      ),
       addressLine1Field: this.within("#AccountShippingAddressAddressLine1"),
       addressLine2Field: this.within("#AccountShippingAddressAddressLine2"),
       cityField: this.within("#AccountShippingAddressAddressCity"),
@@ -49,13 +55,17 @@ export class CreateNewOrderComponent extends AdminContentPanelComponent {
     };
 
     this.addProductBtn = this.locator("#show_add_product_modal");
-    this.title = (text: string) => this.locator(`h3.hidden-xs`).filter({ hasText: text });
+    this.title = (text: string) =>
+      this.locator(`h3.hidden-xs`).filter({ hasText: text });
 
     this.emailField = this.within("#UserEmail");
 
-    this.startOrderProcessingBtn = this.locator("a.btn-success.btn-lg1.pull-right.margin-btm-10");
+    this.startOrderProcessingBtn = this.locator(
+      "a.btn-success.btn-lg1.pull-right.margin-btm-10",
+    );
 
-    this.accountLable = (label: string) => this.within(".form-group label").filter({hasText: label});
+    this.accountLable = (label: string) =>
+      this.within(".form-group label").filter({ hasText: label });
   }
 
   async enterEmail(email: string): Promise<void> {
@@ -81,14 +91,14 @@ export class CreateNewOrderComponent extends AdminContentPanelComponent {
 
     for (const [key, value] of Object.entries(data)) {
       if (value) {
-        await fieldMap[key].waitFor({ state: 'visible' });
+        await fieldMap[key].waitFor({ state: "visible" });
         await fieldMap[key].fill(value);
       }
     }
   }
 
   async selectState(value: string): Promise<void> {
-    await this.shippingAddress.stateDropdown.selectOption({ label: value }); 
+    await this.shippingAddress.stateDropdown.selectOption({ label: value });
   }
 
   async verifyTitleIsVisible(text: string): Promise<void> {
@@ -106,15 +116,21 @@ export class CreateNewOrderComponent extends AdminContentPanelComponent {
     await this.startOrderProcessingBtn.click();
   }
 
-  async verifyAndHandleDialog(text: string, isAccept: boolean = true): Promise<void> {
-    this.page.on('dialog', async dialog => {
+  async clickOnFirstPaymentMethod(): Promise<void> {
+    await this.locator(".radioLabel").first().click();
+  }
+
+  async verifyAndHandleDialog(
+    text: string,
+    isAccept: boolean = true,
+  ): Promise<void> {
+    this.page.on("dialog", async (dialog) => {
       expect(dialog.message()).toBe(text);
-      if(isAccept) {
+      if (isAccept) {
         await dialog.accept();
       } else {
         await dialog.dismiss();
       }
     });
   }
-
 }

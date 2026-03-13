@@ -28,13 +28,19 @@ When("I enter card details", async ({ cartComponent }) => {
   await cartComponent.enterCardDetails();
 });
 
-When("I click on Place Order and verify confirmation", async ({ cartComponent }) => {
-  await cartComponent.placeOrderAndVerify();
-});
+When(
+  "I click on Place Order and verify confirmation",
+  async ({ cartComponent }) => {
+    await cartComponent.placeOrderAndVerify();
+  }
+);
 
-Then("I should be redirected to the checkout {string} page", async ({ cartComponent }, pageType) => {
-  await cartComponent.verifyCheckoutPage(pageType);
-});
+Then(
+  "I should be redirected to the checkout {string} page",
+  async ({ cartComponent }, pageType) => {
+    await cartComponent.verifyCheckoutPage(pageType);
+  }
+);
 
 Then("I should see the order confirmation page", async ({ cartComponent }) => {
   await cartComponent.verifyOrderConfirmation();

@@ -85,13 +85,13 @@
       "specs": [],
       "suites": [
         {
-          "title": "Verify Payment method options and successful payment for different order types",
+          "title": "Verify Guest checkout using Credit Card",
           "file": "test/generated/desktop/test/features/Payment/GuestPayment.feature.spec.js",
           "line": 4,
           "column": 6,
           "specs": [
             {
-              "title": "Add product to cart",
+              "title": "Guest user completes payment using Credit Card",
               "ok": true,
               "tags": [],
               "tests": [
@@ -106,7 +106,7 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 124398,
+                      "duration": 141721,
                       "errors": [],
                       "stdout": [
                         {
@@ -116,46 +116,28 @@
                           "text": "After add to cart URL: https://staging.ezcontacts.com/checkout/cart\n"
                         },
                         {
-                          "text": "Checkout page fully loaded.\n"
+                          "text": "Checkout page loaded\n"
                         },
                         {
-                          "text": "Navigated to shipping page successfully.\n"
+                          "text": "Navigated to shipping page\n"
                         },
                         {
-                          "text": "On shipping page. Waiting for shipping form...\n"
+                          "text": "Waiting for shipping form...\n"
                         },
                         {
-                          "text": "Shipping form detected.\n"
+                          "text": "Shipping form filled\n"
                         },
                         {
-                          "text": "Continue button enabled state: \u001b[33mtrue\u001b[39m\n"
+                          "text": "Payment UI loaded\n"
                         },
                         {
-                          "text": "Clicking Continue button...\n"
+                          "text": "Payment UI loaded\n"
                         },
                         {
-                          "text": "Continue clicked. Waiting for payment step...\n"
+                          "text": "Payment UI loaded\n"
                         },
                         {
-                          "text": "Successfully moved to payment step.\n"
-                        },
-                        {
-                          "text": "Detected OLD checkout\n"
-                        },
-                        {
-                          "text": "Entering OLD checkout card details\n"
-                        },
-                        {
-                          "text": "Starting order verification...\n"
-                        },
-                        {
-                          "text": "Clicking Place Order...\n"
-                        },
-                        {
-                          "text": "Waiting for order confirmation...\n"
-                        },
-                        {
-                          "text": "Order confirmed: 18313\n"
+                          "text": "Order confirmed: 18376\n"
                         }
                       ],
                       "stderr": [],
@@ -163,68 +145,68 @@
                       "steps": [
                         {
                           "title": "Given I visit the sunglasses page",
-                          "duration": 66477
+                          "duration": 67389
                         },
                         {
                           "title": "When I click on the first product card in the list",
-                          "duration": 8456
+                          "duration": 9933
                         },
                         {
                           "title": "And I add the product to the cart",
-                          "duration": 10768
+                          "duration": 13693
                         },
                         {
                           "title": "Then I should see the success message for adding the product to the cart",
-                          "duration": 200
+                          "duration": 316
                         },
                         {
                           "title": "When I proceed to checkout",
-                          "duration": 5587
+                          "duration": 5113
                         },
                         {
                           "title": "Then I should be redirected to the checkout \"sign-in\" page",
-                          "duration": 44
+                          "duration": 63
                         },
                         {
                           "title": "When I enter guest user ID to proceed further",
-                          "duration": 51
+                          "duration": 67
                         },
                         {
                           "title": "And I Click on Checkout button",
-                          "duration": 4953
+                          "duration": 7404
                         },
                         {
                           "title": "Then I should be redirected to the checkout \"shipping\" page",
-                          "duration": 2
+                          "duration": 10
                         },
                         {
                           "title": "When I fill the shipping address details",
-                          "duration": 2656
+                          "duration": 2577
                         },
                         {
                           "title": "And I click on Continue to Payment",
-                          "duration": 3524
+                          "duration": 4091
                         },
                         {
                           "title": "Then I should be redirected to the checkout \"payment\" page",
-                          "duration": 2069
+                          "duration": 2879
                         },
                         {
                           "title": "When I enter card details",
-                          "duration": 389
+                          "duration": 815
                         },
                         {
                           "title": "And I click on Place Order and verify confirmation",
-                          "duration": 10553
+                          "duration": 13043
                         }
                       ],
-                      "startTime": "2026-03-12T05:00:41.201Z",
+                      "startTime": "2026-03-13T04:49:14.889Z",
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "trace",
                           "contentType": "application/zip",
-                          "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-Payment-Gues-d67ab-r-types-Add-product-to-cart-desktop\\trace.zip"
+                          "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-Payment-Gues-852a9-s-payment-using-Credit-Card-desktop\\trace.zip"
                         }
                       ]
                     }
@@ -232,7 +214,7 @@
                   "status": "expected"
                 }
               ],
-              "id": "140395e47c87232a60fe-b2a9b9b02a1f7171f5f9",
+              "id": "140395e47c87232a60fe-30f5419e0dbaeef875aa",
               "file": "test/generated/desktop/test/features/Payment/GuestPayment.feature.spec.js",
               "line": 6,
               "column": 3
@@ -249,18 +231,15 @@
       "specs": [],
       "suites": [
         {
-          "title": "Payment Login via Magic Link",
+          "title": "Verify Logged-in checkout using Credit Card",
           "file": "test/generated/desktop/test/features/Payment/LoginPayment.feature.spec.js",
           "line": 4,
           "column": 6,
           "specs": [
             {
-              "title": "User logs in via Yopmail magic link for payment",
+              "title": "Logged in user completes payment using Credit Card",
               "ok": true,
-              "tags": [
-                "payment",
-                "magic-link"
-              ],
+              "tags": [],
               "tests": [
                 {
                   "timeout": 180000,
@@ -273,7 +252,7 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 170269,
+                      "duration": 181665,
                       "errors": [],
                       "stdout": [
                         {
@@ -283,115 +262,61 @@
                           "text": "After add to cart URL: https://staging.ezcontacts.com/checkout/cart\n"
                         },
                         {
-                          "text": "Checkout page fully loaded.\n"
+                          "text": "Checkout page loaded\n"
                         },
                         {
-                          "text": "User is in checkout flow: https://staging.ezcontacts.com/checkout/shipping\n"
+                          "text": "Checkout page verified: https://staging.ezcontacts.com/checkout/shipping\n"
                         },
                         {
-                          "text": "Current URL: https://staging.ezcontacts.com/checkout/shipping\n"
+                          "text": "Payment UI loaded\n"
                         },
                         {
-                          "text": "OLD checkout detected - Shipping page\n"
-                        },
-                        {
-                          "text": "OLD checkout - selecting saved card\n"
-                        },
-                        {
-                          "text": "CVC entered successfully\n"
-                        },
-                        {
-                          "text": "Clicking Place Order...\n"
-                        },
-                        {
-                          "text": "Waiting for order confirmation...\n"
-                        },
-                        {
-                          "text": "Waiting for order confirmation page...\n"
-                        },
-                        {
-                          "text": "Order confirmed: 18314\n"
-                        },
-                        {
-                          "text": "Starting order verification...\n"
-                        },
-                        {
-                          "text": "Place Order button not found, assuming already on confirmation page\n"
-                        },
-                        {
-                          "text": "Waiting for order confirmation...\n"
-                        },
-                        {
-                          "text": "Order confirmed: 18314\n"
+                          "text": "Order confirmed: 18377\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
                       "steps": [
                         {
-                          "title": "When User enters a Yopmail email for payment",
-                          "duration": 892
-                        },
-                        {
-                          "title": "And User clicks on the send login link button for payment",
-                          "duration": 172
-                        },
-                        {
-                          "title": "And opens the Yopmail inbox for payment",
-                          "duration": 1301
-                        },
-                        {
-                          "title": "And User opens the Yopmail inbox for the email",
-                          "duration": 919
-                        },
-                        {
-                          "title": "And User navigates using the magic login link",
-                          "duration": 7760
-                        },
-                        {
-                          "title": "Then I should see the login success message for payment",
-                          "duration": 127
-                        },
-                        {
                           "title": "Given I visit the sunglasses page",
-                          "duration": 61574
+                          "duration": 61537
                         },
                         {
                           "title": "When I click on the first product card in the list",
-                          "duration": 8975
+                          "duration": 9294
                         },
                         {
                           "title": "And I add the product to the cart",
-                          "duration": 9607
+                          "duration": 11198
                         },
                         {
                           "title": "Then I should see the success message for adding the product to the cart",
-                          "duration": 4149
+                          "duration": 4349
                         },
                         {
                           "title": "When I proceed to checkout",
-                          "duration": 5612
+                          "duration": 6726
                         },
                         {
                           "title": "Then I should be redirected to the checkout page",
-                          "duration": 2
+                          "duration": 5
                         },
                         {
                           "title": "When I enter card details for Logged In",
-                          "duration": 21988
+                          "duration": 11474
                         },
                         {
                           "title": "Then I should see order confirmation",
-                          "duration": 3015
+                          "duration": 13578
                         }
                       ],
-                      "startTime": "2026-03-12T05:00:41.212Z",
+                      "startTime": "2026-03-13T04:49:14.891Z",
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "trace",
                           "contentType": "application/zip",
-                          "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-Payment-Logi-807b4-mail-magic-link-for-payment-desktop\\trace.zip"
+                          "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-Payment-Logi-21658-s-payment-using-Credit-Card-desktop\\trace.zip"
                         }
                       ]
                     }
@@ -399,9 +324,9 @@
                   "status": "expected"
                 }
               ],
-              "id": "9a7dd9660049589e74ff-ff3f6d6f3df6b68d5e6a",
+              "id": "9a7dd9660049589e74ff-2336675e63b7c6441f27",
               "file": "test/generated/desktop/test/features/Payment/LoginPayment.feature.spec.js",
-              "line": 10,
+              "line": 16,
               "column": 3
             }
           ]
@@ -411,8 +336,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-03-12T05:00:38.336Z",
-    "duration": 176483.43899999998,
+    "startTime": "2026-03-13T04:49:11.476Z",
+    "duration": 188335.60499999998,
     "expected": 2,
     "skipped": 0,
     "unexpected": 0,

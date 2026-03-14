@@ -17,3 +17,9 @@ export const ENDPOINT = {
   eqPoints: "/account/ezpoints",
   readers: "/readers",
 };
+
+export const ENDPOINT_API = {
+  cataloge: "category",
+};
+
+export const ENDPOINT_URL = "search.unbxd.io";

@@ -89,7 +89,15 @@ export class CreateNewOrderComponent extends AdminContentPanelComponent {
       phone: this.shippingAddress.phoneField,
     };
 
-    for (const [key, value] of Object.entries(data)) {
+    // for (const [key, value] of Object.entries(data)) {
+    //   if (value) {
+    //     await fieldMap[key].waitFor({ state: "visible" });
+    //     await fieldMap[key].fill(value);
+    //   }
+    // }
+    for (const key of Object.keys(fieldMap) as (keyof typeof fieldMap)[]) {
+      const value = data[key];
+
       if (value) {
         await fieldMap[key].waitFor({ state: "visible" });
         await fieldMap[key].fill(value);

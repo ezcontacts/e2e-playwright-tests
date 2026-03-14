@@ -22,7 +22,7 @@ export default defineConfig({
     headless: true,
     screenshot: "only-on-failure",
     video: "retain-on-failure",
-    trace: "on-first-retry",
+    trace: "only-on-failure",
 
     ignoreHTTPSErrors: true,
     actionTimeout: 20_000,

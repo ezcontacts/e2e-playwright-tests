@@ -8,7 +8,7 @@ export class FooterComponent extends BaseComponent {
 
   readonly contactUsTitle: (title: string) => Locator;
   readonly contactUsIcon: (icon: string) => Locator;
-  readonly contactUsTitleLink: (title: string) => Locator;
+  // readonly contactUsTitleLink: (title: string) => Locator;
 
   readonly sectionHeader: (section: string) => Locator;
   readonly link: (name: string) => Locator;
@@ -21,10 +21,10 @@ export class FooterComponent extends BaseComponent {
     this.questionContactUs = this.within(".contact-us-section p");
 
     this.contactUsTitle = (title: string) =>
-      this.within('.contact-us-list a').filter({ hasText: title });
+      this.within(".contact-us-list a").filter({ hasText: title });
 
     this.contactUsIcon = (title: string) =>
-      this.contactUsTitle(title).locator('span');
+      this.contactUsTitle(title).locator("span");
 
     this.sectionHeader = (section) =>
       this.root.locator("h3", { hasText: section });
@@ -34,7 +34,7 @@ export class FooterComponent extends BaseComponent {
         hasText: new RegExp(`^${name}$`, "i"),
       });
 
-      this.page.getAttribute
+    this.page.getAttribute;
   }
 
   async verifyPrivatePolicyIsVisible(): Promise<void> {
@@ -50,7 +50,7 @@ export class FooterComponent extends BaseComponent {
     await header.scrollIntoViewIfNeeded();
     await expect(header).toBeVisible();
 
-    if(this.isMobile()){
+    if (this.isMobile()) {
       await header.click();
     }
   }
@@ -60,27 +60,27 @@ export class FooterComponent extends BaseComponent {
     await expect(link).toBeVisible();
   }
 
-  async verifyQuestionContactUs(text: string): Promise<void>{
+  async verifyQuestionContactUs(text: string): Promise<void> {
     const question = await this.questionContactUs.innerText();
     await expect(question).toBe(text);
   }
 
-  async verifyContactUsLinkTitle(title: string): Promise<void>{
+  async verifyContactUsLinkTitle(title: string): Promise<void> {
     const link = await this.contactUsTitle(title);
     await expect(link).toBeVisible();
   }
 
-  async verifyContactUsIcon(title: string, cssClass: string): Promise<void>{
+  async verifyContactUsIcon(title: string, cssClass: string): Promise<void> {
     const icon = await this.contactUsIcon(title);
     await expect(icon).toHaveClass(new RegExp(`\\b${cssClass}\\b`));
   }
 
-  async verifyContactUsLink(title: string, linkText: string): Promise<void>{
+  async verifyContactUsLink(title: string, linkText: string): Promise<void> {
     const link = await this.contactUsTitle(title);
-    await expect(link).toHaveAttribute('href',new RegExp(linkText));
+    await expect(link).toHaveAttribute("href", new RegExp(linkText));
   }
 
-  async clickOnContactUsIcon(title: string): Promise<void>{
+  async clickOnContactUsIcon(title: string): Promise<void> {
     const icon = await this.contactUsIcon(title);
     await icon.click();
   }
@@ -89,7 +89,7 @@ export class FooterComponent extends BaseComponent {
     const header = this.sectionHeader(section);
     await header.scrollIntoViewIfNeeded();
 
-    if(this.isMobile()){
+    if (this.isMobile()) {
       await header.click();
     }
   }

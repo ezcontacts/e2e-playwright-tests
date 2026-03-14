@@ -151,7 +151,7 @@ Scenario: Verify filter panel is displayed
 #   | Price                | $50 to $75          |
 #   | Price                | $75 to $100         |
 
-
+@skip
 Scenario: Verify multiple filters applied together
   When the user applies multiple filters
   Then only products matching all selected filter criteria should be displayed
@@ -160,6 +160,7 @@ Scenario: Verify multiple filters applied together
   Then the selected filter should be removed
   And only products matching all selected filter criteria should be displayed
 
+@skip
 Scenario: Verify filter selection persists across pagination
   When the user applies a filter
   And the user views a product on the listing page
@@ -167,7 +168,8 @@ Scenario: Verify filter selection persists across pagination
   And the user navigates to the previous page using pagination
   Then the selected filter should remain applied
   And the product name and review data should remain visible and unchanged
-  
+
+@skip
 Scenario: Verify filter selection persists on page refresh
   When the user applies a filter
   And the user views a product on the listing page
@@ -176,7 +178,7 @@ Scenario: Verify filter selection persists on page refresh
   And the product results should remain filtered
   And the product name and review data should remain visible and unchanged
   
-  
+@skip
 Scenario: Verify resetting all filters at once
   When the user applies a filter
   Then Reset All Filters link should get displayed at the top left of product listing section

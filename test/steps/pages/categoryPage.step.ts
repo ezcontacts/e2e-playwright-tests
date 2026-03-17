@@ -23,7 +23,7 @@ Given(
 Given(
   "the user views a product on the listing page",
   async ({ sunglassesPage }) => {
-    catalogCardStates = await sunglassesPage.getCatalogState();
+    catalogCardStates = await sunglassesPage.getCatalogeState();
   },
 );
 

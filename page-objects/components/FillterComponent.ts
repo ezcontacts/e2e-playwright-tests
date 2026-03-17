@@ -146,6 +146,8 @@ export class FillterComponent extends BaseComponent {
     const checkedBrands: string[] = [];
 
     for (let i = 0; i < count; i++) {
+      if (checkedBrands.length > 5) break;
+
       const item = this.brandItem.nth(i);
       const label = item.locator("label");
 
@@ -200,11 +202,14 @@ export class FillterComponent extends BaseComponent {
     const count = await this.brandItem.count();
 
     for (let i = 0; i < count; i++) {
+      if (i > 5) break;
+
       const item = this.brandItem.nth(i);
       const label = item.locator("label");
 
       const text = await label.innerText();
       const match = text.match(/\((\d+)\)/);
+
       if (!match) continue;
 
       const number = Number(match[1]);

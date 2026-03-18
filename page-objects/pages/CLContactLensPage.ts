@@ -18,16 +18,9 @@ export class CLContactLensPage extends BasePage {
       name: "Enter Prescription",
     });
 
-this.productBrand = this.locator('xpath=/html/body/div[5]/div[1]/div/div[2]/div[2]/div[1]/h5');
-this.productName = this.locator('xpath=/html/body/div[5]/div[1]/div/div[2]/div[2]/div[1]/div[2]/div[1]/h2');
+this.productBrand = this.locator('.t-hide:visible > h5.product-top');
+this.productName = this.locator('.t-hide:visible h2.product-name');
 
-  }
-
-  // Navigation to product detail page
-  async openProductDetailPage(pageName: string): Promise<void> {
-    if (pageName === "Contact Lenses") {
-      await this.page.goto("/contact-lenses");
-    }
   }
 
   // Dynamic text verification

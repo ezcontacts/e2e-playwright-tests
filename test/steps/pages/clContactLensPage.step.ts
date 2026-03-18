@@ -7,20 +7,6 @@ Given(
   }
 );
 
-When(
-  "the product detail page loads successfully",
-  async ({ CLContactLensPage }) => {
-    await CLContactLensPage.verifyProductDetailPageLoaded();
-  }
-);
-
-When(
-  'the user lands on the {string} detail page',
-  async ({ CLContactLensPage }, pageName: string) => {
-    await CLContactLensPage.openProductDetailPage(pageName);
-  }
-);
-
 Then(
   'the page should display the text as {string}',
   async ({ CLContactLensPage }, text: string) => {

@@ -106,74 +106,30 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 43252,
+                      "duration": 52691,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
                       "steps": [
                         {
-                          "title": "Then the Products per page dropdown should be visible",
-                          "duration": 64
+                          "title": "When the user lands on the Contact Lenses detail page",
+                          "duration": 39524
                         },
                         {
-                          "title": "And the default 30 products per page value should be selected",
-                          "duration": 37
-                        }
-                      ],
-                      "startTime": "2026-02-05T14:44:50.493Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "C:\\Automation\\e2e-playwright-tests\\test-results\\test-features-.generation--acb28-cts-per-CONTACT-LENSES-page-desktop\\trace.zip"
-                        }
-                      ]
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "6310675f7bff7d8e34a7-0dba645d08422723c492",
-              "file": "test/generated/desktop/test/features/.generation/cataloge/pagination.contact-lenses.feature.spec.js",
-              "line": 13,
-              "column": 3
-            },
-            {
-              "title": "Verify Sort By dropdown is displayed",
-              "ok": true,
-              "tags": [
-                "EZSANISOFT-5353"
-              ],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "desktop",
-                  "projectName": "desktop",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 36362,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "steps": [
-                        {
-                          "title": "Then the Sort By dropdown should be visible",
-                          "duration": 35
+                          "title": "And I click on the first product card in the list",
+                          "duration": 8828
                         },
                         {
-                          "title": "And the Sort By dropdown should display \"Best Match\" option as by default selected option",
-                          "duration": 21
+                          "title": "Then the product brand should be visible",
+                          "duration": 458
+                        },
+                        {
+                          "title": "And the product name should be visible",
+                          "duration": 540
                         }
                       ],
-                      "startTime": "2026-02-05T14:48:27.683Z",
+                      "startTime": "2026-03-18T06:52:40.517Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -199,9 +155,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-02-05T14:44:46.819Z",
-    "duration": 486694.80000000005,
-    "expected": 8,
+    "startTime": "2026-03-18T06:52:37.169Z",
+    "duration": 58889.848,
+    "expected": 1,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

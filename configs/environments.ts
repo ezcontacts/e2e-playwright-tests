@@ -6,6 +6,7 @@ export enum Environment {
   dev = "dev",
   stage = "stage",
   prod = "prod",
+  preprod = "preprod",
   // other environment ...
 }
 
@@ -20,6 +21,9 @@ export const environmentConfig: {
   },
   prod: {
     baseUrl: "https://www.ezcontacts.com",
+  },
+  preprod: {
+    baseUrl: "https://preprod.ezcontacts.com",
   },
   // other environment ...
 };

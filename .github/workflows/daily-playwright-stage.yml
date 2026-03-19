@@ -6,10 +6,15 @@ on:
     - cron: "0 0 * * *"
 
 jobs:
-  desktop:
-    name: Desktop Tests
+  tests:
+    name: Tests (${{ matrix.project }} - ${{ matrix.env }})
     runs-on: ubuntu-latest
     continue-on-error: true
+
+    strategy:
+      matrix:
+        env: [stage, preprod]
+        project: [desktop, mobile]
 
     env:
       CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
@@ -17,7 +22,7 @@ jobs:
       ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
       ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
       SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-      ENV: stage
+      ENV: ${{ matrix.env }}
 
     steps:
       - uses: actions/checkout@v4
@@ -28,30 +33,29 @@ jobs:
 
       - run: npm ci
       - run: npx playwright install --with-deps
-      - run: npm run desktop
 
-      - name: Upload Desktop HTML Report
+      - name: Run tests
+        run: npm run ${{ matrix.project }}
+
+      - name: Upload HTML Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-html-desktop-${{ github.run_number }}
-          path: |
-            playwright-report/desktop
-            playwright-report/desktop/assets
+          name: playwright-html-${{ matrix.project }}-${{ matrix.env }}-${{ github.run_number }}
+          path: playwright-report/${{ matrix.project }}
           if-no-files-found: ignore
-          retention-days: 7
 
-      - name: Upload Desktop JSON report
+      - name: Upload JSON report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-desktop-json
-          path: reports/desktop/report.json
+          name: playwright-json-${{ matrix.project }}-${{ matrix.env }}
+          path: reports/${{ matrix.project }}/report.json
 
-      - name: Send Desktop Slack report
+      - name: Send Slack report
         if: always()
         run: |
-          JSON="reports/desktop/report.json"
+          JSON="reports/${{ matrix.project }}/report.json"
           RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           ARTIFACT_URL="$RUN_URL#artifacts"
 
@@ -65,7 +69,7 @@ jobs:
           SKIPPED=$(jq '[.. | objects | .results? // empty | .[] | select(.status=="skipped")] | length' "$JSON")
           TOTAL=$((PASSED + FAILED + SKIPPED))
 
-          MESSAGE="*Playwright BDD — Desktop*
+          MESSAGE="*Playwright BDD — ${{ matrix.project }}*
           *ENV:* $ENV
           *Total:* $TOTAL
           ✅ Passed: $PASSED
@@ -74,84 +78,10 @@ jobs:
 
           <$ARTIFACT_URL|📦 Download report>"
 
-          curl -s -X POST \
-            -H "Authorization: Bearer $SLACK_BOT_TOKEN" \
-            -H "Content-Type: application/json; charset=utf-8" \
-            --data "{\"channel\":\"C0A1W3PEFG9\",\"text\":\"$MESSAGE\"}" \
-            https://slack.com/api/chat.postMessage
-
-  mobile:
-    name: Mobile Tests
-    runs-on: ubuntu-latest
-    needs: desktop
-    continue-on-error: true
-
-    env:
-      CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
-      CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
-      ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
-      ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
-      SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-      ENV: stage
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - run: npm ci
-      - run: npx playwright install --with-deps
-      - run: npm run mobile
-
-      - name: Upload Mobile HTML Report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-html-mobile-${{ github.run_number }}
-          path: |
-            playwright-report/mobile
-            playwright-report/mobile/assets
-          if-no-files-found: ignore
-          retention-days: 7
-
-      - name: Upload Mobile JSON report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-mobile-json
-          path: reports/mobile/report.json
-
-      - name: Send Mobile Slack report
-        if: always()
-        run: |
-          JSON="reports/mobile/report.json"
-          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-          ARTIFACT_URL="$RUN_URL#artifacts"
-
-          if [ ! -f "$JSON" ]; then
-            echo "Playwright JSON report not found"
-            exit 1
-          fi
-
-          PASSED=$(jq '[.. | objects | .results? // empty | .[] | select(.status=="passed")] | length' "$JSON")
-          FAILED=$(jq '[.. | objects | .results? // empty | .[] | select(.status=="failed")] | length' "$JSON")
-          SKIPPED=$(jq '[.. | objects | .results? // empty | .[] | select(.status=="skipped")] | length' "$JSON")
-          TOTAL=$((PASSED + FAILED + SKIPPED))
-
-          MESSAGE="*Playwright BDD — Mobile*
-          *ENV:* $ENV
-          *Total:* $TOTAL
-          ✅ Passed: $PASSED
-          ❌ Failed: $FAILED
-          ⏭ Skipped: $SKIPPED
-
-          <$ARTIFACT_URL|📦 Download report>"
+          ESCAPED_MESSAGE=$(echo "$MESSAGE" | jq -Rs .)
 
           curl -s -X POST \
             -H "Authorization: Bearer $SLACK_BOT_TOKEN" \
             -H "Content-Type: application/json; charset=utf-8" \
-            --data "{\"channel\":\"C0A1W3PEFG9\",\"text\":\"$MESSAGE\"}" \
+            --data "{\"channel\":\"C0A1W3PEFG9\",\"text\":$ESCAPED_MESSAGE}" \
             https://slack.com/api/chat.postMessage
-            

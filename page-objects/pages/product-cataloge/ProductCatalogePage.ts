@@ -144,6 +144,10 @@ export abstract class ProductCatalogePage extends BasePage {
     return await this.productCard(count - 1);
   }
 
+  async getFirstCard(): Promise<ProductCardComponent> {
+    return await this.productCard(0);
+  }
+
   async clickOnPaginationButton(num: number): Promise<void> {
     const btn = await this.paginationList(num);
     await btn.click();

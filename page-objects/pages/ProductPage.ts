@@ -17,6 +17,7 @@ export class ProductPage extends BasePage {
   readonly colorDropdown: Locator;
   readonly addToWishlist: Locator;
   readonly shipAvailability: Locator;
+  readonly specificationsBtn: Locator;
 
   readonly productDescription: (value: string) => Locator;
 
@@ -31,26 +32,27 @@ export class ProductPage extends BasePage {
     this.productTitle = this.locator("h2.product-name");
     this.priceTitle = this.locator("span.curr-price");
     this.prescriptionType = this.locator(
-      ".prescription-type-section .ezMarkLabel"
+      ".prescription-type-section .ezMarkLabel",
     );
 
     this.addCart = this.locator(
-        ".add-cart-full-wd",
-        ".visible-xs .add-to-cart-btn"
-      );
+      ".add-cart-full-wd",
+      ".visible-xs .add-to-cart-btn",
+    );
 
     this.productName = this.locator(
       "h2.product-name.margin-top-5",
-      ".col-sm-8 > .product-name"
+      ".col-sm-8 > .product-name",
     );
 
     this.price = this.locator(
       ".pdp-price .curr-price",
-      ".mobilePrice-ash + .curr-price"
+      ".mobilePrice-ash + .curr-price",
     );
 
     this.productImage = this.locator("#zoom-img", "img.main-img-zoom");
     this.colorDropdown = this.locator("select#new-color");
+    this.specificationsBtn = this.locator("#specsLinkId");
 
     this.productDescription = (value: string) => {
       return this.locator(".product-description").getByText(value);
@@ -64,7 +66,7 @@ export class ProductPage extends BasePage {
     this.coating = new CoatingComponent(page);
     this.lensColor = new LensColorComponent(
       this.page,
-      this.getPlatformSelector("li#step-7", "#step-7") as string
+      this.getPlatformSelector("li#step-7", "#step-7") as string,
     );
   }
 
@@ -78,6 +80,10 @@ export class ProductPage extends BasePage {
 
   async clickOnPrescriptionType(index: number): Promise<void> {
     await this.prescriptionType.nth(index).click();
+  }
+
+  async clickOnSpecificationsBtn(): Promise<void> {
+    await this.specificationsBtn.click();
   }
 
   async verifyProductTitleIsVisible(): Promise<void> {

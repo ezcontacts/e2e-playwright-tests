@@ -20,7 +20,7 @@ When(
     await productPage.prescriptionDetails.rightEye.selectSphereValue(1);
     await productPage.prescriptionDetails.rightEye.selectCylinderValue(1);
     await productPage.prescriptionDetails.rightEye.selectAxisValue(1);
-  }
+  },
 );
 
 When(
@@ -29,7 +29,7 @@ When(
     await productPage.prescriptionDetails.leftEye.selectSphereValue(1);
     await productPage.prescriptionDetails.leftEye.selectCylinderValue(1);
     await productPage.prescriptionDetails.leftEye.selectAxisValue(1);
-  }
+  },
 );
 
 When(
@@ -39,7 +39,7 @@ When(
     await productPage.prescriptionDetails.clickOnContinueBtn();
 
     await productPage.lensMaterial.setLensMaterial(
-      LensType.SuperThinHiIndex167
+      LensType.SuperThinHiIndex167,
     );
     await productPage.lensMaterial.clickOnContinueBtn();
 
@@ -48,7 +48,7 @@ When(
 
     await productPage.lensColor.setLensColor(LensColorType.Clear);
     await productPage.lensColor.clickOnCompliteBtn();
-  }
+  },
 );
 
 Then("I should see the product title", async ({ productPage }) => {
@@ -68,14 +68,15 @@ Then("I should see the frame color dropdown", async ({ productPage }) => {
 });
 
 Then("I should see the size information", async ({ productPage }) => {
+  await productPage.clickOnSpecificationsBtn();
   await productPage.verifyProductDescriptionIsVisible(
-    PRODUCT.productDescription.bridgeWidth
+    PRODUCT.productDescription.bridgeWidth,
   );
   await productPage.verifyProductDescriptionIsVisible(
-    PRODUCT.productDescription.lensWidth
+    PRODUCT.productDescription.lensWidth,
   );
   await productPage.verifyProductDescriptionIsVisible(
-    PRODUCT.productDescription.armLength
+    PRODUCT.productDescription.armLength,
   );
 });
 
@@ -83,14 +84,14 @@ Then(
   'I should see the "Add to Cart" button',
   async ({ productPage }, value) => {
     await productPage.verifyAddToCartBtnIsVisible();
-  }
+  },
 );
 
 Then(
   'I should see the "Add to Wishlist" button',
   async ({ productPage }, value) => {
     await productPage.verifyAddToWishlistBtnIsVisible();
-  }
+  },
 );
 
 Then("I should see shipping availability text", async ({ productPage }) => {
@@ -99,14 +100,12 @@ Then("I should see shipping availability text", async ({ productPage }) => {
 
 Then(
   "I should see the Affirm badge if product price is over $50",
-  async ({ productPage }) => {}
+  async ({ productPage }) => {},
 );
 
 Then(
   "I should see the success message for adding the product to the cart",
   async ({ cartPage }) => {
-    await cartPage.message.verifyConfirmationMessage(
-      MESSAGE.successAddToCart
-    );
-  }
+    await cartPage.message.verifyConfirmationMessage(MESSAGE.successAddToCart);
+  },
 );

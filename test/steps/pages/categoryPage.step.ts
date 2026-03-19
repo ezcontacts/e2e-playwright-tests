@@ -146,7 +146,7 @@ Then(
 Then(
   "the review section should not be displayed",
   async ({ sunglassesPage }) => {
-    const card = await sunglassesPage.getLastCard();
+    const card = await sunglassesPage.getFirstCard();
     await card.verifyRatingIsNotExist();
     await card.verifyReviewsIsNotExist();
   },

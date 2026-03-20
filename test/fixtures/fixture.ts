@@ -29,8 +29,11 @@ import { CartComponent } from "../../page-objects/components/CartComponent";
 import { AddToWishListPage } from "../../page-objects/pages/Account/AddToWishListPage";  //added by NP
 // import { MyAccountPage } from "../../page-objects/pages/MyAccountPage"; // added by NP
 
-import { AddToWishListPage } from "../../page-objects/pages/Account/AddToWishListPage";  //added by NP
-// import { MyAccountPage } from "../../page-objects/pages/MyAccountPage"; // added by NP
+import { AddToWishListPage } from "../../page-objects/pages/Account/AddToWishListPage";  //added by NP - REMOVE THIS.
+import { WishListNavigationPage } from "../../page-objects/pages/Account/WishListNavigationPage";
+import { WishListEmptyPage } from "../../page-objects/pages/Account/WishListEmptyPage";
+import { WishListAddToCartPage } from "../../page-objects/pages/Account/WishListAddToCartPage"; 
+
 
 export type CatalogeContext = { cardsState: CardState[] };
 
@@ -58,10 +61,10 @@ export const test = bddTest.extend<{
   ezPointsPage: EzPointsPage;
   accountSettingsPage: AccountSettingsPage;
   accountInfoPage: AccountInfoPage;
-  addToWishListPage: AddToWishListPage;  //added by NP (Very good)
-  addToWishListPage: AddToWishList;
-  //addToWishListPage: AddToWishListPage;
-  addToWishListPage: AddToWishListPage;  //added by NP (Very good)
+  addToWishListPage: AddToWishListPage;  //added by NP (Very good)-REMOVE THIS.
+  wishListNavigationPage: WishListNavigationPage;
+  wishlistEmptyPage: WishListEmptyPage;
+  wishListAddToCartPage: WishListAddToCartPage;
 
   portalContext: PortalContext;
   catalogContext: CatalogeContext;
@@ -115,10 +118,10 @@ export const test = bddTest.extend<{
   accountSettingsPage: async ({ page }, use) => await use(new AccountSettingsPage(page)),
   accountInfoPage: async ({ page }, use) => await use(new AccountInfoPage(page)),
   
-  addToWishListPage: async ({ page }, use) => await use(new AddToWishListPage(page)),  //added by NP (Very good)
-  addToWishListPage: async ({ page }, use) => await use(new AddToWishList(page)),
-  //addToWishListPage: async ({ page }, use) => await use(new AddToWishListPage(page)),
-  addToWishListPage: async ({ page }, use) => await use(new AddToWishListPage(page)),  //added by NP (Very good)
+  addToWishListPage: async ({ page }, use) => await use(new AddToWishListPage(page)),  //added by NP (Very good)-REMOVE THIS.
+  wishListNavigationPage: async ({ page }, use) => await use(new WishListNavigationPage(page)),
+  wishlistEmptyPage: async ({ page }, use) => await use(new WishListEmptyPage(page)),
+  wishListAddToCartPage: async ({ page }, use) => await use(new WishListAddToCartPage(page)),
 
   //portalPage: async ({ page }, use) => await use(new PortalPage(page)),
   catalogContext: async ({}, use) => await use({ cardsState: [] }),

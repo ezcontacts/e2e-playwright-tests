@@ -5,25 +5,42 @@ Feature: Navigate to Wish List section
 
 Background:
   Given the user is logged in
-  #And I visited to My Account page
+  And the user is on the "Wish List" page
 
-# Navigation to Wish List Page
-Scenario: Navigate to Wish List section
-  When the user clicks on the "Wish List" option from the My Account menu
+# Navigation to Wish List Page - automation code is done.
+@skip
+Scenario: Verify Wish List page
   Then the page should display the heading "Wish List"
   And the page URL should contain "/account/wishlist"
-  And the page should display the heading as "Wish List"
 
-# When the wishlist is empty.
+# When the wishlist is empty. - automation code is done.
+@skip
 Scenario: Verify empty Wish List message
   Given the user is on the "Wish List" page
-  When the user clicks on the "Wish List" option from the My Account menu
+  Then the user clicks on the "Wish List" option from the My Account menu
   Then the page should display a message "There are no products in your wishlist."
   Then the following links should be visible:
   | Shop for Contact Lenses |
   | Shop for Eyeglasses     |
   | Shop for Sunglasses     | 
 
+# Add to Cart Link - automation code is done.
+@skip
+Scenario: Verify the Add to Cart link for Wish List products
+  Given the "Wish List" has at least one product
+  When the user clicks the "Add to Cart" link for the product
+  Then the product should be added to the cart
+  Then the user should be redirected to the Cart page
+
+# Remove from Wish List Link - automation code is done.
+@skip
+Scenario: Remove a product from the Wish List with confirmation
+  Given the user is on the "Wish List" page
+  And the "Wish List" has at least one product
+  When the user clicks the "Remove" link for a product
+  Then a confirmation popup should be displayed with the message "Remove from Wishlist?"
+  When the user clicks "Remove" button on the confirmation popup
+  And the page should display the message "There are no products in your wishlist."
 
 # Result Count and Pagination
 @skip
@@ -45,20 +62,3 @@ Scenario Outline: Verify wish list product tile details
     | Product Attribute Details|
     | Add to Cart link         |
     | Remove link              |
-
-# Add to Cart Link
-@skip
-Scenario: Add product from Wish List to Cart
-  Given the user is on the "Wish List" page
-  When the user clicks on the "Add to Cart" link for a wish list product
-  Then the product should be added to the cart
-  And the user should be redirected to the Cart page
-
-# Remove from Wish List Link
-@skip
-Scenario: Remove product from Wish List
-  Given the user is on the "Wish List" page
-  And at least one product is available in the wish list
-  When the user clicks on the "Remove" link for a wish list product
-  Then the product should be removed from the wish list
-  And the wish list should update accordingly

@@ -13,20 +13,26 @@ export class PromotionComponent extends BaseComponent {
   readonly errorMessage: Locator;
   readonly legalInformation: Locator;
 
-  constructor(page: Page, root: string | LocatorConfig = {iframe: "iframe#attentive_creative", selector: "#contentframe"}) {
+  constructor(
+    page: Page,
+    root: string | LocatorConfig = {
+      iframe: "iframe#attentive_creative",
+      selector: "#contentframe",
+    },
+  ) {
     super(page, root);
 
     this.bubbleBtn = this.locator("#page0");
     this.promoteText = this.within("#fieldcaptureheader2");
 
-    this.fullPriceBtn = this.within('#dismissbutton2header1');
-    this.emailField = this.within('#input0input')
-    this.continueBtn = this.within('#ctabutton1header1');
-    this.errorMessage = this.within('#input0input-error');
-    this.legalInformation = this.within('#legalTextLabelForCheckbox-0');
+    this.fullPriceBtn = this.within("#dismissbutton2header1");
+    this.emailField = this.within("#input0input");
+    this.continueBtn = this.within("#ctabutton1header1");
+    this.errorMessage = this.within("#input0input-error");
+    this.legalInformation = this.within("#legalTextLabelForCheckbox-0");
     this.closePromoteBtn = this.page
-        .frameLocator('iframe#attentive_creative')
-        .getByTestId('closeIcon');
+      .frameLocator("iframe#attentive_creative")
+      .getByTestId("closeIcon");
   }
 
   async clickOnBubbleBtnIfVisible(): Promise<void> {
@@ -37,30 +43,30 @@ export class PromotionComponent extends BaseComponent {
     await expect(this.promoteText).toHaveText(text);
   }
 
-  async clickOnCloseBtn(): Promise<void>{
+  async clickOnCloseBtn(): Promise<void> {
     await this.closePromoteBtn.click();
   }
 
-  async clickOnContinueBtn(): Promise<void>{
+  async clickOnContinueBtn(): Promise<void> {
     await this.continueBtn.click();
   }
 
-  async fillEmailField(text: string): Promise<void>{
+  async fillEmailField(text: string): Promise<void> {
     await this.emailField.fill(text);
   }
 
-  async verifyErrorMessage(text: string): Promise<void>{
+  async verifyErrorMessage(text: string): Promise<void> {
     await expect(this.errorMessage).toHaveText(text);
   }
 
-  async verifyLegalInformationIsVisible(): Promise<void>{
+  async verifyLegalInformationIsVisible(): Promise<void> {
     await expect(this.legalInformation).toBeVisible();
   }
 
   async closeDynamicPopupIfPresent(): Promise<void> {
-    try{
-      await this.closePromoteBtn.waitFor({timeout: 30_000});
+    try {
+      await this.closePromoteBtn.waitFor({ timeout: 10_000 });
       await this.closePromoteBtn.click();
-    }catch(e){}
+    } catch (e) {}
   }
 }

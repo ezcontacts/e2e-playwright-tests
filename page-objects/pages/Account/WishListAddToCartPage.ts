@@ -1,41 +1,37 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { AccountPage } from "./AccountPage";
 import { ENDPOINT } from "../../../constant/endpoint";
-import { AccountMenuComponent } from "../../components/AccountMenuComponent";
-import { testConfig } from "../../../configs/config";
-
 
 export class WishListAddToCartPage extends AccountPage {
-
   readonly addToCart: Locator;
   readonly items: Locator;
   readonly headingCart: Locator;
   readonly wishListIcon: Locator;
- 
+  readonly wishListMessage: Locator;
+
   constructor(page: Page) {
     super(page, ENDPOINT.wishlist);
 
     this.addToCart = this.page.getByRole("link", { name: "Add to Cart" });
     this.items = this.page.locator('a[data-form-id*="addProductToCart"]');
     this.headingCart = page.getByRole("heading", { name: "Shopping Cart" });
-    this.wishListIcon = page.locator('a.add-to-wishlist-btn');
+    this.wishListIcon = page.locator("a.add-to-wishlist-btn");
+    this.wishListMessage = this.locator(".wishlit-btn u");
+  }
 
-
-}
-  
   async clickWishListIconForFirstProduct(): Promise<void> {
-    const wishListIcon = this.wishListIcon
-    await wishListIcon.click();
+    await this.wishListIcon.hover();
+    await this.wishListMessage.click();
   }
 
   async verifyProductAddedToWishList(): Promise<void> {
     await this.ensureProductExistsInWishList();
-  } 
+  }
 
   async ensureProductExistsInWishList(): Promise<void> {
     const items = this.items;
 
-    if (await items.count() === 0) {
+    if ((await items.count()) === 0) {
       const addToCart = this.addToCart;
       await expect(addToCart).toBeVisible();
     }
@@ -53,6 +49,6 @@ export class WishListAddToCartPage extends AccountPage {
 
   async verifyRedirectedToCartPage(): Promise<void> {
     await expect(this.page).toHaveURL(/\/checkout\/cart/);
-    await expect(this.headingCart).toBeVisible();  // this line gets failed due to we need to check for the popup before this.
+    await expect(this.headingCart).toBeVisible(); // this line gets failed due to we need to check for the popup before this.
   }
 }

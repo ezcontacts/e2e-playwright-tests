@@ -142,6 +142,7 @@ export abstract class ProductCatalogePage extends BasePage {
         res.url().includes(ENDPOINT_URL) &&
         res.url().includes(ENDPOINT_API.cataloge),
     );
+    await this.promotion.closeDynamicPopupIfPresent();
 
     const text = await response.text();
 
@@ -188,6 +189,7 @@ export abstract class ProductCatalogePage extends BasePage {
   }
 
   async clickOnPaginationButton(num: number): Promise<void> {
+    await this.promotion.closeDynamicPopupIfPresent();
     const btn = await this.paginationList(num);
     await btn.click();
     await this.waitForDomContentLoad();

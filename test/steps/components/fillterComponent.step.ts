@@ -9,6 +9,7 @@ let filtersPrice: Array<string> = [];
 let apiState: Product[];
 
 When("the user applies a filter", async ({ eyeglassesPage }) => {
+  await eyeglassesPage.promotion.closeDynamicPopupIfPresent(30_000);
   await eyeglassesPage.fillter.clickOnBrandWithCountItems(30);
 });
 

@@ -65,10 +65,6 @@ export abstract class BaseEntity {
     await this.page.waitForLoadState("load");
   }
 
-  async reloadPage(): Promise<void> {
-    await this.page.reload({ waitUntil: "domcontentloaded" });
-  }
-
   async clickIfVisible(locator: Locator): Promise<void> {
     const count = await locator.count();
     if (count > 0) {

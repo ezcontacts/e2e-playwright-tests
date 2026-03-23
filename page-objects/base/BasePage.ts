@@ -11,7 +11,7 @@ export abstract class BasePage extends BaseEntity {
 
   readonly header: HeaderComponent;
   readonly footer: FooterComponent;
-  readonly promotion: PromotionComponent
+  readonly promotion: PromotionComponent;
 
   constructor(page: Page, endpoint: string) {
     super(page);
@@ -26,12 +26,17 @@ export abstract class BasePage extends BaseEntity {
     await this.openByEndpoint(this.endpoint);
   }
 
-  async openByEndpoint(endpoint: string): Promise<void>{
+  async openByEndpoint(endpoint: string): Promise<void> {
     await this.page.goto(`${testConfig.baseUrl}${endpoint}`, {
       timeout: 60000,
       waitUntil: "domcontentloaded",
     });
 
+    await this.promotion.closeDynamicPopupIfPresent();
+  }
+
+  async reloadPage(): Promise<void> {
+    await this.page.reload({ waitUntil: "domcontentloaded" });
     await this.promotion.closeDynamicPopupIfPresent();
   }
 

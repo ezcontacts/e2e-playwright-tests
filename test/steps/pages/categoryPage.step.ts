@@ -23,7 +23,7 @@ Given(
 Given(
   "the user views a product on the listing page",
   async ({ sunglassesPage }) => {
-    catalogCardStates = await sunglassesPage.getCatalogState();
+    catalogCardStates = await sunglassesPage.getCatalogeState();
   },
 );
 
@@ -31,6 +31,13 @@ When(
   "the user navigates to the next page using pagination",
   async ({ sunglassesPage }) => {
     await sunglassesPage.clickOnPaginationButton(1);
+  },
+);
+
+When(
+  "the user navigates to the previous page using pagination",
+  async ({ sunglassesPage }) => {
+    await sunglassesPage.clickOnPaginationButton(0);
   },
 );
 

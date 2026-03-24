@@ -160,7 +160,16 @@ export class FillterComponent extends BaseComponent {
       if (number > countItems) {
         const brandName = toFilterFormat(text);
         checkedBrands.push(brandName);
-        await label.click();
+
+        try {
+          const closePromoteBtn = this.page
+            .frameLocator("iframe#attentive_creative")
+            .getByTestId("closeIcon");
+          await closePromoteBtn.waitFor({ timeout: 5_000 });
+          await closePromoteBtn.click();
+        } catch (e) {}
+
+        await label.click({ force: true });
       }
     }
 

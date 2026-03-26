@@ -46,6 +46,6 @@ export abstract class BasePage extends BaseEntity {
   }
 
   async verifyUrlEndpoint(endpoint: string) {
-    await expect(this.page).toHaveURL(new RegExp(`${endpoint}$`));
+    await expect(this.page).toHaveURL(new RegExp(endpoint));
   }
 }

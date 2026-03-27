@@ -32,7 +32,8 @@ import { AddToWishListPage } from "../../page-objects/pages/Account/AddToWishLis
 import { AddToWishListPage } from "../../page-objects/pages/Account/AddToWishListPage";  //added by NP - REMOVE THIS.
 import { WishListNavigationPage } from "../../page-objects/pages/Account/WishListNavigationPage";
 import { WishListEmptyPage } from "../../page-objects/pages/Account/WishListEmptyPage";
-import { WishListAddToCartPage } from "../../page-objects/pages/Account/WishListAddToCartPage"; 
+import { WishListAddToCartPage } from "../../page-objects/pages/Account/WishListAddToCartPage";
+import { WishListRemovePage } from "../../page-objects/pages/Account/WishListRemovePage";
 
 
 export type CatalogeContext = { cardsState: CardState[] };
@@ -65,6 +66,7 @@ export const test = bddTest.extend<{
   wishListNavigationPage: WishListNavigationPage;
   wishlistEmptyPage: WishListEmptyPage;
   wishListAddToCartPage: WishListAddToCartPage;
+  wishListRemovePage: WishListRemovePage;
 
   portalContext: PortalContext;
   catalogContext: CatalogeContext;
@@ -122,6 +124,7 @@ export const test = bddTest.extend<{
   wishListNavigationPage: async ({ page }, use) => await use(new WishListNavigationPage(page)),
   wishlistEmptyPage: async ({ page }, use) => await use(new WishListEmptyPage(page)),
   wishListAddToCartPage: async ({ page }, use) => await use(new WishListAddToCartPage(page)),
+  wishListRemovePage: async ({ page }, use) => await use(new WishListRemovePage(page)),
 
   //portalPage: async ({ page }, use) => await use(new PortalPage(page)),
   catalogContext: async ({}, use) => await use({ cardsState: [] }),

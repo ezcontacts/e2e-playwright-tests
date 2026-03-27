@@ -8,10 +8,11 @@ import {
 } from "../../components/ProductCardComponent";
 import { Product } from "../../../types/productType";
 import { ENDPOINT_API, ENDPOINT_URL } from "../../../constant/endpoint";
+import "../../../extentions/locator_extention.ts";
 
 export abstract class ProductCatalogePage extends BasePage {
   readonly productCountDropdown: Locator;
-  readonly productMatchDropdown: Locator;
+  readonly productMatchDropdown: Locator[];
   readonly paginationList: (index: number) => Locator;
 
   readonly fillter: FillterComponent;
@@ -23,7 +24,10 @@ export abstract class ProductCatalogePage extends BasePage {
     this.productCountDropdown = this.locator(
       ".unbxd-pagesize-container .multi",
     );
-    this.productMatchDropdown = this.locator(".unbxd-sort-container .multi");
+    this.productMatchDropdown = this.locators([
+      ".unbxd-sort-container .multi",
+      "#products-sort-order-select",
+    ]);
 
     this.fillter = new FillterComponent(page);
 
@@ -48,7 +52,10 @@ export abstract class ProductCatalogePage extends BasePage {
   }
 
   async verifyProductMatchDropdownIsVisible(): Promise<void> {
-    await expect(this.productMatchDropdown).toBeVisible();
+    const locator = await this.productMatchDropdown.firstVisible();
+
+    const visible = await this.productMatchDropdown.firstVisible();
+    await expect(locator).toBeVisible();
   }
 
   async verifyProductCountDropdownIsHaveValue(text: string): Promise<void> {
@@ -57,10 +64,29 @@ export abstract class ProductCatalogePage extends BasePage {
     });
   }
 
-  async verifyProductMatchDropdownIsHaveValue(text: string): Promise<void> {
-    await expect(this.productMatchDropdown).toHaveValue(text, {
-      timeout: 30000,
-    });
+  // async verifyProductMatchDropdownIsHaveValue(
+  //   text: string | string[],
+  // ): Promise<void> {
+  //   const locator = await this.productMatchDropdown.firstVisible();
+  //   await expect(locator).toHaveValue(text, {
+  //     timeout: 30000,
+  //   });
+  // }
+
+  async verifyProductMatchDropdownIsHaveValue(
+    text: string | string[],
+  ): Promise<void> {
+    const locator = await this.productMatchDropdown.firstVisible();
+    const value = await locator.inputValue();
+
+    if (Array.isArray(text)) {
+      expect(
+        text.includes(value),
+        `Expected "${value}" to be one of [${text.join(", ")}]`,
+      ).toBeTruthy();
+    } else {
+      expect(value).toBe(text);
+    }
   }
 
   async setProductCountDropdownValue(text: string): Promise<void> {
@@ -69,7 +95,8 @@ export abstract class ProductCatalogePage extends BasePage {
   }
 
   async setProductMatchDropdownValue(text: string): Promise<void> {
-    await this.productMatchDropdown.selectOption(text);
+    const locator = await this.productMatchDropdown.firstVisible();
+    await locator.selectOption(text);
     await this.waitForDomContentLoad();
   }
 

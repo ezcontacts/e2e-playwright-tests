@@ -1,13 +1,15 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { AccountPage } from "./AccountPage";
 import { ENDPOINT } from "../../../constant/endpoint";
+import { text } from "stream/consumers";
 
 export class WishListAddToCartPage extends AccountPage {
   readonly addToCart: Locator;
   readonly items: Locator;
   readonly headingCart: Locator;
-  readonly wishListIcon: Locator;
+  readonly addToWishListIcon: Locator;
   readonly wishListMessage: Locator;
+  readonly viewMyWishlistLink: Locator;
 
   constructor(page: Page) {
     super(page, ENDPOINT.wishlist);
@@ -15,14 +17,27 @@ export class WishListAddToCartPage extends AccountPage {
     this.addToCart = this.page.getByRole("link", { name: "Add to Cart" });
     this.items = this.page.locator('a[data-form-id*="addProductToCart"]');
     this.headingCart = page.getByRole("heading", { name: "Shopping Cart" });
-    this.wishListIcon = page.locator("a.add-to-wishlist-btn");
+    this.addToWishListIcon = page.locator("a.add-to-wishlist-btn");
     this.wishListMessage = this.locator(".wishlit-btn u");
+    this.viewMyWishlistLink = page.getByRole("link", { name: "View My Wish List" });
+    //this.viewMyWishlistLink = page.getByText('View my wishlist.');
+
   }
 
-  async clickWishListIconForFirstProduct(): Promise<void> {
-    await this.wishListIcon.hover();
-    await this.wishListMessage.click();
+
+async clickWishListIconForFirstProduct() {
+  const text = await this.addToWishListIcon.textContent();
+  console.log("Text content of the icon:", text); // Debugging line to check the text content
+  if (text?.includes('Add')) {
+    await this.addToWishListIcon.click();
   }
+  await this.viewMyWishlistLink.click();
+}
+
+  // async clickWishListIconForFirstProduct(): Promise<void> {
+  //   await this.addToWishListIcon.hover();
+  //   await this.wishListMessage.click();
+  // }
 
   async verifyProductAddedToWishList(): Promise<void> {
     await this.ensureProductExistsInWishList();

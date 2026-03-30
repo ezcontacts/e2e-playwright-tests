@@ -26,6 +26,21 @@ export const CUSTOMER = {
 
 
 export const PAYMENT = {
+
+  get emailg() {
+  const now = new Date();
+
+  const formatted =
+    now.getFullYear() +
+    (now.getMonth() + 1).toString().padStart(2, "0") +
+    now.getDate().toString().padStart(2, "0") + "_" +
+    now.getHours().toString().padStart(2, "0") +
+    now.getMinutes().toString().padStart(2, "0") +
+    now.getSeconds().toString().padStart(2, "0");
+
+  return `test_${formatted}@yopmail.com`;
+  },
+  
   email: 'doy@yopmail.com',
 
   firstName: 'Doyle',
@@ -43,7 +58,10 @@ export const PAYMENT = {
   Expiry: '12/40',
   Month:'12',
   Year:'40',
-  CVC: '123'
+  CVC: '123',
+
+  affirmPhone: "(855) 423-3729",
+  affirmOtp: "123456"
 };
 
 

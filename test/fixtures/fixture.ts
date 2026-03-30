@@ -74,23 +74,46 @@ export const test = bddTest.extend<{
   },
 
   page: async ({ context }, use) => {
-    const page = await context.newPage();
+  const page = await context.newPage();
 
-    // Remove overlays & animations
-    await page.addInitScript(() => {
-      const removeAttentive = () => {
-        const overlay = document.getElementById('attentive_overlay');
-        if (overlay) overlay.remove();
-      };
-      removeAttentive();
-      const observer = new MutationObserver(removeAttentive);
-      observer.observe(document.documentElement, { childList: true, subtree: true });
-    });
+  // 🔥 CLEAR browser-side storage BEFORE any page loads
+  await page.addInitScript(() => {
+    localStorage.clear();
+    sessionStorage.clear();
+  });
 
-    await page.addStyleTag({ content: `* { animation: none !important; transition: none !important; }` });
+  // 🔥 CLEAR cookies but keep auth/session cookies
+  const cookies = await context.cookies();
 
-    await use(page);
-  },
+  const filteredCookies = cookies.filter(cookie =>
+    cookie.name.toLowerCase().includes("auth") ||
+    cookie.name.toLowerCase().includes("session")
+  );
+
+  await context.clearCookies();
+  await context.addCookies(filteredCookies);
+
+  // 🔥 Reset page state
+  await page.goto("about:blank");
+
+  // Existing overlay removal
+  await page.addInitScript(() => {
+    const removeAttentive = () => {
+      const overlay = document.getElementById('attentive_overlay');
+      if (overlay) overlay.remove();
+    };
+    removeAttentive();
+    const observer = new MutationObserver(removeAttentive);
+    observer.observe(document.documentElement, { childList: true, subtree: true });
+  });
+
+  // Disable animations
+  await page.addStyleTag({
+    content: `* { animation: none !important; transition: none !important; }`
+  });
+
+  await use(page);
+},
 
   homePage: async ({ page }, use) => await use(new HomePage(page)),
   loginPage: async ({ page }, use) => await use(new LoginPage(page)),

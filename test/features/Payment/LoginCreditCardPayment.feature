@@ -1,3 +1,4 @@
+
 Feature: Verify Logged-in checkout using Credit Card
 
 Background:
@@ -20,4 +21,5 @@ When I proceed to checkout
 Then I should be redirected to the checkout page
 
 When I enter card details for Logged In
+And I click on Place Order 
 Then I should see order confirmation

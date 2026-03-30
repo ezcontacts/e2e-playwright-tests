@@ -1,6 +1,8 @@
-Feature: Verify Guest checkout using Credit Card
 
-Scenario: Guest user completes payment using Credit Card
+Feature: Verify Guest checkout using Affirm
+
+
+Scenario: Guest user completes payment using Affirm
 
 Given I visit the sunglasses page
 When I click on the first product card in the list
@@ -18,5 +20,5 @@ When I fill the shipping address details
 And I click on Continue to Payment
 Then I should be redirected to the checkout "payment" page
 
-When I enter card details
-And I click on Place Order and verify confirmation
+When I complete the Affirm payment flow
+Then I should see order confirmation

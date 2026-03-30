@@ -77,10 +77,29 @@ async fillLogin(value: string): Promise<void> {
 
 //EZSANISOFT-5409
 async openLatestEmailAndGetMagicLink(keyword: string): Promise<string> {
+
+  console.log("Refreshing inbox before opening latest email...");
+
+  // 🔄 Refresh 3 times BEFORE clicking email
+  for (let i = 0; i < 3; i++) {
+    await this.refreshBtn.click();
+
+    // wait for inbox to reload
+    await this.inboxFrame.locator("div.m").first().waitFor({
+      state: "visible",
+      timeout: 60000,
+    });
+
+    await this.page.waitForTimeout(1500);
+
+    console.log(`Refresh ${i + 1} done`);
+  }
+
+  // 📩 Now open latest email
   await this.latestEmail.waitFor({ state: "visible", timeout: 60000 });
   await this.latestEmail.click();
 
-  // 🔥 keyword is valid here
+  // 🔗 Find magic link
   const magicLinkLocator = this.mailFrame
     .locator(`a[href*="${keyword}"]`)
     .first();

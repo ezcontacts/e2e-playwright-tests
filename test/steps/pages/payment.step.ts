@@ -28,12 +28,6 @@ When("I enter card details", async ({ cartComponent }) => {
   await cartComponent.enterCardDetails();
 });
 
-When(
-  "I click on Place Order and verify confirmation",
-  async ({ cartComponent }) => {
-    await cartComponent.placeOrderAndVerify();
-  }
-);
 
 Then(
   "I should be redirected to the checkout {string} page",
@@ -51,9 +45,19 @@ When("I enter card details for Logged In", async ({ cartComponent }) => {
 });
 
 Then("I should see order confirmation", async ({ cartComponent }) => {
-  await cartComponent.placeOrderAndVerify();
+  await cartComponent.verifyOrderConfirmation();
 });
 
 Then("I should be redirected to the checkout page", async ({ cartComponent }) => {
   await cartComponent.verifyCheckoutPageLoaded();
+});
+
+
+When('I complete the Affirm payment flow', async ({ cartComponent }) => {
+  await cartComponent.payWithAffirm();
+});
+
+
+When('I click on Place Order', async ({ cartComponent }) => {
+  await cartComponent.placeOrder();
 });

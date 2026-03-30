@@ -10,10 +10,17 @@ let apiState: Product[];
 
 When("the user applies a filter", async ({ eyeglassesPage }) => {
   await eyeglassesPage.promotion.closeDynamicPopupIfPresent(30_000);
-  await eyeglassesPage.fillter.clickOnBrandWithCountItems(30);
+  //await eyeglassesPage.fillter.clickOnBrandWithCountItems(30);
+  filtersBrand = [];
+  filtersBrand.push(
+    ...(await eyeglassesPage.fillter.clickOnFirstBrandWithCountItems(30)),
+  );
 });
 
 When("the user applies multiple filters", async ({ eyeglassesPage }) => {
+  filtersBrand = [];
+  filtersPrice = [];
+
   filtersPrice.push(
     ...(await eyeglassesPage.fillter.clickOnPriceFilterByIndex(0)),
   );
@@ -99,14 +106,21 @@ Then(
 Then(
   "the selected filter should remain applied",
   async ({ eyeglassesPage }) => {
-    await eyeglassesPage.fillter.verifyOnBrandWithCountItemsIsChecked(30);
+    //await eyeglassesPage.fillter.verifyOnBrandWithCountItemsIsChecked(30);
+
+    for (const filter of filtersBrand) {
+      await eyeglassesPage.fillter.verifyAppliedFilterIsVisible(filter);
+    }
   },
 );
 
 Then(
   "the product results should remain filtered",
   async ({ eyeglassesPage }) => {
-    await eyeglassesPage.fillter.verifyOnBrandWithCountItemsIsChecked(30);
+    //await eyeglassesPage.fillter.verifyOnBrandWithCountItemsIsChecked(30);
+    for (const filter of filtersBrand) {
+      await eyeglassesPage.fillter.verifyAppliedFilterIsVisible(filter);
+    }
   },
 );
 

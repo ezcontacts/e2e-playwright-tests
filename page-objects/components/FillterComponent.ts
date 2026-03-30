@@ -169,7 +169,46 @@ export class FillterComponent extends BaseComponent {
           await closePromoteBtn.click();
         } catch (e) {}
 
-        await label.click({ force: true });
+        await label.click();
+      }
+    }
+
+    await this.waitForDomContentLoad();
+    await this.page.waitForTimeout(5_000);
+
+    return checkedBrands;
+  }
+
+  async clickOnFirstBrandWithCountItems(countItems: number): Promise<string[]> {
+    const count = await this.brandItem.count();
+    const checkedBrands: string[] = [];
+
+    for (let i = 0; i < count; i++) {
+      if (checkedBrands.length > 5) break;
+
+      const item = this.brandItem.nth(i);
+      const label = item.locator("label");
+
+      const text = await label.innerText();
+      const match = text.match(/\((\d+)\)/);
+      if (!match) continue;
+
+      const number = Number(match[1]);
+
+      if (number > countItems) {
+        const brandName = toFilterFormat(text);
+        checkedBrands.push(brandName);
+
+        try {
+          const closePromoteBtn = this.page
+            .frameLocator("iframe#attentive_creative")
+            .getByTestId("closeIcon");
+          await closePromoteBtn.waitFor({ timeout: 5_000 });
+          await closePromoteBtn.click();
+        } catch (e) {}
+
+        await label.click();
+        break;
       }
     }
 

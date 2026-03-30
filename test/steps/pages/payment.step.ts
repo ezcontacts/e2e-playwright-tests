@@ -37,6 +37,7 @@ When("I enter card details", async ({ cartComponent }) => {
   await cartComponent.enterCardDetails();
 });
 
+
 When("I proceed to checkout", async ({ page }) => {
   const checkoutBtn = page.getByRole('link', { name: /checkout now/i });
 

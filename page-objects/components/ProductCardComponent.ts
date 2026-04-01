@@ -116,22 +116,6 @@ export class ProductCardComponent extends BaseComponent {
   } catch {
     // Popup not present, ignore
   }
-
-  private async closeAttentivePopupIfPresent(): Promise<void> {
-  const closeButton = this.page
-    .frameLocator('#attentive_creative')
-    .getByTestId('closeIcon');
-
-  try {
-    if (await closeButton.isVisible({ timeout: 2000 })) {
-      await closeButton.click();
-    }
-  } catch {
-    // Popup not present, ignore
-  }
-}
-
-
 }
 
 

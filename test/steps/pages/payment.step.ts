@@ -218,6 +218,11 @@ When('I complete the Affirm payment flow', async ({ cartComponent }) => {
 });
 
 
+When('I complete the PayPal payment flow', async ({ cartComponent }) => {
+  await cartComponent.payWithPaypal();
+});
+
+
 When('I click on Place Order', async ({ cartComponent }) => {
   await cartComponent.placeOrder();
 });

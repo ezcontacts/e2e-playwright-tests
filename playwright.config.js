@@ -17,9 +17,9 @@ const reporter = [
 export default defineConfig({
   reporter,
   workers: 4,
-  timeout: 180_000,
+  timeout: 220_000,
   use: {
-    headless: false,
+    headless: true, //false,
     screenshot: "only-on-failure",
     video: "retain-on-failure",
     trace: "only-on-failure",

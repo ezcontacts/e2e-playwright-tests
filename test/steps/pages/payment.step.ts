@@ -1,6 +1,5 @@
 import { Given, When, Then } from "../../fixtures/fixture";
 import { expect } from "@playwright/test";
-import {PAYMENT } from "../../data-test/testData";
 
 //
 // -----------------------------

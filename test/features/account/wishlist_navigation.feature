@@ -1,3 +1,4 @@
+@EZSANISOFT-5388
 Feature: Navigate to Wish List section
     As a logged-in user, 
     I want to navigate to the Wish List section from the My Account page, so that I can view and manage my wish list products.

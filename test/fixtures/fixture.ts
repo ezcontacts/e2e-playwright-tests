@@ -26,7 +26,6 @@ import { AccountSettingsPage } from "../../page-objects/pages/Account/AccountSet
 import { AccountInfoPage } from "../../page-objects/pages/Account/AcountInfoPage";
 import { CardState } from "../../page-objects/components/ProductCardComponent";
 
-import { AddToWishListPage } from "../../page-objects/pages/Account/AddToWishListPage";  //added by NP - REMOVE THIS.
 import { WishListNavigationPage } from "../../page-objects/pages/Account/WishListNavigationPage";
 import { WishListEmptyPage } from "../../page-objects/pages/Account/WishListEmptyPage";
 import { WishListAddToCartPage } from "../../page-objects/pages/Account/WishListAddToCartPage";
@@ -59,7 +58,6 @@ export const test = bddTest.extend<{
   ezPointsPage: EzPointsPage;
   accountSettingsPage: AccountSettingsPage;
   accountInfoPage: AccountInfoPage;
-  addToWishListPage: AddToWishListPage;  //added by NP (Very good)-REMOVE THIS.
   wishListNavigationPage: WishListNavigationPage;
   wishlistEmptyPage: WishListEmptyPage;
   wishListAddToCartPage: WishListAddToCartPage;
@@ -121,7 +119,6 @@ export const test = bddTest.extend<{
   accountSettingsPage: async ({ page }, use) => await use(new AccountSettingsPage(page)),
   accountInfoPage: async ({ page }, use) => await use(new AccountInfoPage(page)),
   
-  addToWishListPage: async ({ page }, use) => await use(new AddToWishListPage(page)),  //added by NP (Very good)-REMOVE THIS.
   wishListNavigationPage: async ({ page }, use) => await use(new WishListNavigationPage(page)),
   wishlistEmptyPage: async ({ page }, use) => await use(new WishListEmptyPage(page)),
   wishListAddToCartPage: async ({ page }, use) => await use(new WishListAddToCartPage(page)),

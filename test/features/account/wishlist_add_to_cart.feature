@@ -1,3 +1,4 @@
+@EZSANISOFT-5388
 Feature: Add Wish List Product to Cart
 
 #Background:

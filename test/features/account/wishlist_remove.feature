@@ -1,3 +1,4 @@
+@EZSANISOFT-5388
 Feature: Remove Product from Wish List
 
 Background:

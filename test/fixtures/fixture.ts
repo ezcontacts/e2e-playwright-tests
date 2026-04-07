@@ -31,7 +31,6 @@ import { WishListEmptyPage } from "../../page-objects/pages/Account/WishListEmpt
 import { WishListAddToCartPage } from "../../page-objects/pages/Account/WishListAddToCartPage";
 import { WishListRemovePage } from "../../page-objects/pages/Account/WishListRemovePage";
 
-
 export type CatalogeContext = { cardsState: CardState[] };
 
 
@@ -58,7 +57,6 @@ export const test = bddTest.extend<{
   ezPointsPage: EzPointsPage;
   accountSettingsPage: AccountSettingsPage;
   accountInfoPage: AccountInfoPage;
-
   wishListNavigationPage: WishListNavigationPage;
   wishlistEmptyPage: WishListEmptyPage;
   wishListAddToCartPage: WishListAddToCartPage;

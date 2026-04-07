@@ -16,8 +16,13 @@ export class ProductCardComponent extends BaseComponent {
   readonly rating: Locator;
   readonly reviews: Locator;
   readonly infoBlock: Locator;
+  readonly color: Locator;
 
-  constructor(page: Page, index: number = 0, root: string = ".unbxd-product") {
+  constructor(
+    page: Page,
+    index: number = 0,
+    root: string = ".mask-wrap, .unbxd-product",
+  ) {
     const rootLocator = page.locator(root).nth(index);
 
     super(page, { locator: rootLocator });
@@ -28,6 +33,7 @@ export class ProductCardComponent extends BaseComponent {
     this.rating = this.within('[class*="rating-"]');
     this.reviews = this.within("span span");
     this.infoBlock = this.within(".TurnToReviewsTeaser");
+    this.color = this.within(".glass-colors");
     this.card = this.locator(root);
   }
 
@@ -63,6 +69,15 @@ export class ProductCardComponent extends BaseComponent {
 
   async verifyReviewsIsNotExist(): Promise<void> {
     await expect(this.reviews).toHaveCount(0);
+  }
+
+  async verifyOptionalColorIsVisible(): Promise<boolean> {
+    try {
+      await this.color.waitFor({ state: "visible" });
+      return true;
+    } catch {
+      return false;
+    }
   }
 
   async getQuantityCart(): Promise<number> {
@@ -105,18 +120,16 @@ export class ProductCardComponent extends BaseComponent {
   }
 
   private async closeAttentivePopupIfPresent(): Promise<void> {
-  const closeButton = this.page
-    .frameLocator('#attentive_creative')
-    .getByTestId('closeIcon');
+    const closeButton = this.page
+      .frameLocator("#attentive_creative")
+      .getByTestId("closeIcon");
 
-  try {
-    if (await closeButton.isVisible({ timeout: 2000 })) {
-      await closeButton.click();
+    try {
+      if (await closeButton.isVisible({ timeout: 2000 })) {
+        await closeButton.click();
+      }
+    } catch {
+      // Popup not present, ignore
     }
-  } catch {
-    // Popup not present, ignore
   }
-}
-
-
 }

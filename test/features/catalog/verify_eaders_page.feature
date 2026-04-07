@@ -21,7 +21,6 @@ Examples:
   | Price: High to Low  |
 
 # Readers color options displayed below each product icon
-@skip
 Scenario: Verify color options are displayed below each product icon
   Then each product icon should display available color options below it
 

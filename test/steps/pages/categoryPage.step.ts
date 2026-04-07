@@ -172,3 +172,10 @@ Then(
     await sunglassesPage.verifyProductTitlesIsVisible();
   },
 );
+
+Then(
+  "each product icon should display available color options below it",
+  async ({ sunglassesPage }) => {
+    await sunglassesPage.verifyOptionalProductColorsIsVisible();
+  },
+);

@@ -110,8 +110,12 @@ export abstract class BaseEntity {
       : this.getLocator(this.getPlatformSelector(desktop, mobile));
   }
 
+  protected locators(selectors: (string | LocatorConfig)[]): Locator[] {
+    return selectors.map((selector) => this.getLocator(selector));
+  }
+
   protected visibleLocator(selector: string | LocatorConfig) {
-    return this.getLocator(selector).filter({ visible: true }).first()
+    return this.getLocator(selector).filter({ visible: true }).first();
   }
 
   protected getLocator(config: string | LocatorConfig): Locator {

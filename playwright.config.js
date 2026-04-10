@@ -19,7 +19,7 @@ export default defineConfig({
   workers: 4,
   timeout: 280_000,
   use: {
-    headless: true, //false,
+    headless: false, //true,
     screenshot: "only-on-failure",
     video: "retain-on-failure",
     trace: "only-on-failure",

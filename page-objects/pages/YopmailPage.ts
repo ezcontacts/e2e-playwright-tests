@@ -173,9 +173,26 @@ async extractMagicLink(keyword: string): Promise<string> {
 }
 
 
-async navigateToMagicLink(url: string): Promise<void> {
+/*async navigateToMagicLink(url: string): Promise<void> {
   await this.page.goto(url, { waitUntil: "load" });
   await this.page.waitForLoadState("networkidle");
+}*/
+
+async navigateToMagicLink(url: string): Promise<void> {
+  console.log("🔗 Navigating to magic link...");
+
+  await this.page.goto(url, { waitUntil: "domcontentloaded" });
+
+  // Wait for either success message OR redirect
+  await Promise.race([
+    this.page.locator("text=/success|logged in|welcome/i")
+      .first()
+      .waitFor({ state: "visible", timeout: 30000 }),
+
+    this.page.waitForURL(/account|dashboard|checkout/, { timeout: 30000 }),
+  ]).catch(() => {});
+
+  console.log("✅ Magic link navigation completed");
 }
 
 async clickEmailByIndex(index: number = 0): Promise<void> {

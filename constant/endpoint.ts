@@ -16,6 +16,7 @@ export const ENDPOINT = {
   accountMain: "/account/main",
   eqPoints: "/account/ezpoints",
   readers: "/readers",
+  wishlist: "/account/wishlist",
 };
 
 export const ENDPOINT_API = {

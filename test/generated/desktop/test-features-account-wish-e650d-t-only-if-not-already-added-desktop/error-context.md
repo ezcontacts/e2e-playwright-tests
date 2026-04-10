@@ -1,0 +1,314 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - paragraph [ref=e7]:
+      - strong [ref=e8]: Continuous Contacts with EZ-Refill—Subscribe & Save
+    - generic [ref=e11]:
+      - generic [ref=e12]:
+        - link [ref=e14] [cursor=pointer]:
+          - /url: "#"
+        - link "FREE SHIPPING on all USA Orders *" [ref=e15] [cursor=pointer]:
+          - /url: "#"
+        - text: "|"
+        - link "Lowest Price Guarantee" [ref=e16] [cursor=pointer]:
+          - /url: "#"
+      - generic [ref=e18]: Welcome, Namekzl6ng!
+    - generic [ref=e21]:
+      - generic [ref=e22]:
+        - text: Call Toll Free
+        - link "1-800-217-2020" [ref=e23] [cursor=pointer]:
+          - /url: tel:18002172020
+      - generic [ref=e24]:
+        - link "View Your Cart 1" [ref=e26] [cursor=pointer]:
+          - /url: /checkout/cart
+          - generic [ref=e27]:
+            - img "View Your Cart" [ref=e28]
+            - generic [ref=e30]: "1"
+        - generic [ref=e31]:
+          - link "My Account" [ref=e32] [cursor=pointer]:
+            - /url: /account/main
+          - text: "|"
+          - link "Reorder" [ref=e33] [cursor=pointer]:
+            - /url: /account/prescriptions/contact-lenses/recent
+          - text: "|"
+          - link "Sign Out" [ref=e34] [cursor=pointer]:
+            - /url: /users/logout
+    - generic [ref=e36]:
+      - generic [ref=e37]:
+        - link "EzContacts" [ref=e39] [cursor=pointer]:
+          - /url: /
+          - img "EzContacts" [ref=e40]
+        - text: 
+      - navigation [ref=e42]:
+        - generic:
+          - generic [ref=e44]:
+            - textbox [ref=e45]
+            - button "" [ref=e46] [cursor=pointer]:
+              - generic [ref=e47]: 
+          - list [ref=e48]:
+            - listitem [ref=e49]:
+              - link "SUNGLASSES" [ref=e51] [cursor=pointer]:
+                - /url: /sunglasses
+            - listitem [ref=e52]:
+              - link "EYEGLASSES" [ref=e54] [cursor=pointer]:
+                - /url: /eyeglasses
+            - listitem [ref=e55]:
+              - link "CONTACT LENSES" [ref=e57] [cursor=pointer]:
+                - /url: /contact-lenses
+            - listitem [ref=e58]:
+              - link "Readers" [ref=e59] [cursor=pointer]:
+                - /url: /readers
+            - listitem [ref=e60]:
+              - link "Eye Care" [ref=e62] [cursor=pointer]:
+                - /url: https://staging.ezcontacts.com/eye-care
+            - listitem [ref=e63]:
+              - link "Deals" [ref=e64] [cursor=pointer]:
+                - /url: /eyewear/deals
+            - listitem [ref=e65]:
+              - link "SALES" [ref=e66] [cursor=pointer]:
+                - /url: https://staging.ezcontacts.com/eye-care
+  - generic [ref=e68]:
+    - generic [ref=e69]:
+      - generic [ref=e70]: 
+      - text: You have successfully logged in.
+    - generic [ref=e71]:
+      - heading "My account" [level=3] [ref=e72]
+      - heading "Account settings" [level=2] [ref=e73]
+      - generic [ref=e74]:
+        - list [ref=e76]:
+          - listitem [ref=e77]:
+            - link "Account Settings" [ref=e78] [cursor=pointer]:
+              - /url: /account/main
+              - text: Account Settings
+          - listitem [ref=e80]:
+            - link "Address & Payment" [ref=e81] [cursor=pointer]:
+              - /url: /account/address-and-payment
+              - text: Address & Payment
+          - listitem [ref=e83]:
+            - link "Order History" [ref=e84] [cursor=pointer]:
+              - /url: /account/order-history
+              - text: Order History
+          - listitem [ref=e86]:
+            - link "Rx Information" [ref=e87] [cursor=pointer]:
+              - /url: /account/prescriptions
+              - text: Rx Information
+          - listitem [ref=e89]:
+            - link "EZ Points" [ref=e90] [cursor=pointer]:
+              - /url: /account/ezpoints
+              - text: EZ Points
+          - listitem [ref=e92]:
+            - link "Recent" [ref=e93] [cursor=pointer]:
+              - /url: /account/prescriptions/contact-lenses/recent
+              - text: Recent
+          - listitem [ref=e95]:
+            - link " Wish List" [ref=e96] [cursor=pointer]:
+              - /url: /account/wishlist
+              - generic [ref=e97]: 
+              - text: Wish List
+          - listitem [ref=e98]:
+            - link "Online Vision Test" [ref=e99] [cursor=pointer]:
+              - /url: /account/online-vision-test-purchases
+              - text: Online Vision Test
+          - listitem [ref=e101]:
+            - link "EZ Refill" [ref=e102] [cursor=pointer]:
+              - /url: /account/subscription-history
+              - text: EZ Refill
+          - listitem [ref=e104]:
+            - link " Store Credit" [ref=e105] [cursor=pointer]:
+              - /url: /account/store-credit
+              - generic [ref=e106]: 
+              - text: Store Credit
+        - generic [ref=e107]:
+          - generic [ref=e108]:
+            - link "✏ Edit details" [ref=e110] [cursor=pointer]:
+              - /url: /account/settings/edit
+              - generic [ref=e111]: ✏
+              - text: Edit details
+            - heading "Preferences" [level=2] [ref=e112]
+          - generic [ref=e113]:
+            - list [ref=e115]:
+              - listitem [ref=e116]:
+                - generic [ref=e117]: First Name
+                - text: Namekzl6ng
+              - listitem [ref=e118]:
+                - generic [ref=e119]: Last Name
+                - text: Surnamef698or
+              - listitem [ref=e120]:
+                - generic [ref=e121]: Email Sign up
+                - text: None
+            - list [ref=e123]:
+              - listitem [ref=e124]:
+                - generic [ref=e125]: Phone
+                - text: (090) 890-8089
+              - listitem [ref=e126]:
+                - generic [ref=e127]: Email
+                - text: vigoyoc952@hopesx.com
+    - text:  
+  - contentinfo [ref=e128]:
+    - generic [ref=e130]:
+      - generic [ref=e132]:
+        - generic [ref=e133]:
+          - generic [ref=e134]:
+            - heading "ACCOUNT" [level=3] [ref=e135]
+            - list [ref=e136]:
+              - listitem [ref=e137]:
+                - link "Sign-in" [ref=e138] [cursor=pointer]:
+                  - /url: /account/sign-in
+              - listitem [ref=e139]:
+                - link "Create your account" [ref=e140] [cursor=pointer]:
+                  - /url: /account/sign-in
+              - listitem [ref=e141]:
+                - link "Track My Order" [ref=e142] [cursor=pointer]:
+                  - /url: /order-finder
+              - listitem [ref=e143]:
+                - link "Order History" [ref=e144] [cursor=pointer]:
+                  - /url: /account/order-history
+              - listitem [ref=e145]:
+                - link "Reorder" [ref=e146] [cursor=pointer]:
+                  - /url: /account/order-history
+          - generic [ref=e147]:
+            - heading "CATEGORIES" [level=3] [ref=e148]
+            - list [ref=e149]:
+              - listitem [ref=e150]:
+                - link "Eyeglasses" [ref=e151] [cursor=pointer]:
+                  - /url: /eyeglasses
+              - listitem [ref=e152]:
+                - link "Sunglasses" [ref=e153] [cursor=pointer]:
+                  - /url: /sunglasses
+              - listitem [ref=e154]:
+                - link "Prescription Sunglasses" [ref=e155] [cursor=pointer]:
+                  - /url: /sunglasses/cat:is-rxable
+              - listitem [ref=e156]:
+                - link "Eyewear Brands" [ref=e157] [cursor=pointer]:
+                  - /url: /eyewear/brands
+              - listitem [ref=e158]:
+                - link "Contacts Brands" [ref=e159] [cursor=pointer]:
+                  - /url: /contact-lenses/view-all
+              - listitem [ref=e160]:
+                - link "Clearance Sunglasses" [ref=e161] [cursor=pointer]:
+                  - /url: /sunglasses/clearance:yes
+              - listitem [ref=e162]:
+                - link "Clearance Eyeglasses" [ref=e163] [cursor=pointer]:
+                  - /url: /eyeglasses/clearance:yes
+          - generic [ref=e164]:
+            - heading "CUSTOMER CARE" [level=3] [ref=e165]
+            - list [ref=e166]:
+              - listitem [ref=e167]:
+                - link "About EZ Contacts" [ref=e168] [cursor=pointer]:
+                  - /url: /about-us
+              - listitem [ref=e169]:
+                - link "EZ Contacts FAQS" [ref=e170] [cursor=pointer]:
+                  - /url: /help/faq
+              - listitem [ref=e171]:
+                - link "Shipping & Handling" [ref=e172] [cursor=pointer]:
+                  - /url: /help/faq/shipping-and-handling
+              - listitem [ref=e173]:
+                - link "Returns & Exchanges" [ref=e174] [cursor=pointer]:
+                  - /url: /help/faq/returns-and-exchanges
+              - listitem [ref=e175]:
+                - link "Price Match Guarantee" [ref=e176] [cursor=pointer]:
+                  - /url: /resources/price-match-guarantee
+              - listitem [ref=e177]:
+                - link "Customer Help Center" [ref=e178] [cursor=pointer]:
+                  - /url: https://support.ezcontacts.com/hc/en-us
+          - generic [ref=e179]:
+            - heading "HOW TOS" [level=3] [ref=e180]
+            - list [ref=e181]:
+              - listitem [ref=e182]:
+                - link "Selecting Frames" [ref=e183] [cursor=pointer]:
+                  - /url: https://www.ezcontacts.com/blog/2018/12/18/how-to-choose-your-eyeglasses-selecting-frames/
+              - listitem [ref=e184]:
+                - link "Selecting Lenses" [ref=e185] [cursor=pointer]:
+                  - /url: https://www.ezcontacts.com/blog/2019/01/30/prescription-glasses-lenses-guide/
+              - listitem [ref=e186]:
+                - link "Selecting Sunglasses" [ref=e187] [cursor=pointer]:
+                  - /url: https://www.ezcontacts.com/blog/2019/05/08/selecting-sunglasses-guide/
+              - listitem [ref=e188]:
+                - link "Eyewear Care" [ref=e189] [cursor=pointer]:
+                  - /url: https://www.ezcontacts.com/blog/2019/07/17/eyewear-care-guide/
+              - listitem [ref=e190]:
+                - link "Reading Prescription" [ref=e191] [cursor=pointer]:
+                  - /url: /resources/reading-your-prescription
+              - listitem [ref=e192]:
+                - link "Measure PD" [ref=e193] [cursor=pointer]:
+                  - /url: /resources/measure-pupil-distance
+          - generic [ref=e194]:
+            - heading "RESOURCES" [level=3] [ref=e195]
+            - list [ref=e196]:
+              - listitem [ref=e197]:
+                - link "Customer Gallery" [ref=e198] [cursor=pointer]:
+                  - /url: https://www.ezcontacts.com/blog/customer-gallery/
+              - listitem [ref=e199]:
+                - link "FSA Eligible" [ref=e200] [cursor=pointer]:
+                  - /url: https://www.ezcontacts.com/blog/2018/12/06/hsa-fsa-funds-buy-eyewear
+              - listitem [ref=e201]:
+                - link "Blog" [ref=e202] [cursor=pointer]:
+                  - /url: https://www.ezcontacts.com/blog/
+              - listitem [ref=e203]:
+                - link "Vision Insurance" [ref=e204] [cursor=pointer]:
+                  - /url: /help/faq#vision-insurance
+              - listitem [ref=e205]:
+                - link "Online Vision Test" [ref=e206] [cursor=pointer]:
+                  - /url: /online-vision-test/
+        - generic [ref=e207]:
+          - link "CONTACT US" [ref=e208] [cursor=pointer]:
+            - /url: /help/contact-us
+            - heading "CONTACT US" [level=3] [ref=e209]
+          - paragraph [ref=e210]:
+            - text: Questions? Reach out to us at
+            - link "1-800-217-2020" [ref=e211] [cursor=pointer]:
+              - /url: tel:1-800-217-2020
+            - text: or chat with us during business hours
+          - list [ref=e212]:
+            - listitem [ref=e213]:
+              - link " Call" [ref=e214] [cursor=pointer]:
+                - /url: /help/contact-us
+                - generic [ref=e215]: 
+                - text: Call
+            - listitem [ref=e216]:
+              - link " Email" [ref=e217] [cursor=pointer]:
+                - /url: /help/contact-us
+                - generic [ref=e218]: 
+                - text: Email
+            - listitem [ref=e219]:
+              - link " FAQ" [ref=e220] [cursor=pointer]:
+                - /url: /help/faq
+                - generic [ref=e221]: 
+                - text: FAQ
+            - listitem [ref=e222]:
+              - link " Blog" [ref=e223] [cursor=pointer]:
+                - /url: https://www.ezcontacts.com/blog/
+                - generic [ref=e224]: 
+                - text: Blog
+            - listitem [ref=e225]:
+              - link " Help" [ref=e226] [cursor=pointer]:
+                - /url: https://support.ezcontacts.com/hc/en-us
+                - generic [ref=e227]: 
+                - text: Help
+      - separator [ref=e228]
+      - generic [ref=e231]:
+        - generic [ref=e232]:
+          - generic [ref=e233]:
+            - link "Privacy Policy" [ref=e234] [cursor=pointer]:
+              - /url: /company/privacy-policy
+            - link "Terms of Service" [ref=e235] [cursor=pointer]:
+              - /url: /company/terms-and-conditions
+          - generic [ref=e236]:
+            - link [ref=e237] [cursor=pointer]:
+              - /url: https://www.facebook.com/ezcontacts/
+              - generic [ref=e238]: 
+            - link [ref=e239] [cursor=pointer]:
+              - /url: https://www.instagram.com/officialezcontacts/
+              - generic [ref=e240]: 
+            - link [ref=e241] [cursor=pointer]:
+              - /url: https://www.pinterest.com/ezcontacts/
+              - generic [ref=e242]: 
+        - generic [ref=e243]:
+          - generic [ref=e244]: 
+          - text: Copyright 2026 EZContacts.com. All Rights Reserved.
+  - iframe [ref=e245]:
+    - img [ref=f6e3] [cursor=pointer]
+  - text: 
+```

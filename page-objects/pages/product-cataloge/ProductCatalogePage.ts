@@ -35,7 +35,10 @@ export abstract class ProductCatalogePage extends BasePage {
       new ProductCardComponent(
         this.page,
         index,
-        this.getPlatformSelector(".unbxd-product", "li.ng-scope") as string,
+        this.getPlatformSelector(
+          ".mask-wrap, .unbxd-product",
+          "li.ng-scope",
+        ) as string,
       );
 
     this.paginationList = (index: number) =>
@@ -63,15 +66,6 @@ export abstract class ProductCatalogePage extends BasePage {
       timeout: 30000,
     });
   }
-
-  // async verifyProductMatchDropdownIsHaveValue(
-  //   text: string | string[],
-  // ): Promise<void> {
-  //   const locator = await this.productMatchDropdown.firstVisible();
-  //   await expect(locator).toHaveValue(text, {
-  //     timeout: 30000,
-  //   });
-  // }
 
   async verifyProductMatchDropdownIsHaveValue(
     text: string | string[],
@@ -101,11 +95,9 @@ export abstract class ProductCatalogePage extends BasePage {
   }
 
   async clickOnProductByIndex(index: number): Promise<void> {
-    await this.closeAttentivePopupIfPresent();
+    //await this.closeAttentivePopupIfPresent();
     await this.productCard(index).clickOnViewBtn();
-    //await this.waitForDomContentLoad();
   }
-
 
   async verifyProductTitlesIsVisible(): Promise<void> {
     await this.forEachProductCard((card) => card.verifyTitleIsVisible());
@@ -224,10 +216,10 @@ export abstract class ProductCatalogePage extends BasePage {
     await this.waitForDomContentLoad();
   }
 
-  private async closeAttentivePopupIfPresent(): Promise<void> {
+  async closeAttentivePopupIfPresent(): Promise<void> {
     const closeButton = this.page
-      .frameLocator('#attentive_creative')
-      .getByTestId('closeIcon');
+      .frameLocator("#attentive_creative")
+      .getByTestId("closeIcon");
 
     try {
       if (await closeButton.isVisible({ timeout: 2000 })) {
@@ -237,5 +229,4 @@ export abstract class ProductCatalogePage extends BasePage {
       // Popup not present, ignore
     }
   }
-
 }

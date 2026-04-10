@@ -41,6 +41,7 @@ When(
 When(
   "the user clicks on the remove \\(X) icon for an applied filter",
   async ({ eyeglassesPage }) => {
+    await eyeglassesPage.closeAttentivePopupIfPresent();
     const apiResponse = eyeglassesPage.getCatalogeAPIState();
 
     await eyeglassesPage.fillter.removeFilterByName(filtersBrand[0]);

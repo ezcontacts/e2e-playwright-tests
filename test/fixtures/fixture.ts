@@ -18,6 +18,7 @@ import { OnlineVisionTestPage } from "../../page-objects/pages/OnlineVisionTestP
 import { VisionTestIntroductionPage } from "../../page-objects/pages/VisionTestIntroductionPage";
 import { AdminPanelPage } from "../../page-objects/pages/AdminPanelPage";
 import { CheckoutPage } from "../../page-objects/pages/CheckoutPage";
+
 import { AccountPage } from "../../page-objects/pages/Account/AccountPage";
 import { EzPointsPage } from "../../page-objects/pages/Account/EzPointsPage";
 import { AccountSettingsPage } from "../../page-objects/pages/Account/AccountSettingsPage";
@@ -25,7 +26,13 @@ import { AccountInfoPage } from "../../page-objects/pages/Account/AcountInfoPage
 import { CardState } from "../../page-objects/components/ProductCardComponent";
 import { CartComponent } from "../../page-objects/components/CartComponent";
 
+import { WishListNavigationPage } from "../../page-objects/pages/Account/WishListNavigationPage";
+import { WishListEmptyPage } from "../../page-objects/pages/Account/WishListEmptyPage";
+import { WishListAddToCartPage } from "../../page-objects/pages/Account/WishListAddToCartPage";
+import { WishListRemovePage } from "../../page-objects/pages/Account/WishListRemovePage";
+
 export type CatalogeContext = { cardsState: CardState[] };
+
 
 export const test = bddTest.extend<{
   page: Page;
@@ -50,6 +57,10 @@ export const test = bddTest.extend<{
   ezPointsPage: EzPointsPage;
   accountSettingsPage: AccountSettingsPage;
   accountInfoPage: AccountInfoPage;
+  wishListNavigationPage: WishListNavigationPage;
+  wishlistEmptyPage: WishListEmptyPage;
+  wishListAddToCartPage: WishListAddToCartPage;
+  wishListRemovePage: WishListRemovePage;
 
   portalContext: PortalContext;
   catalogContext: CatalogeContext;
@@ -100,13 +111,15 @@ export const test = bddTest.extend<{
   checkoutPage: async ({ page }, use) => await use(new CheckoutPage(page)),
   accountPage: async ({ page }, use) => await use(new AccountPage(page)),
   ezPointsPage: async ({ page }, use) => await use(new EzPointsPage(page)),
-  accountSettingsPage: async ({ page }, use) =>
-    await use(new AccountSettingsPage(page)),
-  accountInfoPage: async ({ page }, use) =>
-    await use(new AccountInfoPage(page)),
+  accountSettingsPage: async ({ page }, use) => await use(new AccountSettingsPage(page)),
+  accountInfoPage: async ({ page }, use) => await use(new AccountInfoPage(page)),
+  
+  wishListNavigationPage: async ({ page }, use) => await use(new WishListNavigationPage(page)),
+  wishlistEmptyPage: async ({ page }, use) => await use(new WishListEmptyPage(page)),
+  wishListAddToCartPage: async ({ page }, use) => await use(new WishListAddToCartPage(page)),
+  wishListRemovePage: async ({ page }, use) => await use(new WishListRemovePage(page)),
 
   //portalPage: async ({ page }, use) => await use(new PortalPage(page)),
-
   catalogContext: async ({}, use) => await use({ cardsState: [] }),
 });
 

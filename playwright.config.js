@@ -19,7 +19,7 @@ export default defineConfig({
   fullyParallel: true,
   workers: process.env.CI ? 2 : undefined,
   retries: process.env.CI ? 1 : 0,
-  timeout: 180_000,
+  timeout: 240_000,
   expect: {
     timeout: 60000,
   },

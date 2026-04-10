@@ -7,6 +7,7 @@ Background:
 
 # When the wishlist is empty. - automation code is done.
 Scenario: Verify empty Wish List message
+  When the user deletes products in the wish list
   Then the page should display a message "There are no products in your wishlist."
   Then the page should display the following links:
   | Shop for Contact Lenses |

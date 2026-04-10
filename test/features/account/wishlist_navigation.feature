@@ -9,5 +9,5 @@ Background:
 
 # Navigation to Wish List Page - automation code is done.
 Scenario: Verify Wish List page
-  Then the page should display the heading "Wish List"
+  Then the page should display the title "Wish List"
   And the page URL should contain "/account/wishlist"

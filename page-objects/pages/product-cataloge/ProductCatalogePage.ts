@@ -95,7 +95,7 @@ export abstract class ProductCatalogePage extends BasePage {
   }
 
   async clickOnProductByIndex(index: number): Promise<void> {
-    await this.closeAttentivePopupIfPresent();
+    //await this.closeAttentivePopupIfPresent();
     await this.productCard(index).clickOnViewBtn();
   }
 
@@ -216,7 +216,7 @@ export abstract class ProductCatalogePage extends BasePage {
     await this.waitForDomContentLoad();
   }
 
-  private async closeAttentivePopupIfPresent(): Promise<void> {
+  async closeAttentivePopupIfPresent(): Promise<void> {
     const closeButton = this.page
       .frameLocator("#attentive_creative")
       .getByTestId("closeIcon");

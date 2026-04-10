@@ -8,20 +8,21 @@ export class WishListAddToCartPage extends AccountPage {
   readonly headingCart: Locator;
   readonly addToWishListIcon: Locator;
   readonly wishListMessage: Locator;
+  readonly removeWishListIcon: Locator;
 
   readonly addedToWishlist: Locator;
-  
+
   constructor(page: Page) {
     super(page, ENDPOINT.wishlist);
 
     this.addToCart = this.page.getByRole("link", { name: "Add to Cart" });
     this.items = this.page.locator('a[data-form-id*="addProductToCart"]');
     this.headingCart = page.getByRole("heading", { name: "Shopping Cart" });
-    this.addToWishListIcon = page.locator('.fa-heart-o');
+    this.addToWishListIcon = page.locator(".fa-heart-o");
     this.wishListMessage = this.locator(".wishlit-btn u");
+    this.removeWishListIcon = this.locator(".remove-product");
 
-    this.addedToWishlist = page.locator('.fa-heart')
-
+    this.addedToWishlist = page.locator(".fa-heart");
   }
 
   async clickWishListIconForFirstProduct(): Promise<void> {
@@ -41,6 +42,16 @@ export class WishListAddToCartPage extends AccountPage {
       await expect(addToCart).toBeVisible();
     }
     await expect(items.first()).toBeVisible();
+  }
+
+  async clearProductExistsInWishList(): Promise<void> {
+    const countIcons = await this.removeWishListIcon.count();
+
+    if (countIcons === 0) return;
+
+    for (let i = 0; i < countIcons; i++) {
+      await this.removeWishListIcon.nth(i).click();
+    }
   }
 
   async clickAddToCartForFirstProduct(): Promise<void> {

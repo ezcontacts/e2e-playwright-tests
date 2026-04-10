@@ -179,3 +179,10 @@ Then(
     await sunglassesPage.verifyOptionalProductColorsIsVisible();
   },
 );
+
+Then(
+  "the color options should remain visible and unchanged for each product",
+  async ({ sunglassesPage }) => {
+    await sunglassesPage.verifyCatalogState(catalogCardStates);
+  },
+);

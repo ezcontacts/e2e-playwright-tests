@@ -6,6 +6,7 @@ export class CardState {
   title!: string;
   reviews?: string;
   hasRating!: boolean;
+  colors?: string[];
 }
 
 export class ProductCardComponent extends BaseComponent {
@@ -17,6 +18,7 @@ export class ProductCardComponent extends BaseComponent {
   readonly reviews: Locator;
   readonly infoBlock: Locator;
   readonly color: Locator;
+  readonly link: Locator;
 
   constructor(
     page: Page,
@@ -34,6 +36,7 @@ export class ProductCardComponent extends BaseComponent {
     this.reviews = this.within("span span");
     this.infoBlock = this.within(".TurnToReviewsTeaser");
     this.color = this.within(".glass-colors");
+    this.link = this.within("a");
     this.card = this.locator(root);
   }
 
@@ -97,8 +100,34 @@ export class ProductCardComponent extends BaseComponent {
       (await this.reviews.count()) > 0 ? await this.reviews.innerText() : "";
     state.hasRating =
       (await this.rating.count()) > 0 ? await this.rating.isVisible() : false;
+    state.colors = await this.getColorsFromContainer(this.color);
 
     return state;
+  }
+
+  async getColorsFromContainer(
+    container: Locator,
+  ): Promise<string[] | undefined> {
+    const count = await container.count();
+    if (count === 0) return undefined;
+
+    return await container.first().evaluate((el) => {
+      const result: string[] = [];
+
+      const elements = [el, ...el.querySelectorAll("*")];
+
+      elements.forEach((child) => {
+        const style = child.getAttribute("style");
+        if (!style) return;
+
+        const match = style.match(/background-color:\s*(#[0-9a-fA-F]+)/);
+        if (match) {
+          result.push(match[1]);
+        }
+      });
+
+      return [...new Set(result)];
+    });
   }
 
   async verifyState(state: CardState): Promise<void> {
@@ -112,6 +141,11 @@ export class ProductCardComponent extends BaseComponent {
 
     if (state.reviews) {
       await expect(this.reviews).toHaveText(state.reviews);
+    }
+
+    if (state.colors) {
+      const actualColors = await this.getColorsFromContainer(this.color);
+      expect(new Set(actualColors)).toEqual(new Set(state.colors));
     }
   }
 

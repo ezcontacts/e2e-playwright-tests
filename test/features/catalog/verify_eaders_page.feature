@@ -26,14 +26,10 @@ Scenario: Verify color options are displayed below each product icon
 
 @skip
 Scenario: Verify color options count matches product variants
+  When the user clicks on a product to view its details
   Then the number of color options displayed should match the color variants configured in admin
 
-@skip
-Scenario: Verify color options visibility across pagination
-  When the user navigates to the next page using pagination
-  Then the color options should be displayed correctly below each product icon
-
-@skip
 Scenario: Verify color options consistency on page refresh
+  Given the user views a product on the listing page
   When the user refreshes the Product Listing page
-  Then the color options should remain visible and unchanged for each produ
+  Then the color options should remain visible and unchanged for each product

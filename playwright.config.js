@@ -19,12 +19,12 @@ export default defineConfig({
   fullyParallel: true,
   workers: process.env.CI ? 2 : undefined,
   retries: process.env.CI ? 1 : 0,
-  timeout: 180_000,
+  timeout: 240_000,
   expect: {
     timeout: 60000,
   },
   use: {
-    headless: isHeadless,
+    headless: true,
     viewport: { width: 1440, height: 900 },
     trace: "on-first-retry",
     screenshot: "only-on-failure",

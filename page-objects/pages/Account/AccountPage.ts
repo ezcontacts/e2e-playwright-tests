@@ -14,9 +14,9 @@ export class AccountPage extends BasePage {
   constructor(page: Page, endpoint: string = ENDPOINT.accountMain) {
     super(page, endpoint);
 
-    this.heading = this.locator('.account-heading h2');
-    this.title = this.visibleLocator('.section-title');
-    this.subtitle = this.locator('.visible-xs .subtitle', '.m-off .subtitle');
+    this.heading = this.locator(".account-heading h2");
+    this.title = this.visibleLocator(".section-title");
+    this.subtitle = this.locator(".visible-xs .subtitle", ".m-off .subtitle");
 
     this.menu = new AccountMenuComponent(page);
   }
@@ -25,17 +25,18 @@ export class AccountPage extends BasePage {
     await expect(this.heading).toHaveText(expectedText);
   }
 
-  async verifyTitleHaveText(key: AccountMenu | string): Promise<void>{
-    const titleText = typeof key === "string" ? key : ACCOUNT_MENU_LINKS[key].title;
-    await expect(this.title.filter({visible: true})).toHaveText(titleText);
+  async verifyTitleHaveText(key: AccountMenu | string): Promise<void> {
+    const titleText =
+      typeof key === "string" ? key : ACCOUNT_MENU_LINKS[key].title;
+    await expect(this.title.filter({ visible: true })).toHaveText(titleText);
   }
 
-  async verifyAccountUrl(key: AccountMenu): Promise<void>{
+  async verifyAccountUrl(key: AccountMenu): Promise<void> {
     const endpoint = ACCOUNT_MENU_LINKS[key].endpoint;
     await this.verifyUrlEndpoint(endpoint);
   }
 
-  async verifySubtitleHaveText(text: string): Promise<void>{
+  async verifySubtitleHaveText(text: string): Promise<void> {
     await expect(this.subtitle).toHaveText(text);
   }
 }

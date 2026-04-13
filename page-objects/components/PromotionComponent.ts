@@ -63,9 +63,9 @@ export class PromotionComponent extends BaseComponent {
     await expect(this.legalInformation).toBeVisible();
   }
 
-  async closeDynamicPopupIfPresent(): Promise<void> {
+  async closeDynamicPopupIfPresent(timeout: number = 10_000): Promise<void> {
     try {
-      await this.closePromoteBtn.waitFor({ timeout: 10_000 });
+      await this.closePromoteBtn.waitFor({ timeout });
       await this.closePromoteBtn.click();
     } catch (e) {}
   }

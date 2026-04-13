@@ -1,7 +1,7 @@
 {
   "config": {
-    "configFile": "E:\\work\\e2e-playwright-tests\\playwright.config.js",
-    "rootDir": "E:/work/e2e-playwright-tests",
+    "configFile": "D:\\EZ Project\\e2e-playwright-tests\\playwright.config.js",
+    "rootDir": "D:/EZ Project/e2e-playwright-tests",
     "forbidOnly": false,
     "fullyParallel": false,
     "globalSetup": null,
@@ -36,7 +36,7 @@
     "quiet": false,
     "projects": [
       {
-        "outputDir": "E:/work/e2e-playwright-tests/test-results",
+        "outputDir": "D:/EZ Project/e2e-playwright-tests/test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -44,15 +44,15 @@
         },
         "id": "desktop",
         "name": "desktop",
-        "testDir": "E:/work/e2e-playwright-tests/test/generated/desktop",
+        "testDir": "D:/EZ Project/e2e-playwright-tests/test/generated/desktop",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
         ],
-        "timeout": 120000
+        "timeout": 280000
       },
       {
-        "outputDir": "E:/work/e2e-playwright-tests/test-results",
+        "outputDir": "D:/EZ Project/e2e-playwright-tests/test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -60,17 +60,17 @@
         },
         "id": "mobile",
         "name": "mobile",
-        "testDir": "E:/work/e2e-playwright-tests/test/generated/mobile",
+        "testDir": "D:/EZ Project/e2e-playwright-tests/test/generated/mobile",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
         ],
-        "timeout": 120000
+        "timeout": 280000
       }
     ],
     "shard": null,
     "tags": [],
-    "updateSnapshots": "missing",
+    "updateSnapshots": "all",
     "updateSourceMethod": "patch",
     "version": "1.57.0",
     "workers": 4,
@@ -78,89 +78,106 @@
   },
   "suites": [
     {
-      "title": "test\\generated\\desktop\\test\\features\\.generation\\cataloge\\verify_filter.contact-lenses.feature.spec.js",
-      "file": "test/generated/desktop/test/features/.generation/cataloge/verify_filter.contact-lenses.feature.spec.js",
+      "title": "test\\generated\\desktop\\test\\features\\Payment\\LoginCreditCardPayment.feature.spec.js",
+      "file": "test/generated/desktop/test/features/Payment/LoginCreditCardPayment.feature.spec.js",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "Verify filter selection and product result updates on Product Listing page - CONTACT LENSES",
-          "file": "test/generated/desktop/test/features/.generation/cataloge/verify_filter.contact-lenses.feature.spec.js",
-          "line": 3,
+          "title": "Verify Logged-in checkout using Credit Card",
+          "file": "test/generated/desktop/test/features/Payment/LoginCreditCardPayment.feature.spec.js",
+          "line": 4,
           "column": 6,
           "specs": [
             {
-              "title": "Verify multiple filters applied together",
+              "title": "Logged in user completes payment using Credit Card",
               "ok": true,
-              "tags": [
-                "EZSANISOFT-5367"
-              ],
+              "tags": [],
               "tests": [
                 {
-                  "timeout": 120000,
+                  "timeout": 280000,
                   "annotations": [],
                   "expectedStatus": "passed",
                   "projectId": "desktop",
                   "projectName": "desktop",
                   "results": [
                     {
-                      "workerIndex": 8,
+                      "workerIndex": 4,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 47329,
+                      "duration": 114799,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "Selected brands:  [ \u001b[32m'Acuvue'\u001b[39m ]\n"
+                          "text": "🔗 Navigating to magic link...\n"
                         },
                         {
-                          "text": "Selected prices:  [ \u001b[32m'$0 to $25'\u001b[39m ]\n"
+                          "text": "✅ Magic link navigation completed\n"
                         },
                         {
-                          "text": "API products:  [\n  {\n    brand: [ \u001b[32m'Acuvue'\u001b[39m ],\n    categoryPath: [ \u001b[32m'Contact Lenses'\u001b[39m, \u001b[32m'Contact Lenses>Acuvue'\u001b[39m ],\n    date_created: \u001b[32m'2021-05-27'\u001b[39m,\n    hashsku: \u001b[32m'#817626'\u001b[39m,\n    imageUrl: [\n      \u001b[32m'https://do6sydhp1s299.cloudfront.net/staging/files/collections/60afc91a3c80d6.28196595.webp'\u001b[39m\n    ],\n    max_price: \u001b[33m12.39\u001b[39m,\n    min_price: \u001b[33m12.39\u001b[39m,\n    name: \u001b[32m'Contacts Sell OFF Color1'\u001b[39m,\n    price: \u001b[33m12.39\u001b[39m,\n    product_type: \u001b[32m'Contact Lenses'\u001b[39m,\n    rating_average: \u001b[33m0\u001b[39m,\n    rating_count: \u001b[33m0\u001b[39m,\n    relevantDocument: \u001b[32m'parent'\u001b[39m,\n    score: \u001b[33m0.25\u001b[39m,\n    uniqueId: \u001b[32m'817626'\u001b[39m,\n    url: \u001b[32m'https://staging.ezcontacts.com/product/contact-lenses/817626/contacts-sell-off-color1'\u001b[39m,\n    variantCount: \u001b[33m1\u001b[39m,\n    variantTotal: \u001b[33m1\u001b[39m,\n    variants: [ \u001b[36m[Object]\u001b[39m ]\n  },\n  {\n    brand: [ \u001b[32m'Acuvue'\u001b[39m ],\n    categoryPath: [ \u001b[32m'Contact Lenses'\u001b[39m, \u001b[32m'Contact Lenses>Acuvue'\u001b[39m ],\n    date_created: \u001b[32m'2021-05-21'\u001b[39m,\n    hashsku: \u001b[32m'#817604'\u001b[39m,\n    imageUrl: [\n      \u001b[32m'https://do6sydhp1s299.cloudfront.net/staging/files/collections/60a7cfd7bc4528.02181740.webp'\u001b[39m\n    ],\n    max_price: \u001b[33m12\u001b[39m,\n    min_price: \u001b[33m12\u001b[39m,\n    name: \u001b[32m'Contacts Sell OFF 1'\u001b[39m,\n    price: \u001b[33m12\u001b[39m,\n    product_type: \u001b[32m'Contact Lenses'\u001b[39m,\n    rating_average: \u001b[33m0\u001b[39m,\n    rating_count: \u001b[33m0\u001b[39m,\n    relevantDocument: \u001b[32m'parent'\u001b[39m,\n    retailPrice: \u001b[32m'15.00'\u001b[39m,\n    score: \u001b[33m0.25\u001b[39m,\n    uniqueId: \u001b[32m'817604'\u001b[39m,\n    url: \u001b[32m'https://staging.ezcontacts.com/product/contact-lenses/817604/contacts-sell-off-1'\u001b[39m,\n    variantCount: \u001b[33m1\u001b[39m,\n    variantTotal: \u001b[33m1\u001b[39m,\n    variants: [ \u001b[36m[Object]\u001b[39m ]\n  },\n  {\n    brand: [ \u001b[32m'Acuvue'\u001b[39m ],\n    categoryPath: [ \u001b[32m'Contact Lenses'\u001b[39m, \u001b[32m'Contact Lenses>Acuvue'\u001b[39m ],\n    date_created: \u001b[32m'2016-09-23'\u001b[39m,\n    hashsku: \u001b[32m'#78722'\u001b[39m,\n    imageUrl: [\n      \u001b[32m'https://do6sydhp1s299.cloudfront.net/staging/files/collections/66abfe4e88c536.93416705.webp'\u001b[39m\n    ],\n    max_price: \u001b[33m22\u001b[39m,\n    min_price: \u001b[33m22\u001b[39m,\n    name: \u001b[32m'Test Hidden2'\u001b[39m,\n    price: \u001b[33m22\u001b[39m,\n    product_type: \u001b[32m'Contact Lenses'\u001b[39m,\n    rating_average: \u001b[33m0\u001b[39m,\n    rating_count: \u001b[33m0\u001b[39m,\n    relevantDocument: \u001b[32m'parent'\u001b[39m,\n    score: \u001b[33m0.25\u001b[39m,\n    uniqueId: \u001b[32m'78722'\u001b[39m,\n    url: \u001b[32m'https://staging.ezcontacts.com/product/contact-lenses/78722/test-hidden2'\u001b[39m,\n    variantCount: \u001b[33m1\u001b[39m,\n    variantTotal: \u001b[33m1\u001b[39m,\n    variants: [ \u001b[36m[Object]\u001b[39m ]\n  },\n  {\n    brand: [ \u001b[32m'Acuvue'\u001b[39m ],\n    categoryPath: [ \u001b[32m'Contact Lenses'\u001b[39m, \u001b[32m'Contact Lenses>Acuvue'\u001b[39m ],\n    date_created: \u001b[32m'2017-12-20'\u001b[39m,\n    hashsku: \u001b[32m'#514572'\u001b[39m,\n    imageUrl: [\n      \u001b[32m'https://do6sydhp1s299.cloudfront.net/staging/files/collections/62fb31e2b63196.14262751.webp'\u001b[39m\n    ],\n    max_price: \u001b[33m15\u001b[39m,\n    min_price: \u001b[33m15\u001b[39m,\n    name: \u001b[32m'Acuvue Oasys 1-Day (30 Pack)'\u001b[39m,\n    price: \u001b[33m15\u001b[39m,\n    product_type: \u001b[32m'Contact Lenses'\u001b[39m,\n    rating_average: \u001b[33m4.3176\u001b[39m,\n    rating_count: \u001b[33m85\u001b[39m,\n    relevantDocument: \u001b[32m'parent'\u001b[39m,\n    retailPrice: \u001b[32m'10.00'\u001b[39m,\n    score: \u001b[33m0.25\u001b[39m,\n    uniqueId: \u001b[32m'514572'\u001b[39m,\n    url: \u001b[32m'https://staging.ezcontacts.com/product/contact-lenses/514572/acuvue-oasys-1-day-30-pack'\u001b[39m,\n    variantCount: \u001b[33m1\u001b[39m,\n    variantTotal: \u001b[33m1\u001b[39m,\n    variants: [ \u001b[36m[Object]\u001b[39m ]\n  },\n  {\n    brand: [ \u001b[32m'Acuvue'\u001b[39m ],\n    categoryPath: [ \u001b[32m'Contact Lenses'\u001b[39m, \u001b[32m'Contact Lenses>Acuvue'\u001b[39m ],\n    date_created: \u001b[32m'2016-07-07'\u001b[39m,\n    hashsku: \u001b[32m'#354825'\u001b[39m,\n    imageUrl: [\n      \u001b[32m'https://do6sydhp1s299.cloudfront.net/staging/files/collections/63ad74c05efa34.27325496.webp'\u001b[39m\n    ],\n    max_price: \u001b[33m1\u001b[39m,\n    min_price: \u001b[33m1\u001b[39m,\n    name: \u001b[32m'Acuvue Vita 6 Pack'\u001b[39m,\n    price: \u001b[33m1\u001b[39m,\n    product_type: \u001b[32m'Contact Lenses'\u001b[39m,\n    rating_average: \u001b[33m4.1197\u001b[39m,\n    rating_count: \u001b[33m401\u001b[39m,\n    relevantDocument: \u001b[32m'parent'\u001b[39m,\n    score: \u001b[33m0.25\u001b[39m,\n    uniqueId: \u001b[32m'354825'\u001b[39m,\n    url: \u001b[32m'https://staging.ezcontacts.com/product/contact-lenses/354825/acuvue-vita-6-pack'\u001b[39m,\n    variantCount: \u001b[33m1\u001b[39m,\n    variantTotal: \u001b[33m1\u001b[39m,\n    variants: [ \u001b[36m[Object]\u001b[39m ]\n  },\n  {\n    brand: [ \u001b[32m'Acuvue'\u001b[39m ],\n    categoryPath: [ \u001b[32m'Contact Lenses'\u001b[39m, \u001b[32m'Contact Lenses>Acuvue'\u001b[39m ],\n    date_created: \u001b[32m'2019-03-28'\u001b[39m,\n    hashsku: \u001b[32m'#352180'\u001b[39m,\n    imageUrl: [\n      \u001b[32m'https://do6sydhp1s299.cloudfront.net/staging/https://do6sydhp1s299.cloudfront.net/staging/files/collections/5c9d2a32eaf3e9.99373093.jpg'\u001b[39m\n    ],\n    max_price: \u001b[33m12.5\u001b[39m,\n    min_price: \u001b[33m12.5\u001b[39m,\n    name: \u001b[32m'Oakley OO9264'\u001b[39m,\n    price: \u001b[33m12.5\u001b[39m,\n    product_type: \u001b[32m'Contact Lenses'\u001b[39m,\n    rating_average: \u001b[33m0\u001b[39m,\n    rating_count: \u001b[33m0\u001b[39m,\n    relevantDocument: \u001b[32m'parent'\u001b[39m,\n    score: \u001b[33m0.25\u001b[39m,\n    uniqueId: \u001b[32m'352180'\u001b[39m,\n    url: \u001b[32m'https://staging.ezcontacts.com/product/contact-lenses/352180/oakley-oo9264'\u001b[39m,\n    variantCount: \u001b[33m1\u001b[39m,\n    variantTotal: \u001b[33m1\u001b[39m,\n    variants: [ \u001b[36m[Object]\u001b[39m ]\n  },\n  {\n    brand: [ \u001b[32m'Acuvue'\u001b[39m ],\n    categoryPath: [ \u001b[32m'Contact Lenses'\u001b[39m, \u001b[32m'Contact Lenses>Acuvue'\u001b[39m ],\n    date_created: \u001b[32m'2018-04-18'\u001b[39m,\n    hashsku: \u001b[32m'#330474'\u001b[39m,\n    imageUrl: [\n      \u001b[32m'https://do6sydhp1s299.cloudfront.net/staging/files/collections/5ad77ba26a3fb1.40871296.webp'\u001b[39m\n    ],\n    max_price: \u001b[33m15\u001b[39m,\n    min_price: \u001b[33m15\u001b[39m,\n    name: \u001b[32m'Acuvue Mist'\u001b[39m,\n    price: \u001b[33m15\u001b[39m,\n    product_type: \u001b[32m'Contact Lenses'\u001b[39m,\n    rating_average: \u001b[33m0\u001b[39m,\n    rating_count: \u001b[33m0\u001b[39m,\n    relevantDocument: \u001b[32m'parent'\u001b[39m,\n    retailPrice: \u001b[32m'20.00'\u001b[39m,\n    score: \u001b[33m0.25\u001b[39m,\n    uniqueId: \u001b[32m'330474'\u001b[39m,\n    url: \u001b[32m'https://staging.ezcontacts.com/product/contact-lenses/330474/acuvue-mist'\u001b[39m,\n    variantCount: \u001b[33m1\u001b[39m,\n    variantTotal: \u001b[33m1\u001b[39m,\n    variants: [ \u001b[36m[Object]\u001b[39m ]\n  },\n  {\n    brand: [ \u001b[32m'Acuvue'\u001b[39m ],\n    categoryPath: [ \u001b[32m'Contact Lenses'\u001b[39m, \u001b[32m'Contact Lenses>Acuvue'\u001b[39m ],\n    date_created: \u001b[32m'2017-06-29'\u001b[39m,\n    hashsku: \u001b[32m'#329937'\u001b[39m,\n    imageUrl: [\n      \u001b[32m'https://do6sydhp1s299.cloudfront.net/staging/files/collections/5954ae8fc68455.24281531.webp'\u001b[39m\n    ],\n    max_price: \u001b[33m10\u001b[39m,\n    min_price: \u001b[33m10\u001b[39m,\n    name: \u001b[32m'Test Without Colot'\u001b[39m,\n    price: \u001b[33m10\u001b[39m,\n    product_type: \u001b[32m'Contact Lenses'\u001b[39m,\n    rating_average: \u001b[33m0\u001b[39m,\n    rating_count: \u001b[33m0\u001b[39m,\n    relevantDocument: \u001b[32m'parent'\u001b[39m,\n    score: \u001b[33m0.25\u001b[39m,\n    uniqueId: \u001b[32m'329937'\u001b[39m,\n    url: \u001b[32m'https://staging.ezcontacts.com/product/contact-lenses/329937/test-without-colot'\u001b[39m,\n    variantCount: \u001b[33m1\u001b[39m,\n    variantTotal: \u001b[33m1\u001b[39m,\n    variants: [ \u001b[36m[Object]\u001b[39m ]\n  },\n  {\n    brand: [ \u001b[32m'Acuvue'\u001b[39m ],\n    categoryPath: [ \u001b[32m'Contact Lenses'\u001b[39m, \u001b[32m'Contact Lenses>Acuvue'\u001b[39m ],\n    date_created: \u001b[32m'2015-10-12'\u001b[39m,\n    hashsku: \u001b[32m'#316814'\u001b[39m,\n    imageUrl: [\n      \u001b[32m'https://do6sydhp1s299.cloudfront.net/staging/files/collections/6731fce07f04a5.26970366.webp'\u001b[39m\n    ],\n    max_price: \u001b[33m5\u001b[39m,\n    min_price: \u001b[33m5\u001b[39m,\n    name: \u001b[32m'Acuvue Oasys 1-Day (90 Pack)'\u001b[39m,\n    price: \u001b[33m5\u001b[39m,\n    product_type: \u001b[32m'Contact Lenses'\u001b[39m,\n    rating_average: \u001b[33m4.0852\u001b[39m,\n    rating_count: \u001b[33m446\u001b[39m,\n    relevantDocument: \u001b[32m'parent'\u001b[39m,\n    score: \u001b[33m0.25\u001b[39m,\n    uniqueId: \u001b[32m'316814'\u001b[39m,\n    url: \u001b[32m'https://staging.ezcontacts.com/product/contact-lenses/316814/acuvue-oasys-1-day-90-pack'\u001b[39m,\n    variantCount: \u001b[33m1\u001b[39m,\n    variantTotal: \u001b[33m1\u001b[39m,\n    variants: [ \u001b[36m[Object]\u001b[39m ]\n  },\n  {\n    brand: [ \u001b[32m'Acuvue'\u001b[39m ],\n    categoryPath: [ \u001b[32m'Contact Lenses'\u001b[39m, \u001b[32m'Contact Lenses>Acuvue'\u001b[39m ],\n    date_created: \u001b[32m'2024-04-15'\u001b[39m,\n    hashsku: \u001b[32m'#1577184'\u001b[39m,\n    imageUrl: [\n      \u001b[32m'https://do6sydhp1s299.cloudfront.net/staging/files/collections/661cc9029f55a5.91294911.png'\u001b[39m\n    ],\n    max_price: \u001b[33m10\u001b[39m,\n    min_price: \u001b[33m10\u001b[39m,\n    name: \u001b[32m'Test col check'\u001b[39m,\n    price: \u001b[33m10\u001b[39m,\n    product_type: \u001b[32m'Contact Lenses'\u001b[39m,\n    rating_average: \u001b[33m0\u001b[39m,\n    rating_count: \u001b[33m0\u001b[39m,\n    relevantDocument: \u001b[32m'parent'\u001b[39m,\n    score: \u001b[33m0.25\u001b[39m,\n    uniqueId: \u001b[32m'1577184'\u001b[39m,\n    url: \u001b[32m'https://staging.ezcontacts.com/product/contact-lenses/1577184/test-col-check'\u001b[39m,\n    variantCount: \u001b[33m1\u001b[39m,\n    variantTotal: \u001b[33m1\u001b[39m,\n    variants: [ \u001b[36m[Object]\u001b[39m ]\n  },\n  {\n    brand: [ \u001b[32m'Acuvue'\u001b[39m ],\n    categoryPath: [ \u001b[32m'Contact Lenses'\u001b[39m, \u001b[32m'Contact Lenses>Acuvue'\u001b[39m ],\n    date_created: \u001b[32m'2024-04-15'\u001b[39m,\n    hashsku: \u001b[32m'#1577178'\u001b[39m,\n    imageUrl: [\n      \u001b[32m'https://do6sydhp1s299.cloudfront.net/staging/files/collections/661cc52bc02ee3.93197488.png'\u001b[39m\n    ],\n    max_price: \u001b[33m10\u001b[39m,\n    min_price: \u001b[33m10\u001b[39m,\n    name: \u001b[32m'Test color check'\u001b[39m,\n    price: \u001b[33m10\u001b[39m,\n    product_type: \u001b[32m'Contact Lenses'\u001b[39m,\n    rating_average: \u001b[33m0\u001b[39m,\n    rating_count: \u001b[33m0\u001b[39m,\n    relevantDocument: \u001b[32m'parent'\u001b[39m,\n    score: \u001b[33m0.25\u001b[39m,\n    uniqueId: \u001b[32m'1577178'\u001b[39m,\n    url: \u001b[32m'https://staging.ezcontacts.com/product/contact-lenses/1577178/test-color-check'\u001b[39m,\n    variantCount: \u001b[33m1\u001b[39m,\n    variantTotal: \u001b[33m1\u001b[39m,\n    variants: [ \u001b[36m[Object]\u001b[39m ]\n  },\n  {\n    brand: [ \u001b[32m'Acuvue'\u001b[39m ],\n    categoryPath: [ \u001b[32m'Contact Lenses'\u001b[39m, \u001b[32m'Contact Lenses>Acuvue'\u001b[39m ],\n    date_created: \u001b[32m'2024-01-08'\u001b[39m,\n    hashsku: \u001b[32m'#1577113'\u001b[39m,\n    imageUrl: [\n      \u001b[32m'https://do6sydhp1s299.cloudfront.net/staging/files/collections/659bb14baeb4a6.67385012.webp'\u001b[39m\n    ],\n    max_price: \u001b[33m5\u001b[39m,\n    min_price: \u001b[33m5\u001b[39m,\n    name: \u001b[32m'TESTA1 - 6'\u001b[39m,\n    price: \u001b[33m5\u001b[39m,\n    product_type: \u001b[32m'Contact Lenses'\u001b[39m,\n    rating_average: \u001b[33m0\u001b[39m,\n    rating_count: \u001b[33m0\u001b[39m,\n    relevantDocument: \u001b[32m'parent'\u001b[39m,\n    retailPrice: \u001b[32m'5.00'\u001b[39m,\n    score: \u001b[33m0.25\u001b[39m,\n    uniqueId: \u001b[32m'1577113'\u001b[39m,\n    url: \u001b[32m'https://staging.ezcontacts.com/product/contact-lenses/1577113/testa1-6'\u001b[39m,\n    variantCount: \u001b[33m1\u001b[39m,\n    variantTotal: \u001b[33m1\u001b[39m,\n    variants: [ \u001b[36m[Object]\u001b[39m ]\n  },\n  {\n    brand: [ \u001b[32m'Acuvue'\u001b[39m ],\n    categoryPath: [ \u001b[32m'Contact Lenses'\u001b[39m, \u001b[32m'Contact Lenses>Acuvue'\u001b[39m ],\n    date_created: \u001b[32m'2024-01-08'\u001b[39m,\n    hashsku: \u001b[32m'#1577111'\u001b[39m,\n    imageUrl: [\n      \u001b[32m'https://do6sydhp1s299.cloudfront.net/staging/files/collections/659bb0919018c7.22415107.webp'\u001b[39m\n    ],\n    max_price: \u001b[33m5\u001b[39m,\n    min_price: \u001b[33m5\u001b[39m,\n    name: \u001b[32m'TESTA1 - 12'\u001b[39m,\n    price: \u001b[33m5\u001b[39m,\n    product_type: \u001b[32m'Contact Lenses'\u001b[39m,\n    rating_average: \u001b[33m0\u001b[39m,\n    rating_count: \u001b[33m0\u001b[39m,\n    relevantDocument: \u001b[32m'parent'\u001b[39m,\n    retailPrice: \u001b[32m'5.00'\u001b[39m,\n    score: \u001b[33m0.25\u001b[39m,\n    uniqueId: \u001b[32m'1577111'\u001b[39m,\n    url: \u001b[32m'https://staging.ezcontacts.com/product/contact-lenses/1577111/testa1-12'\u001b[39m,\n    variantCount: \u001b[33m1\u001b[39m,\n    variantTotal: \u001b[33m1\u001b[39m,\n    variants: [ \u001b[36m[Object]\u001b[39m ]\n  }\n]\n"
+                          "text": "After product click URL: https://staging.ezcontacts.com/product/sunglasses/74369-74370/guess-gu-6815\n"
                         },
                         {
-                          "text": "escapeRegex: Acuvue\n"
+                          "text": "After add to cart URL: https://staging.ezcontacts.com/checkout/cart\n"
                         },
                         {
-                          "text": "escapeRegex: Acuvue\n"
+                          "text": "✅ Payment UI loaded\n"
                         },
                         {
-                          "text": "escapeRegex: Acuvue\n"
+                          "text": "🔍 Verifying order confirmation...\n"
+                        },
+                        {
+                          "text": "✅ Order confirmation detected\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
                       "steps": [
                         {
-                          "title": "When the user applies multiple filters",
-                          "duration": 10553
+                          "title": "Given I visit the sunglasses page",
+                          "duration": 22281
                         },
                         {
-                          "title": "Then only products matching all selected filter criteria should be displayed",
-                          "duration": 55
+                          "title": "When I click on the first product card in the list",
+                          "duration": 11046
                         },
                         {
-                          "title": "Then the applied filters should be displayed above the product listing section",
-                          "duration": 55
+                          "title": "And I add the product to the cart",
+                          "duration": 10712
                         },
                         {
-                          "title": "When the user clicks on the remove (X) icon for an applied filter",
-                          "duration": 489
+                          "title": "Then I should see the success message for adding the product to the cart",
+                          "duration": 3550
                         },
                         {
-                          "title": "Then the selected filter should be removed",
-                          "duration": 61
+                          "title": "When I proceed to checkout",
+                          "duration": 7420
+                        },
+                        {
+                          "title": "Then I should be redirected to the checkout page",
+                          "duration": 1
+                        },
+                        {
+                          "title": "When I enter card details for Logged In",
+                          "duration": 14067
+                        },
+                        {
+                          "title": "And I click on Place Order",
+                          "duration": 501
+                        },
+                        {
+                          "title": "Then I should see order confirmation",
+                          "duration": 6529
                         }
                       ],
-                      "startTime": "2026-03-10T22:05:47.375Z",
+                      "startTime": "2026-04-10T09:43:27.219Z",
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "trace",
                           "contentType": "application/zip",
-                          "path": "E:\\work\\e2e-playwright-tests\\test-results\\test-features-.generation--0acbf-le-filters-applied-together-desktop\\trace.zip"
+                          "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-Payment-Logi-ce6ad-s-payment-using-Credit-Card-desktop\\trace.zip"
                         }
                       ]
                     }
@@ -168,9 +185,9 @@
                   "status": "expected"
                 }
               ],
-              "id": "1c8ee8d261463b4af96e-f0d52aefd59070f1cabc",
-              "file": "test/generated/desktop/test/features/.generation/cataloge/verify_filter.contact-lenses.feature.spec.js",
-              "line": 23,
+              "id": "e2295301f63da1280d0a-9ff67682f4b668b3e7e4",
+              "file": "test/generated/desktop/test/features/Payment/LoginCreditCardPayment.feature.spec.js",
+              "line": 16,
               "column": 3
             }
           ]
@@ -180,8 +197,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-03-10T22:05:44.028Z",
-    "duration": 51945.799,
+    "startTime": "2026-04-10T09:43:24.302Z",
+    "duration": 124248.99100000004,
     "expected": 1,
     "skipped": 0,
     "unexpected": 0,

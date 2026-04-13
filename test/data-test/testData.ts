@@ -26,7 +26,6 @@ export const CUSTOMER = {
 
 
 export const PAYMENT = {
-
   get emailg() {
   const now = new Date();
 
@@ -40,17 +39,16 @@ export const PAYMENT = {
 
   return `test_${formatted}@yopmail.com`;
   },
-  
   email: 'doy@yopmail.com',
 
   firstName: 'Doyle',
   lastName: 'Test',
 
-  addressLine1: '2 Bergen Tpke, Suite 104 PO BOX',
-  addressLine2: 'Ridgefield Park',
-  city: 'NEW JERSEY',
-  state: 'New Jersey',
-  zipCode: '07660',
+  addressLine1: '55 Albany St',
+  addressLine2: '123',
+  city: 'Elmont',
+  state: 'New York',
+  zipCode: '11003-5012',
 
   phone: '+1 123 456-7890',
 
@@ -59,9 +57,11 @@ export const PAYMENT = {
   Month:'12',
   Year:'40',
   CVC: '123',
-
   affirmPhone: "(855) 423-3729",
-  affirmOtp: "123456"
+  affirmOtp: "123456",
+  paypalEmail: "test-buyer@sanisoft.com",
+  paypalPassword: "12345678"  
+
 };
 
 

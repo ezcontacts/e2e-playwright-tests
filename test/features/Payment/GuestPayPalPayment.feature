@@ -1,6 +1,7 @@
-Feature: Verify Guest checkout using Credit Card
+Feature: Verify Guest checkout using PayPal
 
-Scenario: Guest user completes payment using Credit Card
+
+Scenario: Guest user completes payment using PayPal
     Given I visit the sunglasses page
     When I click on the first product card in the list
     And I add the product to the cart
@@ -17,6 +18,5 @@ Scenario: Guest user completes payment using Credit Card
     And I click on Continue to Payment
     Then I should be redirected to the checkout "payment" page
 
-    When I enter card details
-    And I click on Place Order 
-    And I should see order confirmation
+    When I complete the PayPal payment flow
+    Then I should see order confirmation

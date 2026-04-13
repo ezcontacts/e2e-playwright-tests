@@ -1,5 +1,4 @@
-
-Feature: Verify Logged-in checkout using Credit Card
+Feature: Verify Logged-in checkout using PayPal
 
 Background:
     Given I navigate to the login page for payment
@@ -10,8 +9,9 @@ Background:
     And User navigates using the magic login link
     Then I should see the login success message for payment
 
-Scenario: Logged in user completes payment using Credit Card
-    Given I visit the sunglasses page
+Scenario: Logged in user completes payment using PayPal
+
+Given I visit the sunglasses page
     When I click on the first product card in the list
     And I add the product to the cart
     Then I should see the success message for adding the product to the cart
@@ -19,6 +19,5 @@ Scenario: Logged in user completes payment using Credit Card
     When I proceed to checkout
     Then I should be redirected to the checkout page
 
-    When I enter card details for Logged In
-    And I click on Place Order 
+    When I complete the PayPal payment flow
     Then I should see order confirmation

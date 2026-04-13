@@ -53,8 +53,6 @@ export const test = bddTest.extend<{
 
   portalContext: PortalContext;
   catalogContext: CatalogeContext;
-  // TODO by Potrys M: Here, Page or context is usually declared.
-  // A component is always part of a page, and from the page you can refer to the component and its methods
   cartComponent: CartComponent;
 }>({
   context: async ({ browser }, use) => {

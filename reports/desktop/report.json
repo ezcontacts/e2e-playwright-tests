@@ -78,20 +78,20 @@
   },
   "suites": [
     {
-      "title": "test\\generated\\desktop\\test\\features\\Payment\\LoginCreditCardPayment.feature.spec.js",
-      "file": "test/generated/desktop/test/features/Payment/LoginCreditCardPayment.feature.spec.js",
+      "title": "test\\generated\\desktop\\test\\features\\Payment\\LoginPayPalPayment.feature.spec.js",
+      "file": "test/generated/desktop/test/features/Payment/LoginPayPalPayment.feature.spec.js",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "Verify Logged-in checkout using Credit Card",
-          "file": "test/generated/desktop/test/features/Payment/LoginCreditCardPayment.feature.spec.js",
+          "title": "Verify Logged-in checkout using PayPal",
+          "file": "test/generated/desktop/test/features/Payment/LoginPayPalPayment.feature.spec.js",
           "line": 4,
           "column": 6,
           "specs": [
             {
-              "title": "Logged in user completes payment using Credit Card",
+              "title": "Logged in user completes payment using PayPal",
               "ok": true,
               "tags": [],
               "tests": [
@@ -103,18 +103,12 @@
                   "projectName": "desktop",
                   "results": [
                     {
-                      "workerIndex": 4,
+                      "workerIndex": 17,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 114799,
+                      "duration": 121554,
                       "errors": [],
                       "stdout": [
-                        {
-                          "text": "🔗 Navigating to magic link...\n"
-                        },
-                        {
-                          "text": "✅ Magic link navigation completed\n"
-                        },
                         {
                           "text": "After product click URL: https://staging.ezcontacts.com/product/sunglasses/74369-74370/guess-gu-6815\n"
                         },
@@ -122,7 +116,22 @@
                           "text": "After add to cart URL: https://staging.ezcontacts.com/checkout/cart\n"
                         },
                         {
+                          "text": "🔵 Starting PayPal flow...\n"
+                        },
+                        {
                           "text": "✅ Payment UI loaded\n"
+                        },
+                        {
+                          "text": "✅ PayPal opened\n"
+                        },
+                        {
+                          "text": "➡️ Login clicked\n"
+                        },
+                        {
+                          "text": "✅ Merchant page ready: https://www.sandbox.paypal.com/webapps/hermes?flow=1-P&ulReturn=true&useraction=commit&token=EC-9N150186PY905330P&ssrt=1776096871675&removeXorMiddleware=trmt&cmdEcStartTime=1776096871760&rcache=1&cookieBannerVariant=hidden&country.x=IN&locale.x=en_GB\n"
+                        },
+                        {
+                          "text": "🎉 PayPal flow completed!\n"
                         },
                         {
                           "text": "🔍 Verifying order confirmation...\n"
@@ -136,48 +145,44 @@
                       "steps": [
                         {
                           "title": "Given I visit the sunglasses page",
-                          "duration": 22281
+                          "duration": 22139
                         },
                         {
                           "title": "When I click on the first product card in the list",
-                          "duration": 11046
+                          "duration": 12556
                         },
                         {
                           "title": "And I add the product to the cart",
-                          "duration": 10712
+                          "duration": 9134
                         },
                         {
                           "title": "Then I should see the success message for adding the product to the cart",
-                          "duration": 3550
+                          "duration": 336
                         },
                         {
                           "title": "When I proceed to checkout",
-                          "duration": 7420
+                          "duration": 12950
                         },
                         {
                           "title": "Then I should be redirected to the checkout page",
                           "duration": 1
                         },
                         {
-                          "title": "When I enter card details for Logged In",
-                          "duration": 14067
-                        },
-                        {
-                          "title": "And I click on Place Order",
-                          "duration": 501
+                          "title": "When I complete the PayPal payment flow",
+                          "duration": 31001
                         },
                         {
                           "title": "Then I should see order confirmation",
-                          "duration": 6529
+                          "duration": 5228
                         }
                       ],
-                      "startTime": "2026-04-10T09:43:27.219Z",
+                      "startTime": "2026-04-13T16:13:05.790Z",
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "trace",
                           "contentType": "application/zip",
-                          "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-Payment-Logi-ce6ad-s-payment-using-Credit-Card-desktop\\trace.zip"
+                          "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-Payment-Logi-21f35-pletes-payment-using-PayPal-desktop\\trace.zip"
                         }
                       ]
                     }
@@ -185,9 +190,9 @@
                   "status": "expected"
                 }
               ],
-              "id": "e2295301f63da1280d0a-9ff67682f4b668b3e7e4",
-              "file": "test/generated/desktop/test/features/Payment/LoginCreditCardPayment.feature.spec.js",
-              "line": 16,
+              "id": "a4150483e6dd59cc7582-b6b50a43b7a0f92a0501",
+              "file": "test/generated/desktop/test/features/Payment/LoginPayPalPayment.feature.spec.js",
+              "line": 10,
               "column": 3
             }
           ]
@@ -197,8 +202,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-04-10T09:43:24.302Z",
-    "duration": 124248.99100000004,
+    "startTime": "2026-04-13T16:13:03.476Z",
+    "duration": 128163.52300000004,
     "expected": 1,
     "skipped": 0,
     "unexpected": 0,

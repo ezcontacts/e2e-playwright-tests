@@ -186,3 +186,19 @@ Then(
     await sunglassesPage.verifyCatalogState(catalogCardStates);
   },
 );
+
+Then(
+  "the number of color options displayed should match the color variants configured in admin",
+  async ({ sunglassesPage, adminProductPage, adminPanelPage }) => {
+    const card = await sunglassesPage.getFirstCard();
+    const stage = await card.getState();
+    await adminProductPage.open(stage.productId ?? "");
+
+    await adminPanelPage.adminLogin.enterValidEmail();
+    await adminPanelPage.adminLogin.enterValidPassword();
+    await adminPanelPage.adminLogin.clickOnSignInBtn();
+
+    console.log("Product colors: " + stage.colors);
+    await adminProductPage.verifyExistColors(stage.colors ?? []);
+  },
+);

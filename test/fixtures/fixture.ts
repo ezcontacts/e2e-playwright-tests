@@ -16,7 +16,7 @@ import { ContactLensesProductPage } from "../../page-objects/pages/ContactLenses
 import { MeasurePupilDistancePage } from "../../page-objects/pages/MeasurePdActionsPage";
 import { OnlineVisionTestPage } from "../../page-objects/pages/OnlineVisionTestPage";
 import { VisionTestIntroductionPage } from "../../page-objects/pages/VisionTestIntroductionPage";
-import { AdminPanelPage } from "../../page-objects/pages/AdminPanelPage";
+import { AdminPanelPage } from "../../page-objects/pages/admin-panel/AdminPanelPage";
 import { CheckoutPage } from "../../page-objects/pages/CheckoutPage";
 import { AccountPage } from "../../page-objects/pages/Account/AccountPage";
 import { EzPointsPage } from "../../page-objects/pages/Account/EzPointsPage";
@@ -24,6 +24,7 @@ import { AccountSettingsPage } from "../../page-objects/pages/Account/AccountSet
 import { AccountInfoPage } from "../../page-objects/pages/Account/AcountInfoPage";
 import { CardState } from "../../page-objects/components/ProductCardComponent";
 import { CartComponent } from "../../page-objects/components/CartComponent";
+import { AdminProductPage } from "../../page-objects/pages/admin-panel/AdminProductPage";
 
 export type CatalogeContext = { cardsState: CardState[] };
 
@@ -50,7 +51,7 @@ export const test = bddTest.extend<{
   ezPointsPage: EzPointsPage;
   accountSettingsPage: AccountSettingsPage;
   accountInfoPage: AccountInfoPage;
-
+  adminProductPage: AdminProductPage;
   portalContext: PortalContext;
   catalogContext: CatalogeContext;
   cartComponent: CartComponent;
@@ -102,7 +103,8 @@ export const test = bddTest.extend<{
     await use(new AccountSettingsPage(page)),
   accountInfoPage: async ({ page }, use) =>
     await use(new AccountInfoPage(page)),
-
+  adminProductPage: async ({ page }, use) =>
+    await use(new AdminProductPage(page)),
   //portalPage: async ({ page }, use) => await use(new PortalPage(page)),
 
   catalogContext: async ({}, use) => await use({ cardsState: [] }),

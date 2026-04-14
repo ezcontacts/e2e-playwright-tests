@@ -7,6 +7,7 @@ export class CardState {
   reviews?: string;
   hasRating!: boolean;
   colors?: string[];
+  productId?: string;
 }
 
 export class ProductCardComponent extends BaseComponent {
@@ -102,6 +103,9 @@ export class ProductCardComponent extends BaseComponent {
       (await this.rating.count()) > 0 ? await this.rating.isVisible() : false;
     state.colors = await this.getColorsFromContainer(this.color);
 
+    const productUrl = await this.link.first().getAttribute("href");
+
+    if (productUrl) state.productId = this.getProductTail(productUrl);
     return state;
   }
 
@@ -130,6 +134,18 @@ export class ProductCardComponent extends BaseComponent {
     });
   }
 
+  getProductTail(url: string): string {
+    const marker = "/product/";
+    const index = url.indexOf(marker);
+
+    if (index === -1) return "";
+
+    const tail = url.slice(index + marker.length);
+    const parts = tail.split("/");
+
+    return parts.length > 1 ? parts.slice(1).join("/") : "";
+  }
+
   async verifyState(state: CardState): Promise<void> {
     if (state.title) {
       await expect(this.title).toHaveText(state.title);
@@ -151,19 +167,5 @@ export class ProductCardComponent extends BaseComponent {
 
   async verifyIsCenter(): Promise<void> {
     await expect(this.infoBlock).toHaveCSS("text-align", "center");
-  }
-
-  private async closeAttentivePopupIfPresent(): Promise<void> {
-    const closeButton = this.page
-      .frameLocator("#attentive_creative")
-      .getByTestId("closeIcon");
-
-    try {
-      if (await closeButton.isVisible({ timeout: 2000 })) {
-        await closeButton.click();
-      }
-    } catch {
-      // Popup not present, ignore
-    }
   }
 }

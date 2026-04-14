@@ -24,9 +24,7 @@ Examples:
 Scenario: Verify color options are displayed below each product icon
   Then each product icon should display available color options below it
 
-@skip
 Scenario: Verify color options count matches product variants
-  When the user clicks on a product to view its details
   Then the number of color options displayed should match the color variants configured in admin
 
 Scenario: Verify color options consistency on page refresh

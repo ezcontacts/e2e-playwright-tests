@@ -78,6 +78,8 @@
   },
   "suites": [
     {
+      "title": "test\\generated\\desktop\\test\\features\\Payment\\LoginPayPalPayment.feature.spec.js",
+      "file": "test/generated/desktop/test/features/Payment/LoginPayPalPayment.feature.spec.js",
       "title": "test\\generated\\desktop\\test\\features\\Payment\\LoginCreditCardPayment.feature.spec.js",
       "file": "test/generated/desktop/test/features/Payment/LoginCreditCardPayment.feature.spec.js",
       "column": 0,
@@ -85,12 +87,15 @@
       "specs": [],
       "suites": [
         {
+          "title": "Verify Logged-in checkout using PayPal",
+          "file": "test/generated/desktop/test/features/Payment/LoginPayPalPayment.feature.spec.js",
           "title": "Verify Logged-in checkout using Credit Card",
           "file": "test/generated/desktop/test/features/Payment/LoginCreditCardPayment.feature.spec.js",
           "line": 4,
           "column": 6,
           "specs": [
             {
+              "title": "Logged in user completes payment using PayPal",
               "title": "Logged in user completes payment using Credit Card",
               "ok": true,
               "tags": [],
@@ -185,6 +190,9 @@
                   "status": "expected"
                 }
               ],
+              "id": "a4150483e6dd59cc7582-b6b50a43b7a0f92a0501",
+              "file": "test/generated/desktop/test/features/Payment/LoginPayPalPayment.feature.spec.js",
+              "line": 10,
               "id": "e2295301f63da1280d0a-9ff67682f4b668b3e7e4",
               "file": "test/generated/desktop/test/features/Payment/LoginCreditCardPayment.feature.spec.js",
               "line": 16,

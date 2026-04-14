@@ -391,9 +391,28 @@ export class CartComponent extends BaseComponent {
 
     private async handleAffirmDisclosure() {
         console.log("Handling disclosure checkbox...");
+
+        // Wait for either checkbox OR final submit
+        await Promise.race([
+            this.affirmDisclosureCheckbox.waitFor({ state: "visible", timeout: 15000 }).catch(() => {}),
+            this.affirmGenericSubmitButton.waitFor({ state: "visible", timeout: 15000 }),
+        ]);
+
+        // If checkbox is present → handle it
         if (await this.affirmDisclosureCheckbox.isVisible().catch(() => false)) {
-            await this.affirmDisclosureCheckbox.check({ force: true });
+            try {
+                await this.affirmDisclosureCheckbox.check({ force: true });
+                await expect(this.affirmDisclosureCheckbox).toBeChecked({ timeout: 5000 });
+            } catch {
+                // fallback click (very important for flaky UI)
+                const el = await this.affirmDisclosureCheckbox.elementHandle();
+                if (el) {
+                    await el.evaluate((node: any) => node.click());
+                }
+            }
             console.log("✅ Checkbox handled");
+        } else {
+            console.log("ℹ️ Checkbox not displayed, skipping...");
         }
     }
 

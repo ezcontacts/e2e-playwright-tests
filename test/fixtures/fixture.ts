@@ -25,6 +25,7 @@ import { AccountInfoPage } from "../../page-objects/pages/Account/AcountInfoPage
 import { CardState } from "../../page-objects/components/ProductCardComponent";
 import { CartComponent } from "../../page-objects/components/CartComponent";
 import { AdminProductPage } from "../../page-objects/pages/admin-panel/AdminProductPage";
+import { CLContactLensPage } from "../../page-objects/pages/CLContactLensPage";
 
 export type CatalogeContext = { cardsState: CardState[] };
 
@@ -54,7 +55,9 @@ export const test = bddTest.extend<{
   adminProductPage: AdminProductPage;
   portalContext: PortalContext;
   catalogContext: CatalogeContext;
-  cartComponent: CartComponent;
+  //cartComponent: CartComponent;
+  clContext: clContext;
+  CLContactLensPage: CLContactLensPage;
 }>({
   context: async ({ browser }, use) => {
     const context = await browser.newContext({
@@ -68,8 +71,8 @@ export const test = bddTest.extend<{
     await use({ selectedTab: undefined });
   },
 
-  cartComponent: async ({ page }, use) => {
-    await use(new CartComponent(page));
+  clContext: async ({}, use) => {
+    await use({ selectedTab: undefined });
   },
 
   homePage: async ({ page }, use) => await use(new HomePage(page)),
@@ -103,12 +106,21 @@ export const test = bddTest.extend<{
     await use(new AccountSettingsPage(page)),
   accountInfoPage: async ({ page }, use) =>
     await use(new AccountInfoPage(page)),
+
+  CLContactLensPage: async ({ page }, use) =>
+    await use(new CLContactLensPage(page)),
+
   adminProductPage: async ({ page }, use) =>
     await use(new AdminProductPage(page)),
   //portalPage: async ({ page }, use) => await use(new PortalPage(page)),
 
   catalogContext: async ({}, use) => await use({ cardsState: [] }),
 });
+
+export type clContext = {
+  selectedTab?: string;
+  previousTab?: string;
+};
 
 export type PortalContext = {
   selectedTab?: string;

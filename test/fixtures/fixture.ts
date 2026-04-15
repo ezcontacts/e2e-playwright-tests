@@ -55,7 +55,7 @@ export const test = bddTest.extend<{
   adminProductPage: AdminProductPage;
   portalContext: PortalContext;
   catalogContext: CatalogeContext;
-  cartComponent: CartComponent;
+  //cartComponent: CartComponent;
   clContext: clContext;
   CLContactLensPage: CLContactLensPage;
 }>({

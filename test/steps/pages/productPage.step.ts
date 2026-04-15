@@ -102,7 +102,9 @@ Then("I should see shipping availability text", async ({ productPage }) => {
 
 Then(
   "I should see the Affirm badge if product price is over $50",
-  async ({ productPage }) => {},
+  async ({ productPage }) => {
+    
+  },
 );
 
 Then(

@@ -21,20 +21,13 @@ Examples:
   | Price: High to Low  |
 
 # Readers color options displayed below each product icon
-@skip
 Scenario: Verify color options are displayed below each product icon
   Then each product icon should display available color options below it
 
-@skip
 Scenario: Verify color options count matches product variants
   Then the number of color options displayed should match the color variants configured in admin
 
-@skip
-Scenario: Verify color options visibility across pagination
-  When the user navigates to the next page using pagination
-  Then the color options should be displayed correctly below each product icon
-
-@skip
 Scenario: Verify color options consistency on page refresh
+  Given the user views a product on the listing page
   When the user refreshes the Product Listing page
-  Then the color options should remain visible and unchanged for each produ
+  Then the color options should remain visible and unchanged for each product

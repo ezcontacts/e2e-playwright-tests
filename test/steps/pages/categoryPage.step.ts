@@ -172,3 +172,33 @@ Then(
     await sunglassesPage.verifyProductTitlesIsVisible();
   },
 );
+
+Then(
+  "each product icon should display available color options below it",
+  async ({ sunglassesPage }) => {
+    await sunglassesPage.verifyOptionalProductColorsIsVisible();
+  },
+);
+
+Then(
+  "the color options should remain visible and unchanged for each product",
+  async ({ sunglassesPage }) => {
+    await sunglassesPage.verifyCatalogState(catalogCardStates);
+  },
+);
+
+Then(
+  "the number of color options displayed should match the color variants configured in admin",
+  async ({ sunglassesPage, adminProductPage, adminPanelPage }) => {
+    const card = await sunglassesPage.getFirstCard();
+    const stage = await card.getState();
+    await adminProductPage.open(stage.productId ?? "");
+
+    await adminPanelPage.adminLogin.enterValidEmail();
+    await adminPanelPage.adminLogin.enterValidPassword();
+    await adminPanelPage.adminLogin.clickOnSignInBtn();
+
+    console.log("Product colors: " + stage.colors);
+    await adminProductPage.verifyExistColors(stage.colors ?? []);
+  },
+);

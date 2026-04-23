@@ -111,7 +111,7 @@ Then(
 Then(
   "the page URL should contain {string}",
   async ({ accountOrderPage }, urlPart: string) => {
-    await accountOrderPage.verifyUrlEndpoint(`${urlPart}${orderId}`);
+    await accountOrderPage.verifyContainsUrlEndpoint(`${urlPart}${orderId}`);
   },
 );
 

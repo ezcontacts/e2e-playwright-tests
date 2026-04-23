@@ -48,11 +48,15 @@ export abstract class BasePage extends BaseEntity {
     await expect(this.page).toHaveURL(new RegExp(`${this.endpoint}`));
   }
 
-  async verifyUrlEndpoint(endpoint: string) {
+  async verifyContainsUrlEndpoint(endpoint: string) {
     const { pathname } = new URL(this.page.url());
     const escaped = endpoint.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const pattern = new RegExp(`(^|/)${escaped}($|/)`);
 
     expect(pathname).toMatch(pattern);
+  }
+
+  async verifyUrlEndpoint(endpoint: string) {
+    await expect(this.page).toHaveURL(new RegExp(endpoint));
   }
 }

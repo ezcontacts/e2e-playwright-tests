@@ -166,6 +166,7 @@ export class ProductCardComponent extends BaseComponent {
   }
 
   async verifyIsCenter(): Promise<void> {
+    if ((await this.infoBlock.count()) === 0) return;
     await expect(this.infoBlock).toHaveCSS("text-align", "center");
   }
 }

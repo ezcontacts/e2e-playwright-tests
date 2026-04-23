@@ -7,7 +7,7 @@ export class EzPointsPage extends AccountPage {
   readonly column: (text: string) => Locator;
 
   constructor(page: Page) {
-    super(page, ENDPOINT.eqPoints);
+    super(page, ENDPOINT.ezPoints);
 
     this.table = this.locator('.table-responsive');
     this.column = (text: string) => this.locator(`.table-responsive th`).filter({ hasText: text });

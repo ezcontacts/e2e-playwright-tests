@@ -60,7 +60,9 @@ export const PAYMENT = {
   affirmPhone: "(855) 423-3729",
   affirmOtp: "123456",
   paypalEmail: "test-buyer@sanisoft.com",
-  paypalPassword: "12345678"  
+  paypalPassword: "12345678",  
+  klarnaPhone:"9898989898",
+  klarnaOtp:"123456"
 
 };
 

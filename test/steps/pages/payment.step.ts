@@ -39,6 +39,10 @@ When("I enter card details for Logged In", async ({ cartComponent }) => {
   await cartComponent.enterPaymentForLoggedIn();
 });
 
+When("I complete the Klarna payment flow", async ({ cartComponent }) => {
+  await cartComponent.payWithKlarna();
+});
+
 When("I complete the Affirm payment flow", async ({ cartComponent }) => {
   await cartComponent.payWithAffirm();
 });

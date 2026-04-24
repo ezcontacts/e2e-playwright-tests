@@ -55,6 +55,19 @@ export class CartComponent extends BaseComponent {
     readonly affirmGenericSubmitButton: Locator;
     readonly affirmOtpContinueButton: Locator;
 
+
+    // =======================
+    // KLARNA LOCATORS
+    // =======================
+    readonly klarnaFrame: FrameLocator;
+    readonly klarnaOption: Locator;
+    readonly klarnaPhoneInput: Locator;
+    readonly klarnaContinueButton: Locator;
+    readonly klarnaOtpInput: Locator;
+    readonly klarnaPlanRadios: Locator;
+    readonly klarnaPlanContinueButton: Locator;
+    readonly klarnaPayButton: Locator;
+
     // -----------------------
     // PAYPAL LOCATORS
     // -----------------------
@@ -124,6 +137,26 @@ export class CartComponent extends BaseComponent {
         this.affirmDisclosureCheckbox = this.affirmFrame.locator('[data-testid="disclosure-checkbox"]');
         this.affirmGenericSubmitButton = this.affirmFrame.locator('[data-testid="submit-button"]');
         this.affirmOtpContinueButton = this.affirmGenericSubmitButton.filter({ hasText: /confirm|continue|next/i }).first();
+
+
+        // --- KLARNA ---
+        this.klarnaFrame = page.frameLocator('iframe[src*="klarna"]');
+
+        // click target (FIXED)
+        this.klarnaOption = page.locator('label:has(#klarna-img)');
+
+        // everything INSIDE iframe
+        this.klarnaPhoneInput = this.klarnaFrame.locator("#phone");
+        this.klarnaContinueButton = this.klarnaFrame.locator('#onContinue__text');
+
+        this.klarnaOtpInput = this.klarnaFrame.locator("#otp_field");
+
+        this.klarnaPlanRadios = this.klarnaFrame.locator('input[name="offers__group"]');
+        this.klarnaPlanContinueButton = this.klarnaFrame.locator("#offers-selector-continue-button");
+
+        this.klarnaPayButton = this.klarnaFrame
+        .locator('#buy_button__text')
+        .filter({ hasText: /pay with/i });
 
         // --- PAYPAL LOCATORS ---
         this.paypalOption = page.locator("#paypal-img");
@@ -555,5 +588,107 @@ export class CartComponent extends BaseComponent {
             ]);
             await this.page.waitForLoadState("domcontentloaded");
         }
+    }
+
+
+    async payWithKlarna() {
+        console.log("🟣 Starting Klarna flow...");
+
+        await this.ensureOnPaymentPage();
+        await this.verifyPaymentPageLoaded();
+
+        await this.selectKlarnaOption();
+        await this.enterKlarnaPhone();
+        await this.enterKlarnaOtp();
+        await this.selectKlarnaPlan();
+        await this.confirmKlarnaPayment();
+
+        console.log("🎉 Klarna flow completed!");
+    }
+
+
+    private async selectKlarnaOption() {
+        console.log("Selecting Klarna...");
+
+        await this.page.waitForLoadState("networkidle");
+
+        await this.klarnaOption.waitFor({ state: "visible", timeout: 60000 });
+        await this.klarnaOption.scrollIntoViewIfNeeded();
+
+        await this.klarnaOption.click({ force: true });
+
+        // 🔥 CRITICAL: wait for Klarna iframe
+        await this.page.waitForSelector('iframe[src*="klarna"]', { timeout: 60000 });
+
+        console.log("✅ Klarna option selected");
+    }
+
+
+    private async enterKlarnaPhone() {
+        console.log("Entering Klarna phone...");
+
+        await this.klarnaPhoneInput.waitFor({ state: "visible", timeout: 60000 });
+
+        await this.klarnaPhoneInput.fill(this.paymentData.klarnaPhone);
+
+        await this.klarnaContinueButton.click();
+
+        console.log("✅ Phone submitted");
+    }
+
+
+    private async enterKlarnaOtp() {
+        console.log("Entering Klarna OTP...");
+
+        await this.klarnaOtpInput.waitFor({ state: "visible", timeout: 60000 });
+
+        await this.klarnaOtpInput.fill(this.paymentData.klarnaOtp);
+
+        await this.page.waitForTimeout(2000);
+    }
+
+
+    private async selectKlarnaPlan() {
+        console.log("Selecting Klarna plan...");
+
+        await this.klarnaPlanRadios.first().waitFor({ state: "visible", timeout: 120000 });
+
+        const count = await this.klarnaPlanRadios.count();
+        let selected = false;
+
+        for (let i = 0; i < count; i++) {
+            const radio = this.klarnaPlanRadios.nth(i);
+
+            try {
+                await radio.scrollIntoViewIfNeeded();
+                await radio.click({ force: true });
+
+                await expect(radio).toBeChecked({ timeout: 5000 });
+
+                selected = true;
+                break;
+            } catch {
+                await this.page.waitForTimeout(1000);
+            }
+        }
+
+        if (!selected) throw new Error("❌ No Klarna plan selected");
+
+        await this.klarnaPlanContinueButton.click({ force: true });
+
+        console.log("✅ Plan selected");
+    }
+
+
+    private async confirmKlarnaPayment() {
+        console.log("Confirming Klarna payment...");
+
+        await this.klarnaPayButton.waitFor({ state: "visible", timeout: 60000 });
+
+        await this.klarnaPayButton.click({ force: true });
+
+        await this.page.waitForLoadState("networkidle").catch(() => {});
+
+        console.log("✅ Payment confirmed");
     }
 }

@@ -68,7 +68,7 @@ export const test = bddTest.extend<{
   },
 
   cartComponent: async ({ page }, use) => {
-    await use(new CartComponent(page));
+  await use(new CartComponent(page));
   },
 
   homePage: async ({ page }, use) => await use(new HomePage(page)),

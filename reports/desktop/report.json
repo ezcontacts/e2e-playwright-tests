@@ -89,69 +89,66 @@
           "file": "test/generated/desktop/test/features/account/address_payment.feature.spec.js",
           "line": 4,
           "column": 6,
-          "specs": [],
-          "suites": [
+          "specs": [
             {
-              "title": "Verify user can add a new address or payment method",
-              "file": "test/generated/desktop/test/features/account/address_payment.feature.spec.js",
-              "line": 11,
-              "column": 8,
-              "specs": [
+              "title": "Verify that user can save the Billing Address",
+              "ok": true,
+              "tags": [
+                "EZSANISOFT-5382"
+              ],
+              "tests": [
                 {
-                  "title": "Example #1",
-                  "ok": true,
-                  "tags": [],
-                  "tests": [
+                  "timeout": 220000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
                     {
-                      "timeout": 220000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "desktop",
-                      "projectName": "desktop",
-                      "results": [
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 66749,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
                         {
-                          "workerIndex": 0,
-                          "parallelIndex": 0,
-                          "status": "passed",
-                          "duration": 42130,
-                          "errors": [],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "steps": [
-                            {
-                              "title": "When the user clicks on Add \"Shipping Address\" link",
-                              "duration": 1664
-                            },
-                            {
-                              "title": "Then the \"Add Shipping Address\" form should be displayed",
-                              "duration": 478
-                            },
-                            {
-                              "title": "And the user should be redirected to \"/account/address-and-payment/add-shipping-address\"",
-                              "duration": 192
-                            }
-                          ],
-                          "startTime": "2026-04-13T08:04:30.027Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "trace",
-                              "contentType": "application/zip",
-                              "path": "C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\test-results\\test-features-account-addr-a5121-or-payment-method-Example-1-desktop\\trace.zip"
-                            }
-                          ]
+                          "title": "When the user clicks on Add \"Billing Address\" link",
+                          "duration": 4739
+                        },
+                        {
+                          "title": "Then the user enters billing address details",
+                          "duration": 8416
+                        },
+                        {
+                          "title": "And the user clicks on the \"<buttonName>\" button",
+                          "duration": 2316
+                        },
+                        {
+                          "title": "And a \"The account billing address has been saved.\" message should be displayed",
+                          "duration": 3445
                         }
                       ],
-                      "status": "expected"
+                      "startTime": "2026-04-27T13:02:51.460Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\test-results\\test-features-account-addr-db18b-an-save-the-Billing-Address-desktop\\trace.zip"
+                        }
+                      ]
                     }
                   ],
-                  "id": "f7c08486b32bc097a01b-c86b4d14d6e5ac6be481",
-                  "file": "test/generated/desktop/test/features/account/address_payment.feature.spec.js",
-                  "line": 13,
-                  "column": 5
+                  "status": "expected"
                 }
-              ]
+              ],
+              "id": "f7c08486b32bc097a01b-5b194f73f8b595e26e08",
+              "file": "test/generated/desktop/test/features/account/address_payment.feature.spec.js",
+              "line": 47,
+              "column": 3
             }
           ]
         }
@@ -160,8 +157,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-04-13T08:04:27.260Z",
-    "duration": 49003.087,
+    "startTime": "2026-04-27T13:02:45.724Z",
+    "duration": 81014.15499999997,
     "expected": 1,
     "skipped": 0,
     "unexpected": 0,

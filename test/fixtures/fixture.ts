@@ -108,6 +108,8 @@ export const test = bddTest.extend<{
   ezPointsPage: async ({ page }, use) => await use(new EzPointsPage(page)),
   accountOrderPage: async ({ page }, use) =>
     await use(new AccountOrderPage(page)),
+  accountSettingsPage: async ({ page }, use) =>
+    await use(new AccountSettingsPage(page)),
   addressAndPaymentPage: async ({ page }, use) =>
     await use(new AddressAndPaymentPage(page)),
   accountInfoPage: async ({ page }, use) =>

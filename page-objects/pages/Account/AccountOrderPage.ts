@@ -9,6 +9,7 @@ export class AccountOrderPage extends AccountPage {
   readonly orderDetails: (name: string) => Locator;
   readonly tableWithText: (title: string, linkName: string) => Locator;
   readonly orderStatus: (name: string) => Locator;
+  readonly tableTitel: (title: string) => Locator;
   readonly paymentTitle: Locator;
   readonly invoicePDFLink: Locator;
   readonly trackPackageLink: Locator;
@@ -49,6 +50,11 @@ export class AccountOrderPage extends AccountPage {
 
     this.orderStatus = (name: string) =>
       this.locator(".order-stage-text").filter({ hasText: name });
+
+    this.tableTitel = (title: string) =>
+      this.page
+        .locator(".order-colored.recent-orders thead td")
+        .filter({ hasText: title });
 
     this.paymentTitle = this.locator(".text-x");
     this.invoicePDFLink = this.locator(".highlight-thead a");
@@ -118,5 +124,10 @@ export class AccountOrderPage extends AccountPage {
 
   async verifyOrderDetailsIsVisible(): Promise<void> {
     await expect(this.orderDetailsSection).toBeVisible();
+  }
+
+  async verifyOrderTableTitleIsVisible(name: string): Promise<void> {
+    const title = this.tableTitel(name);
+    await expect(title).toBeVisible();
   }
 }

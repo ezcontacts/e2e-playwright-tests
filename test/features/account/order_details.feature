@@ -5,8 +5,6 @@ Background:
   Given the user is logged in
   And the user is on the My Account page
   When the user selects "Order History" from the My Account menu
-#   And the user has at least one order is palced.
-#   And each order should have an "Order Details" action link
 
 # Open Order Details Page
 Scenario Outline: Open Order Details page for an order
@@ -18,10 +16,10 @@ Scenario Outline: Open Order Details page for an order
 Scenario: Verify order summary details on Order Details page
   Given the user is on the Order Details page
   Then the Order details have the following informations
-  | OrderDate     |
-  | Order Number  |
-  | Order Total   |
-  | Order Status  |
+    | OrderDate     |
+    | Order Number  |
+    | Order Total   |
+    | Order Status  |
 
 # Return and Order Status Section
 Scenario: Verify return option and order status indicators

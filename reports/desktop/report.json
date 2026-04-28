@@ -1,0 +1,167 @@
+{
+  "config": {
+    "configFile": "C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\playwright.config.js",
+    "rootDir": "C:/Ezcontacts/Automation/e2e-playwright-tests/e2e-playwright-tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "json",
+        {
+          "outputFile": "reports/desktop/report.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "outputFolder": "playwright-report/desktop",
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "C:/Ezcontacts/Automation/e2e-playwright-tests/e2e-playwright-tests/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "C:/Ezcontacts/Automation/e2e-playwright-tests/e2e-playwright-tests/test/generated/desktop",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 220000
+      },
+      {
+        "outputDir": "C:/Ezcontacts/Automation/e2e-playwright-tests/e2e-playwright-tests/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile",
+        "name": "mobile",
+        "testDir": "C:/Ezcontacts/Automation/e2e-playwright-tests/e2e-playwright-tests/test/generated/mobile",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 220000
+      }
+    ],
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.57.0",
+    "workers": 4,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "test\\generated\\desktop\\test\\features\\account\\address_payment.feature.spec.js",
+      "file": "test/generated/desktop/test/features/account/address_payment.feature.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Address and Payment Management",
+          "file": "test/generated/desktop/test/features/account/address_payment.feature.spec.js",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Verify that user can save the Billing Address",
+              "ok": true,
+              "tags": [
+                "EZSANISOFT-5382"
+              ],
+              "tests": [
+                {
+                  "timeout": 220000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 66749,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "When the user clicks on Add \"Billing Address\" link",
+                          "duration": 4739
+                        },
+                        {
+                          "title": "Then the user enters billing address details",
+                          "duration": 8416
+                        },
+                        {
+                          "title": "And the user clicks on the \"<buttonName>\" button",
+                          "duration": 2316
+                        },
+                        {
+                          "title": "And a \"The account billing address has been saved.\" message should be displayed",
+                          "duration": 3445
+                        }
+                      ],
+                      "startTime": "2026-04-27T13:02:51.460Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\test-results\\test-features-account-addr-db18b-an-save-the-Billing-Address-desktop\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f7c08486b32bc097a01b-5b194f73f8b595e26e08",
+              "file": "test/generated/desktop/test/features/account/address_payment.feature.spec.js",
+              "line": 47,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-04-27T13:02:45.724Z",
+    "duration": 81014.15499999997,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

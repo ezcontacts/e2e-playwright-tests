@@ -138,7 +138,7 @@ export const ACCOUNT_MENU_LINKS: Record<
   },
   [AccountMenu.AddressAndPayment]: {
     endpoint: "/account/address-and-payment",
-    title: "Account settings",
+    title: "Shipping Address",
   },
   [AccountMenu.OrderHistory]: {
     endpoint: "/account/order-history",

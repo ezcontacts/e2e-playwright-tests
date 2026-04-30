@@ -28,6 +28,7 @@ import { AdminProductPage } from "../../page-objects/pages/admin-panel/AdminProd
 import { CLContactLensPage } from "../../page-objects/pages/CLContactLensPage";
 import { AccountOrderPage } from "../../page-objects/pages/Account/AccountOrderPage";
 import { AddressAndPaymentPage } from "../../page-objects/pages/Account/AddressAndPaymentPage";
+import { RxVereficationPage } from "../../page-objects/pages/Account/RxVereficationPage";
 
 export type CatalogeContext = { cardsState: CardState[] };
 
@@ -59,6 +60,7 @@ export const test = bddTest.extend<{
   addressAndPaymentPage: AddressAndPaymentPage;
   portalContext: PortalContext;
   catalogContext: CatalogeContext;
+  rxVerificationPage: RxVereficationPage;
   //cartComponent: CartComponent;
   clContext: clContext;
   CLContactLensPage: CLContactLensPage;
@@ -120,6 +122,8 @@ export const test = bddTest.extend<{
 
   adminProductPage: async ({ page }, use) =>
     await use(new AdminProductPage(page)),
+  rxVerificationPage: async ({ page }, use) =>
+    await use(new RxVereficationPage(page)),
   //portalPage: async ({ page }, use) => await use(new PortalPage(page)),
 
   catalogContext: async ({}, use) => await use({ cardsState: [] }),

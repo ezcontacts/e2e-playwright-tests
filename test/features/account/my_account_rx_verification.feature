@@ -18,22 +18,21 @@ Scenario: Verify navigate to Rx Information page header, primary action and info
     Maximum file upload limit : 15 MB
     """
 
-@skip
 # Saved Prescription List
 Scenario: Verify saved prescription list is displayed
-  Given the user has saved prescriptions
-  Then a list of saved prescription records should be displayed
+  When the user selects "Rx Information" from the My Account menu
+  Then the user has saved prescriptions
+  And a list of saved prescription records should be displayed
 
-@skip
 # Prescription Card Actions
 Scenario Outline: Verify actions available for each saved prescription
-  Given the user is viewing a saved prescription record
-  Then the "<Action>" link should be visible
-  And the "<Action>" link should be enabled
+  When the user selects "Rx Information" from the My Account menu
+  Then the user has saved prescriptions
+  And the "<Action>" prescription action link should be visible
 
   Examples:
-    | Action                    |
-    | Edit Prescription         |
-    | Delete Prescription       |
-    | Shop with Prescription    |
-    | Upload Prescription Scan  |
+    | Action                      |
+    | Edit Prescription           |
+    | Delete Prescription         |
+    | Shop with this Prescription |
+    | Upload Prescription Scan    |

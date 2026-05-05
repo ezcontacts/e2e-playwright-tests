@@ -14,10 +14,11 @@ export const ENDPOINT = {
   checkout: "/checkout",
   deals: "/eyewear/deals",
   accountMain: "/account/main",
+  cart: "/checkout/cart",
 
-  addressAndPayment : "/account/address-and-payment",
+  addressAndPayment: "/account/address-and-payment",
   paymentPage: "/account/address-and-payment/add-card-details",
-  
+
   ezPoints: "/account/ezpoints",
   readers: "/readers",
 };

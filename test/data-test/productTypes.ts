@@ -1,4 +1,12 @@
 export enum LensType {
+  StandardProgressiveBifocal = "Standard Progressive - Bifocal",
+  PremiumProgressiveVariluxComfortDrx = "Premium Progressive (Varilux Comfort DRX)",
+  VariluxX = "Varilux X",
+  BifocalFlatTop28 = "Bifocal - Flat Top 28 - Bifocal",
+  BifocalFlatTop35 = "Bifocal - Flat Top 35 - Bifocal",
+}
+
+export enum LensMaterialType {
   PremiumStandardPlastic = "Premium Standard Plastic",
   ImpactResistantPolycarbonate = "Impact Resistant Polycarbonate",
   SuperThinHiIndex167 = "Super Thin 1.67 Hi Index",

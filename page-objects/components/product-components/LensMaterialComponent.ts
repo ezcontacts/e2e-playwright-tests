@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
 import { ProductStepComponent } from "./ProductStepComponent";
 import { RadioButtonListComponent } from "./RadioButtonListComponent";
-import { LensType } from "../../../test/data-test/productTypes";
+import { LensMaterialType } from "../../../test/data-test/productTypes";
 
-export type { LensType };
+export type { LensMaterialType };
 
 export class LensMaterialComponent extends ProductStepComponent {
   readonly lensMaterial: RadioButtonListComponent;
@@ -13,11 +13,11 @@ export class LensMaterialComponent extends ProductStepComponent {
 
     this.lensMaterial = new RadioButtonListComponent(
       this.page,
-      this.within(".lens-material")
+      this.within(".lens-material"),
     );
   }
 
-  async setLensMaterial(type: LensType): Promise<void> {
+  async setLensMaterial(type: LensMaterialType): Promise<void> {
     await this.lensMaterial.clickOnRadioBtnByText(type);
   }
 }

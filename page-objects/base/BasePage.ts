@@ -21,7 +21,7 @@ export abstract class BasePage extends BaseEntity {
 
     this.header = new HeaderComponent(page);
     this.footer = new FooterComponent(page);
-    this.cart   = new CartComponent(page);
+    this.cart = new CartComponent(page);
     this.promotion = new PromotionComponent(page);
   }
 
@@ -46,6 +46,14 @@ export abstract class BasePage extends BaseEntity {
   async verifyUrl() {
     await this.header.cartLink.waitFor({ state: "visible" });
     await expect(this.page).toHaveURL(new RegExp(`${this.endpoint}`));
+  }
+
+  async verifyContainsUrlEndpoint(endpoint: string) {
+    const { pathname } = new URL(this.page.url());
+    const escaped = endpoint.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const pattern = new RegExp(`(^|/)${escaped}($|/)`);
+
+    expect(pathname).toMatch(pattern);
   }
 
   async verifyUrlEndpoint(endpoint: string) {

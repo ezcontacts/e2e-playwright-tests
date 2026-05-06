@@ -16,3 +16,4 @@ test-results/
 .reports/
 cucumber.json
 google-session.json
+/reports/desktop/

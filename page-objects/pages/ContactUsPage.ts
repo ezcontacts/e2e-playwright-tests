@@ -11,7 +11,7 @@ export class ContactUsPage extends BasePage {
   };
 
   readonly submitBtn: Locator;
-  readonly errorModal: Locator;
+  //readonly errorModal: Locator;
   readonly errorModalText: Locator;
   readonly errorModalCloseBtn: Locator;
 

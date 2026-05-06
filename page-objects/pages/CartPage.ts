@@ -6,7 +6,6 @@ import { CartItemComponent } from "../components/CartItemComponent";
 
 export class CartPage extends BasePage {
   readonly message: MessageComponent;
-
   readonly title: Locator;
   readonly cartNumber: Locator;
   readonly continueShoppingBtn: Locator;
@@ -17,7 +16,7 @@ export class CartPage extends BasePage {
   readonly item: (index: number) => CartItemComponent;
 
   constructor(page: Page) {
-    super(page, ENDPOINT.contactUs);
+    super(page, ENDPOINT.cart);
 
     this.title = this.locator("h2.section-title");
     this.cartNumber = this.locator("h5 > strong");
@@ -53,7 +52,7 @@ export class CartPage extends BasePage {
   async verifyCheckoutBtnIsVisible(): Promise<void> {
     await expect(this.checkoutBtn).toBeVisible();
   }
-  
+
   async clickOnCheckoutBtn(): Promise<void> {
     await this.checkoutBtn.click();
   }

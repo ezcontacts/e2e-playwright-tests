@@ -16,7 +16,7 @@ import { ContactLensesProductPage } from "../../page-objects/pages/ContactLenses
 import { MeasurePupilDistancePage } from "../../page-objects/pages/MeasurePdActionsPage";
 import { OnlineVisionTestPage } from "../../page-objects/pages/OnlineVisionTestPage";
 import { VisionTestIntroductionPage } from "../../page-objects/pages/VisionTestIntroductionPage";
-import { AdminPanelPage } from "../../page-objects/pages/AdminPanelPage";
+import { AdminPanelPage } from "../../page-objects/pages/admin-panel/AdminPanelPage";
 import { CheckoutPage } from "../../page-objects/pages/CheckoutPage";
 import { AccountPage } from "../../page-objects/pages/Account/AccountPage";
 import { EzPointsPage } from "../../page-objects/pages/Account/EzPointsPage";
@@ -24,6 +24,11 @@ import { AccountSettingsPage } from "../../page-objects/pages/Account/AccountSet
 import { AccountInfoPage } from "../../page-objects/pages/Account/AcountInfoPage";
 import { CardState } from "../../page-objects/components/ProductCardComponent";
 import { CartComponent } from "../../page-objects/components/CartComponent";
+import { AdminProductPage } from "../../page-objects/pages/admin-panel/AdminProductPage";
+import { CLContactLensPage } from "../../page-objects/pages/CLContactLensPage";
+import { AccountOrderPage } from "../../page-objects/pages/Account/AccountOrderPage";
+import { AddressAndPaymentPage } from "../../page-objects/pages/Account/AddressAndPaymentPage";
+import { RxInformationPage } from "../../page-objects/pages/Account/RxVereficationPage";
 
 export type CatalogeContext = { cardsState: CardState[] };
 
@@ -50,10 +55,15 @@ export const test = bddTest.extend<{
   ezPointsPage: EzPointsPage;
   accountSettingsPage: AccountSettingsPage;
   accountInfoPage: AccountInfoPage;
-
+  adminProductPage: AdminProductPage;
+  accountOrderPage: AccountOrderPage;
+  addressAndPaymentPage: AddressAndPaymentPage;
   portalContext: PortalContext;
   catalogContext: CatalogeContext;
+  rxVerificationPage: RxInformationPage;
   cartComponent: CartComponent;
+  clContext: clContext;
+  CLContactLensPage: CLContactLensPage;
 }>({
   context: async ({ browser }, use) => {
     const context = await browser.newContext({
@@ -70,6 +80,7 @@ export const test = bddTest.extend<{
   cartComponent: async ({ page }, use) => {
   await use(new CartComponent(page));
   },
+
 
   homePage: async ({ page }, use) => await use(new HomePage(page)),
   loginPage: async ({ page }, use) => await use(new LoginPage(page)),
@@ -98,15 +109,31 @@ export const test = bddTest.extend<{
   checkoutPage: async ({ page }, use) => await use(new CheckoutPage(page)),
   accountPage: async ({ page }, use) => await use(new AccountPage(page)),
   ezPointsPage: async ({ page }, use) => await use(new EzPointsPage(page)),
+  accountOrderPage: async ({ page }, use) =>
+    await use(new AccountOrderPage(page)),
   accountSettingsPage: async ({ page }, use) =>
     await use(new AccountSettingsPage(page)),
+  addressAndPaymentPage: async ({ page }, use) =>
+    await use(new AddressAndPaymentPage(page)),
   accountInfoPage: async ({ page }, use) =>
     await use(new AccountInfoPage(page)),
 
+  CLContactLensPage: async ({ page }, use) =>
+    await use(new CLContactLensPage(page)),
+
+  adminProductPage: async ({ page }, use) =>
+    await use(new AdminProductPage(page)),
+  rxVerificationPage: async ({ page }, use) =>
+    await use(new RxInformationPage(page)),
   //portalPage: async ({ page }, use) => await use(new PortalPage(page)),
 
   catalogContext: async ({}, use) => await use({ cardsState: [] }),
 });
+
+export type clContext = {
+  selectedTab?: string;
+  previousTab?: string;
+};
 
 export type PortalContext = {
   selectedTab?: string;

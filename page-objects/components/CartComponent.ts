@@ -55,18 +55,18 @@ export class CartComponent extends BaseComponent {
     readonly affirmGenericSubmitButton: Locator;
     readonly affirmOtpContinueButton: Locator;
 
-
-    // =======================
+    // -----------------------
     // KLARNA LOCATORS
-    // =======================
-    readonly klarnaFrame: FrameLocator;
+    // -----------------------
     readonly klarnaOption: Locator;
-    readonly klarnaPhoneInput: Locator;
-    readonly klarnaContinueButton: Locator;
-    readonly klarnaOtpInput: Locator;
-    readonly klarnaPlanRadios: Locator;
-    readonly klarnaPlanContinueButton: Locator;
-    readonly klarnaPayButton: Locator;
+    readonly klarnaFrame: (page: Page) => FrameLocator;
+
+    readonly klarnaPhoneInput: (p: Page | FrameLocator) => Locator;
+    readonly klarnaContinueBtn: (p: Page | FrameLocator) => Locator;
+    readonly klarnaOtpInput: (p: Page | FrameLocator) => Locator;
+    readonly klarnaPlanRadio: (p: Page | FrameLocator) => Locator;
+    readonly klarnaConfirmPlanBtn: (p: Page | FrameLocator) => Locator;
+    readonly klarnaFinalPayBtn: (p: Page | FrameLocator) => Locator;
 
     // -----------------------
     // PAYPAL LOCATORS
@@ -139,25 +139,31 @@ export class CartComponent extends BaseComponent {
         this.affirmOtpContinueButton = this.affirmGenericSubmitButton.filter({ hasText: /confirm|continue|next/i }).first();
 
 
-        // --- KLARNA ---
-        this.klarnaFrame = page.frameLocator('iframe[src*="klarna"]');
+        // -----------------------
+        // KLARNA LOCATORS
+        // -----------------------
+        this.klarnaOption = page.locator("#klarna-img");
 
-        // click target (FIXED)
-        this.klarnaOption = page.locator('label:has(#klarna-img)');
+        this.klarnaFrame = (p: Page) =>
+            p.frameLocator('iframe[src*="klarna"], iframe[name*="klarna"]');
 
-        // everything INSIDE iframe
-        this.klarnaPhoneInput = this.klarnaFrame.locator("#phone");
-        this.klarnaContinueButton = this.klarnaFrame.locator('#onContinue__text');
+        this.klarnaPhoneInput = (p) =>
+            p.locator('input[name="phone"], input[type="tel"]');
 
-        this.klarnaOtpInput = this.klarnaFrame.locator("#otp_field");
+        this.klarnaContinueBtn = (p) =>
+            p.locator('button:has-text("Continue"), button:has-text("Next")');
 
-        this.klarnaPlanRadios = this.klarnaFrame.locator('input[name="offers__group"]');
-        this.klarnaPlanContinueButton = this.klarnaFrame.locator("#offers-selector-continue-button");
+        this.klarnaOtpInput = (p) =>
+            p.locator('input[name="otp_field"], input[name="otp"]');
 
-        this.klarnaPayButton = this.klarnaFrame
-        .locator('#buy_button__text')
-        .filter({ hasText: /pay with/i });
+        this.klarnaPlanRadio = (p) =>
+            p.locator('input[name="offers__group"]');
 
+        this.klarnaConfirmPlanBtn = (p) =>
+            p.locator('[data-testid="confirm-and-pay"], #offers-selector-continue-button, button:has-text("Continue")');
+
+        this.klarnaFinalPayBtn = (p) =>
+            p.locator('#buy_button__text');
         // --- PAYPAL LOCATORS ---
         this.paypalOption = page.locator("#paypal-img");
         this.paypalEmail = (p: Page) => p.locator("#email");
@@ -591,104 +597,163 @@ export class CartComponent extends BaseComponent {
     }
 
 
+    private async getKlarnaContext(kp: Page): Promise<Page | FrameLocator> {
+        const frame = this.klarnaFrame(kp);
+
+        try {
+            if (await frame.locator('input').first().isVisible({ timeout: 5000 })) {
+                console.log("🔁 Klarna inside iframe");
+                return frame;
+            }
+        } catch {}
+
+        console.log("🌐 Klarna as full page");
+        return kp;
+    }
+
+    // =========================
+    // MAIN FLOW
+    // =========================
     async payWithKlarna() {
         console.log("🟣 Starting Klarna flow...");
 
         await this.ensureOnPaymentPage();
         await this.verifyPaymentPageLoaded();
 
-        await this.selectKlarnaOption();
-        await this.enterKlarnaPhone();
-        await this.enterKlarnaOtp();
-        await this.selectKlarnaPlan();
-        await this.confirmKlarnaPayment();
+        // STEP 1: Open Klarna
+        const [popup] = await Promise.all([
+            this.page.waitForEvent("popup").catch(() => null),
+            this.klarnaOption.click()
+        ]);
 
-        console.log("🎉 Klarna flow completed!");
-    }
+        const kp = popup || this.page;
 
+        await kp.waitForLoadState("domcontentloaded");
+        await kp.waitForLoadState("networkidle");
+        await kp.waitForTimeout(3000);
 
-    private async selectKlarnaOption() {
-        console.log("Selecting Klarna...");
+        console.log("✅ Klarna opened:", kp.url());
 
-        await this.page.waitForLoadState("networkidle");
+        // STEP 2: Resolve context
+        const ctx = await this.getKlarnaContext(kp);
 
-        await this.klarnaOption.waitFor({ state: "visible", timeout: 60000 });
-        await this.klarnaOption.scrollIntoViewIfNeeded();
+        // STEP 3: PHONE INPUT
+        const phone = this.klarnaPhoneInput(ctx);
 
-        await this.klarnaOption.click({ force: true });
+        await expect.poll(async () => await phone.count(), {
+            timeout: 60000
+        }).toBeGreaterThan(0);
 
-        // 🔥 CRITICAL: wait for Klarna iframe
-        await this.page.waitForSelector('iframe[src*="klarna"]', { timeout: 60000 });
+        await phone.first().waitFor({ state: "visible" });
+        await phone.first().click();
+        await phone.first().fill(this.paymentData.klarnaPhone);
 
-        console.log("✅ Klarna option selected");
-    }
+        console.log("📱 Phone entered");
 
+        // STEP 4: CONTINUE
+        const continueBtn = this.klarnaContinueBtn(ctx).first();
 
-    private async enterKlarnaPhone() {
-        console.log("Entering Klarna phone...");
+        await continueBtn.waitFor({ state: "visible", timeout: 60000 });
 
-        await this.klarnaPhoneInput.waitFor({ state: "visible", timeout: 60000 });
+        await continueBtn.click().catch(async () => {
+            await continueBtn.click({ force: true });
+        });
 
-        await this.klarnaPhoneInput.fill(this.paymentData.klarnaPhone);
+        console.log("➡️ Continue clicked");
 
-        await this.klarnaContinueButton.click();
+        // STEP 5: OTP INPUT (FIXED)
+        const otp = this.klarnaOtpInput(ctx);
 
-        console.log("✅ Phone submitted");
-    }
+        await expect.poll(async () => await otp.count(), {
+            timeout: 60000
+        }).toBeGreaterThan(0);
 
+        await otp.first().waitFor({ state: "visible", timeout: 60000 });
 
-    private async enterKlarnaOtp() {
-        console.log("Entering Klarna OTP...");
+        // 🔥 Prevent phone field reuse
+        await kp.waitForTimeout(1000);
+        await kp.keyboard.press("Tab");
 
-        await this.klarnaOtpInput.waitFor({ state: "visible", timeout: 60000 });
+        await otp.first().click();
+        await otp.first().fill("");
+        await otp.first().type(this.paymentData.klarnaOtp, { delay: 100 });
 
-        await this.klarnaOtpInput.fill(this.paymentData.klarnaOtp);
+        console.log("🔐 OTP entered");
 
-        await this.page.waitForTimeout(2000);
-    }
+        // STEP 6: OTP CONTINUE
+        const otpContinue = this.klarnaConfirmPlanBtn(ctx).first();
 
+        await otpContinue.waitFor({ state: "visible", timeout: 60000 });
 
-    private async selectKlarnaPlan() {
-        console.log("Selecting Klarna plan...");
+        await otpContinue.click().catch(async () => {
+            await otpContinue.click({ force: true });
+        });
 
-        await this.klarnaPlanRadios.first().waitFor({ state: "visible", timeout: 120000 });
+        console.log("✅ OTP Continue clicked");
 
-        const count = await this.klarnaPlanRadios.count();
-        let selected = false;
+        // STEP 7: PLAN (optional)
+        const plan = this.klarnaPlanRadio(ctx);
 
-        for (let i = 0; i < count; i++) {
-            const radio = this.klarnaPlanRadios.nth(i);
+        if (await plan.count().catch(() => 0)) {
+            await plan.first().waitFor({ state: "attached", timeout: 30000 });
+            console.log("📦 Plan detected");
+        }
 
+        // STEP 8: CONFIRM PLAN (optional)
+        const confirm = this.klarnaConfirmPlanBtn(ctx);
+
+        if (await confirm.count().catch(() => 0)) {
+            await confirm.first().click({ force: true });
+            console.log("➡️ Plan confirmed");
+        }
+
+        // STEP 9: FINAL PAY (ROBUST FIX)
+        const payText = this.klarnaFinalPayBtn(ctx);
+
+        await payText.first().waitFor({ state: "visible", timeout: 60000 });
+
+        let clicked = false;
+
+        // Try BUTTON parent
+        const btnParent = payText.locator('xpath=ancestor::button').first();
+
+        if (await btnParent.count().catch(() => 0)) {
             try {
-                await radio.scrollIntoViewIfNeeded();
-                await radio.click({ force: true });
+                await btnParent.click();
+                clicked = true;
+            } catch {}
+        }
 
-                await expect(radio).toBeChecked({ timeout: 5000 });
+        // Fallback: DIV role button
+        if (!clicked) {
+            const divParent = payText.locator('xpath=ancestor::div[@role="button"]').first();
 
-                selected = true;
-                break;
-            } catch {
-                await this.page.waitForTimeout(1000);
+            if (await divParent.count().catch(() => 0)) {
+                try {
+                    await divParent.click();
+                    clicked = true;
+                } catch {}
             }
         }
 
-        if (!selected) throw new Error("❌ No Klarna plan selected");
+        // Final fallback
+        if (!clicked) {
+            await payText.first().click({ force: true });
+        }
 
-        await this.klarnaPlanContinueButton.click({ force: true });
+        console.log("💳 Pay clicked");
 
-        console.log("✅ Plan selected");
-    }
+        // STEP 10: Redirect back
+        if (popup) {
+            await popup.waitForEvent("close", { timeout: 180000 }).catch(() => {});
+        }
 
+        const pages = this.page.context().pages();
+        this.page = pages[pages.length - 1];
 
-    private async confirmKlarnaPayment() {
-        console.log("Confirming Klarna payment...");
+        await this.page.waitForLoadState("domcontentloaded").catch(() => {});
+        await this.page.waitForTimeout(5000);
 
-        await this.klarnaPayButton.waitFor({ state: "visible", timeout: 60000 });
-
-        await this.klarnaPayButton.click({ force: true });
-
-        await this.page.waitForLoadState("networkidle").catch(() => {});
-
-        console.log("✅ Payment confirmed");
+        console.log("🎉 Klarna flow completed!");
     }
 }

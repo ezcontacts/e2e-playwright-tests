@@ -19,11 +19,15 @@ export default defineConfig({
   workers: 4,
   timeout: 280_000,
   use: {
-<<<<<<< Updated upstream
-    headless: false, //true,
-=======
-    headless: false,
->>>>>>> Stashed changes
+    headless: true,
+    launchOptions: {
+      args: [
+        "--disable-blink-features=AutomationControlled",
+        "--no-sandbox",
+        "--disable-dev-shm-usage"
+      ]
+    },
+    userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36",
     screenshot: "only-on-failure",
     video: "retain-on-failure",
     trace: "only-on-failure",

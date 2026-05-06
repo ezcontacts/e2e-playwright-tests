@@ -190,13 +190,35 @@ export class CartComponent extends BaseComponent {
     // =======================
     async proceedToCheckout() {
         await expect(this.checkoutNowButton).toBeVisible({ timeout: 30000 });
-        // Promise.all ensures the listener for the URL change is active before the click occurs
-        await Promise.all([
-            this.page.waitForURL(/\/checkout/, { timeout: 90000 }),
-            this.checkoutNowButton.click(),
-        ]);
-        await this.page.waitForLoadState("domcontentloaded");
-        await this.page.waitForLoadState("networkidle");
+
+        await this.checkoutNowButton.click();
+
+        // =========================
+        // WAIT FOR ANY CHECKOUT STATE
+        // =========================
+        await this.page.waitForURL(/checkout/, { timeout: 90000 });
+
+        // =========================
+        // GUEST EMAIL STEP (ONLY IF PRESENT)
+        // =========================
+        const emailField = this.page.locator(
+            '#UserEmail, input[type="email"], input[name="email"]'
+        );
+
+        if (await emailField.isVisible({ timeout: 5000 }).catch(() => false)) {
+            await emailField.fill(this.paymentData.emailg);
+
+            const continueBtn = this.page.locator(
+                '#checkout-sign-in-submit-btn, button:has-text("Continue"), button:has-text("Next")'
+            ).first();
+
+            if (await continueBtn.isVisible({ timeout: 5000 }).catch(() => false)) {
+                await continueBtn.click();
+            }
+
+            // wait for shipping or checkout transition
+            await this.page.waitForURL(/checkout/, { timeout: 90000 });
+        }
     }
 
     async enterGuestEmail() {
@@ -540,9 +562,36 @@ export class CartComponent extends BaseComponent {
     // =======================
     // VERIFICATIONS
     // =======================
-    async verifyCheckoutPageLoaded() {
+    async verifyCheckoutPageLoaded(pageType?: "sign-in" | "shipping" | "payment" | "checkout") {
         const url = this.page.url();
-        if (!url.includes("/checkout")) throw new Error(`Expected checkout but got ${url}`);
+
+        if (pageType === "sign-in") {
+            if (!url.includes("/checkout/sign-in")) {
+                throw new Error(`Expected sign-in page but got ${url}`);
+            }
+            return;
+        }
+
+        if (pageType === "shipping") {
+            if (!url.includes("/checkout/shipping")) {
+                throw new Error(`Expected shipping page but got ${url}`);
+            }
+            return;
+        }
+
+        if (pageType === "payment") {
+            if (!url.includes("/checkout/payment")) {
+                throw new Error(`Expected payment page but got ${url}`);
+            }
+            return;
+        }
+
+        // ✅ LOGGED-IN / DEFAULT FLOW FIX
+        if (!url.includes("/checkout")) {
+            throw new Error(`Expected checkout page but got ${url}`);
+        }
+
+        await expect(this.page.locator('nav.nav-list')).toBeVisible();
     }
 
     async verifyCheckoutPage(pageType: string) {

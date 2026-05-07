@@ -88,4 +88,13 @@ export class AddressAndPaymentPage extends AccountPage {
     await this.AddressZip.fill(addressData.zip);
     await this.AddressPhone.fill(addressData.phone);
   }
+
+  async verifyAddressPresentByCountry(country: string): Promise<void> {
+    const count = await this.page
+      .locator('p.address')
+      .filter({ hasText: country })
+      .count();
+
+    expect(count).toBeGreaterThan(0);
+  }
 }

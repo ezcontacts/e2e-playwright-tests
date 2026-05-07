@@ -1,4 +1,10 @@
-import { Then, When } from "../../../fixtures/fixture";
+import { Given, Then, When } from "../../../fixtures/fixture";
+
+Given(
+  'the user has added a shipping address with country {string}',
+  async ({ addressAndPaymentPage }, country: string) => {
+    await addressAndPaymentPage.verifyAddressPresentByCountry(country);
+  });
 
 When(
   'the user clicks on Add {string} link',

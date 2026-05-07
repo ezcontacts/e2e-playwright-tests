@@ -5,6 +5,15 @@ When("I click the checkout button for guest users", async ({ cartPage }) => {
     await cartPage.clickOnCheckoutBtn();
 });
 
+When("the user navigates to the cart page", async ({ cartPage }) => {
+    await cartPage.open();
+});
+
+When("the user proceeds to checkout from the cart page", async ({ cartPage }) => {
+    await cartPage.verifyCheckoutBtnIsVisible();
+    await cartPage.clickOnCheckoutBtn();
+});
+
 Then("I should see the shopping cart title", async ({ cartPage }) => {
     await cartPage.verifyPageTitleIsVisible();
 });
@@ -40,3 +49,4 @@ Then("I should see the product price and total price", async ({ cartPage }) => {
     await cartPage.item(0).verifyPriceIsVisible();
     await cartPage.verifyTotalPriceIsVisible();
 });
+

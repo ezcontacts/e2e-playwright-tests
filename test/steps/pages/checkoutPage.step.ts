@@ -20,6 +20,22 @@ Then("the user should be able to select one of the available shipping options", 
     await checkoutPage.selectAvailableShippingOption();
 });
 
+Then("the user should be able to select created shipping options", async ({ checkoutPage, addressAndPaymentPage }) => {
+    await checkoutPage.selectCreatedShippingAddress(
+        addressAndPaymentPage.savedCity!,
+        addressAndPaymentPage.savedState!,
+        addressAndPaymentPage.savedZip!
+    );
+});
+
 Then("the default shipping option should remain selected", async ({ checkoutPage }) => {
     await checkoutPage.verifySelectedShippingOptionRemains();
+});
+
+When("the user updates the shipping address country to {string}", async ({ checkoutPage }, country: string) => {
+    await checkoutPage.updateShippingAddressCountry(country);
+});
+
+Then("the previously displayed shipping options should no longer be available", async ({ checkoutPage }) => {
+    await checkoutPage.verifyPreviousShippingOptionsNoLongerAvailable();
 });

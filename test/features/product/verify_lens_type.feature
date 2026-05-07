@@ -4,21 +4,12 @@ Feature: Rx Frames -> Verify the Lens Type for Progressive / Bifocal options
 Background:
   Given the user visite "EYEGLASSES" page
   When I click on the first product card in the list
-  And I select the Progressive/Bifocal type
+  Then no lens type option should be selected by default
+  When I select the Progressive/Bifocal type
   And I fill prescription details for the right eye
   And I fill prescription details for the left eye
   And I fill prescription details for the pupil distance
   And I click on Lens Type section
-
-#--------------------------------------
-# Lens Type – UI Validation
-#--------------------------------------
-@skip
-Scenario: Verify Lens Type categories and default behavior
-  And no lens type option should be selected by default
-  And lens type selection should be mandatory
-  And the Continue button should be displayed in red color
-  And the Continue button should be disabled until a lens type is selected
 
 #--------------------------------------
 # Options Validation

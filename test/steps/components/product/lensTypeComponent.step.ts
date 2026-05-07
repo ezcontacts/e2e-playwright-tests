@@ -54,6 +54,13 @@ Then(
 Then(
   "the system should redirect the user to Step-5 {string} section",
   async ({ contactLensesProductPage }) => {
-    await contactLensesProductPage.lensType.verifySectionIsActive();
+    await contactLensesProductPage.lensMaterial.verifySectionIsActive();
+  },
+);
+
+Then(
+  "no lens type option should be selected by default",
+  async ({ contactLensesProductPage }) => {
+    await contactLensesProductPage.verifyEveryLensTypeNotSelectedByDefault();
   },
 );

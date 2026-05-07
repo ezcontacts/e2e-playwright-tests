@@ -20,6 +20,6 @@ export class ProductStepComponent extends BaseComponent {
   }
 
   async verifySectionIsActive(): Promise<void> {
-    await expect(this.root).toHaveAttribute("class", "/step-active/");
+    await expect(this.root).toContainClass("step-active");
   }
 }

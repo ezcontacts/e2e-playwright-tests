@@ -1,32 +1,24 @@
 import { DataTable } from "playwright-bdd";
-import { Then } from "../../../fixtures/fixture";
+import { Then, When } from "../../../fixtures/fixture";
+
+When(
+  "the user selects the {string} lens type",
+  async ({ contactLensesProductPage }, title: string) => {
+    await contactLensesProductPage.lensType.setLensType(title);
+  },
+);
 
 Then("I click on Lens Type section", async ({ contactLensesProductPage }) => {
   await contactLensesProductPage.lensType.clickOnLensTypeSection();
 });
 
 Then(
-  "the following Progressive lens options should be displayed:",
+  "the following lens options should be displayed:",
   async ({ contactLensesProductPage }, dataTable: DataTable) => {
     const entries = dataTable.hashes();
 
-    for (const { ProgressiveOption } of entries) {
-      await contactLensesProductPage.lensType.verifyProgressiveLensType(
-        ProgressiveOption,
-      );
-    }
-  },
-);
-
-Then(
-  "the following Bifocal lens options should be displayed:",
-  async ({ contactLensesProductPage }, dataTable: DataTable) => {
-    const entries = dataTable.hashes();
-
-    for (const { BifocalOption } of entries) {
-      await contactLensesProductPage.lensType.verifyBifocalLensType(
-        BifocalOption,
-      );
+    for (const { Option } of entries) {
+      await contactLensesProductPage.lensType.verifyLensTypeIsVisible(Option);
     }
   },
 );
@@ -35,5 +27,33 @@ Then(
   "the user views {string} options",
   async ({ contactLensesProductPage }, title: string) => {
     await contactLensesProductPage.lensType.verifySubtitle(title);
+  },
+);
+
+Then(
+  "the {string} option should be highlighted",
+  async ({ contactLensesProductPage }, title: string) => {
+    await contactLensesProductPage.lensType.verifyLensTypeIsChecked(title);
+  },
+);
+
+Then(
+  "the Continue button should become enabled",
+  async ({ contactLensesProductPage }) => {
+    await contactLensesProductPage.lensType.verifyContinueBtnIsEnabled();
+  },
+);
+
+Then(
+  "the user clicks the Continue button",
+  async ({ contactLensesProductPage }) => {
+    await contactLensesProductPage.lensType.clickOnContinueBtn();
+  },
+);
+
+Then(
+  "the system should redirect the user to Step-5 {string} section",
+  async ({ contactLensesProductPage }) => {
+    await contactLensesProductPage.lensType.verifySectionIsActive();
   },
 );

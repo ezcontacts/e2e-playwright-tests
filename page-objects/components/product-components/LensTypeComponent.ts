@@ -6,18 +6,16 @@ import { expect } from "../../../test/fixtures/fixture";
 export type { LensType };
 
 export class LensTypeComponent extends ProductStepComponent {
-  readonly progressiveLensType: (text: string) => Locator;
-  readonly bifocalLensType: (text: string) => Locator;
+  readonly lensType: (text: string) => Locator;
   readonly subtitle: (text: string) => Locator;
 
   constructor(page: Page, root: string = "li#step-4") {
     super(page, root);
 
-    this.progressiveLensType = (text: string) =>
-      this.within(".jsToolProg").filter({ hasText: text }).locator("input");
-
-    this.bifocalLensType = (text: string) =>
-      this.within(".jsToolBifoc").filter({ hasText: text }).locator("input");
+    this.lensType = (text: string) =>
+      this.within(".jsToolProg, .jsToolBifoc")
+        .filter({ hasText: text })
+        .locator("input");
 
     this.subtitle = (text: string) =>
       this.within("h5").filter({ hasText: text });
@@ -27,20 +25,16 @@ export class LensTypeComponent extends ProductStepComponent {
     await this.root.click();
   }
 
-  async setProgressiveLensType(type: LensType | string): Promise<void> {
-    await this.progressiveLensType(type).click();
+  async setLensType(type: LensType | string): Promise<void> {
+    await this.lensType(type).click();
   }
 
-  async setBifocalLensType(type: LensType | string): Promise<void> {
-    await this.bifocalLensType(type).click();
+  async verifyLensTypeIsChecked(type: LensType | string): Promise<void> {
+    await expect(this.lensType(type)).toBeChecked();
   }
 
-  async verifyProgressiveLensType(type: LensType | string): Promise<void> {
-    await expect(this.progressiveLensType(type)).toBeVisible();
-  }
-
-  async verifyBifocalLensType(type: LensType | string): Promise<void> {
-    await expect(this.bifocalLensType(type)).toBeVisible();
+  async verifyLensTypeIsVisible(type: LensType | string): Promise<void> {
+    await expect(this.lensType(type)).toBeVisible();
   }
 
   async verifySubtitle(text: string): Promise<void> {

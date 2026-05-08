@@ -30,10 +30,22 @@ export abstract class BasePage extends BaseEntity {
   }
 
   async openByEndpoint(endpoint: string): Promise<void> {
-    await this.page.goto(`${testConfig.baseUrl}${endpoint}`, {
-      timeout: 60000,
-      waitUntil: "domcontentloaded",
-    });
+    const url = `${testConfig.baseUrl}${endpoint}`;
+    try {
+      await this.page.goto(url, {
+        timeout: 60000,
+        waitUntil: "domcontentloaded",
+      });
+    } catch (e: any) {
+      if (e?.message?.includes("ERR_ABORTED")) {
+        await this.page.goto(url, {
+          timeout: 60000,
+          waitUntil: "domcontentloaded",
+        });
+      } else {
+        throw e;
+      }
+    }
 
     await this.promotion.closeDynamicPopupIfPresent();
   }

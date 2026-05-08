@@ -61,7 +61,7 @@ export const test = bddTest.extend<{
   portalContext: PortalContext;
   catalogContext: CatalogeContext;
   rxVerificationPage: RxInformationPage;
-  //cartComponent: CartComponent;
+  cartComponent: CartComponent;
   clContext: clContext;
   CLContactLensPage: CLContactLensPage;
 }>({
@@ -77,9 +77,10 @@ export const test = bddTest.extend<{
     await use({ selectedTab: undefined });
   },
 
-  clContext: async ({}, use) => {
-    await use({ selectedTab: undefined });
+  cartComponent: async ({ page }, use) => {
+  await use(new CartComponent(page));
   },
+
 
   homePage: async ({ page }, use) => await use(new HomePage(page)),
   loginPage: async ({ page }, use) => await use(new LoginPage(page)),

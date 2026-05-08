@@ -1,5 +1,6 @@
 import { Page, Locator } from "@playwright/test";
 import { BaseComponent } from "../../base/BaseComponent";
+import { expect } from "../../../test/fixtures/fixture";
 
 export class ProductStepComponent extends BaseComponent {
   readonly continueBtn: Locator;
@@ -12,5 +13,13 @@ export class ProductStepComponent extends BaseComponent {
 
   async clickOnContinueBtn(): Promise<void> {
     await this.continueBtn.click();
+  }
+
+  async verifyContinueBtnIsEnabled(): Promise<void> {
+    await expect(this.continueBtn).toBeEnabled();
+  }
+
+  async verifySectionIsActive(): Promise<void> {
+    await expect(this.root).toContainClass("step-active");
   }
 }

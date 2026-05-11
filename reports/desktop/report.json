@@ -49,7 +49,7 @@
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
         ],
-        "timeout": 220000
+        "timeout": 280000
       },
       {
         "outputDir": "C:/Ezcontacts/Automation/e2e-playwright-tests/e2e-playwright-tests/test-results",
@@ -65,7 +65,7 @@
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
         ],
-        "timeout": 220000
+        "timeout": 280000
       }
     ],
     "shard": null,
@@ -78,77 +78,164 @@
   },
   "suites": [
     {
-      "title": "test\\generated\\desktop\\test\\features\\account\\address_payment.feature.spec.js",
-      "file": "test/generated/desktop/test/features/account/address_payment.feature.spec.js",
+      "title": "test\\generated\\desktop\\test\\features\\catalog\\pdp_rxoption_page.feature.spec.js",
+      "file": "test/generated/desktop/test/features/catalog/pdp_rxoption_page.feature.spec.js",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "Address and Payment Management",
-          "file": "test/generated/desktop/test/features/account/address_payment.feature.spec.js",
+          "title": "Rx Options Validation on Product Details Page",
+          "file": "test/generated/desktop/test/features/catalog/pdp_rxoption_page.feature.spec.js",
           "line": 4,
           "column": 6,
           "specs": [
             {
-              "title": "Verify that user can save the Billing Address",
-              "ok": true,
+              "title": "Verify Rx and Non-Rx options are displayed correctly on PDP",
+              "ok": false,
               "tags": [
-                "EZSANISOFT-5382"
+                "EZSANISOFT-5322"
               ],
               "tests": [
                 {
-                  "timeout": 220000,
+                  "timeout": 280000,
                   "annotations": [],
                   "expectedStatus": "passed",
                   "projectId": "desktop",
                   "projectName": "desktop",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 66749,
-                      "errors": [],
+                      "status": "failed",
+                      "duration": 80138,
+                      "error": {
+                        "message": "TimeoutError: locator.scrollIntoViewIfNeeded: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.mask-wrap, .unbxd-product').first().locator('span.view')\u001b[22m\n",
+                        "stack": "TimeoutError: locator.scrollIntoViewIfNeeded: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.mask-wrap, .unbxd-product').first().locator('span.view')\u001b[22m\n\n    at ProductCardComponent.safeClickAndWaitForNetworkIdle (C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\page-objects\\base\\BaseEntity.ts:48:19)\n    at ProductCardComponent.clickOnViewBtn (C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts:45:5)\n    at SunglassesPage.clickOnProductByIndex (C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\page-objects\\pages\\product-cataloge\\ProductCatalogePage.ts:99:5)\n    at Object.<anonymous> (C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\test\\steps\\components\\productCardComponent.step.ts:6:5)\n    at C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\catalog\\pdp_rxoption_page.feature.spec.js:12:5",
+                        "location": {
+                          "file": "C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\page-objects\\base\\BaseEntity.ts",
+                          "column": 19,
+                          "line": 48
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mpage-objects\\base\\BaseEntity.ts:48\n\n\u001b[0m \u001b[90m 46 |\u001b[39m   )\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\n \u001b[90m 47 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m5000\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 48 |\u001b[39m     \u001b[36mawait\u001b[39m locator\u001b[33m.\u001b[39mscrollIntoViewIfNeeded()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 49 |\u001b[39m     \u001b[36mawait\u001b[39m expect(locator)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 50 |\u001b[39m     \u001b[36mawait\u001b[39m locator\u001b[33m.\u001b[39mclick({ force\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 51 |\u001b[39m   }\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\page-objects\\base\\BaseEntity.ts",
+                            "column": 19,
+                            "line": 48
+                          },
+                          "message": "TimeoutError: locator.scrollIntoViewIfNeeded: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.mask-wrap, .unbxd-product').first().locator('span.view')\u001b[22m\n\n\n\u001b[90m   at \u001b[39mpage-objects\\base\\BaseEntity.ts:48\n\n\u001b[0m \u001b[90m 46 |\u001b[39m   )\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\n \u001b[90m 47 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m5000\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 48 |\u001b[39m     \u001b[36mawait\u001b[39m locator\u001b[33m.\u001b[39mscrollIntoViewIfNeeded()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 49 |\u001b[39m     \u001b[36mawait\u001b[39m expect(locator)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 50 |\u001b[39m     \u001b[36mawait\u001b[39m locator\u001b[33m.\u001b[39mclick({ force\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 51 |\u001b[39m   }\u001b[0m\n\u001b[2m    at ProductCardComponent.safeClickAndWaitForNetworkIdle (C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\page-objects\\base\\BaseEntity.ts:48:19)\u001b[22m\n\u001b[2m    at ProductCardComponent.clickOnViewBtn (C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts:45:5)\u001b[22m\n\u001b[2m    at SunglassesPage.clickOnProductByIndex (C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\page-objects\\pages\\product-cataloge\\ProductCatalogePage.ts:99:5)\u001b[22m\n\u001b[2m    at Object.<anonymous> (C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\test\\steps\\components\\productCardComponent.step.ts:6:5)\u001b[22m\n\u001b[2m    at C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\catalog\\pdp_rxoption_page.feature.spec.js:12:5\u001b[22m"
+                        }
+                      ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
                       "steps": [
                         {
-                          "title": "When the user clicks on Add \"Billing Address\" link",
-                          "duration": 4739
-                        },
-                        {
-                          "title": "Then the user enters billing address details",
-                          "duration": 8416
-                        },
-                        {
-                          "title": "And the user clicks on the \"<buttonName>\" button",
-                          "duration": 2316
-                        },
-                        {
-                          "title": "And a \"The account billing address has been saved.\" message should be displayed",
-                          "duration": 3445
+                          "title": "Given I click on the first product card in the list",
+                          "duration": 25261,
+                          "error": {
+                            "message": "TimeoutError: locator.scrollIntoViewIfNeeded: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.mask-wrap, .unbxd-product').first().locator('span.view')\u001b[22m\n",
+                            "stack": "TimeoutError: locator.scrollIntoViewIfNeeded: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.mask-wrap, .unbxd-product').first().locator('span.view')\u001b[22m\n\n    at ProductCardComponent.safeClickAndWaitForNetworkIdle (C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\page-objects\\base\\BaseEntity.ts:48:19)\n    at ProductCardComponent.clickOnViewBtn (C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts:45:5)\n    at SunglassesPage.clickOnProductByIndex (C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\page-objects\\pages\\product-cataloge\\ProductCatalogePage.ts:99:5)\n    at Object.<anonymous> (C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\test\\steps\\components\\productCardComponent.step.ts:6:5)\n    at C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\catalog\\pdp_rxoption_page.feature.spec.js:12:5",
+                            "location": {
+                              "file": "C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\page-objects\\base\\BaseEntity.ts",
+                              "column": 19,
+                              "line": 48
+                            },
+                            "snippet": "\u001b[90m   at \u001b[39mpage-objects\\base\\BaseEntity.ts:48\n\n\u001b[0m \u001b[90m 46 |\u001b[39m   )\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\n \u001b[90m 47 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m5000\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 48 |\u001b[39m     \u001b[36mawait\u001b[39m locator\u001b[33m.\u001b[39mscrollIntoViewIfNeeded()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 49 |\u001b[39m     \u001b[36mawait\u001b[39m expect(locator)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 50 |\u001b[39m     \u001b[36mawait\u001b[39m locator\u001b[33m.\u001b[39mclick({ force\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 51 |\u001b[39m   }\u001b[0m"
+                          }
                         }
                       ],
-                      "startTime": "2026-04-27T13:02:51.460Z",
+                      "startTime": "2026-05-11T11:56:24.619Z",
                       "annotations": [],
                       "attachments": [
                         {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\test-results\\test-features-catalog-pdp_-c3b5a--displayed-correctly-on-PDP-desktop\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\test-results\\test-features-catalog-pdp_-c3b5a--displayed-correctly-on-PDP-desktop\\error-context.md"
+                        },
+                        {
                           "name": "trace",
                           "contentType": "application/zip",
-                          "path": "C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\test-results\\test-features-account-addr-db18b-an-save-the-Billing-Address-desktop\\trace.zip"
+                          "path": "C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\test-results\\test-features-catalog-pdp_-c3b5a--displayed-correctly-on-PDP-desktop\\trace.zip"
                         }
-                      ]
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\page-objects\\base\\BaseEntity.ts",
+                        "column": 19,
+                        "line": 48
+                      }
                     }
                   ],
-                  "status": "expected"
+                  "status": "unexpected"
                 }
               ],
-              "id": "f7c08486b32bc097a01b-5b194f73f8b595e26e08",
-              "file": "test/generated/desktop/test/features/account/address_payment.feature.spec.js",
-              "line": 47,
+              "id": "4847c4c170d6e4180ea6-4815bb2af7cd7e3318ae",
+              "file": "test/generated/desktop/test/features/catalog/pdp_rxoption_page.feature.spec.js",
+              "line": 11,
               "column": 3
+            },
+            {
+              "title": "Verify the Rx options from the Cart page using \"Add Rx\" button",
+              "ok": true,
+              "tags": [
+                "EZSANISOFT-5322",
+                "skip"
+              ],
+              "tests": [
+                {
+                  "timeout": 280000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\catalog\\pdp_rxoption_page.feature.spec.js",
+                        "line": 18,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-11T11:57:49.526Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "location": {
+                            "file": "C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\catalog\\pdp_rxoption_page.feature.spec.js",
+                            "line": 18,
+                            "column": 8
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "4847c4c170d6e4180ea6-d9623b84f560916399e3",
+              "file": "test/generated/desktop/test/features/catalog/pdp_rxoption_page.feature.spec.js",
+              "line": 18,
+              "column": 8
             }
           ]
         }
@@ -157,11 +244,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-04-27T13:02:45.724Z",
-    "duration": 81014.15499999997,
-    "expected": 1,
-    "skipped": 0,
-    "unexpected": 0,
+    "startTime": "2026-05-11T11:56:17.945Z",
+    "duration": 91738.428,
+    "expected": 0,
+    "skipped": 1,
+    "unexpected": 1,
     "flaky": 0
   }
 }

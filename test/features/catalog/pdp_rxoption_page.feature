@@ -1,5 +1,4 @@
 @EZSANISOFT-5322
-
 Feature: Rx Options Validation on Product Details Page
 
   Background:

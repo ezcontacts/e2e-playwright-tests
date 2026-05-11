@@ -7,10 +7,10 @@ export class LoginPage extends BasePage {
   readonly emailField: Locator;
   readonly sendLinkBtn: Locator;
 
-  readonly providers:{
+  readonly providers: {
     googleBtn: Locator;
     magicLinkBtn: Locator;
-  }
+  };
   readonly providerBtn: (provider: string) => Locator;
 
   readonly message: MessageComponent;
@@ -20,19 +20,19 @@ export class LoginPage extends BasePage {
 
     this.emailField = this.locator(
       'input[placeholder*="email"]',
-      "#contact-input"
+      "#contact-input",
     );
     this.sendLinkBtn = this.locator("input[id='send-reset-link-button']");
 
     this.providerBtn = (provider: string) =>
-      this.page.locator("a.btn.social-login-btn", {
+      this.page.locator("a.btn.social-login-btn, #appleid-signin", {
         hasText: new RegExp(provider, "i"),
       });
 
     this.providers = {
       googleBtn: this.locator(".google-img"),
       magicLinkBtn: this.locator("a#login-with-link-email"),
-    }
+    };
 
     this.message = new MessageComponent(page);
   }

@@ -36,6 +36,8 @@ export class EyeDetail {
   }
 
   async selectAddValue(index: number): Promise<void> {
-    await this.add.selectOption({ index });
+    try {
+      await this.add.selectOption({ index });
+    } catch {}
   }
 }

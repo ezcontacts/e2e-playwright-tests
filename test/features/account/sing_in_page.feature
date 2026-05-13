@@ -1,4 +1,5 @@
-Feature: Login
+@EZSANISOFT-5348
+Feature: Sign in page
 
 Background:
   Given I visit the login page
@@ -70,12 +71,10 @@ Scenario: Magic link login with unregistered email
   Then the user should be logged in successfully
   And the user should be redirected to the account dashboard
 
-@skip
 Scenario: Login using expired magic link
-  Given the user has requested a magic link
-  When the user clicks on an expired or invalid magic link
-  Then an error message should be displayed stating "Invalid or expired token!"
-  And the user should be redirected to the Sign In page
+  Given the user used on an expired or invalid magic link
+  Then the user should be redirected to "/account/sign-in"
+  And a "Invalid token." message should be displayed
 
 @skip
 Scenario Outline: Verify login persistence after successful login

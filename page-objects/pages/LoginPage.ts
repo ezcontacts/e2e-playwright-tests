@@ -37,6 +37,10 @@ export class LoginPage extends BasePage {
     this.message = new MessageComponent(page);
   }
 
+  async useInvalidAuthToken(): Promise<void> {
+    await this.openByEndpoint(`${ENDPOINT.loginWithToken}/1`);
+  }
+
   async clickOnMagicLinkBtn(): Promise<void> {
     await this.providers.magicLinkBtn.click();
   }

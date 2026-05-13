@@ -28,6 +28,13 @@ Given("the user is logged in", async ({ loginPage }) => {
   await loginPage.clickOnGoogleLoginBtn();
 });
 
+Given(
+  "the user used on an expired or invalid magic link",
+  async ({ loginPage }) => {
+    await loginPage.useInvalidAuthToken();
+  },
+);
+
 When("User enters a Yopmail email", async ({ loginPage }) => {
   await loginPage.clickOnMagicLinkBtn();
   await loginPage.fillEmail(ACCOUNT.email);

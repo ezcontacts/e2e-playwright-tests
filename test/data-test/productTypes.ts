@@ -123,3 +123,8 @@ export enum LensColorType {
   TransitionsXTRActivePolarized = "Transitions® XTRActive - Polarized",
   Photochromic = "Photochromic Light-Adaptive",
 }
+
+export enum RxPageType {
+  PDP = 'PDP',
+  CART = 'Cart',
+}

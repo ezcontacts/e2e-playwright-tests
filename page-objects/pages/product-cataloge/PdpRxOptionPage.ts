@@ -1,6 +1,7 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { ENDPOINT } from "../../../constant/endpoint";
 import { AccountPage } from "../Account/AccountPage";
+import { RxPageType } from "../../../test/data-test/productTypes";
 
 export class PdpRxOptionPage extends AccountPage {
 
@@ -14,8 +15,8 @@ export class PdpRxOptionPage extends AccountPage {
 
     this.RxStep2Section = page.getByRole('heading', { name: '2. Lens Type' });
     this.ManufacturerDisplayLenses = page.locator('#AppProductPrescriptionType4');
-    this.AddtoCartButton = page.locator('a').filter({ hasText: 'Add to Cart' }).first();
-    this.AddRxbtn = page.locator(`//tr[td[contains(., 'Add RX')]]//a`);
+    this.AddtoCartButton = page.locator('a').filter({ hasText: 'Add to Cart' }).first(); //pdp page
+    this.AddRxbtn = page.getByRole('link', { name: 'Add Rx' }) //cart page - add rx button
 
   }
 
@@ -23,18 +24,37 @@ export class PdpRxOptionPage extends AccountPage {
     await expect(this.RxStep2Section).toHaveText(expectedText);
   }
 
-  getSection(sectionName: string): Locator {
-    return this.page.locator('#rxTypeDivEye').filter({
-      hasText: sectionName,
-    });
+  getSection(
+    pageType: RxPageType,
+    sectionName: string
+  ): Locator {
+
+    switch (pageType) {
+      case RxPageType.PDP:
+        return this.page.locator('#rxTypeDivEye').filter({
+            hasText: sectionName,
+          });
+
+      case RxPageType.CART:
+        return this.page.locator('#cartPageRxModaliFrame').contentFrame().locator('div')
+          .filter({
+            hasText: sectionName,
+          })
+          .nth(2);
+
+      default:
+        throw new Error(`Unsupported page type: ${pageType}`);
+    }
   }
 
-  async verifyOptions(sectionName: string, options: string[]) {
-    const section = this.getSection(sectionName);
+async verifyOptions(pageType: RxPageType,sectionName: string,options: string[]) {
+
+    const section = this.getSection(pageType, sectionName);
 
     await expect(section).toBeVisible();
 
     for (const option of options) {
+
       const locator = section.getByText(option);
 
       await expect(
@@ -44,12 +64,17 @@ export class PdpRxOptionPage extends AccountPage {
     }
   }
 
-    async getVisibleOptions(sectionName: string): Promise<string[]> {
-    const section = this.getSection(sectionName);
+  async getVisibleOptions(
+    pageType: RxPageType,
+    sectionName: string
+  ): Promise<string[]> {
 
-    const optionElements = section.locator('label, li, button');
-    const texts = await optionElements.allTextContents();
-    
+    const section = this.getSection(pageType, sectionName);
+
+    const texts = await section
+      .locator('label, li, button')
+      .allTextContents();
+
     return texts.map(text => text.trim()).filter(Boolean);
   }
 
@@ -66,3 +91,4 @@ export class PdpRxOptionPage extends AccountPage {
     await this.AddRxbtn.click();
   }
 }
+

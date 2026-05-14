@@ -3,6 +3,12 @@ import { BasePage } from "../base/BasePage";
 import { ENDPOINT } from "../../constant/endpoint";
 import { generateCanadianPostalCode, generateUsZipCode } from "../../helpers/postalCodeHelper";
 
+export enum ShippingCountry {
+  UnitedStates = 'United States',
+  Canada = 'Canada',
+  PuertoRico = 'Puerto Rico',
+}
+
 export class CheckoutPage extends BasePage {
   readonly activeShippingAddress: Locator;
   readonly activeshippingOptionsCountry: Locator;
@@ -31,12 +37,12 @@ export class CheckoutPage extends BasePage {
     this.addressLoaderOverlay = page.locator('#address-loader');
   }
 
-  async verifyShippingAddressIsVisible(): Promise<void> {
-    await expect(this.activeShippingAddress.nth(0)).toBeVisible();
+  async verifyShippingAddressIsVisible(index: number): Promise<void> {
+    await expect(this.activeShippingAddress.nth(index)).toBeVisible();
   }
 
-  async verifyShippingOptionsForCountry(country: string): Promise<void> {
-    const countryOption = this.activeshippingOptionsCountry.nth(0).filter({ hasText: country });
+  async verifyShippingOptionsForCountry(country: string, index: number): Promise<void> {
+    const countryOption = this.activeshippingOptionsCountry.nth(index).filter({ hasText: country });
     await expect(countryOption, `Shipping option for ${country} not visible`).toBeVisible();
   }
 
@@ -54,29 +60,29 @@ export class CheckoutPage extends BasePage {
     return (await option.textContent())?.trim() ?? '';
   }
 
-  async selectCreatedShippingAddress(city: string, state: string, zip: string): Promise<string> {
+  async selectCreatedShippingAddress(city: string, state: string, zip: string, index: number): Promise<string> {
     const addressItem = this.shippingOptionItems
       .filter({ hasText: city })
       .filter({ hasText: state })
       .filter({ hasText: zip });
-    await expect(addressItem.nth(0), `Could not find created address with city "${city}", state "${state}" and zip "${zip}"`).toBeVisible();
-    await addressItem.nth(0).click();
-    return (await addressItem.nth(0).textContent())?.trim() ?? '';
+    await expect(addressItem.nth(index), `Could not find created address with city "${city}", state "${state}" and zip "${zip}"`).toBeVisible();
+    await addressItem.nth(index).click();
+    return (await addressItem.nth(index).textContent())?.trim() ?? '';
   }
 
-  async verifySelectedShippingOptionRemains(selectedShippingOptionText: string): Promise<void> {
+  async verifySelectedShippingOptionRemains(selectedShippingOptionText: string, index: number): Promise<void> {
     const selectedOption = this.shippingOptionItems.filter({ hasText: selectedShippingOptionText });
-    await expect(selectedOption.nth(0)).toHaveClass(/active/);
+    await expect(selectedOption.nth(index)).toHaveClass(/active/);
   }
 
-  async updateShippingAddressCountry(country: string): Promise<string> {
-    const currentText = await this.activeshippingOptionsCountry.nth(0).textContent();
+  async updateShippingAddressCountry(country: ShippingCountry, index: number): Promise<string> {
+    const currentText = await this.activeshippingOptionsCountry.nth(index).textContent();
     const previousShippingCountry = currentText?.trim() ?? '';
-    await this.editAddressButton.nth(0).click();
+    await this.editAddressButton.nth(index).click();
     await expect(this.editAddressCountrySelect).toBeVisible();
     await this.editAddressCountrySelect.selectOption(country);
 
-    if (country === 'United States') {
+    if (country === ShippingCountry.UnitedStates) {
       await expect(this.editAddressUsStateSelect).toBeVisible();
       await expect(this.editAddressCanadaProvinceSelect).toBeHidden();
       const options = await this.editAddressUsStateSelect.locator('option:not([disabled]):not([value=""])').all();
@@ -84,7 +90,7 @@ export class CheckoutPage extends BasePage {
       const value = await randomOption.getAttribute('value');
       await this.editAddressUsStateSelect.selectOption(value!);
       await this.editAddressZipInput.fill(generateUsZipCode());
-    } else if (country === 'Canada') {
+    } else if (country === ShippingCountry.Canada) {
       await expect(this.editAddressCanadaProvinceSelect).toBeVisible();
       await expect(this.editAddressUsStateSelect).toBeHidden();
       const options = await this.editAddressCanadaProvinceSelect.locator('option:not([disabled]):not([value=""])').all();
@@ -92,7 +98,7 @@ export class CheckoutPage extends BasePage {
       const value = await randomOption.getAttribute('value');
       await this.editAddressCanadaProvinceSelect.selectOption(value!);
       await this.editAddressZipInput.fill(generateCanadianPostalCode());
-    } else if (country === 'Puerto Rico') {
+    } else if (country === ShippingCountry.PuertoRico) {
       await expect(this.editAddressUsStateSelect).toBeHidden();
       await expect(this.editAddressCanadaProvinceSelect).toBeHidden();
     }
@@ -103,7 +109,7 @@ export class CheckoutPage extends BasePage {
     return previousShippingCountry;
   }
 
-  async verifyPreviousShippingOptionsNoLongerAvailable(previousShippingCountry: string): Promise<void> {
-    await expect(this.activeshippingOptionsCountry.nth(0)).not.toHaveText(previousShippingCountry, { ignoreCase: false });
+  async verifyPreviousShippingOptionsNoLongerAvailable(previousShippingCountry: string, index: number): Promise<void> {
+    await expect(this.activeshippingOptionsCountry.nth(index)).not.toHaveText(previousShippingCountry, { ignoreCase: false });
   }
 }

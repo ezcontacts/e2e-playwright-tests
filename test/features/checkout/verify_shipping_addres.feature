@@ -19,13 +19,14 @@ Scenario: Verify shipping options for a supported country
   And the user should be able to select created shipping options
   And the default shipping option should remain selected
 
-Scenario: Verify shipping options update when the shipping address country is changed
-  When the user updates the shipping address country to "Canada"
-  Then the shipping options applicable to "Canada" should be displayed
+Scenario Outline: Verify shipping options update when the shipping address country is changed
+  When the user updates the shipping address country to "<Country>"
+  Then the shipping options applicable to "<Country>" should be displayed
   And the previously displayed shipping options should no longer be available
 
-
-Scenario: Verify only valid shipping options are shown for the selected country
-  When the user updates the shipping address country to "Puerto Rico"
-  Then the shipping options applicable to "Puerto Rico" should be displayed
-  And the previously displayed shipping options should no longer be available
+  Examples:
+    | Country        |
+    | United States  |
+    | Canada         |
+    | Puerto Rico    |
+    | Mexico         |  

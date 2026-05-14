@@ -187,4 +187,18 @@ export abstract class BaseEntity {
   protected byExactText(text: string) {
     return { hasText: this.exactText(text) };
   }
+
+  protected async getFirstVisible(locator: Locator): Promise<Locator> {
+    const count = await locator.count();
+
+    for (let i = 0; i < count; i++) {
+      const element = locator.nth(i);
+
+      if (await element.isVisible()) {
+        return element;
+      }
+    }
+
+    throw new Error("No visible element found");
+  }
 }

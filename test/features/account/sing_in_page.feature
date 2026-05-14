@@ -62,15 +62,6 @@ Scenario: Login using Magic Link (Email Link)
   Then the user should be logged in successfully
   And the user should be redirected to the account dashboard
 
-@skip
-Scenario: Magic link login with unregistered email
-  When the user clicks on "Sign in with Email Link"
-  And the user enters an unregistered email address
-  And submits the magic link request
-  And the user clicks the magic link from email
-  Then the user should be logged in successfully
-  And the user should be redirected to the account dashboard
-
 Scenario: Login using expired magic link
   Given the user used on an expired or invalid magic link
   Then the user should be redirected to "/account/sign-in"

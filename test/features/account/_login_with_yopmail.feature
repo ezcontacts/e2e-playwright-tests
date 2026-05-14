@@ -2,7 +2,7 @@
 Feature: Authentication
 
 @desktopOnly
-Scenario: Login with Magic Link
+Scenario: Magic link login with unregistered email
   Given I visit the homepage
   And I navigate to the login page
   And User enters a Yopmail email

@@ -48,6 +48,10 @@ When("I click the Google login button", async ({ loginPage }) => {
   await loginPage.clickOnGoogleLoginBtn();
 });
 
+When("the user clicks on Logout", async ({ loginPage }) => {
+  await loginPage.header.clickOnLogoutBtn();
+});
+
 Then(
   "I should see the following login options:",
   async ({ loginPage }, dataTable: DataTable) => {

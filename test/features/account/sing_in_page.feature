@@ -26,6 +26,15 @@ Examples:
   | Facebook  |
   | Apple     |
 
+@desktopOnly
+Scenario: Magic link login with unregistered email
+  Given I visit the homepage
+  And I navigate to the login page
+  And User enters a Yopmail email
+  And User clicks on the send login link button
+  And opens the Yopmail inbox
+  And clicks the login link in the email and check email
+
 @skip
 Scenario Outline: Social login is cancelled by user
   When the user clicks on "Sign in with <Provider>"
@@ -80,16 +89,8 @@ Examples:
   | Apple       |
   | Magic Link  |
 
-@skip
-Scenario Outline: Logout after login with <LoginMethod>
-  Given the user is logged in using "<LoginMethod>"
+Scenario: Logout after login
+  Given the user is logged in
   When the user clicks on Logout
-  Then the user should be logged out successfully
-  And the user should be redirected to the Sign In page
-
-Examples:
-  | LoginMethod |
-  | Google      |
-  | Facebook    |
-  | Apple       |
-  | Magic Link  |
+  Then a "You have successfully logged out." message should be displayed
+  And the user should be redirected to "/account/sign-in"

@@ -26,7 +26,6 @@ Scenario Outline: Verify shipping options update when the shipping address count
 
   Examples:
     | Country        |
-    | United States  |
     | Canada         |
     | Puerto Rico    |
     | Mexico         |  

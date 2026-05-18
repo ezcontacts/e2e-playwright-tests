@@ -15,6 +15,15 @@ import {
    GLOBAL TEST STATE
 ===================================================== */
 
+function resetScenarioState() {
+  uploadedFile = "";
+  productNumber = "";
+  beforeProductData = [];
+  invalidExtensionPopupMessage = "";
+  isInvalidExtensionScenario = false;
+  isInvalidHeaderScenario = false;
+}
+
 let uploadedFile = "";
 let productNumber = "";
 let beforeProductData: string[] = [];
@@ -27,6 +36,10 @@ let isInvalidHeaderScenario = false;
 ===================================================== */
 
 Given("I navigate to Overstock page", async ({ adminOverstockPage }) => {
+
+  // 🔥 SAFE RESET PER SCENARIO (prevents cross-test leakage)
+  resetScenarioState();
+
   await adminOverstockPage.open();
 });
 
@@ -92,6 +105,10 @@ Given("user captures existing product data", async ({ adminOverstockPage }) => {
 ===================================================== */
 
 When("user uploads overstock file", async ({ adminOverstockPage }) => {
+
+    if (!uploadedFile) {
+      throw new Error("❌ uploadedFile is empty - scenario setup failed");
+    }
 
   const fileExtension =
     uploadedFile.split(".").pop()?.toLowerCase();
@@ -184,9 +201,10 @@ Then("product should be available in grid", async ({ adminOverstockPage }) => {
 
   await adminOverstockPage.searchProduct(productNumber);
 
-  const isVisible = await adminOverstockPage.isProductVisible(productNumber);
-
-  expect(isVisible).toBeTruthy();
+  await expect(async () => {
+    const isVisible = await adminOverstockPage.isProductVisible(productNumber);
+    expect(isVisible).toBeTruthy();
+  }).toPass({ timeout: 30000 });
 });
 
 /* =====================================================

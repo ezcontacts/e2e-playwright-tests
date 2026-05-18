@@ -14,17 +14,33 @@ Scenario: Verify all supported login methods are available
 @skip
 Scenario Outline: Successful social login (Google / Facebook / Apple)
   When the user clicks on "Sign in with <Provider>"
-  And the user is redirected to the <Provider> authentication page
-  And the user provides valid <Provider> credentials
+  And the user is redirected to the "<Provider>" authentication page
+  And the user provides valid "<Provider>" credentials
   And grants permission to EZContacts
   Then the user should be logged in successfully
   And the user should be redirected to the account dashboard
+  When the user refreshes the page
+  Then the user should remain logged in
 
 Examples:
   | Provider  |
   | Google    |
   | Facebook  |
   | Apple     |
+
+Scenario: Successful social login Google
+    When I click the Google login button
+    Then I should see the login success message
+
+@skip
+Scenario: Successful social login Facebook
+    When I click the Facebook login button
+    Then I should see the login success message
+
+@skip
+Scenario: Successful social login Apple
+    When I click the Apple login button
+    Then I should see the login success message
 
 @desktopOnly
 Scenario: Magic link login with unregistered email
@@ -35,59 +51,10 @@ Scenario: Magic link login with unregistered email
   And opens the Yopmail inbox
   And clicks the login link in the email and check email
 
-@skip
-Scenario Outline: Social login is cancelled by user
-  When the user clicks on "Sign in with <Provider>"
-  And the user cancels authentication on the <Provider> page
-  Then the user should be redirected back to the EZContacts Sign In page
-  And an authentication cancelled message should be displayed
-
-Examples:
-  | Provider  |
-  | Google    |
-  | Facebook  |
-  | Apple     |
-
-@skip
-Scenario Outline: Social login fails due to invalid credentials
-  When the user clicks on "Sign in with <Provider>"
-  And the user enters invalid <Provider> credentials
-  Then an authentication error message should be displayed
-  And the user should remain on the Sign In page
-
-Examples:
-  | Provider  |
-  | Google    |
-  | Facebook  |
-  | Apple     |
-
-@skip
-Scenario: Login using Magic Link (Email Link)
-  When the user clicks on "Sign in with Email Link"
-  And the user enters a registered email address
-  And submits the magic link request
-  Then a confirmation message should be displayed stating "We've sent a verification link to your email address."
-  When the user clicks the magic link from email
-  Then the user should be logged in successfully
-  And the user should be redirected to the account dashboard
-
 Scenario: Login using expired magic link
   Given the user used on an expired or invalid magic link
   Then the user should be redirected to "/account/sign-in"
   And a "Invalid token." message should be displayed
-
-@skip
-Scenario Outline: Verify login persistence after successful login
-  When the user logs in using "<LoginMethod>"
-  And the user refreshes the page
-  Then the user should remain logged in
-
-Examples:
-  | LoginMethod |
-  | Google      |
-  | Facebook    |
-  | Apple       |
-  | Magic Link  |
 
 Scenario: Logout after login
   Given the user is logged in

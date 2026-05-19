@@ -88,6 +88,7 @@ export class AddressAndPaymentPage extends AccountPage {
     await this.AddressLastName.fill(addressData.lastName);
     await this.AddressLine1.fill(addressData.address1);
     await this.AddressCity.fill(addressData.city);
+    await expect(this.AddressState).toBeVisible();
     await this.AddressState.selectOption({ value: "New York" });
     await this.AddressZip.fill(addressData.zip);
     await this.AddressPhone.fill(addressData.phone);

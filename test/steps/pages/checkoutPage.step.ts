@@ -1,3 +1,4 @@
+import { ShippingCountry } from "../../../helpers/postalCodeHelper";
 import { Given, When, Then } from "../../fixtures/fixture";
 
 let selectedShippingOptionText: string = "";

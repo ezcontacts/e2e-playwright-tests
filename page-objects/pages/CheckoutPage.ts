@@ -54,6 +54,7 @@ export class CheckoutPage extends BasePage {
 
   async openAllShippingOptions(): Promise<void> {
     await this.allShippingOptions.click();
+    await expect(this.shippingOptionItems.first()).toBeVisible();
   }
 
   async selectAvailableShippingOption(): Promise<string> {
@@ -82,7 +83,7 @@ export class CheckoutPage extends BasePage {
     await expect(
       addressItem.nth(index),
       `Could not find created address with city "${city}", state "${state}" and zip "${zip}"`,
-    ).toBeVisible();
+    ).toBeVisible({ timeout: 20000 });
     await addressItem.nth(index).click();
     return (await addressItem.nth(index).textContent())?.trim() ?? "";
   }

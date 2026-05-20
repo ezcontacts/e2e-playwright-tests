@@ -12,6 +12,7 @@ export class CartPage extends BasePage {
   readonly itemSection: Locator;
   readonly totalPrice: Locator;
   readonly checkoutBtn: Locator;
+  readonly addRxBtn: Locator;
 
   readonly item: (index: number) => CartItemComponent;
 
@@ -23,7 +24,11 @@ export class CartPage extends BasePage {
     this.continueShoppingBtn = this.locator(".active-link");
     this.itemSection = this.locator(".items");
     this.totalPrice = this.locator("#itemTotal");
-    this.checkoutBtn = page.getByRole('link', { name: 'Checkout Now' });
+    this.checkoutBtn = page.getByRole("link", { name: "Checkout Now" });
+    this.addRxBtn = this.locator(
+      ".cart-table .cart-rx-button",
+      ".mobile-cart-rx-btn .cart-rx-button",
+    );
 
     this.message = new MessageComponent(page);
     this.item = (index: number) => new CartItemComponent(this.page, index);
@@ -56,8 +61,13 @@ export class CartPage extends BasePage {
   async clickOnCheckoutBtn(): Promise<void> {
     await expect(this.checkoutBtn).toBeVisible();
     await Promise.all([
-      this.page.waitForURL('**/checkout**'),
+      this.page.waitForURL("**/checkout**"),
       this.checkoutBtn.click(),
     ]);
+  }
+
+  async clickOnAddRxBtn(): Promise<void> {
+    await this.waitForLoadState();
+    await this.addRxBtn.click();
   }
 }

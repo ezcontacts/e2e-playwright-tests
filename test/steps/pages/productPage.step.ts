@@ -5,6 +5,7 @@ import {
   LensMaterialType,
 } from "../../data-test/productTypes";
 import { Given, Then, When } from "../../fixtures/fixture";
+import { DataTable } from "playwright-bdd";
 
 When("I add the product to the cart", async ({ productPage, page }) => {
   await productPage.clickOnAddToCart();
@@ -67,6 +68,10 @@ When(
   },
 );
 
+When("I click on Buy Frames Only button", async ({ productPage }) => {
+  await productPage.clickOnBuyFramesOnlyBtn();
+});
+
 Then("I should see the product title", async ({ productPage }) => {
   await productPage.verifyProductTitleIsVisible();
 });
@@ -123,5 +128,25 @@ Then(
   "I should see the success message for adding the product to the cart",
   async ({ cartPage }) => {
     await cartPage.message.verifyConfirmationMessage(MESSAGE.successAddToCart);
+  },
+);
+
+Then(
+  "I should see the {string} label in 2 step",
+  async ({ productPage }, text: string) => {
+    await productPage.verifyLensTypeTitleHaveText(text);
+  },
+);
+
+Then(
+  "I should see the following options under the {string} section on the product page:",
+  async ({ productPage }, title: string, dataTable: DataTable) => {
+    await productPage.verifyLensTypeHaveOptionTitle(title);
+
+    const entries = dataTable.hashes();
+
+    for (const { Option } of entries) {
+      await productPage.verifyLensTypeHaveOption(Option);
+    }
   },
 );

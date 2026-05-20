@@ -1,8 +1,12 @@
-import { Given, When, Then } from "../../fixtures/fixture";
+import { When, Then } from "../../fixtures/fixture";
 
 When("I click the checkout button for guest users", async ({ cartPage }) => {
-    await cartPage.verifyCheckoutBtnIsVisible();
-    await cartPage.clickOnCheckoutBtn();
+  await cartPage.verifyCheckoutBtnIsVisible();
+  await cartPage.clickOnCheckoutBtn();
+});
+
+When("I click the Add Rx button", async ({ cartPage }) => {
+  await cartPage.clickOnAddRxBtn();
 });
 
 When("the user navigates to the cart page", async ({ cartPage }) => {
@@ -15,34 +19,37 @@ When("the user proceeds to checkout from the cart page", async ({ cartPage }) =>
 });
 
 Then("I should see the shopping cart title", async ({ cartPage }) => {
-    await cartPage.verifyPageTitleIsVisible();
+  await cartPage.verifyPageTitleIsVisible();
 });
 
 Then("I should see the cart number", async ({ cartPage }) => {
-    await cartPage.verifyCartNumberIsVisible();
+  await cartPage.verifyCartNumberIsVisible();
 });
 
 Then("I should see the continue shopping button", async ({ cartPage }) => {
-    await cartPage.verifyContinueShoppingBtnIsVisible();
+  await cartPage.verifyContinueShoppingBtnIsVisible();
 });
 
-Then("I should see the items section with product details", async ({ cartPage }) => {
+Then(
+  "I should see the items section with product details",
+  async ({ cartPage }) => {
     await cartPage.verifyItemSectionIsVisible();
-});
+  },
+);
 
 Then("I should see the product name and image", async ({ cartPage }) => {
-    const item = cartPage.item(0);
+  const item = cartPage.item(0);
 
-    await item.verifyNameIsVisible();
-    await item.verifyImageIsVisible();
+  await item.verifyNameIsVisible();
+  await item.verifyImageIsVisible();
 });
 
 Then("I should see the edit button", async ({ cartPage }) => {
-    await cartPage.item(0).verifyEditBtnIsVisible();
+  await cartPage.item(0).verifyEditBtnIsVisible();
 });
 
 Then("I should see the remove button", async ({ cartPage }) => {
-    await cartPage.item(0).verifyRemoveBtnIsVisible();
+  await cartPage.item(0).verifyRemoveBtnIsVisible();
 });
 
 Then("I should see the product price and total price", async ({ cartPage }) => {

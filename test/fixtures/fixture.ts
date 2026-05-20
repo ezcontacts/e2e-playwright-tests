@@ -22,6 +22,7 @@ import { AccountPage } from "../../page-objects/pages/Account/AccountPage";
 import { EzPointsPage } from "../../page-objects/pages/Account/EzPointsPage";
 import { AccountSettingsPage } from "../../page-objects/pages/Account/AccountSettingsPage";
 import { AccountInfoPage } from "../../page-objects/pages/Account/AcountInfoPage";
+import { RxInformationPage } from "../../page-objects/pages/Account/RxVereficationPage";
 import { CardState } from "../../page-objects/components/ProductCardComponent";
 import { CartComponent } from "../../page-objects/components/CartComponent";
 import { AdminProductPage } from "../../page-objects/pages/admin-panel/AdminProductPage";
@@ -65,7 +66,6 @@ export const test = bddTest.extend<{
   clContext: clContext;
   CLContactLensPage: CLContactLensPage;
   PdpRxOptionPage: PdpRxOptionPage;
-  
 }>({
   context: async ({ browser }, use) => {
     const context = await browser.newContext({
@@ -80,9 +80,8 @@ export const test = bddTest.extend<{
   },
 
   cartComponent: async ({ page }, use) => {
-  await use(new CartComponent(page));
+    await use(new CartComponent(page));
   },
-
 
   homePage: async ({ page }, use) => await use(new HomePage(page)),
   loginPage: async ({ page }, use) => await use(new LoginPage(page)),
@@ -130,7 +129,8 @@ export const test = bddTest.extend<{
   //portalPage: async ({ page }, use) => await use(new PortalPage(page)),
 
   catalogContext: async ({}, use) => await use({ cardsState: [] }),
-  PdpRxOptionPage: async ({ page }, use) => await use(new PdpRxOptionPage(page)),
+  PdpRxOptionPage: async ({ page }, use) =>
+    await use(new PdpRxOptionPage(page)),
 });
 
 export type clContext = {

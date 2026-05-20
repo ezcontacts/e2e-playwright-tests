@@ -1,7 +1,7 @@
 {
   "config": {
-    "configFile": "C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\playwright.config.js",
-    "rootDir": "C:/Ezcontacts/Automation/e2e-playwright-tests/e2e-playwright-tests",
+    "configFile": "/home/diimas/WebstormProjects/e2e-playwright-tests/playwright.config.js",
+    "rootDir": "/home/diimas/WebstormProjects/e2e-playwright-tests",
     "forbidOnly": false,
     "fullyParallel": false,
     "globalSetup": null,
@@ -14,6 +14,41 @@
       "actualWorkers": 1
     },
     "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/diimas/WebstormProjects/e2e-playwright-tests/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "/home/diimas/WebstormProjects/e2e-playwright-tests/test/generated/desktop",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 280000
+      },
+      {
+        "outputDir": "/home/diimas/WebstormProjects/e2e-playwright-tests/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile",
+        "name": "mobile",
+        "testDir": "/home/diimas/WebstormProjects/e2e-playwright-tests/test/generated/mobile",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 280000
+      }
+    ],
+    "quiet": false,
     "reporter": [
       [
         "json",
@@ -33,68 +68,33 @@
       "max": 5,
       "threshold": 300000
     },
-    "quiet": false,
-    "projects": [
-      {
-        "outputDir": "C:/Ezcontacts/Automation/e2e-playwright-tests/e2e-playwright-tests/test-results",
-        "repeatEach": 1,
-        "retries": 0,
-        "metadata": {
-          "actualWorkers": 1
-        },
-        "id": "desktop",
-        "name": "desktop",
-        "testDir": "C:/Ezcontacts/Automation/e2e-playwright-tests/e2e-playwright-tests/test/generated/desktop",
-        "testIgnore": [],
-        "testMatch": [
-          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
-        ],
-        "timeout": 280000
-      },
-      {
-        "outputDir": "C:/Ezcontacts/Automation/e2e-playwright-tests/e2e-playwright-tests/test-results",
-        "repeatEach": 1,
-        "retries": 0,
-        "metadata": {
-          "actualWorkers": 1
-        },
-        "id": "mobile",
-        "name": "mobile",
-        "testDir": "C:/Ezcontacts/Automation/e2e-playwright-tests/e2e-playwright-tests/test/generated/mobile",
-        "testIgnore": [],
-        "testMatch": [
-          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
-        ],
-        "timeout": 280000
-      }
-    ],
     "shard": null,
     "tags": [],
     "updateSnapshots": "missing",
     "updateSourceMethod": "patch",
-    "version": "1.57.0",
+    "version": "1.59.1",
     "workers": 4,
     "webServer": null
   },
   "suites": [
     {
-      "title": "test\\generated\\desktop\\test\\features\\catalog\\pdp_rxoption_page.feature.spec.js",
-      "file": "test/generated/desktop/test/features/catalog/pdp_rxoption_page.feature.spec.js",
+      "title": "test/generated/desktop/test/features/checkout/verify_shipping_addres.feature.spec.js",
+      "file": "test/generated/desktop/test/features/checkout/verify_shipping_addres.feature.spec.js",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "Rx Options Validation on Product Details Page",
-          "file": "test/generated/desktop/test/features/catalog/pdp_rxoption_page.feature.spec.js",
+          "title": "Verify shipping options selection based on selected shipping address country",
+          "file": "test/generated/desktop/test/features/checkout/verify_shipping_addres.feature.spec.js",
           "line": 4,
           "column": 6,
           "specs": [
             {
-              "title": "Verify Rx and Non-Rx options are displayed correctly on PDP",
-              "ok": false,
+              "title": "Verify shipping options for a supported country",
+              "ok": true,
               "tags": [
-                "EZSANISOFT-5322"
+                "EZSANISOFT-5407"
               ],
               "tests": [
                 {
@@ -107,48 +107,38 @@
                     {
                       "workerIndex": 0,
                       "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 80138,
-                      "error": {
-                        "message": "TimeoutError: locator.scrollIntoViewIfNeeded: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.mask-wrap, .unbxd-product').first().locator('span.view')\u001b[22m\n",
-                        "stack": "TimeoutError: locator.scrollIntoViewIfNeeded: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.mask-wrap, .unbxd-product').first().locator('span.view')\u001b[22m\n\n    at ProductCardComponent.safeClickAndWaitForNetworkIdle (C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\page-objects\\base\\BaseEntity.ts:48:19)\n    at ProductCardComponent.clickOnViewBtn (C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts:45:5)\n    at SunglassesPage.clickOnProductByIndex (C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\page-objects\\pages\\product-cataloge\\ProductCatalogePage.ts:99:5)\n    at Object.<anonymous> (C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\test\\steps\\components\\productCardComponent.step.ts:6:5)\n    at C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\catalog\\pdp_rxoption_page.feature.spec.js:12:5",
-                        "location": {
-                          "file": "C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\page-objects\\base\\BaseEntity.ts",
-                          "column": 19,
-                          "line": 48
-                        },
-                        "snippet": "\u001b[90m   at \u001b[39mpage-objects\\base\\BaseEntity.ts:48\n\n\u001b[0m \u001b[90m 46 |\u001b[39m   )\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\n \u001b[90m 47 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m5000\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 48 |\u001b[39m     \u001b[36mawait\u001b[39m locator\u001b[33m.\u001b[39mscrollIntoViewIfNeeded()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 49 |\u001b[39m     \u001b[36mawait\u001b[39m expect(locator)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 50 |\u001b[39m     \u001b[36mawait\u001b[39m locator\u001b[33m.\u001b[39mclick({ force\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 51 |\u001b[39m   }\u001b[0m"
-                      },
-                      "errors": [
+                      "status": "passed",
+                      "duration": 104790,
+                      "errors": [],
+                      "stdout": [
                         {
-                          "location": {
-                            "file": "C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\page-objects\\base\\BaseEntity.ts",
-                            "column": 19,
-                            "line": 48
-                          },
-                          "message": "TimeoutError: locator.scrollIntoViewIfNeeded: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.mask-wrap, .unbxd-product').first().locator('span.view')\u001b[22m\n\n\n\u001b[90m   at \u001b[39mpage-objects\\base\\BaseEntity.ts:48\n\n\u001b[0m \u001b[90m 46 |\u001b[39m   )\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\n \u001b[90m 47 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m5000\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 48 |\u001b[39m     \u001b[36mawait\u001b[39m locator\u001b[33m.\u001b[39mscrollIntoViewIfNeeded()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 49 |\u001b[39m     \u001b[36mawait\u001b[39m expect(locator)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 50 |\u001b[39m     \u001b[36mawait\u001b[39m locator\u001b[33m.\u001b[39mclick({ force\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 51 |\u001b[39m   }\u001b[0m\n\u001b[2m    at ProductCardComponent.safeClickAndWaitForNetworkIdle (C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\page-objects\\base\\BaseEntity.ts:48:19)\u001b[22m\n\u001b[2m    at ProductCardComponent.clickOnViewBtn (C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts:45:5)\u001b[22m\n\u001b[2m    at SunglassesPage.clickOnProductByIndex (C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\page-objects\\pages\\product-cataloge\\ProductCatalogePage.ts:99:5)\u001b[22m\n\u001b[2m    at Object.<anonymous> (C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\test\\steps\\components\\productCardComponent.step.ts:6:5)\u001b[22m\n\u001b[2m    at C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\catalog\\pdp_rxoption_page.feature.spec.js:12:5\u001b[22m"
+                          "text": "After product click URL: https://staging.ezcontacts.com/product/sunglasses/74369-74370/guess-gu-6815\n"
+                        },
+                        {
+                          "text": "After add to cart URL: https://staging.ezcontacts.com/checkout/cart\n"
                         }
                       ],
-                      "stdout": [],
                       "stderr": [],
                       "retry": 0,
                       "steps": [
                         {
-                          "title": "Given I click on the first product card in the list",
-                          "duration": 25261,
-                          "error": {
-                            "message": "TimeoutError: locator.scrollIntoViewIfNeeded: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.mask-wrap, .unbxd-product').first().locator('span.view')\u001b[22m\n",
-                            "stack": "TimeoutError: locator.scrollIntoViewIfNeeded: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.mask-wrap, .unbxd-product').first().locator('span.view')\u001b[22m\n\n    at ProductCardComponent.safeClickAndWaitForNetworkIdle (C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\page-objects\\base\\BaseEntity.ts:48:19)\n    at ProductCardComponent.clickOnViewBtn (C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\page-objects\\components\\ProductCardComponent.ts:45:5)\n    at SunglassesPage.clickOnProductByIndex (C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\page-objects\\pages\\product-cataloge\\ProductCatalogePage.ts:99:5)\n    at Object.<anonymous> (C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\test\\steps\\components\\productCardComponent.step.ts:6:5)\n    at C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\catalog\\pdp_rxoption_page.feature.spec.js:12:5",
-                            "location": {
-                              "file": "C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\page-objects\\base\\BaseEntity.ts",
-                              "column": 19,
-                              "line": 48
-                            },
-                            "snippet": "\u001b[90m   at \u001b[39mpage-objects\\base\\BaseEntity.ts:48\n\n\u001b[0m \u001b[90m 46 |\u001b[39m   )\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\n \u001b[90m 47 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m5000\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 48 |\u001b[39m     \u001b[36mawait\u001b[39m locator\u001b[33m.\u001b[39mscrollIntoViewIfNeeded()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 49 |\u001b[39m     \u001b[36mawait\u001b[39m expect(locator)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 50 |\u001b[39m     \u001b[36mawait\u001b[39m locator\u001b[33m.\u001b[39mclick({ force\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 51 |\u001b[39m   }\u001b[0m"
-                          }
+                          "title": "Then the selected shipping address should be displayed",
+                          "duration": 1181
+                        },
+                        {
+                          "title": "And the user should be able to open available shipping options",
+                          "duration": 2399
+                        },
+                        {
+                          "title": "And the user should be able to select created shipping options",
+                          "duration": 445
+                        },
+                        {
+                          "title": "And the default shipping option should remain selected",
+                          "duration": 110
                         }
                       ],
-                      "startTime": "2026-05-11T11:56:24.619Z",
+                      "startTime": "2026-05-11T14:00:17.393Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -164,7 +154,7 @@
                         {
                           "name": "trace",
                           "contentType": "application/zip",
-                          "path": "C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\test-results\\test-features-catalog-pdp_-c3b5a--displayed-correctly-on-PDP-desktop\\trace.zip"
+                          "path": "/home/diimas/WebstormProjects/e2e-playwright-tests/test-results/test-features-checkout-ver-0f22d-ons-for-a-supported-country-desktop/trace.zip"
                         }
                       ],
                       "errorLocation": {
@@ -177,9 +167,175 @@
                   "status": "unexpected"
                 }
               ],
-              "id": "4847c4c170d6e4180ea6-4815bb2af7cd7e3318ae",
-              "file": "test/generated/desktop/test/features/catalog/pdp_rxoption_page.feature.spec.js",
-              "line": 11,
+              "id": "ff8fa79f5a03d75e56f7-d8802db9a06023fe5aff",
+              "file": "test/generated/desktop/test/features/checkout/verify_shipping_addres.feature.spec.js",
+              "line": 19,
+              "column": 3
+            },
+            {
+              "title": "Verify shipping options update when the shipping address country is changed",
+              "ok": true,
+              "tags": [
+                "EZSANISOFT-5407"
+              ],
+              "tests": [
+                {
+                  "timeout": 280000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 129505,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "After product click URL: https://staging.ezcontacts.com/product/sunglasses/74369-74370/guess-gu-6815\n"
+                        },
+                        {
+                          "text": "After add to cart URL: https://staging.ezcontacts.com/checkout/cart\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "When the user updates the shipping address country to \"Canada\"",
+                          "duration": 20268
+                        },
+                        {
+                          "title": "Then the shipping options applicable to \"Canada\" should be displayed",
+                          "duration": 53
+                        },
+                        {
+                          "title": "And the previously displayed shipping options should no longer be available",
+                          "duration": 46
+                        }
+                      ],
+                      "startTime": "2026-05-11T14:02:04.020Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/diimas/WebstormProjects/e2e-playwright-tests/test-results/test-features-checkout-ver-282b9--address-country-is-changed-desktop/trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ff8fa79f5a03d75e56f7-6cca2d690763d4c9df94",
+              "file": "test/generated/desktop/test/features/checkout/verify_shipping_addres.feature.spec.js",
+              "line": 26,
+              "column": 3
+            },
+            {
+              "title": "Verify only valid shipping options are shown for the selected country",
+              "ok": false,
+              "tags": [
+                "EZSANISOFT-5407"
+              ],
+              "tests": [
+                {
+                  "timeout": 280000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 119972,
+                      "error": {
+                        "message": "Error: Shipping option for Puerto Rico not visible\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('label.saved-address.active').locator('span.summary-city-state-zip').first().filter({ hasText: 'Puerto Rico' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Shipping option for Puerto Rico not visible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('label.saved-address.active').locator('span.summary-city-state-zip').first().filter({ hasText: 'Puerto Rico' })\u001b[22m\n",
+                        "stack": "Error: Shipping option for Puerto Rico not visible\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('label.saved-address.active').locator('span.summary-city-state-zip').first().filter({ hasText: 'Puerto Rico' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Shipping option for Puerto Rico not visible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('label.saved-address.active').locator('span.summary-city-state-zip').first().filter({ hasText: 'Puerto Rico' })\u001b[22m\n\n    at CheckoutPage.verifyShippingOptionsForCountry (/home/diimas/WebstormProjects/e2e-playwright-tests/page-objects/pages/CheckoutPage.ts:40:79)\n    at Object.<anonymous> (/home/diimas/WebstormProjects/e2e-playwright-tests/test/steps/pages/checkoutPage.step.ts:15:24)\n    at /home/diimas/WebstormProjects/e2e-playwright-tests/test/generated/desktop/test/features/checkout/verify_shipping_addres.feature.spec.js:34:5",
+                        "location": {
+                          "file": "/home/diimas/WebstormProjects/e2e-playwright-tests/page-objects/pages/CheckoutPage.ts",
+                          "column": 79,
+                          "line": 40
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mpage-objects/pages/CheckoutPage.ts:40\n\n\u001b[0m \u001b[90m 38 |\u001b[39m   \u001b[36masync\u001b[39m verifyShippingOptionsForCountry(country\u001b[33m:\u001b[39m string\u001b[33m,\u001b[39m index\u001b[33m:\u001b[39m number)\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\n \u001b[90m 39 |\u001b[39m     \u001b[36mconst\u001b[39m countryOption \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mactiveshippingOptionsCountry\u001b[33m.\u001b[39mnth(index)\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m country })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 40 |\u001b[39m     \u001b[36mawait\u001b[39m expect(countryOption\u001b[33m,\u001b[39m \u001b[32m`Shipping option for ${country} not visible`\u001b[39m)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 41 |\u001b[39m   }\n \u001b[90m 42 |\u001b[39m\n \u001b[90m 43 |\u001b[39m   \u001b[36masync\u001b[39m openAllShippingOptions()\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/diimas/WebstormProjects/e2e-playwright-tests/page-objects/pages/CheckoutPage.ts",
+                            "column": 79,
+                            "line": 40
+                          },
+                          "message": "Error: Shipping option for Puerto Rico not visible\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('label.saved-address.active').locator('span.summary-city-state-zip').first().filter({ hasText: 'Puerto Rico' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Shipping option for Puerto Rico not visible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('label.saved-address.active').locator('span.summary-city-state-zip').first().filter({ hasText: 'Puerto Rico' })\u001b[22m\n\n\n\u001b[90m   at \u001b[39mpage-objects/pages/CheckoutPage.ts:40\n\n\u001b[0m \u001b[90m 38 |\u001b[39m   \u001b[36masync\u001b[39m verifyShippingOptionsForCountry(country\u001b[33m:\u001b[39m string\u001b[33m,\u001b[39m index\u001b[33m:\u001b[39m number)\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\n \u001b[90m 39 |\u001b[39m     \u001b[36mconst\u001b[39m countryOption \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mactiveshippingOptionsCountry\u001b[33m.\u001b[39mnth(index)\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m country })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 40 |\u001b[39m     \u001b[36mawait\u001b[39m expect(countryOption\u001b[33m,\u001b[39m \u001b[32m`Shipping option for ${country} not visible`\u001b[39m)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 41 |\u001b[39m   }\n \u001b[90m 42 |\u001b[39m\n \u001b[90m 43 |\u001b[39m   \u001b[36masync\u001b[39m openAllShippingOptions()\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\u001b[0m\n\u001b[2m    at CheckoutPage.verifyShippingOptionsForCountry (/home/diimas/WebstormProjects/e2e-playwright-tests/page-objects/pages/CheckoutPage.ts:40:79)\u001b[22m\n\u001b[2m    at Object.<anonymous> (/home/diimas/WebstormProjects/e2e-playwright-tests/test/steps/pages/checkoutPage.step.ts:15:24)\u001b[22m\n\u001b[2m    at /home/diimas/WebstormProjects/e2e-playwright-tests/test/generated/desktop/test/features/checkout/verify_shipping_addres.feature.spec.js:34:5\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "After product click URL: https://staging.ezcontacts.com/product/sunglasses/74369-74370/guess-gu-6815\n"
+                        },
+                        {
+                          "text": "After add to cart URL: https://staging.ezcontacts.com/checkout/cart\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "When the user updates the shipping address country to \"Puerto Rico\"",
+                          "duration": 9322
+                        },
+                        {
+                          "title": "Then the shipping options applicable to \"Puerto Rico\" should be displayed",
+                          "duration": 5065,
+                          "error": {
+                            "message": "Error: Shipping option for Puerto Rico not visible\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('label.saved-address.active').locator('span.summary-city-state-zip').first().filter({ hasText: 'Puerto Rico' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Shipping option for Puerto Rico not visible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('label.saved-address.active').locator('span.summary-city-state-zip').first().filter({ hasText: 'Puerto Rico' })\u001b[22m\n",
+                            "stack": "Error: Shipping option for Puerto Rico not visible\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('label.saved-address.active').locator('span.summary-city-state-zip').first().filter({ hasText: 'Puerto Rico' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Shipping option for Puerto Rico not visible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('label.saved-address.active').locator('span.summary-city-state-zip').first().filter({ hasText: 'Puerto Rico' })\u001b[22m\n\n    at CheckoutPage.verifyShippingOptionsForCountry (/home/diimas/WebstormProjects/e2e-playwright-tests/page-objects/pages/CheckoutPage.ts:40:79)\n    at Object.<anonymous> (/home/diimas/WebstormProjects/e2e-playwright-tests/test/steps/pages/checkoutPage.step.ts:15:24)\n    at /home/diimas/WebstormProjects/e2e-playwright-tests/test/generated/desktop/test/features/checkout/verify_shipping_addres.feature.spec.js:34:5",
+                            "location": {
+                              "file": "/home/diimas/WebstormProjects/e2e-playwright-tests/page-objects/pages/CheckoutPage.ts",
+                              "column": 79,
+                              "line": 40
+                            },
+                            "snippet": "\u001b[90m   at \u001b[39mpage-objects/pages/CheckoutPage.ts:40\n\n\u001b[0m \u001b[90m 38 |\u001b[39m   \u001b[36masync\u001b[39m verifyShippingOptionsForCountry(country\u001b[33m:\u001b[39m string\u001b[33m,\u001b[39m index\u001b[33m:\u001b[39m number)\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\n \u001b[90m 39 |\u001b[39m     \u001b[36mconst\u001b[39m countryOption \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mactiveshippingOptionsCountry\u001b[33m.\u001b[39mnth(index)\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m country })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 40 |\u001b[39m     \u001b[36mawait\u001b[39m expect(countryOption\u001b[33m,\u001b[39m \u001b[32m`Shipping option for ${country} not visible`\u001b[39m)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 41 |\u001b[39m   }\n \u001b[90m 42 |\u001b[39m\n \u001b[90m 43 |\u001b[39m   \u001b[36masync\u001b[39m openAllShippingOptions()\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\u001b[0m"
+                          }
+                        }
+                      ],
+                      "startTime": "2026-05-11T14:04:15.701Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/diimas/WebstormProjects/e2e-playwright-tests/test-results/test-features-checkout-ver-e0b30-wn-for-the-selected-country-desktop/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/diimas/WebstormProjects/e2e-playwright-tests/test-results/test-features-checkout-ver-e0b30-wn-for-the-selected-country-desktop/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/diimas/WebstormProjects/e2e-playwright-tests/test-results/test-features-checkout-ver-e0b30-wn-for-the-selected-country-desktop/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/diimas/WebstormProjects/e2e-playwright-tests/page-objects/pages/CheckoutPage.ts",
+                        "column": 79,
+                        "line": 40
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ff8fa79f5a03d75e56f7-f22d5f7ee7ca898cb7ff",
+              "file": "test/generated/desktop/test/features/checkout/verify_shipping_addres.feature.spec.js",
+              "line": 32,
               "column": 3
             },
             {
@@ -244,10 +400,10 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-05-11T11:56:17.945Z",
-    "duration": 91738.428,
-    "expected": 0,
-    "skipped": 1,
+    "startTime": "2026-05-11T14:00:15.889Z",
+    "duration": 361846.028,
+    "expected": 2,
+    "skipped": 0,
     "unexpected": 1,
     "flaky": 0
   }

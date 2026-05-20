@@ -22,6 +22,10 @@ export class AddressAndPaymentPage extends AccountPage {
   readonly AddLink: (type: string) => Locator;
   readonly Heading: (type: string) => Locator;
 
+  savedCity: string | null = null;
+  savedState: string | null = null;
+  savedZip: string | null = null;
+
   constructor(page: Page) {
     super(page, ENDPOINT.addressAndPayment);
 
@@ -84,8 +88,22 @@ export class AddressAndPaymentPage extends AccountPage {
     await this.AddressLastName.fill(addressData.lastName);
     await this.AddressLine1.fill(addressData.address1);
     await this.AddressCity.fill(addressData.city);
+    await expect(this.AddressState).toBeVisible();
     await this.AddressState.selectOption({ value: "New York" });
     await this.AddressZip.fill(addressData.zip);
     await this.AddressPhone.fill(addressData.phone);
+
+    this.savedCity = addressData.city;
+    this.savedState = "New York";
+    this.savedZip = addressData.zip;
+  }
+
+  async verifyAddressPresentByCountry(country: string): Promise<void> {
+    const count = await this.page
+      .locator('p.address')
+      .filter({ hasText: country })
+      .count();
+
+    expect(count).toBeGreaterThan(0);
   }
 }

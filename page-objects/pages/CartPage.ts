@@ -23,7 +23,7 @@ export class CartPage extends BasePage {
     this.continueShoppingBtn = this.locator(".active-link");
     this.itemSection = this.locator(".items");
     this.totalPrice = this.locator("#itemTotal");
-    this.checkoutBtn = this.locator('[data-value="1"]');
+    this.checkoutBtn = page.getByRole('link', { name: 'Checkout Now' });
 
     this.message = new MessageComponent(page);
     this.item = (index: number) => new CartItemComponent(this.page, index);
@@ -54,6 +54,10 @@ export class CartPage extends BasePage {
   }
 
   async clickOnCheckoutBtn(): Promise<void> {
-    await this.checkoutBtn.click();
+    await expect(this.checkoutBtn).toBeVisible();
+    await Promise.all([
+      this.page.waitForURL('**/checkout**'),
+      this.checkoutBtn.click(),
+    ]);
   }
 }

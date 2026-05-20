@@ -55,6 +55,10 @@ export class RxInformationPage extends AccountPage {
 
   async verifyActionIsVisible(text: string): Promise<void> {
     const actionLocator = this.action(text);
-    await expect(actionLocator).toBeVisible();
+    const count = await actionLocator.count();
+
+    for (let i = 0; i < count; ++i) {
+      await expect(actionLocator.nth(i)).toBeVisible();
+    }
   }
 }

@@ -1,34 +1,6 @@
-export enum LensType {
-  PremiumStandardPlastic = "Premium Standard Plastic",
-  ImpactResistantPolycarbonate = "Impact Resistant Polycarbonate",
-  SuperThinHiIndex167 = "Super Thin 1.67 Hi Index",
-  UltraThinHiIndex174 = "Ultra Thin 1.74 Hi Index",
-}
-
-export enum LensCoatingType {
-  StandardAR = "Standard Anti Reflective",
-  SuperHydrophobicAR = "Super Hydrophobic AR",
-  SuperiorAR = "Superior Anti Reflective (Crizal Easy Pro)",
-  EnhancedAR = "Enhanced Anti Reflective (Crizal Sapphire HR)",
-  BlueLightAR = "Blue Light Blocking AR (BlueShield)",
-  BlueVioletAR = "Blue-Violet Light AR (Crizal Prevencia)",
-}
-
-export enum LensColorType {
-  Clear = "Clear",
-  ColorTinted = "Color Tinted - Lenses",
-  Mirror = "Mirror",
-  Polarized = "Polarized Lenses",
-  TransitionsGen8 = "Transitions® Gen 8™",
-  TransitionsGenS = "Transitions® Gen S™",
-  TransitionsXTRActive = "Transitions® XTRActive Lenses",
-  TransitionsXTRActivePolarized = "Transitions® XTRActive - Polarized",
-  Photochromic = "Photochromic Light-Adaptive",
-}
-
 export enum ProductType {
   Eyeglasses = "eyeglasses",
-  ContactLenses = "contact-lenses",
+ ContactLenses = "contact-lenses",
   Sunglasses = "sunglasses",
   EyeDrops = "eye-drops",
   HairAndScalpTreatments = "hair-and-scalp-treatments",
@@ -97,4 +69,62 @@ export enum AccountSettingsFields {
   CurrentEmail = "Current Email",
   NewEmail = "New Email",
   ConfirmEmail = "Confirm Email",
+}
+
+export enum PrescriptionOptions {
+  DistanceSingleVision = "Distance (Single Vision)",
+  ReadingSingleVision = "Reading (Single Vision)",
+  ProgressiveBifocal = "Progressive / Bifocal",
+}
+
+export enum NonPrescriptionOptions {
+  FrameOnly = "Manufacturer's Display Lenses",
+  NonCorrectivePlano = "Non-Corrective (Plano) Lenses",
+  BlueLightLenses = "Blue Light Lenses",
+}
+
+//Updated the Name from LensType to LensMaterialType. As Lenstype refers to Bifocal options.
+export enum LensMaterialType {
+  PremiumStandardPlastic = "Premium Standard Plastic",
+  ImpactResistantPolycarbonate = "Impact Resistant Polycarbonate",
+  SuperThinHiIndex167 = "Super Thin 1.67 Hi Index",
+  UltraThinHiIndex174 = "Ultra Thin 1.74 Hi Index",
+  EyezenLenses = "Eyezen + Anti-Fatigue Lenses",
+  DigitallySurfacedLenses = "Digitally Surfaced Lenses",
+  UltravioletProtection = "Ultraviolet Protection",
+  EdgePolish = "Edge Polish"
+}
+
+export enum LensType {
+  StandardProgressive = "Standard Progressive",
+  PremiumProgressive = "Premium Progressive (Varilux Comfort DRX)",
+  Varilux = "Varilux X",
+  Bifocal28 = "Bifocal - Flat Top 28",
+  Bifocal35 = "Bifocal - Flat Top 35"
+}
+
+export enum LensCoatingType {
+  StandardAR = "Standard Anti Reflective",
+  SuperHydrophobicAR = "Super Hydrophobic AR",
+  SuperiorAR = "Superior Anti Reflective (Crizal Easy Pro)",
+  EnhancedAR = "Enhanced Anti Reflective (Crizal Sapphire HR)",
+  BlueLightAR = "Blue Light Blocking AR (BlueShield)",
+  BlueVioletAR = "Blue-Violet Light AR (Crizal Prevencia)",
+}
+
+export enum LensColorType {
+  Clear = "Clear",
+  ColorTinted = "Color Tinted - Lenses",
+  Mirror = "Mirror",
+  Polarized = "Polarized Lenses",
+  TransitionsGen8 = "Transitions® Gen 8™",
+  TransitionsGenS = "Transitions® Gen S™",
+  TransitionsXTRActive = "Transitions® XTRActive Lenses",
+  TransitionsXTRActivePolarized = "Transitions® XTRActive - Polarized",
+  Photochromic = "Photochromic Light-Adaptive",
+}
+
+export enum RxPageType {
+  PDP = 'PDP',
+  CART = 'Cart',
 }

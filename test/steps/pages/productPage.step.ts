@@ -2,7 +2,7 @@ import { MESSAGE, PRODUCT } from "../../data-test/testData";
 import {
   LensCoatingType,
   LensColorType,
-  LensType,
+  LensMaterialType,
 } from "../../data-test/productTypes";
 import { Given, Then, When } from "../../fixtures/fixture";
 
@@ -16,12 +16,17 @@ When("I select the prescription type", async ({ productPage }) => {
   await productPage.clickOnPrescriptionType(0);
 });
 
+When("I select the Progressive\\/Bifocal type", async ({ productPage }) => {
+  await productPage.clickOnPrescriptionType(2);
+});
+
 When(
   "I fill prescription details for the right eye",
   async ({ productPage }) => {
     await productPage.prescriptionDetails.rightEye.selectSphereValue(1);
     await productPage.prescriptionDetails.rightEye.selectCylinderValue(1);
     await productPage.prescriptionDetails.rightEye.selectAxisValue(1);
+    await productPage.prescriptionDetails.rightEye.selectAddValue(1);
   },
 );
 
@@ -31,6 +36,15 @@ When(
     await productPage.prescriptionDetails.leftEye.selectSphereValue(1);
     await productPage.prescriptionDetails.leftEye.selectCylinderValue(1);
     await productPage.prescriptionDetails.leftEye.selectAxisValue(1);
+    await productPage.prescriptionDetails.leftEye.selectAddValue(1);
+  },
+);
+
+When(
+  "I fill prescription details for the pupil distance",
+  async ({ productPage }) => {
+    await productPage.prescriptionDetails.selectPupilDistanceValue(1);
+    await productPage.prescriptionDetails.clickOnContinueBtn();
   },
 );
 
@@ -41,7 +55,7 @@ When(
     await productPage.prescriptionDetails.clickOnContinueBtn();
 
     await productPage.lensMaterial.setLensMaterial(
-      LensType.SuperThinHiIndex167,
+      LensMaterialType.SuperThinHiIndex167,
     );
     await productPage.lensMaterial.clickOnContinueBtn();
 
@@ -102,9 +116,7 @@ Then("I should see shipping availability text", async ({ productPage }) => {
 
 Then(
   "I should see the Affirm badge if product price is over $50",
-  async ({ productPage }) => {
-    
-  },
+  async ({ productPage }) => {},
 );
 
 Then(

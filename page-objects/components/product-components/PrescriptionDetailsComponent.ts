@@ -15,12 +15,14 @@ export class PrescriptionDetailsComponent extends ProductStepComponent {
       sphere: this.within("#AccountPrescriptionRightSph"),
       cylinder: this.within("#AccountPrescriptionRightCyl"),
       axis: this.within("#AccountPrescriptionRightAxis"),
+      add: this.within("#AccountPrescriptionRightAdd"),
     });
 
     this.leftEye = new EyeDetail({
       sphere: this.within("#AccountPrescriptionLeftSph"),
       cylinder: this.within("#AccountPrescriptionLeftCyl"),
       axis: this.within("#AccountPrescriptionLeftAxis"),
+      add: this.within("#AccountPrescriptionLeftAdd"),
     });
 
     this.pupilDistance = this.within("#AccountPrescriptionPd1");

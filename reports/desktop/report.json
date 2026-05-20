@@ -142,14 +142,29 @@
                       "annotations": [],
                       "attachments": [
                         {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\test-results\\test-features-catalog-pdp_-c3b5a--displayed-correctly-on-PDP-desktop\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\test-results\\test-features-catalog-pdp_-c3b5a--displayed-correctly-on-PDP-desktop\\error-context.md"
+                        },
+                        {
                           "name": "trace",
                           "contentType": "application/zip",
                           "path": "/home/diimas/WebstormProjects/e2e-playwright-tests/test-results/test-features-checkout-ver-0f22d-ons-for-a-supported-country-desktop/trace.zip"
                         }
-                      ]
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\page-objects\\base\\BaseEntity.ts",
+                        "column": 19,
+                        "line": 48
+                      }
                     }
                   ],
-                  "status": "expected"
+                  "status": "unexpected"
                 }
               ],
               "id": "ff8fa79f5a03d75e56f7-d8802db9a06023fe5aff",
@@ -322,6 +337,61 @@
               "file": "test/generated/desktop/test/features/checkout/verify_shipping_addres.feature.spec.js",
               "line": 32,
               "column": 3
+            },
+            {
+              "title": "Verify the Rx options from the Cart page using \"Add Rx\" button",
+              "ok": true,
+              "tags": [
+                "EZSANISOFT-5322",
+                "skip"
+              ],
+              "tests": [
+                {
+                  "timeout": 280000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\catalog\\pdp_rxoption_page.feature.spec.js",
+                        "line": 18,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-11T11:57:49.526Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "location": {
+                            "file": "C:\\Ezcontacts\\Automation\\e2e-playwright-tests\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\catalog\\pdp_rxoption_page.feature.spec.js",
+                            "line": 18,
+                            "column": 8
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "4847c4c170d6e4180ea6-d9623b84f560916399e3",
+              "file": "test/generated/desktop/test/features/catalog/pdp_rxoption_page.feature.spec.js",
+              "line": 18,
+              "column": 8
             }
           ]
         }

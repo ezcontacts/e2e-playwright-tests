@@ -48,6 +48,10 @@ When("I click the Google login button", async ({ loginPage }) => {
   await loginPage.clickOnGoogleLoginBtn();
 });
 
+When("I click the Facebook login button", async ({ loginPage }) => {
+  await loginPage.clickOnFacebookLoginBtn();
+});
+
 When("the user clicks on Logout", async ({ loginPage }) => {
   await loginPage.header.clickOnLogoutBtn();
 });

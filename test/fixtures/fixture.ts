@@ -30,6 +30,7 @@ import { CLContactLensPage } from "../../page-objects/pages/CLContactLensPage";
 import { AccountOrderPage } from "../../page-objects/pages/Account/AccountOrderPage";
 import { AddressAndPaymentPage } from "../../page-objects/pages/Account/AddressAndPaymentPage";
 import { PdpRxOptionPage } from "../../page-objects/pages/product-cataloge/PdpRxOptionPage";
+import { FacebookPage } from "../../page-objects/pages/facebookPage";
 
 export type CatalogeContext = { cardsState: CardState[] };
 
@@ -66,6 +67,7 @@ export const test = bddTest.extend<{
   clContext: clContext;
   CLContactLensPage: CLContactLensPage;
   PdpRxOptionPage: PdpRxOptionPage;
+  facebookPage: FacebookPage;
 }>({
   context: async ({ browser }, use) => {
     const context = await browser.newContext({
@@ -131,6 +133,7 @@ export const test = bddTest.extend<{
   catalogContext: async ({}, use) => await use({ cardsState: [] }),
   PdpRxOptionPage: async ({ page }, use) =>
     await use(new PdpRxOptionPage(page)),
+  facebookPage: async ({ page }, use) => await use(new FacebookPage(page)),
 });
 
 export type clContext = {

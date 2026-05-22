@@ -10,6 +10,7 @@ export class LoginPage extends BasePage {
   readonly providers: {
     googleBtn: Locator;
     magicLinkBtn: Locator;
+    facebookBtn: Locator;
   };
   readonly providerBtn: (provider: string) => Locator;
 
@@ -32,6 +33,7 @@ export class LoginPage extends BasePage {
     this.providers = {
       googleBtn: this.locator(".google-img"),
       magicLinkBtn: this.locator("a#login-with-link-email"),
+      facebookBtn: this.locator(".facebook-img"),
     };
 
     this.message = new MessageComponent(page);
@@ -51,6 +53,10 @@ export class LoginPage extends BasePage {
 
   async clickOnGoogleLoginBtn(): Promise<void> {
     await this.providers.googleBtn.click();
+  }
+
+  async clickOnFacebookLoginBtn(): Promise<void> {
+    await this.providers.facebookBtn.click();
   }
 
   async fillEmail(value: string): Promise<void> {

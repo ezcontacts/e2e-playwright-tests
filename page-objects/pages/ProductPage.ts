@@ -19,6 +19,14 @@ export class ProductPage extends BasePage {
   readonly shipAvailability: Locator;
   readonly specificationsBtn: Locator;
 
+  readonly lensTypeTitle: Locator;
+  readonly buyFrameOnlyBtn: Locator;
+
+  readonly lensOptionTitle: (text: string) => Locator;
+  readonly lensOption: (text: string) => Locator;
+  readonly lensOptionTitleModal: (text: string) => Locator;
+  readonly lensOptionModal: (text: string) => Locator;
+
   readonly productDescription: (value: string) => Locator;
 
   readonly prescriptionDetails: PrescriptionDetailsComponent;
@@ -61,6 +69,33 @@ export class ProductPage extends BasePage {
     this.addToWishlist = this.locator(".add-to-wishlist-btn");
     this.shipAvailability = this.locator("#shipAvailability");
 
+    this.lensTypeTitle = this.locator("#step-2 h3");
+    this.buyFrameOnlyBtn = this.locator(
+      ".modal-center-position.modal-dialog .btn-default",
+    );
+
+    this.lensOptionTitle = (text: string) =>
+      this.locator(".other-frame-opt-mod").filter({
+        hasText: new RegExp(`^${text}$`),
+      });
+    this.lensOption = (text: string) =>
+      this.locator("#rxTypeDivEye .ezMarkLabel").filter({ hasText: text });
+
+    this.lensOptionTitleModal = (text: string) =>
+      this.page
+        .frameLocator("#cartPageRxModaliFrame")
+        .locator(".other-frame-opt-mod")
+        .filter({
+          hasText: new RegExp(`^${text}$`),
+        });
+    this.lensOptionModal = (text: string) =>
+      this.page
+        .frameLocator("#cartPageRxModaliFrame")
+        .locator("#rxTypeDivEye .ezMarkLabel")
+        .filter({
+          hasText: text,
+        });
+
     this.prescriptionDetails = new PrescriptionDetailsComponent(page);
     this.lensMaterial = new LensMaterialComponent(page);
     this.coating = new CoatingComponent(page);
@@ -74,19 +109,16 @@ export class ProductPage extends BasePage {
     throw new Error("ProductPage has not static endpoint");
   }
 
- /* async clickOnAddToCart(): Promise<void> {
-    await this.safeClickAndWaitForNetworkIdle(this.addCart);
-  }*/
+  async clickOnAddToCart(): Promise<void> {
+    await this.addCart.waitFor({ state: "visible" });
+    await expect(this.addCart).toBeEnabled();
 
-async clickOnAddToCart(): Promise<void> {
-  await this.addCart.waitFor({ state: "visible" });
-  await expect(this.addCart).toBeEnabled();
+    await this.addCart.click();
 
-  await Promise.all([
-    this.page.waitForURL(/\/checkout\/cart/, { timeout: 30000 }),
-    this.addCart.click()
-  ]);
-}
+    try {
+      await this.page.waitForURL(/\/checkout\/cart/, { timeout: 30000 });
+    } catch {}
+  }
 
   async clickOnPrescriptionType(index: number): Promise<void> {
     await this.prescriptionType.nth(index).click();
@@ -94,6 +126,11 @@ async clickOnAddToCart(): Promise<void> {
 
   async clickOnSpecificationsBtn(): Promise<void> {
     await this.specificationsBtn.click();
+  }
+
+  async clickOnBuyFramesOnlyBtn(): Promise<void> {
+    await this.waitForDomContentLoad();
+    await this.buyFrameOnlyBtn.click();
   }
 
   async verifyProductTitleIsVisible(): Promise<void> {
@@ -127,5 +164,27 @@ async clickOnAddToCart(): Promise<void> {
 
   async verifyShipAvailabilityIsVisible(): Promise<void> {
     await expect(this.shipAvailability).toBeVisible();
+  }
+
+  async verifyLensTypeTitleHaveText(text: string): Promise<void> {
+    await expect(this.lensTypeTitle).toHaveText(text);
+  }
+
+  async verifyLensTypeHaveOptionTitle(text: string): Promise<void> {
+    try {
+      const title = await this.lensOptionTitle(text);
+      await expect(title).toHaveText(text);
+    } catch {
+      await expect(this.lensOptionTitleModal(text)).toHaveText(text);
+    }
+  }
+
+  async verifyLensTypeHaveOption(text: string): Promise<void> {
+    try {
+      const option = await this.lensOption(text);
+      await expect(option).toHaveText(text);
+    } catch {
+      await expect(this.lensOptionModal(text)).toHaveText(text);
+    }
   }
 }

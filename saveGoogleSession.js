@@ -9,7 +9,7 @@ import { chromium } from "@playwright/test";
   await page.goto("https://accounts.google.com/signin");
 
   console.log("Введи логин и пароль за 30 секунд...");
-  await page.waitForTimeout(30000);
+  await page.waitForTimeout(90000);
 
   await context.storageState({ path: "google-session.json" });
   console.log("Сессия сохранена в google-session.json");

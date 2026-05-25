@@ -24,10 +24,11 @@ export default defineConfig({
       args: [
         "--disable-blink-features=AutomationControlled",
         "--no-sandbox",
-        "--disable-dev-shm-usage"
-      ]
+        "--disable-dev-shm-usage",
+      ],
     },
-    userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36",
+    userAgent:
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36",
     screenshot: "only-on-failure",
     video: "retain-on-failure",
     trace: "only-on-failure",

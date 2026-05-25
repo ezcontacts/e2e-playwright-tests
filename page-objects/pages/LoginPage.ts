@@ -7,10 +7,11 @@ export class LoginPage extends BasePage {
   readonly emailField: Locator;
   readonly sendLinkBtn: Locator;
 
-  readonly providers:{
+  readonly providers: {
     googleBtn: Locator;
     magicLinkBtn: Locator;
-  }
+    facebookBtn: Locator;
+  };
   readonly providerBtn: (provider: string) => Locator;
 
   readonly message: MessageComponent;
@@ -20,21 +21,26 @@ export class LoginPage extends BasePage {
 
     this.emailField = this.locator(
       'input[placeholder*="email"]',
-      "#contact-input"
+      "#contact-input",
     );
     this.sendLinkBtn = this.locator("input[id='send-reset-link-button']");
 
     this.providerBtn = (provider: string) =>
-      this.page.locator("a.btn.social-login-btn", {
+      this.page.locator("a.btn.social-login-btn, #appleid-signin", {
         hasText: new RegExp(provider, "i"),
       });
 
     this.providers = {
       googleBtn: this.locator(".google-img"),
       magicLinkBtn: this.locator("a#login-with-link-email"),
-    }
+      facebookBtn: this.locator(".facebook-img"),
+    };
 
     this.message = new MessageComponent(page);
+  }
+
+  async useInvalidAuthToken(): Promise<void> {
+    await this.openByEndpoint(`${ENDPOINT.loginWithToken}/1`);
   }
 
   async clickOnMagicLinkBtn(): Promise<void> {
@@ -47,6 +53,10 @@ export class LoginPage extends BasePage {
 
   async clickOnGoogleLoginBtn(): Promise<void> {
     await this.providers.googleBtn.click();
+  }
+
+  async clickOnFacebookLoginBtn(): Promise<void> {
+    await this.providers.facebookBtn.click();
   }
 
   async fillEmail(value: string): Promise<void> {

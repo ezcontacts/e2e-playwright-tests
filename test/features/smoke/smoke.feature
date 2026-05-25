@@ -46,14 +46,6 @@ Feature: Smoke tests for production environment
     And I should see the "Add to Cart" button
     And I should see the "Add to Wishlist" button
     And I should see shipping availability text
-
-  Scenario: Verify that the login loads correctly
-    Given I visit the login page
-    Then I should see the following login options:
-      | provider                |
-      | Sign in with Google     |
-      | Sign in with Facebook   |
-      | Send magic link         |
       
   Scenario: Verify that the contact us works correctly
     Given I visit the Contact Us page

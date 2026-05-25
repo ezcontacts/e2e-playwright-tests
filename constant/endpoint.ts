@@ -21,6 +21,7 @@ export const ENDPOINT = {
 
   ezPoints: "/account/ezpoints",
   readers: "/readers",
+  loginWithToken: "/login-with-token/",
 };
 
 export const ENDPOINT_API = {

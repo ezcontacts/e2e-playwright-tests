@@ -16,7 +16,7 @@ Given(
     await yopmailPage.fillLogin(ACCOUNT.email);
     await yopmailPage.clickOnRefreshBtn();
     await yopmailPage.verifyEmailIsExist();
-  }
+  },
 );
 
 Given("I visit the login page", async ({ loginPage }) => {
@@ -28,6 +28,13 @@ Given("the user is logged in", async ({ loginPage }) => {
   await loginPage.clickOnGoogleLoginBtn();
 });
 
+Given(
+  "the user used on an expired or invalid magic link",
+  async ({ loginPage }) => {
+    await loginPage.useInvalidAuthToken();
+  },
+);
+
 When("User enters a Yopmail email", async ({ loginPage }) => {
   await loginPage.clickOnMagicLinkBtn();
   await loginPage.fillEmail(ACCOUNT.email);
@@ -37,8 +44,16 @@ When("User clicks on the send login link button", async ({ loginPage }) => {
   await loginPage.clickOnSendLinkBtn();
 });
 
-When('I click the Google login button', async ({ loginPage }) => {
+When("I click the Google login button", async ({ loginPage }) => {
   await loginPage.clickOnGoogleLoginBtn();
+});
+
+When("I click the Facebook login button", async ({ loginPage }) => {
+  await loginPage.clickOnFacebookLoginBtn();
+});
+
+When("the user clicks on Logout", async ({ loginPage }) => {
+  await loginPage.header.clickOnLogoutBtn();
 });
 
 Then(
@@ -49,9 +64,16 @@ Then(
     for (const { provider } of entries) {
       await loginPage.verifySingInMethodIsVisible(provider);
     }
-  }
+  },
 );
 
 Then("I should see the login success message", async ({ loginPage }) => {
   await loginPage.message.verifyConfirmationMessage(MESSAGE.successLogin);
 });
+
+Then(
+  "the {string} button should be visible",
+  async ({ loginPage }, text: string) => {
+    await loginPage.verifySingInMethodIsVisible(text);
+  },
+);

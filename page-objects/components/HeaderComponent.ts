@@ -1,6 +1,6 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { BaseComponent } from "../base/BaseComponent";
-import { TOKEN_ENDPOINT } from '../../constant/tokens';
+import { TOKEN_ENDPOINT } from "../../constant/tokens";
 
 export class HeaderComponent extends BaseComponent {
   readonly mainLogo: Locator;
@@ -10,6 +10,7 @@ export class HeaderComponent extends BaseComponent {
   readonly lowestPriceLink: Locator;
   readonly freeShopingLink: Locator;
   readonly specialTopMessage: Locator;
+  readonly logoutBtn: Locator;
 
   readonly linkWithText: (text: string) => Locator;
   readonly getTab: (tabName: string) => Locator;
@@ -22,38 +23,40 @@ export class HeaderComponent extends BaseComponent {
     this.mainLogo = this.within(".cls-header-logo-img-fix");
     this.searchField = this.within(
       ".search-keyword",
-      ".navbar-toggle > span.glyphicon-search"
+      ".navbar-toggle > span.glyphicon-search",
     );
     this.navBar = this.within("ul.navbar-nav");
     this.cartLink = this.within(".cart > a");
 
     this.lowestPriceLink = this.within(
-      'a[data-target="#lowest-price-guarantee-modal"]'
+      'a[data-target="#lowest-price-guarantee-modal"]',
     );
     this.freeShopingLink = this.within(
-      'a.hover-underline[data-target="#free-shipping-modal"]'
+      'a.hover-underline[data-target="#free-shipping-modal"]',
     );
     this.specialTopMessage = this.within(
-      '[data-target="#special-top-message-modal"]'
+      '[data-target="#special-top-message-modal"]',
     );
 
-    this.linkWithText = (text: string) => this.within("a").filter({hasText: new RegExp(text), visible: true });
+    this.logoutBtn = this.within('[href="/users/logout"]');
 
-    this.getTab = (tabName: string) => this
-      .within('li.hidden-xs')
-      .filter({has: this.page.locator('a', this.byExactText(tabName))})
+    this.linkWithText = (text: string) =>
+      this.within("a").filter({ hasText: new RegExp(text), visible: true });
 
-    this.getDropdownMenu = (tabName: string) => this
-      .getTab(tabName)
-      .locator("ul.dropdown-menu");
+    this.getTab = (tabName: string) =>
+      this.within("li.hidden-xs").filter({
+        has: this.page.locator("a", this.byExactText(tabName)),
+      });
 
-    this.getSubMenuOption = (tabName: string, option: string) => this
-      .getDropdownMenu(tabName).locator(
-         ".title, .nav-menu-link",
-        this.byExactText(option)
+    this.getDropdownMenu = (tabName: string) =>
+      this.getTab(tabName).locator("ul.dropdown-menu");
+
+    this.getSubMenuOption = (tabName: string, option: string) =>
+      this.getDropdownMenu(tabName).locator(
+        ".title, .nav-menu-link",
+        this.byExactText(option),
       );
   }
-
 
   async clickTab(tabName: string): Promise<void> {
     const tab = this.getTab(tabName);
@@ -61,13 +64,11 @@ export class HeaderComponent extends BaseComponent {
     await tab.click();
   }
 
-
   async hoverTab(tabName: string): Promise<void> {
     const tab = this.getTab(tabName);
     await expect(tab).toBeVisible({ timeout: 15000 });
     await tab.hover();
   }
-
 
   async clickSubMenu(tabName: string, option: string): Promise<void> {
     await this.hoverTab(tabName);
@@ -80,12 +81,15 @@ export class HeaderComponent extends BaseComponent {
     await expect(this.getTab(tabName)).toBeVisible({ timeout: 15000 });
   }
 
+  async clickOnLogoutBtn(): Promise<void> {
+    const btn = await this.getFirstVisible(this.logoutBtn);
+    await btn.click();
+  }
 
   async verifyDropdownVisible(tabName: string): Promise<void> {
     await this.hoverTab(tabName);
     await expect(this.getDropdownMenu(tabName)).toBeVisible({ timeout: 15000 });
   }
-
 
   async verifyDropdownHidden(tabName: string): Promise<void> {
     const menu = this.getDropdownMenu(tabName);
@@ -95,17 +99,15 @@ export class HeaderComponent extends BaseComponent {
     }
   }
 
-
   async verifySubMenuVisible(tabName: string, name: string): Promise<void> {
     await this.hoverTab(tabName);
-
 
     const textItem = this.getSubMenuOption(tabName, name);
 
     if (await textItem.count()) {
       await expect(
         textItem.first(),
-        `Submenu '${name}' under '${tabName}' should be visible`
+        `Submenu '${name}' under '${tabName}' should be visible`,
       ).toBeVisible({ timeout: 15000 });
       return;
     }
@@ -116,9 +118,9 @@ export class HeaderComponent extends BaseComponent {
     await expect(tab).toHaveClass(/active|selected/);
   }
 
-
   async verifyTabContent(tabName: string): Promise<void> {
-    if (!tabName) throw new Error("❌ Tab name is undefined in verifyTabContent");
+    if (!tabName)
+      throw new Error("❌ Tab name is undefined in verifyTabContent");
     const tabContent = this.getTab(tabName);
     await expect(tabContent).toBeVisible({ timeout: 15000 });
   }
@@ -138,28 +140,29 @@ export class HeaderComponent extends BaseComponent {
     }
   }
 
-
   getTabUrl(tabName: string): string {
-    const key = tabName.toUpperCase()
-                  .replace(/[’']/g, "")
-                  .replace(/\s+/g, " ")
-                  .trim();
+    const key = tabName
+      .toUpperCase()
+      .replace(/[’']/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
 
     const url = TOKEN_ENDPOINT[key];
     if (!url) {
-      throw new Error(`❌ No URL mapping found for tab '${tabName}' (normalized key: '${key}')`);
+      throw new Error(
+        `❌ No URL mapping found for tab '${tabName}' (normalized key: '${key}')`,
+      );
     }
 
     return url;
   }
 
-
   async verifyTabRedirect(tabName: string): Promise<void> {
     const expectedUrl = this.getTabUrl(tabName);
-    await this.page.waitForURL(new RegExp(expectedUrl, "i"), { timeout: 15000 });
+    await this.page.waitForURL(new RegExp(expectedUrl, "i"), {
+      timeout: 15000,
+    });
   }
-
-
 
   async verifyMainImageIsVisible(): Promise<void> {
     await expect(this.mainLogo).toBeVisible();
@@ -189,11 +192,11 @@ export class HeaderComponent extends BaseComponent {
     await expect(this.specialTopMessage).toBeVisible();
   }
 
-  async verifyLinkWithTextVisible(text: string): Promise<void>{
+  async verifyLinkWithTextVisible(text: string): Promise<void> {
     await expect(this.linkWithText(text)).toBeVisible();
   }
 
-  async clickOnLinkWithText(text: string): Promise<void>{
+  async clickOnLinkWithText(text: string): Promise<void> {
     const link = await this.linkWithText(text);
     await link.click();
   }

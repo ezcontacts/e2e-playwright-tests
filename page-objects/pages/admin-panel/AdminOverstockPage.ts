@@ -12,7 +12,9 @@ import { BasePage } from "../../base/BasePage";
 
 import { TableComponent } from "../../components/TableComponent";
 
-import {
+import { handleDialogOnce } from "../../../helpers/dialog.helper";
+
+import {InvalidExtensionMessages,
   OverstockMessages,
   OverstockStatus
 } from "../../../helpers/overstock.messages";
@@ -58,6 +60,9 @@ export class AdminOverstockPage extends BasePage {
   readonly historyTable: TableComponent;
 
   readonly overstockModalCloseBtn: Locator;
+
+  readonly overstockModal: Locator;
+  readonly overstockModalCloseBtnAlt: Locator;
 
   /* =====================================================
      CONSTRUCTOR
@@ -140,6 +145,12 @@ export class AdminOverstockPage extends BasePage {
 
     this.overstockModalCloseBtn =
     page.locator('#overStockProductModalId button[data-dismiss="modal"]');
+
+    this.overstockModal =
+    page.locator('#overStockProductModalId');
+
+    this.overstockModalCloseBtnAlt =
+    this.overstockModal.locator('button:has-text("Close"), button.btn.btn-default');
   }
 
   /* =====================================================
@@ -228,8 +239,7 @@ export class AdminOverstockPage extends BasePage {
 
     await this.clickProcessButton();
 
-    // ✅ WAIT FOR MODAL FIRST (IMPORTANT FIX)
-    const modal = this.page.locator('#overStockProductModalId');
+    const modal = this.overstockModal;
 
     try {
       await modal.waitFor({ state: 'visible', timeout: 5000 });
@@ -459,19 +469,84 @@ export class AdminOverstockPage extends BasePage {
     }
   }
 
-  async validateAlertPopup(
-    expectedMessage: string
+async validateAlertPopup(
+  expectedMessage: string
+): Promise<void> {
+
+  this.page.once("dialog", async dialog => {
+
+    const actualMessage =
+      dialog.message();
+
+    expect(actualMessage)
+      .toContain(expectedMessage);
+
+    await dialog.accept();
+  });
+}
+
+/* =====================================================
+   INVALID EXTENSION VALIDATION
+===================================================== */
+
+  async validateInvalidExtensionPopup(
+    popupMessage: string
   ): Promise<void> {
 
-    this.page.once("dialog", async dialog => {
-
-      const actualMessage =
-        dialog.message();
-
-      expect(actualMessage)
-        .toContain(expectedMessage);
-
-      await dialog.accept();
+    await expect(this.overstockModal).toBeVisible({
+      timeout: 10000
     });
+
+    await expect(this.overstockModalCloseBtnAlt).toBeVisible({
+      timeout: 10000
+    });
+
+    await expect(this.overstockModalCloseBtnAlt).toBeEnabled({
+      timeout: 10000
+    });
+
+    await this.overstockModalCloseBtnAlt.click({
+      force: true
+    });
+
+    expect(
+      InvalidExtensionMessages.some(msg =>
+        popupMessage.includes(msg)
+      )
+    ).toBeTruthy();
+  }
+
+  async uploadOverstockFile(
+    fileName: string,
+    context: {
+      isInvalidExtensionScenario: boolean;
+      invalidExtensionPopupMessage: string;
+    }
+  ): Promise<void> {
+
+    const fileExtension =
+      fileName.split(".").pop()?.toLowerCase();
+
+    context.isInvalidExtensionScenario =
+      fileExtension !== "csv";
+
+    if (context.isInvalidExtensionScenario) {
+
+      const dialogPromise = handleDialogOnce(
+        this.page,
+        (msg: string) => {
+          context.invalidExtensionPopupMessage = msg;
+        }
+      );
+
+      await this.processOverstockFile(fileName);
+
+      context.invalidExtensionPopupMessage =
+        await dialogPromise;
+
+      return;
+    }
+
+    await this.processOverstockFile(fileName);
   }
 }

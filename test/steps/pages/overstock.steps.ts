@@ -5,131 +5,126 @@ import { expect } from "@playwright/test";
 
 import { Given, Then, When } from "../../fixtures/fixture";
 
+import { parseCsv } from "../../../helpers/overstock.helper";
+
+import { handleDialogOnce } from "../../../helpers/dialog.helper";
+
 import {
   InvalidExtensionMessages,
   OverstockMessages,
   OverstockStatus
 } from "../../../helpers/overstock.messages";
 
-/* =====================================================
-   GLOBAL TEST STATE
-===================================================== */
+  let context: OverstockScenarioContext;
 
-function resetScenarioState() {
-  uploadedFile = "";
-  productNumber = "";
-  beforeProductData = [];
-  invalidExtensionPopupMessage = "";
-  isInvalidExtensionScenario = false;
-  isInvalidHeaderScenario = false;
-}
+  function resetScenarioState() {
+    context = {
+      uploadedFile: "",
+      productNumber: "",
+      beforeProductData: [],
+      invalidExtensionPopupMessage: "",
+      isInvalidExtensionScenario: false,
+      isInvalidHeaderScenario: false
+    };
+  }
 
-let uploadedFile = "";
-let productNumber = "";
-let beforeProductData: string[] = [];
-let invalidExtensionPopupMessage = "";
-let isInvalidExtensionScenario = false;
-let isInvalidHeaderScenario = false;
+  function hasValidProductNumber(): boolean {
 
-/* =====================================================
-   NAVIGATION
-===================================================== */
+    const isValid =
+      Boolean(context.productNumber?.trim());
+
+    if (!isValid) {
+      console.log("⚠️ Product number is not available");
+    }
+
+    return isValid;
+  }
+
+  type OverstockScenarioContext = {
+    uploadedFile: string;
+    productNumber: string;
+    beforeProductData: string[];
+    invalidExtensionPopupMessage: string;
+    isInvalidExtensionScenario: boolean;
+    isInvalidHeaderScenario: boolean;
+  };
 
 Given("I navigate to Overstock page", async ({ adminOverstockPage }) => {
 
-  // 🔥 SAFE RESET PER SCENARIO (prevents cross-test leakage)
   resetScenarioState();
 
   await adminOverstockPage.open();
 });
 
-/* =====================================================
-   FILE PREPARATION
-===================================================== */
 
 Given("user prepares overstock file {string}", async ({}, fileName: string) => {
 
-  uploadedFile = fileName;
+  context.uploadedFile = fileName;
 
   const filePath = path.resolve("test/data-test/files", fileName);
 
-  const csvContent = fs.readFileSync(filePath, "utf-8");
+  const { rows, headers } = parseCsv(filePath);
 
-  const rows = csvContent
-    .split(/\r?\n/)
-    .map(r => r.trim())
-    .filter(Boolean);
+  context.isInvalidHeaderScenario = !headers.includes("product");
 
-  const headers = rows[0]?.split(",").map(h => h.trim().toLowerCase()) || [];
-
-  console.log("CSV HEADERS:", headers);
-
-  // 👇 IMPORTANT RULE: first column must be "product"
-  // FIX: detect invalid header safely (Product column missing or renamed)
-  isInvalidHeaderScenario = !headers.includes("product");
-
-  if (isInvalidHeaderScenario) {
-
-    console.log("⚠️ Invalid header scenario detected (no Product column)");
-
-    // IMPORTANT: prevent downstream crashes
-    productNumber = "";
+  if (context.isInvalidHeaderScenario) {
+    context.productNumber = "";
     return;
   }
 
-  productNumber = rows[1]?.split(",")[0]?.trim() || "";
+  context.productNumber = rows[1]?.split(",")[0]?.trim() || "";
 
-  console.log("✅ PRODUCT NUMBER:", productNumber);
+  console.log("✅ PRODUCT NUMBER:", context.productNumber);
 });
 
-/* =====================================================
-   CAPTURE EXISTING PRODUCT DATA
-===================================================== */
 
 Given("user captures existing product data", async ({ adminOverstockPage }) => {
 
-  if (!productNumber?.trim()) {
-    console.log("⚠️ Skipping capture due to invalid header scenario");
+  if (!hasValidProductNumber()) {
     return;
   }
 
-  await adminOverstockPage.searchProduct(productNumber);
+  await adminOverstockPage.searchProduct(context.productNumber);
 
-  beforeProductData =
-    await adminOverstockPage.getProductRowData(productNumber);
+  context.beforeProductData =
+    await adminOverstockPage.getProductRowData(context.productNumber);
 
 });
 
-/* =====================================================
-   UPLOAD FLOW
-===================================================== */
-
 When("user uploads overstock file", async ({ adminOverstockPage }) => {
 
-    if (!uploadedFile) {
+    if (!context.uploadedFile) {
       throw new Error("❌ uploadedFile is empty - scenario setup failed");
     }
 
   const fileExtension =
-    uploadedFile.split(".").pop()?.toLowerCase();
+    context.uploadedFile.split(".").pop()?.toLowerCase();
 
-  isInvalidExtensionScenario = fileExtension !== "csv";
+  context.isInvalidExtensionScenario = fileExtension !== "csv";
 
-  invalidExtensionPopupMessage = "";
+  context.invalidExtensionPopupMessage = "";
 
-  if (isInvalidExtensionScenario) {
+  if (context.isInvalidExtensionScenario) {
 
-    adminOverstockPage.page.once("dialog", async dialog => {
+    const dialogPromise = handleDialogOnce(
+      adminOverstockPage.page,
+      (msg: string) => {
+        context.invalidExtensionPopupMessage = msg;
+      }
+    );
 
-      invalidExtensionPopupMessage = dialog.message();
+    await adminOverstockPage.processOverstockFile(
+      context.uploadedFile
+    );
 
-      console.log("INVALID EXTENSION POPUP:", invalidExtensionPopupMessage);
+    context.invalidExtensionPopupMessage =
+      await dialogPromise;
 
-      await adminOverstockPage.closeOverstockModal();
-    });
   } else {
 
-    await adminOverstockPage.processOverstockFile(uploadedFile);
+    await adminOverstockPage.processOverstockFile(
+      context.uploadedFile
+    );
   }
 });
 
@@ -137,41 +132,26 @@ When("user uploads overstock file again", async ({ adminOverstockPage }) => {
 
   await adminOverstockPage.open();
 
-  await adminOverstockPage.processOverstockFile(uploadedFile);
+  await adminOverstockPage.processOverstockFile(context.uploadedFile);
 });
 
-/* =====================================================
-   SUCCESS VALIDATION
-===================================================== */
 
 Then("upload should be successful", async ({ adminOverstockPage }) => {
 
-  // Skip validation for invalid extension scenarios
-  if (isInvalidExtensionScenario) {
+  if (context.isInvalidExtensionScenario) {
 
-    const dialogPromise = new Promise<string>(resolve => {
+    const dialogPromise = handleDialogOnce(
+      adminOverstockPage.page,
+      (msg: string) => {
+        context.invalidExtensionPopupMessage = msg;
+      }
+    );
 
-      adminOverstockPage.page.once("dialog", async dialog => {
+    await adminOverstockPage.processOverstockFile(context.uploadedFile);
 
-        const msg = dialog.message();
-        invalidExtensionPopupMessage = msg;
-
-        console.log("INVALID EXTENSION POPUP:", msg);
-
-        // ✅ ONLY ACCEPT ONCE
-        await dialog.accept();
-
-        resolve(msg);
-      });
-
-    });
-
-    await adminOverstockPage.processOverstockFile(uploadedFile);
-
-    invalidExtensionPopupMessage = await dialogPromise;
+    context.invalidExtensionPopupMessage = await dialogPromise;
   }
 
-  // Validate success toast only for valid uploads
   await adminOverstockPage.validateToastMessage(
     OverstockMessages[
       OverstockStatus.FILE_UPLOAD_SUCCESS
@@ -179,14 +159,10 @@ Then("upload should be successful", async ({ adminOverstockPage }) => {
   );
 });
 
-/* =====================================================
-   GRID VALIDATION
-===================================================== */
 
 Then("product should be available in grid", async ({ adminOverstockPage }) => {
 
-  if (!productNumber?.trim()) {
-    console.log("⚠️ Skipping grid validation due to invalid file scenario");
+  if (!hasValidProductNumber()) {
     return;
   }
 
@@ -194,22 +170,20 @@ Then("product should be available in grid", async ({ adminOverstockPage }) => {
 
   await adminOverstockPage.waitForGrid();
 
-  if (!productNumber?.trim()) {
-    console.log("⚠️ Skipping grid validation due to invalid header scenario");
-    return;
-  }
-
-  await adminOverstockPage.searchProduct(productNumber);
+  await adminOverstockPage.searchProduct(context.productNumber);
 
   await expect(async () => {
-    const isVisible = await adminOverstockPage.isProductVisible(productNumber);
-    expect(isVisible).toBeTruthy();
-  }).toPass({ timeout: 30000 });
-});
 
-/* =====================================================
-   HISTORY FLOW
-===================================================== */
+    const isVisible =
+      await adminOverstockPage.isProductVisible(
+        context.productNumber
+      );
+
+    expect(isVisible).toBeTruthy();
+
+  }).toPass({ timeout: 30000 });
+
+});
 
 Then("user navigates to upload history page", async ({ adminOverstockPage }) => {
 
@@ -221,9 +195,6 @@ Then("user opens latest upload details", async ({ adminOverstockPage }) => {
   await adminOverstockPage.openLatestUploadDetails();
 });
 
-/* =====================================================
-   STATUS MESSAGE VALIDATION
-===================================================== */
 
 Then("system should show overstock update message", async ({ adminOverstockPage }) => {
 
@@ -255,9 +226,6 @@ Then("invalid product message should display", async ({ adminOverstockPage }) =>
   ]);
 });
 
-/* =====================================================
-   INVALID FILE VALIDATION
-===================================================== */
 
 Then("invalid overstock format message should display", async ({ adminOverstockPage }) => {
 
@@ -265,7 +233,7 @@ Then("invalid overstock format message should display", async ({ adminOverstockP
 
   console.log("HEADER VALIDATION MESSAGE:", msg);
 
-  if (isInvalidHeaderScenario) {
+  if (context.isInvalidHeaderScenario) {
 
     expect(msg).toContain(
       OverstockMessages[OverstockStatus.INVALID]
@@ -288,77 +256,34 @@ Then("empty overstock file message should display", async ({ adminOverstockPage 
 
 Then("invalid extension message should display", async ({ adminOverstockPage }) => {
 
-  invalidExtensionPopupMessage = "";
+  context.invalidExtensionPopupMessage = "";
 
-  // ===============================
-  // STEP 1: HANDLE BROWSER ALERT (OK BUTTON)
-  // ===============================
-  const dialogPromise = new Promise<string>(resolve => {
+  const dialogPromise = handleDialogOnce(
+    adminOverstockPage.page,
+    (msg: string) => {
+      context.invalidExtensionPopupMessage = msg;
+    }
+  );
 
-    adminOverstockPage.page.once("dialog", async dialog => {
+  await adminOverstockPage.processOverstockFile(
+    context.uploadedFile
+  );
 
-      const msg = dialog.message();
+  context.invalidExtensionPopupMessage =
+    await dialogPromise;
 
-      console.log("INVALID EXTENSION POPUP:", msg);
+  await adminOverstockPage.validateInvalidExtensionPopup(
+    context.invalidExtensionPopupMessage
+  );
 
-      await adminOverstockPage.page.waitForTimeout(1500); // UI debug delay
-
-      await dialog.accept(); // CLICK OK
-
-      resolve(msg);
-    });
-
-  });
-
-  // Trigger upload AFTER listener is ready
-  await adminOverstockPage.processOverstockFile(uploadedFile);
-
-  invalidExtensionPopupMessage = await dialogPromise;
-
-  // ===============================
-  // STEP 2: CLOSE MODAL AFTER ALERT
-  // ===============================
-
-  const modal = adminOverstockPage.page.locator('#overStockProductModalId');
-
-  const closeBtn = modal.locator('button:has-text("Close"), button.btn.btn-default');
-
-  // Ensure modal is visible
-  await expect(modal).toBeVisible({ timeout: 10000 });
-
-  // Ensure button is ready
-  await expect(closeBtn).toBeVisible({ timeout: 10000 });
-  await expect(closeBtn).toBeEnabled({ timeout: 10000 });
-
-  // Small wait for Bootstrap animation stability
-  await adminOverstockPage.page.waitForTimeout(1000);
-
-  // Force click (prevents overlay blocking issue)
-  await closeBtn.click({ force: true });
-
-  // ===============================
-  // STEP 3: ASSERT MESSAGE
-  // ===============================
-
-  console.log("FINAL INVALID EXTENSION MESSAGE:", invalidExtensionPopupMessage);
-
-  expect(
-    InvalidExtensionMessages.some(msg =>
-      invalidExtensionPopupMessage.includes(msg)
-    )
-  ).toBeTruthy();
 });
 
-/* =====================================================
-   REMOVE OVERSTOCK FLOW
-===================================================== */
 
 Then("user removes product from overstock", async ({ adminOverstockPage }) => {
 
-  if (!productNumber?.trim()) {
-    console.log("⚠️ Skipping remove (invalid header scenario)");
+  if (!hasValidProductNumber()) {
     return;
   }
 
-  await adminOverstockPage.removeOverstockProduct(productNumber);
+  await adminOverstockPage.removeOverstockProduct(context.productNumber);
 });

@@ -5,6 +5,7 @@ import { PrescriptionDetailsComponent } from "../components/product-components/P
 import { CoatingComponent } from "../components/product-components/CoatingComponent";
 import { LensMaterialComponent } from "../components/product-components/LensMaterialComponent";
 import { LensColorComponent } from "../components/product-components/LensColorComponent";
+import { text } from "stream/consumers";
 
 export class ProductPage extends BasePage {
   readonly productTitle: Locator;
@@ -16,6 +17,7 @@ export class ProductPage extends BasePage {
   readonly productImage: Locator;
   readonly colorDropdown: Locator;
   readonly addToWishlist: Locator;
+  readonly wishlistTooltip: Locator;
   readonly shipAvailability: Locator;
   readonly specificationsBtn: Locator;
 
@@ -67,6 +69,7 @@ export class ProductPage extends BasePage {
     };
 
     this.addToWishlist = this.locator(".add-to-wishlist-btn");
+    this.wishlistTooltip = this.locator(".popover.top.in");
     this.shipAvailability = this.locator("#shipAvailability");
 
     this.lensTypeTitle = this.locator("#step-2 h3");
@@ -133,6 +136,15 @@ export class ProductPage extends BasePage {
     await this.buyFrameOnlyBtn.click();
   }
 
+  async hoverOverAddToWishlistBtn(): Promise<void> {
+    await this.waitForDomContentLoad();
+    await this.addToWishlist.hover();
+  }
+
+  async clickOnAddToWishlistBtn(): Promise<void> {
+    await this.addToWishlist.locator("a").click();
+  }
+
   async verifyProductTitleIsVisible(): Promise<void> {
     await expect(this.productName).toBeVisible();
   }
@@ -186,5 +198,13 @@ export class ProductPage extends BasePage {
     } catch {
       await expect(this.lensOptionModal(text)).toHaveText(text);
     }
+  }
+
+  async verifyWithlistTooltipText(text: string): Promise<void> {
+    await expect(this.wishlistTooltip).toHaveText(text);
+  }
+
+  async verifyWithlistTooltipNotVisible(): Promise<void> {
+    await expect(this.wishlistTooltip).not.toBeVisible();
   }
 }

@@ -55,6 +55,10 @@ export abstract class BasePage extends BaseEntity {
     await this.promotion.closeDynamicPopupIfPresent();
   }
 
+  async resetСursor(): Promise<void> {
+    await this.page.mouse.move(0, 0);
+  }
+
   async verifyUrl() {
     await this.header.cartLink.waitFor({ state: "visible" });
     await expect(this.page).toHaveURL(new RegExp(`${this.endpoint}`));

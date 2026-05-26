@@ -72,6 +72,28 @@ When("I click on Buy Frames Only button", async ({ productPage }) => {
   await productPage.clickOnBuyFramesOnlyBtn();
 });
 
+When(
+  "the user hovers over the wishlist heart icon",
+  async ({ productPage }) => {
+    await productPage.hoverOverAddToWishlistBtn();
+  },
+);
+
+When("the user moves the cursor away", async ({ productPage }) => {
+  await productPage.resetСursor();
+});
+
+Then(
+  "a tooltip with text {string} should be displayed",
+  async ({ productPage }, text: string) => {
+    await productPage.verifyWithlistTooltipText(text);
+  },
+);
+
+Then("the wishlist tooltip should disappear", async ({ productPage }) => {
+  await productPage.verifyWithlistTooltipNotVisible();
+});
+
 Then("I should see the product title", async ({ productPage }) => {
   await productPage.verifyProductTitleIsVisible();
 });

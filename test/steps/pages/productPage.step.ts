@@ -83,6 +83,10 @@ When("the user moves the cursor away", async ({ productPage }) => {
   await productPage.resetСursor();
 });
 
+When("the user clicks the wishlist heart icon", async ({ productPage }) => {
+  await productPage.clickOnAddToWishlistBtn();
+});
+
 Then(
   "a tooltip with text {string} should be displayed",
   async ({ productPage }, text: string) => {

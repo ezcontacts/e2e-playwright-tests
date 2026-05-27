@@ -142,7 +142,8 @@ export class ProductPage extends BasePage {
   }
 
   async clickOnAddToWishlistBtn(): Promise<void> {
-    await this.addToWishlist.locator("a").click();
+    await this.addToWishlist.hover();
+    await this.wishlistTooltip.locator("a").click();
   }
 
   async verifyProductTitleIsVisible(): Promise<void> {

@@ -4,7 +4,6 @@ Feature: Verify Sort By drop down is displayed and product color options for Rea
 Background:
   Given the user visite "READERS" page
 
-
 Scenario: Verify Sort By dropdown is displayed
   Then the Sort By dropdown should be visible
   And the Sort By dropdown should display "Bestselling" option as by default selected option

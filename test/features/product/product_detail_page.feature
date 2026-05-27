@@ -27,15 +27,16 @@ Scenario: Wishlist icon and tooltip behavior
   When the user moves the cursor away
   Then the wishlist tooltip should disappear
 
-@skip
-Scenario Outline: Wishlist behavior based on user state
-  When the user clicks the wishlist heart icon
-  Then the wishlist action should behave as "<result>"
+Scenario: Wishlist behavior based on user logged-in state
+  Given the user is logged in
+  And the user visite "READERS" page
+  When I click on the first product card in the list
+  And the user clicks the wishlist heart icon
+  Then the user should be redirected to "/account/wishlist"
 
-Examples:
-  | result                                 |
-  | item is saved for logged-in user       |
-  | user is redirected to sign-in page     |
+Scenario: Wishlist behavior based on user logged-out state
+  When the user clicks the wishlist heart icon
+  Then the user should be redirected to "/account/sign-in"
 
 @skip
 Scenario: User removes product from wishlist

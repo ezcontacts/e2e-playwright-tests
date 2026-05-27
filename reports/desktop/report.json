@@ -11,7 +11,7 @@
     "grepInvert": null,
     "maxFailures": 0,
     "metadata": {
-      "actualWorkers": 1
+      "actualWorkers": 4
     },
     "preserveOutput": "always",
     "reporter": [
@@ -40,7 +40,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 1
+          "actualWorkers": 4
         },
         "id": "desktop",
         "name": "desktop",
@@ -56,7 +56,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 1
+          "actualWorkers": 4
         },
         "id": "mobile",
         "name": "mobile",
@@ -78,6 +78,141 @@
   },
   "suites": [
     {
+      "title": "test\\generated\\desktop\\test\\features\\admin-panel\\admin_draft_orders.feature.spec.js",
+      "file": "test/generated/desktop/test/features/admin-panel/admin_draft_orders.feature.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Admin Order Management",
+          "file": "test/generated/desktop/test/features/admin-panel/admin_draft_orders.feature.spec.js",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Admin create a draft order with a saved card",
+              "ok": true,
+              "tags": [
+                "admin_draft_orders",
+                "validation",
+                "desktopOnly"
+              ],
+              "tests": [
+                {
+                  "timeout": 280000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 91015,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "When I select the payment",
+                          "duration": 5385
+                        },
+                        {
+                          "title": "Then The draft order should be successfully created",
+                          "duration": 6224
+                        }
+                      ],
+                      "startTime": "2026-05-27T05:37:14.323Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-admin-panel--82867-aft-order-with-a-saved-card-desktop\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c3644eea876a9db261ad-5c171f6b92fa0758ae1c",
+              "file": "test/generated/desktop/test/features/admin-panel/admin_draft_orders.feature.spec.js",
+              "line": 18,
+              "column": 3
+            },
+            {
+              "title": "Verify that Add Payment link and New pre auth section should visible when Admin user created the Draft Order",
+              "ok": true,
+              "tags": [
+                "admin_draft_orders",
+                "validation",
+                "TEST_AC-1251",
+                "desktopOnly",
+                "skip"
+              ],
+              "tests": [
+                {
+                  "timeout": 280000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "D:\\EZ Project\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\admin-panel\\admin_draft_orders.feature.spec.js",
+                        "line": 23,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-27T05:38:48.808Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "location": {
+                            "file": "D:\\EZ Project\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\admin-panel\\admin_draft_orders.feature.spec.js",
+                            "line": 23,
+                            "column": 8
+                          }
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-admin-panel--4f8f7-ser-created-the-Draft-Order-desktop\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c3644eea876a9db261ad-29ff6ad356e2286b12d7",
+              "file": "test/generated/desktop/test/features/admin-panel/admin_draft_orders.feature.spec.js",
+              "line": 23,
+              "column": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
       "title": "test\\generated\\desktop\\test\\features\\admin-panel\\duplicate-overstock-upload.feature.spec.js",
       "file": "test/generated/desktop/test/features/admin-panel/duplicate-overstock-upload.feature.spec.js",
       "column": 0,
@@ -92,7 +227,7 @@
           "specs": [
             {
               "title": "Validate duplicate overstock upload",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -103,60 +238,76 @@
                   "projectName": "desktop",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 43737,
-                      "error": {
-                        "message": "TimeoutError: locator.fill: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.panel-body').locator('#UserEmail')\u001b[22m\n",
-                        "stack": "TimeoutError: locator.fill: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.panel-body').locator('#UserEmail')\u001b[22m\n\n    at AdminLoginComponent.enterValidEmail (D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\admin-components\\AdminLoginComponent.ts:24:27)\n    at Object.<anonymous> (D:\\EZ Project\\e2e-playwright-tests\\test\\steps\\components\\admin-components\\adminLoginComponent.step.ts:11:37)\n    at D:\\EZ Project\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\admin-panel\\duplicate-overstock-upload.feature.spec.js:8:5",
-                        "location": {
-                          "file": "D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\admin-components\\AdminLoginComponent.ts",
-                          "column": 27,
-                          "line": 24
-                        },
-                        "snippet": "\u001b[90m   at \u001b[39mpage-objects\\components\\admin-components\\AdminLoginComponent.ts:24\n\n\u001b[0m \u001b[90m 22 |\u001b[39m     }\n \u001b[90m 23 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 24 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39memailField\u001b[33m.\u001b[39mfill(email)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 25 |\u001b[39m   }\n \u001b[90m 26 |\u001b[39m\n \u001b[90m 27 |\u001b[39m   \u001b[36masync\u001b[39m enterValidPassword()\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\admin-components\\AdminLoginComponent.ts",
-                            "column": 27,
-                            "line": 24
-                          },
-                          "message": "TimeoutError: locator.fill: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.panel-body').locator('#UserEmail')\u001b[22m\n\n\n\u001b[90m   at \u001b[39mpage-objects\\components\\admin-components\\AdminLoginComponent.ts:24\n\n\u001b[0m \u001b[90m 22 |\u001b[39m     }\n \u001b[90m 23 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 24 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39memailField\u001b[33m.\u001b[39mfill(email)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 25 |\u001b[39m   }\n \u001b[90m 26 |\u001b[39m\n \u001b[90m 27 |\u001b[39m   \u001b[36masync\u001b[39m enterValidPassword()\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\u001b[0m\n\u001b[2m    at AdminLoginComponent.enterValidEmail (D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\admin-components\\AdminLoginComponent.ts:24:27)\u001b[22m\n\u001b[2m    at Object.<anonymous> (D:\\EZ Project\\e2e-playwright-tests\\test\\steps\\components\\admin-components\\adminLoginComponent.step.ts:11:37)\u001b[22m\n\u001b[2m    at D:\\EZ Project\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\admin-panel\\duplicate-overstock-upload.feature.spec.js:8:5\u001b[22m"
-                        }
-                      ],
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 150789,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-05-26T03:36:07.613Z",
+                      "steps": [
+                        {
+                          "title": "Given I navigate to Overstock page",
+                          "duration": 17414
+                        },
+                        {
+                          "title": "And user prepares overstock file \"overstock-product-price-qty.csv\"",
+                          "duration": 3
+                        },
+                        {
+                          "title": "When user uploads overstock file",
+                          "duration": 11370
+                        },
+                        {
+                          "title": "Then upload should be successful",
+                          "duration": 77
+                        },
+                        {
+                          "title": "And user navigates to upload history page",
+                          "duration": 11648
+                        },
+                        {
+                          "title": "And user opens latest upload details",
+                          "duration": 1650
+                        },
+                        {
+                          "title": "And system should show fresh overstock message",
+                          "duration": 261
+                        },
+                        {
+                          "title": "When user uploads overstock file again",
+                          "duration": 24579
+                        },
+                        {
+                          "title": "Then user navigates to upload history page",
+                          "duration": 12607
+                        },
+                        {
+                          "title": "And user opens latest upload details",
+                          "duration": 3147
+                        },
+                        {
+                          "title": "And system should show duplicate overstock message",
+                          "duration": 1103
+                        },
+                        {
+                          "title": "And user removes product from overstock",
+                          "duration": 22253
+                        }
+                      ],
+                      "startTime": "2026-05-27T05:37:14.263Z",
                       "annotations": [],
                       "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-admin-panel--0ad30--duplicate-overstock-upload-desktop\\test-failed-1.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-admin-panel--0ad30--duplicate-overstock-upload-desktop\\error-context.md"
-                        },
                         {
                           "name": "trace",
                           "contentType": "application/zip",
                           "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-admin-panel--0ad30--duplicate-overstock-upload-desktop\\trace.zip"
                         }
-                      ],
-                      "errorLocation": {
-                        "file": "D:\\EZ Project\\e2e-playwright-tests\\page-objects\\components\\admin-components\\AdminLoginComponent.ts",
-                        "column": 27,
-                        "line": 24
-                      }
+                      ]
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "54269a2fbda4a97934b3-dc169bfb6bc1920c2cde",
@@ -167,14 +318,782 @@
           ]
         }
       ]
+    },
+    {
+      "title": "test\\generated\\desktop\\test\\features\\admin-panel\\invalid-overstock-upload.feature.spec.js",
+      "file": "test/generated/desktop/test/features/admin-panel/invalid-overstock-upload.feature.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Invalid Overstock Upload Validation",
+          "file": "test/generated/desktop/test/features/admin-panel/invalid-overstock-upload.feature.spec.js",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Validate invalid file format",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 280000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 73647,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Given I navigate to Overstock page",
+                          "duration": 20183
+                        },
+                        {
+                          "title": "And user prepares overstock file \"invalid-overstock-format.csv\"",
+                          "duration": 3
+                        },
+                        {
+                          "title": "When user uploads overstock file",
+                          "duration": 10637
+                        },
+                        {
+                          "title": "Then invalid overstock format message should display",
+                          "duration": 173
+                        }
+                      ],
+                      "startTime": "2026-05-27T05:37:14.415Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-admin-panel--b7c56-alidate-invalid-file-format-desktop\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "6280fdf9b1ecea9374d8-fe72d8c7e1a1d9bfcf8a",
+              "file": "test/generated/desktop/test/features/admin-panel/invalid-overstock-upload.feature.spec.js",
+              "line": 12,
+              "column": 3
+            },
+            {
+              "title": "Validate empty overstock file",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 280000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 54740,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Given I navigate to Overstock page",
+                          "duration": 15972
+                        },
+                        {
+                          "title": "And user prepares overstock file \"empty-overstock.csv\"",
+                          "duration": 2
+                        },
+                        {
+                          "title": "When user uploads overstock file",
+                          "duration": 10434
+                        },
+                        {
+                          "title": "Then empty overstock file message should display",
+                          "duration": 332
+                        }
+                      ],
+                      "startTime": "2026-05-27T05:38:30.844Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-admin-panel--6953b-lidate-empty-overstock-file-desktop\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "6280fdf9b1ecea9374d8-93671abd912b7b059c15",
+              "file": "test/generated/desktop/test/features/admin-panel/invalid-overstock-upload.feature.spec.js",
+              "line": 19,
+              "column": 3
+            },
+            {
+              "title": "Validate invalid product upload",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 280000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 72762,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Given I navigate to Overstock page",
+                          "duration": 18330
+                        },
+                        {
+                          "title": "And user prepares overstock file \"invalid-product.csv\"",
+                          "duration": 1
+                        },
+                        {
+                          "title": "When user uploads overstock file",
+                          "duration": 10198
+                        },
+                        {
+                          "title": "Then user navigates to upload history page",
+                          "duration": 11671
+                        },
+                        {
+                          "title": "And user opens latest upload details",
+                          "duration": 1680
+                        },
+                        {
+                          "title": "And invalid product message should display",
+                          "duration": 353
+                        }
+                      ],
+                      "startTime": "2026-05-27T05:39:27.458Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-admin-panel--18a4d-date-invalid-product-upload-desktop\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "6280fdf9b1ecea9374d8-c9b6fca2dea65014228e",
+              "file": "test/generated/desktop/test/features/admin-panel/invalid-overstock-upload.feature.spec.js",
+              "line": 26,
+              "column": 3
+            },
+            {
+              "title": "Validate invalid extension upload",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 280000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 66649,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Given I navigate to Overstock page",
+                          "duration": 14971
+                        },
+                        {
+                          "title": "And user prepares overstock file \"invalid-overstock.xlsx\"",
+                          "duration": 8
+                        },
+                        {
+                          "title": "When user uploads overstock file",
+                          "duration": 1706
+                        },
+                        {
+                          "title": "Then invalid extension message should display",
+                          "duration": 17469
+                        }
+                      ],
+                      "startTime": "2026-05-27T05:40:43.458Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-admin-panel--06df0-te-invalid-extension-upload-desktop\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "6280fdf9b1ecea9374d8-b30e50994d45bec2239f",
+              "file": "test/generated/desktop/test/features/admin-panel/invalid-overstock-upload.feature.spec.js",
+              "line": 35,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "test\\generated\\desktop\\test\\features\\admin-panel\\overstock-csv-schema-validation.feature.spec.js",
+      "file": "test/generated/desktop/test/features/admin-panel/overstock-csv-schema-validation.feature.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Overstock File Upload Validation - Advanced CSV Rules",
+          "file": "test/generated/desktop/test/features/admin-panel/overstock-csv-schema-validation.feature.spec.js",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Validate column order does not affect processing",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 280000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 109308,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Given I navigate to Overstock page",
+                          "duration": 15151
+                        },
+                        {
+                          "title": "And user prepares overstock file \"overstock-product-qty-price.csv\"",
+                          "duration": 2
+                        },
+                        {
+                          "title": "When user uploads overstock file",
+                          "duration": 9441
+                        },
+                        {
+                          "title": "Then upload should be successful",
+                          "duration": 132
+                        },
+                        {
+                          "title": "And product should be available in grid",
+                          "duration": 4115
+                        },
+                        {
+                          "title": "And user navigates to upload history page",
+                          "duration": 11401
+                        },
+                        {
+                          "title": "And user opens latest upload details",
+                          "duration": 1735
+                        },
+                        {
+                          "title": "And system should show overstock update message",
+                          "duration": 291
+                        },
+                        {
+                          "title": "And user removes product from overstock",
+                          "duration": 21376
+                        }
+                      ],
+                      "startTime": "2026-05-27T05:37:14.169Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-admin-panel--324dc--does-not-affect-processing-desktop\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "97d9f41bc8a5324bb8c2-59c67b8fc05fa6b113ed",
+              "file": "test/generated/desktop/test/features/admin-panel/overstock-csv-schema-validation.feature.spec.js",
+              "line": 12,
+              "column": 3
+            },
+            {
+              "title": "Validate unknown headers are ignored except Product",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 280000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 100000,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Given I navigate to Overstock page",
+                          "duration": 16583
+                        },
+                        {
+                          "title": "And user captures existing product data",
+                          "duration": 1
+                        },
+                        {
+                          "title": "And user prepares overstock file \"overstock-invalid-headers.csv\"",
+                          "duration": 2
+                        },
+                        {
+                          "title": "When user uploads overstock file",
+                          "duration": 10576
+                        },
+                        {
+                          "title": "Then upload should be successful",
+                          "duration": 85
+                        },
+                        {
+                          "title": "And product should be available in grid",
+                          "duration": 5334
+                        },
+                        {
+                          "title": "And user navigates to upload history page",
+                          "duration": 11951
+                        },
+                        {
+                          "title": "And user opens latest upload details",
+                          "duration": 1478
+                        },
+                        {
+                          "title": "And system should show overstock update message",
+                          "duration": 478
+                        },
+                        {
+                          "title": "And user removes product from overstock",
+                          "duration": 20515
+                        }
+                      ],
+                      "startTime": "2026-05-27T05:39:06.995Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-admin-panel--23fc4--are-ignored-except-Product-desktop\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "97d9f41bc8a5324bb8c2-b6fec163bc48c129bef8",
+              "file": "test/generated/desktop/test/features/admin-panel/overstock-csv-schema-validation.feature.spec.js",
+              "line": 24,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "test\\generated\\desktop\\test\\features\\admin-panel\\valid-overstock-upload.feature.spec.js",
+      "file": "test/generated/desktop/test/features/admin-panel/valid-overstock-upload.feature.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Overstock File Upload Validation",
+          "file": "test/generated/desktop/test/features/admin-panel/valid-overstock-upload.feature.spec.js",
+          "line": 4,
+          "column": 6,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Validate overstock upload for different file formats",
+              "file": "test/generated/desktop/test/features/admin-panel/valid-overstock-upload.feature.spec.js",
+              "line": 12,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Example #1",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 280000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 111146,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "Given I navigate to Overstock page",
+                              "duration": 17581
+                            },
+                            {
+                              "title": "And user prepares overstock file \"overstock-product-only.csv\"",
+                              "duration": 4
+                            },
+                            {
+                              "title": "When user uploads overstock file",
+                              "duration": 10707
+                            },
+                            {
+                              "title": "Then upload should be successful",
+                              "duration": 86
+                            },
+                            {
+                              "title": "And product should be available in grid",
+                              "duration": 4080
+                            },
+                            {
+                              "title": "And user navigates to upload history page",
+                              "duration": 11452
+                            },
+                            {
+                              "title": "And user opens latest upload details",
+                              "duration": 4225
+                            },
+                            {
+                              "title": "And system should show overstock update message",
+                              "duration": 1310
+                            },
+                            {
+                              "title": "And user removes product from overstock",
+                              "duration": 21414
+                            }
+                          ],
+                          "startTime": "2026-05-27T05:38:48.907Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-admin-panel--abdc9-rent-file-formats-Example-1-desktop\\trace.zip"
+                            }
+                          ]
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3fb63c0b46e98e19204a-4253c97f6de1f5b2facd",
+                  "file": "test/generated/desktop/test/features/admin-panel/valid-overstock-upload.feature.spec.js",
+                  "line": 14,
+                  "column": 5
+                },
+                {
+                  "title": "Example #2",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 280000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 102190,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "Given I navigate to Overstock page",
+                              "duration": 14854
+                            },
+                            {
+                              "title": "And user prepares overstock file \"overstock-product-price.csv\"",
+                              "duration": 2
+                            },
+                            {
+                              "title": "When user uploads overstock file",
+                              "duration": 11365
+                            },
+                            {
+                              "title": "Then upload should be successful",
+                              "duration": 67
+                            },
+                            {
+                              "title": "And product should be available in grid",
+                              "duration": 8792
+                            },
+                            {
+                              "title": "And user navigates to upload history page",
+                              "duration": 11599
+                            },
+                            {
+                              "title": "And user opens latest upload details",
+                              "duration": 2291
+                            },
+                            {
+                              "title": "And system should show overstock update message",
+                              "duration": 325
+                            },
+                            {
+                              "title": "And user removes product from overstock",
+                              "duration": 20459
+                            }
+                          ],
+                          "startTime": "2026-05-27T05:40:44.745Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-admin-panel--d3bfb-rent-file-formats-Example-2-desktop\\trace.zip"
+                            }
+                          ]
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3fb63c0b46e98e19204a-c62f4bc2960502121510",
+                  "file": "test/generated/desktop/test/features/admin-panel/valid-overstock-upload.feature.spec.js",
+                  "line": 26,
+                  "column": 5
+                },
+                {
+                  "title": "Example #3",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 280000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 99077,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "Given I navigate to Overstock page",
+                              "duration": 13449
+                            },
+                            {
+                              "title": "And user prepares overstock file \"overstock-product-qty.csv\"",
+                              "duration": 3
+                            },
+                            {
+                              "title": "When user uploads overstock file",
+                              "duration": 9526
+                            },
+                            {
+                              "title": "Then upload should be successful",
+                              "duration": 74
+                            },
+                            {
+                              "title": "And product should be available in grid",
+                              "duration": 3579
+                            },
+                            {
+                              "title": "And user navigates to upload history page",
+                              "duration": 11579
+                            },
+                            {
+                              "title": "And user opens latest upload details",
+                              "duration": 1764
+                            },
+                            {
+                              "title": "And system should show overstock update message",
+                              "duration": 236
+                            },
+                            {
+                              "title": "And user removes product from overstock",
+                              "duration": 20126
+                            }
+                          ],
+                          "startTime": "2026-05-27T05:42:30.280Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-admin-panel--0da6d-rent-file-formats-Example-3-desktop\\trace.zip"
+                            }
+                          ]
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3fb63c0b46e98e19204a-eeaf849c520eebac3b5a",
+                  "file": "test/generated/desktop/test/features/admin-panel/valid-overstock-upload.feature.spec.js",
+                  "line": 38,
+                  "column": 5
+                },
+                {
+                  "title": "Example #4",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 280000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "desktop",
+                      "projectName": "desktop",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 35732,
+                          "error": {
+                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.gritter-title').filter({ hasText: 'You have successfully logged in.' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.gritter-title').filter({ hasText: 'You have successfully logged in.' })\u001b[22m\n",
+                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.gritter-title').filter({ hasText: 'You have successfully logged in.' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.gritter-title').filter({ hasText: 'You have successfully logged in.' })\u001b[22m\n\n    at AdminPanelPage.verifySuccessfulMessage (D:\\EZ Project\\e2e-playwright-tests\\page-objects\\pages\\admin-panel\\AdminPanelPage.ts:34:27)\n    at Object.<anonymous> (D:\\EZ Project\\e2e-playwright-tests\\test\\steps\\components\\admin-components\\adminLoginComponent.step.ts:20:26)\n    at D:\\EZ Project\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\admin-panel\\valid-overstock-upload.feature.spec.js:9:5",
+                            "location": {
+                              "file": "D:\\EZ Project\\e2e-playwright-tests\\page-objects\\pages\\admin-panel\\AdminPanelPage.ts",
+                              "column": 27,
+                              "line": 34
+                            },
+                            "snippet": "\u001b[90m   at \u001b[39mpage-objects\\pages\\admin-panel\\AdminPanelPage.ts:34\n\n\u001b[0m \u001b[90m 32 |\u001b[39m   \u001b[36masync\u001b[39m verifySuccessfulMessage(text\u001b[33m:\u001b[39m string)\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\n \u001b[90m 33 |\u001b[39m     \u001b[36mconst\u001b[39m message \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39msuccessMessage(text)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 34 |\u001b[39m     \u001b[36mawait\u001b[39m expect(message)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 35 |\u001b[39m     \u001b[36mawait\u001b[39m expect(message)\u001b[33m.\u001b[39mtoHaveText(text)\u001b[33m;\u001b[39m\n \u001b[90m 36 |\u001b[39m   }\n \u001b[90m 37 |\u001b[39m }\u001b[0m"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "D:\\EZ Project\\e2e-playwright-tests\\page-objects\\pages\\admin-panel\\AdminPanelPage.ts",
+                                "column": 27,
+                                "line": 34
+                              },
+                              "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.gritter-title').filter({ hasText: 'You have successfully logged in.' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.gritter-title').filter({ hasText: 'You have successfully logged in.' })\u001b[22m\n\n\n\u001b[90m   at \u001b[39mpage-objects\\pages\\admin-panel\\AdminPanelPage.ts:34\n\n\u001b[0m \u001b[90m 32 |\u001b[39m   \u001b[36masync\u001b[39m verifySuccessfulMessage(text\u001b[33m:\u001b[39m string)\u001b[33m:\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m<\u001b[39m\u001b[36mvoid\u001b[39m\u001b[33m>\u001b[39m {\n \u001b[90m 33 |\u001b[39m     \u001b[36mconst\u001b[39m message \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39msuccessMessage(text)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 34 |\u001b[39m     \u001b[36mawait\u001b[39m expect(message)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 35 |\u001b[39m     \u001b[36mawait\u001b[39m expect(message)\u001b[33m.\u001b[39mtoHaveText(text)\u001b[33m;\u001b[39m\n \u001b[90m 36 |\u001b[39m   }\n \u001b[90m 37 |\u001b[39m }\u001b[0m\n\u001b[2m    at AdminPanelPage.verifySuccessfulMessage (D:\\EZ Project\\e2e-playwright-tests\\page-objects\\pages\\admin-panel\\AdminPanelPage.ts:34:27)\u001b[22m\n\u001b[2m    at Object.<anonymous> (D:\\EZ Project\\e2e-playwright-tests\\test\\steps\\components\\admin-components\\adminLoginComponent.step.ts:20:26)\u001b[22m\n\u001b[2m    at D:\\EZ Project\\e2e-playwright-tests\\test\\generated\\desktop\\test\\features\\admin-panel\\valid-overstock-upload.feature.spec.js:9:5\u001b[22m"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-05-27T05:44:12.176Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-admin-panel--cd12d-rent-file-formats-Example-4-desktop\\test-failed-1.png"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-admin-panel--cd12d-rent-file-formats-Example-4-desktop\\error-context.md"
+                            },
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "D:\\EZ Project\\e2e-playwright-tests\\test-results\\test-features-admin-panel--cd12d-rent-file-formats-Example-4-desktop\\trace.zip"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "D:\\EZ Project\\e2e-playwright-tests\\page-objects\\pages\\admin-panel\\AdminPanelPage.ts",
+                            "column": 27,
+                            "line": 34
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "3fb63c0b46e98e19204a-c4ef875be3c730e063ff",
+                  "file": "test/generated/desktop/test/features/admin-panel/valid-overstock-upload.feature.spec.js",
+                  "line": 50,
+                  "column": 5
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-05-26T03:36:01.619Z",
-    "duration": 51736.21400000001,
-    "expected": 0,
-    "skipped": 0,
+    "startTime": "2026-05-27T05:37:08.800Z",
+    "duration": 460841.75899999996,
+    "expected": 11,
+    "skipped": 1,
     "unexpected": 1,
     "flaky": 0
   }

@@ -4,7 +4,7 @@ export enum OverstockStatus {
 
   DUPLICATE = "DUPLICATE",
 
-  NOT_FOUND = "NOT_FOUND",
+  NOT_FOUND = "NOT FOUND",
 
   INVALID = "INVALID",
 

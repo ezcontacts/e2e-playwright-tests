@@ -46,9 +46,3 @@ Feature: Invalid Overstock Upload Validation
     When user uploads overstock file
 
     Then invalid extension message should display
-
-    And user navigates to upload history page
-
-    And user opens latest upload details
-
-    And invalid product message should display

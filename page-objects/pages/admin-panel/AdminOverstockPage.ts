@@ -21,19 +21,11 @@ import {InvalidExtensionMessages,
 
 export class AdminOverstockPage extends BasePage {
 
-  /* =====================================================
-     URLS
-  ===================================================== */
-
   private readonly OVERSTOCK_PAGE =
     "/products/list-over-stock-products";
 
   private readonly HISTORY_PAGE =
     "/products/list-over-stock-uploads";
-
-  /* =====================================================
-     LOCATORS
-  ===================================================== */
 
   readonly uploadToggleBtn: Locator;
   readonly fileInput: Locator;
@@ -52,21 +44,14 @@ export class AdminOverstockPage extends BasePage {
   readonly overstockTableRoot: Locator;
   readonly historyTableRoot: Locator;
 
-  /* =====================================================
-     COMPONENTS
-  ===================================================== */
-
   readonly overstockTable: TableComponent;
   readonly historyTable: TableComponent;
 
-  readonly overstockModalCloseBtn: Locator;
-
   readonly overstockModal: Locator;
-  readonly overstockModalCloseBtnAlt: Locator;
+  readonly overstockModalBackdrop: Locator;
 
-  /* =====================================================
-     CONSTRUCTOR
-  ===================================================== */
+  readonly overstockModalCloseBtn: Locator;
+  readonly overstockModalCloseBtnAlt: Locator;
 
   constructor(
     page: Page,
@@ -74,10 +59,6 @@ export class AdminOverstockPage extends BasePage {
   ) {
 
     super(page, endpoint);
-
-    /* =====================
-       Upload Section
-    ===================== */
 
     this.uploadToggleBtn =
       page.locator("#uploadShowHideBtnId");
@@ -94,10 +75,6 @@ export class AdminOverstockPage extends BasePage {
     this.removeBtn =
       page.locator("#changeOverStockBtnId");
 
-    /* =====================
-       Grid
-    ===================== */
-
     this.searchInput =
       page.locator(
         'input[type="search"][aria-controls="shTableOver"]'
@@ -106,19 +83,11 @@ export class AdminOverstockPage extends BasePage {
     this.overstockTableRoot =
       page.locator("#shTableOver");
 
-    /* =====================
-       History
-    ===================== */
-
     this.historyTableRoot =
       page.locator("table");
 
     this.viewDetailsBtn =
       page.locator('a:has-text("View Details")');
-
-    /* =====================
-       Messages
-    ===================== */
 
     this.gritterMessage =
       page.locator(".gritter-item .gritter-title");
@@ -126,36 +95,23 @@ export class AdminOverstockPage extends BasePage {
     this.uploadDetailsMessage =
       page.locator("table tbody tr td strong");
 
-    /* =====================
-       Details Table
-    ===================== */
-
     this.detailsTable =
       page.locator("table");
-
-    /* =====================
-       Components
-    ===================== */
 
     this.overstockTable =
       new TableComponent(this.overstockTableRoot);
 
-    this.historyTable =
-      new TableComponent(this.historyTableRoot);
+    this.historyTable = new TableComponent(this.historyTableRoot);
 
-    this.overstockModalCloseBtn =
-    page.locator('#overStockProductModalId button[data-dismiss="modal"]');
+    this.overstockModal = page.locator('#overStockProductModalId');  
 
-    this.overstockModal =
-    page.locator('#overStockProductModalId');
+    this.overstockModalBackdrop = page.locator('.modal-backdrop');
 
-    this.overstockModalCloseBtnAlt =
-    this.overstockModal.locator('button:has-text("Close"), button.btn.btn-default');
+    this.overstockModalCloseBtn = this.overstockModal.locator('button[data-dismiss="modal"]');
+
+    this.overstockModalCloseBtnAlt = this.overstockModal.locator('button.close, button:has-text("Close"), button.btn.btn-default');
+
   }
-
-  /* =====================================================
-     NAVIGATION
-  ===================================================== */
 
   async open(): Promise<void> {
 
@@ -171,15 +127,12 @@ export class AdminOverstockPage extends BasePage {
     );
   }
 
-  /* =====================================================
-     COMMON METHODS
-  ===================================================== */
-
   async refresh(): Promise<void> {
+    if (await this.overstockModal.isVisible().catch(() => false)) {
+      await this.closeOverstockModal();
+    }
 
-    await this.page.reload({
-      waitUntil: "networkidle"
-    });
+    await this.page.reload({ waitUntil: "domcontentloaded" });
   }
 
   async waitForGrid(): Promise<void> {
@@ -187,11 +140,8 @@ export class AdminOverstockPage extends BasePage {
     await expect(this.searchInput).toBeVisible();
   }
 
-  /* =====================================================
-     UPLOAD FLOW
-  ===================================================== */
-
   async openUploadSection(): Promise<void> {
+    await this.waitForOverstockUIReady(); 
 
     await this.uploadToggleBtn.click();
   }
@@ -230,6 +180,9 @@ export class AdminOverstockPage extends BasePage {
   }
 
   async processOverstockFile(fileName: string): Promise<void> {
+    await this.waitForOverstockModalToClose(); 
+
+    await this.forceRecoverUI();
 
     await this.openUploadSection();
 
@@ -242,44 +195,38 @@ export class AdminOverstockPage extends BasePage {
     const modal = this.overstockModal;
 
     try {
-      await modal.waitFor({ state: 'visible', timeout: 5000 });
+      await expect(modal).toBeVisible({ timeout: 5000 });
 
       await this.closeOverstockModal();
 
-      await modal.waitFor({ state: 'hidden', timeout: 5000 });
-
     } catch {
-      console.log("⚠️ No modal appeared after upload");
     }
   }
-
-  /* =====================================================
-     GRID METHODS
-  ===================================================== */
 
   async searchProduct(productNumber: string): Promise<void> {
-
-    if (!productNumber?.trim()) {
-      console.log("⚠️ search skipped: empty productNumber");
-      return;
-    }
+    if (!productNumber?.trim()) return;
 
     await this.searchInput.fill(productNumber);
+
+    await this.searchInput.press("Enter"); 
+
+    await expect(this.overstockTableRoot).toBeVisible();
   }
 
-  async isProductVisible(
-    productNumber: string
-  ): Promise<boolean> {
+  async isProductVisible(productNumber: string): Promise<boolean> {
+    const row = this.overstockTable.getRowByText(productNumber);
 
-    return await this.overstockTable.rowExists(
-      productNumber
-    );
+    try {
+      await row.first().waitFor({ state: "visible", timeout: 5000 });
+      return true;
+    } catch {
+      return false;
+    }
   }
 
   async getProductRowData(productNumber: string): Promise<string[]> {
 
     if (!productNumber?.trim()) {
-      console.log("⚠️ Skipping grid lookup due to invalid/modified header file");
       return [];
     }
 
@@ -290,10 +237,6 @@ export class AdminOverstockPage extends BasePage {
 
     return await row.locator("td").allTextContents();
   }
-
-  /* =====================================================
-     REMOVE OVERSTOCK FLOW
-  ===================================================== */
 
   async removeOverstockProduct(productNumber: string): Promise<void> {
 
@@ -311,7 +254,6 @@ export class AdminOverstockPage extends BasePage {
     const rowCount = await row.count();
 
     if (rowCount === 0) {
-      console.log(`⚠️ Product already removed: ${productNumber}`);
       return;
     }
 
@@ -324,7 +266,6 @@ export class AdminOverstockPage extends BasePage {
     await expect(checkbox).toBeChecked();
 
     this.page.once("dialog", async dialog => {
-      console.log("REMOVE POPUP:", dialog.message());
       await dialog.accept();
     });
 
@@ -334,16 +275,10 @@ export class AdminOverstockPage extends BasePage {
 
     const toast = await this.getToastMessage();
 
-    console.log("REMOVE TOAST:", toast);
-
     expect(toast).toContain(OverstockMessages[OverstockStatus.REMOVED]);
 
     await this.refresh();
   }
-
-  /* =====================================================
-     TOAST MESSAGE METHODS
-  ===================================================== */
 
   async getToastMessage(): Promise<string> {
 
@@ -353,7 +288,6 @@ export class AdminOverstockPage extends BasePage {
       await toast.waitFor({ state: "visible", timeout: 8000 });
       return (await toast.textContent())?.trim() ?? "";
     } catch {
-      console.log("⚠️ Toast not found");
       return "";
     }
   }
@@ -369,10 +303,6 @@ export class AdminOverstockPage extends BasePage {
       .toContain(expectedMessage);
   }
 
-  /* =====================================================
-     HISTORY PAGE METHODS
-  ===================================================== */
-
   async openLatestUploadDetails(): Promise<void> {
 
     const firstRow =
@@ -384,10 +314,6 @@ export class AdminOverstockPage extends BasePage {
       .locator(this.viewDetailsBtn)
       .click();
   }
-
-  /* =====================================================
-     DETAILS PAGE METHODS
-  ===================================================== */
 
   getDetailCell(
     row: number,
@@ -447,10 +373,6 @@ export class AdminOverstockPage extends BasePage {
     ).toBeTruthy();
   }
 
-  /* =====================================================
-     FILE VALIDATION
-  ===================================================== */
-
   async isFileAttached(): Promise<boolean> {
 
     const fileValue =
@@ -460,60 +382,52 @@ export class AdminOverstockPage extends BasePage {
   }
 
   async closeOverstockModal(): Promise<void> {
+    const modal = this.overstockModal;
+
     try {
-      await this.overstockModalCloseBtn.waitFor({ state: 'visible', timeout: 5000 });
-      await this.overstockModalCloseBtn.click();
-      await this.overstockModalCloseBtn.waitFor({ state: 'hidden', timeout: 5000 });
+      const closeBtn = this.overstockModalCloseBtn;
+
+      await expect(closeBtn).toBeVisible({ timeout: 5000 });
+
+      await closeBtn.click();
+
+      await this.waitForOverstockUIReady();
+
     } catch (err) {
-      console.log("⚠️ Modal close button not found or already closed");
     }
   }
 
-async validateAlertPopup(
-  expectedMessage: string
-): Promise<void> {
-
-  this.page.once("dialog", async dialog => {
-
-    const actualMessage =
-      dialog.message();
-
-    expect(actualMessage)
-      .toContain(expectedMessage);
-
-    await dialog.accept();
-  });
-}
-
-/* =====================================================
-   INVALID EXTENSION VALIDATION
-===================================================== */
-
-  async validateInvalidExtensionPopup(
-    popupMessage: string
+  async validateAlertPopup(
+    expectedMessage: string
   ): Promise<void> {
 
-    await expect(this.overstockModal).toBeVisible({
-      timeout: 10000
-    });
+    this.page.once("dialog", async dialog => {
 
-    await expect(this.overstockModalCloseBtnAlt).toBeVisible({
-      timeout: 10000
-    });
+      const actualMessage =
+        dialog.message();
 
-    await expect(this.overstockModalCloseBtnAlt).toBeEnabled({
-      timeout: 10000
-    });
+      expect(actualMessage)
+        .toContain(expectedMessage);
 
-    await this.overstockModalCloseBtnAlt.click({
-      force: true
+      await dialog.accept();
     });
+  }
+
+  async validateInvalidExtensionPopup(popupMessage: string): Promise<void> {
+    await expect(this.overstockModal).toBeVisible({ timeout: 10000 });
 
     expect(
       InvalidExtensionMessages.some(msg =>
         popupMessage.includes(msg)
       )
     ).toBeTruthy();
+
+  
+    await this.closeOverstockModal();
+
+    await this.forceRecoverUI();
+
+    await this.waitForOverstockModalToClose();
   }
 
   async uploadOverstockFile(
@@ -548,5 +462,40 @@ async validateAlertPopup(
     }
 
     await this.processOverstockFile(fileName);
+  }
+
+  async waitForOverstockModalToClose(): Promise<void> {
+    const modal = this.overstockModal;
+    const backdrop = this.overstockModalBackdrop;
+
+  
+    try {
+      await expect(modal).toBeHidden({ timeout: 15000 });
+    } catch {
+    }
+
+    await expect(this.uploadToggleBtn).toBeVisible({ timeout: 15000 });
+    await expect(this.uploadToggleBtn).toBeEnabled({ timeout: 15000 });
+
+    const count = await backdrop.count();
+    if (count > 0) {
+      return;
+    }
+  }
+
+  async waitForOverstockUIReady(): Promise<void> {
+    const modal = this.overstockModal;
+
+    await expect(modal).toBeHidden({ timeout: 15000 }).catch(() => {
+    });
+
+    await expect(this.uploadToggleBtn).toBeVisible({ timeout: 15000 });
+    await expect(this.uploadToggleBtn).toBeEnabled({ timeout: 15000 });
+  }
+
+  async forceRecoverUI(): Promise<void> {
+    await this.page.keyboard.press("Escape");
+
+    await this.waitForOverstockUIReady();
   }
 }

@@ -83,7 +83,7 @@ When("the user moves the cursor away", async ({ productPage }) => {
   await productPage.resetСursor();
 });
 
-When("the user clicks the wishlist heart icon", async ({ productPage }) => {
+When("the user clicks the wishlist add link", async ({ productPage }) => {
   await productPage.clickOnAddToWishlistBtn();
 });
 

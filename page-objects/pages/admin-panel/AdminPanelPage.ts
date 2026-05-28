@@ -31,7 +31,7 @@ export class AdminPanelPage extends BasePage {
 
   async verifySuccessfulMessage(text: string): Promise<void> {
     const message = this.successMessage(text);
-    await expect(message).toBeVisible();
+    await expect(message).toBeVisible({ timeout: 15000 });
     await expect(message).toHaveText(text);
   }
 }

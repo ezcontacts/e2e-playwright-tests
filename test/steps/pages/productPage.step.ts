@@ -87,6 +87,18 @@ When("the user clicks the wishlist add link", async ({ productPage }) => {
   await productPage.clickOnAddToWishlistBtn();
 });
 
+When("the user clicks the wishlist heart icon", async ({ productPage }) => {
+  await productPage.clickOnWishlistBtn();
+});
+
+When("the product wishlist should be active", async ({ productPage }) => {
+  await productPage.verifyProductIsWishlisted();
+});
+
+When("the product wishlist should not be active", async ({ productPage }) => {
+  await productPage.verifyProductIsNotWishlisted();
+});
+
 Then(
   "a tooltip with text {string} should be displayed",
   async ({ productPage }, text: string) => {

@@ -146,6 +146,18 @@ export class ProductPage extends BasePage {
     await this.wishlistTooltip.locator("a").click();
   }
 
+  async clickOnWishlistBtn(): Promise<void> {
+    await this.addToWishlist.click();
+  }
+
+  async verifyProductIsWishlisted(): Promise<void> {
+    await expect(this.addToWishlist).toContainClass("fa-heart");
+  }
+
+  async verifyProductIsNotWishlisted(): Promise<void> {
+    await expect(this.addToWishlist).not.toContainClass("fa-heart");
+  }
+
   async verifyProductTitleIsVisible(): Promise<void> {
     await expect(this.productName).toBeVisible();
   }

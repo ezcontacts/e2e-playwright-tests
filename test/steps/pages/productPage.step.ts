@@ -106,6 +106,20 @@ Then(
   },
 );
 
+Then(
+  "the support representative image should be visible",
+  async ({ productPage }) => {
+    await productPage.verifyContactUsImageVisible();
+  },
+);
+
+Then(
+  "the Contact Us link should navigate to the customer support page",
+  async ({ productPage }) => {
+    await productPage.verifyContactUsLinkNavigatesToSupportPage();
+  },
+);
+
 Then("the wishlist tooltip should disappear", async ({ productPage }) => {
   await productPage.verifyWithlistTooltipNotVisible();
 });

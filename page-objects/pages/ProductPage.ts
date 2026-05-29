@@ -20,6 +20,7 @@ export class ProductPage extends BasePage {
   readonly wishlistTooltip: Locator;
   readonly shipAvailability: Locator;
   readonly specificationsBtn: Locator;
+  readonly contactUsImage: Locator;
 
   readonly lensTypeTitle: Locator;
   readonly buyFrameOnlyBtn: Locator;
@@ -35,6 +36,7 @@ export class ProductPage extends BasePage {
   readonly lensMaterial: LensMaterialComponent;
   readonly coating: CoatingComponent;
   readonly lensColor: LensColorComponent;
+  readonly contactUsLink: Locator;
 
   constructor(page: Page) {
     super(page, ENDPOINT.login);
@@ -76,6 +78,8 @@ export class ProductPage extends BasePage {
     this.buyFrameOnlyBtn = this.locator(
       ".modal-center-position.modal-dialog .btn-default",
     );
+    this.contactUsImage = this.locator(".help-box img");
+    this.contactUsLink = this.locator(".help-box a");
 
     this.lensOptionTitle = (text: string) =>
       this.locator(".other-frame-opt-mod").filter({
@@ -219,5 +223,20 @@ export class ProductPage extends BasePage {
 
   async verifyWithlistTooltipNotVisible(): Promise<void> {
     await expect(this.wishlistTooltip).not.toBeVisible();
+  }
+
+  async verifyContactUsImageVisible(): Promise<void> {
+    await expect(this.contactUsImage).toBeVisible();
+  }
+
+  async verifyContactUsLinkNavigatesToSupportPage(): Promise<void> {
+    const count = await this.contactUsLink.count();
+
+    for (let i = 0; i < count; i++) {
+      await expect(this.contactUsLink.nth(i)).toHaveAttribute(
+        "href",
+        ENDPOINT.contactUs,
+      );
+    }
   }
 }

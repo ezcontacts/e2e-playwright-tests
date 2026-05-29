@@ -176,7 +176,6 @@ Scenario: Breadcrumb navigation
   When the user clicks a breadcrumb link
   Then the user should be redirected to the corresponding category page
 
-@skip
 #Customer Support
 Scenario: Customer support contact block
   Then the support representative image should be visible

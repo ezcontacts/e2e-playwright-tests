@@ -31,6 +31,7 @@ import { AccountOrderPage } from "../../page-objects/pages/Account/AccountOrderP
 import { AddressAndPaymentPage } from "../../page-objects/pages/Account/AddressAndPaymentPage";
 import { PdpRxOptionPage } from "../../page-objects/pages/product-cataloge/PdpRxOptionPage";
 import { FacebookPage } from "../../page-objects/pages/facebookPage";
+import { AdminOverstockPage } from "../../page-objects/pages/admin-panel/AdminOverstockPage";
 
 export type CatalogeContext = { cardsState: CardState[] };
 
@@ -58,6 +59,7 @@ export const test = bddTest.extend<{
   accountSettingsPage: AccountSettingsPage;
   accountInfoPage: AccountInfoPage;
   adminProductPage: AdminProductPage;
+  adminOverstockPage: AdminOverstockPage;
   accountOrderPage: AccountOrderPage;
   addressAndPaymentPage: AddressAndPaymentPage;
   portalContext: PortalContext;
@@ -126,6 +128,10 @@ export const test = bddTest.extend<{
 
   adminProductPage: async ({ page }, use) =>
     await use(new AdminProductPage(page)),
+
+  adminOverstockPage: async ({ page }, use) =>
+    await use(new AdminOverstockPage(page)),
+
   rxVerificationPage: async ({ page }, use) =>
     await use(new RxInformationPage(page)),
   //portalPage: async ({ page }, use) => await use(new PortalPage(page)),

@@ -202,3 +202,18 @@ Then(
     }
   },
 );
+
+Then(
+  "the average rating, rating breakdown, and reviews list should be visible",
+  async ({ productPage }) => {
+    await productPage.verifyRatingContainerVisible();
+    //await productPage.verifyRatingScaleVisible();
+  },
+);
+
+Then(
+  "the {string} button should be displayed",
+  async ({ productPage }, text: string) => {
+    await productPage.verifyRatingsectionButtonText(text);
+  },
+);

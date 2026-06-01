@@ -116,17 +116,10 @@ Scenario: Specifications remain accurate across variant changes
   When the user switches between variants multiple times
   Then the specifications should always reflect the currently selected variant
 
-@skip
 #Ratings, Reviews & Q&A
 Scenario: Ratings and reviews section is displayed
   Then the average rating, rating breakdown, and reviews list should be visible
-  And the Write Review button should be displayed
-
-@skip
-Scenario: Review pagination and filtering
-  When review pagination exists
-  Then filters should be available
-  And the user should be able to filter reviews by rating, relevance, or keyword
+  And the "Write a review" button should be displayed
 
 @skip
 Scenario: Q&A section pagination

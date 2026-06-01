@@ -21,22 +21,25 @@ export class ProductPage extends BasePage {
   readonly shipAvailability: Locator;
   readonly specificationsBtn: Locator;
   readonly contactUsImage: Locator;
+  readonly ratingContainer: Locator;
+  readonly ratingScale: Locator;
 
   readonly lensTypeTitle: Locator;
   readonly buyFrameOnlyBtn: Locator;
+  readonly contactUsLink: Locator;
 
   readonly lensOptionTitle: (text: string) => Locator;
   readonly lensOption: (text: string) => Locator;
   readonly lensOptionTitleModal: (text: string) => Locator;
   readonly lensOptionModal: (text: string) => Locator;
 
-  readonly productDescription: (value: string) => Locator;
+  readonly productDescription: (text: string) => Locator;
+  readonly ratingSectionButton: (text: string) => Locator;
 
   readonly prescriptionDetails: PrescriptionDetailsComponent;
   readonly lensMaterial: LensMaterialComponent;
   readonly coating: CoatingComponent;
   readonly lensColor: LensColorComponent;
-  readonly contactUsLink: Locator;
 
   constructor(page: Page) {
     super(page, ENDPOINT.login);
@@ -80,6 +83,8 @@ export class ProductPage extends BasePage {
     );
     this.contactUsImage = this.locator(".help-box img");
     this.contactUsLink = this.locator(".help-box a");
+    this.ratingContainer = this.locator("div.bv_stars_component_container");
+    this.ratingScale = this.locator(".bv_avgRating_component_container");
 
     this.lensOptionTitle = (text: string) =>
       this.locator(".other-frame-opt-mod").filter({
@@ -102,6 +107,13 @@ export class ProductPage extends BasePage {
         .filter({
           hasText: text,
         });
+
+    this.ratingSectionButton = (text: string) =>
+      this.locator(
+        ".bv_button_review_or_question_container .bv_button_component_container",
+      ).filter({
+        hasText: text,
+      });
 
     this.prescriptionDetails = new PrescriptionDetailsComponent(page);
     this.lensMaterial = new LensMaterialComponent(page);
@@ -238,5 +250,17 @@ export class ProductPage extends BasePage {
         ENDPOINT.contactUs,
       );
     }
+  }
+
+  async verifyRatingContainerVisible(): Promise<void> {
+    await expect(this.ratingContainer).toBeVisible();
+  }
+
+  async verifyRatingScaleVisible(): Promise<void> {
+    await expect(this.ratingScale).toBeVisible();
+  }
+
+  async verifyRatingsectionButtonText(text: string): Promise<void> {
+    await expect(this.ratingSectionButton(text)).toBeVisible();
   }
 }
